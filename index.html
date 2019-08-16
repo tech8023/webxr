@@ -3305,6 +3305,8 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     <p>When the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement①">HTMLCanvasElement</a></code>'s <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-canvas-getcontext" id="ref-for-dom-canvas-getcontext">getContext()</a></code> method is invoked with a <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLContextAttributes" id="ref-for-WebGLContextAttributes②">WebGLContextAttributes</a></code> dictionary with <code class="idl"><a data-link-type="idl" href="#dom-webglcontextattributes-xrcompatible" id="ref-for-dom-webglcontextattributes-xrcompatible②">xrCompatible</a></code> set to <code>true</code>, run the following steps:</p>
     <ol>
      <li data-md>
+      <p><a data-link-type="dfn" href="#ensures-an-immersive-xr-device-is-selected" id="ref-for-ensures-an-immersive-xr-device-is-selected②">Ensure an immersive XR device is selected</a>.</p>
+     <li data-md>
       <p><a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#2.1" id="ref-for-2.1">Create the WebGL context</a> as usual, ensuring it is created on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter④">compatible graphics adapter</a> for the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device②⓪">immersive XR device</a>.</p>
      <li data-md>
       <p>Let <var>context</var> be the newly created WebGL context.</p>
@@ -3339,14 +3341,24 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
        <li data-md>
         <p>Let <var>context</var> be the target <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase⑦">WebGLRenderingContextBase</a></code> object.</p>
        <li data-md>
-        <p>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑨">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑤">InvalidStateError</a></code> and abort these abort these steps.</p>
+        <p>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑨">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑤">InvalidStateError</a></code> and abort these steps.</p>
        <li data-md>
         <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑦">XR compatible</a> boolean is <code>true</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise⑤">resolve</a> <var>promise</var> and abort these steps.</p>
        <li data-md>
-        <p>If <var>context</var> was created on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑥">compatible graphics adapter</a> for the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device②③">immersive XR device</a>:</p>
+        <p><a data-link-type="dfn" href="#ensures-an-immersive-xr-device-is-selected" id="ref-for-ensures-an-immersive-xr-device-is-selected③">Ensure an immersive XR device is selected</a>.</p>
+       <li data-md>
+        <p>If the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device②③">immersive XR device</a> is <code>null</code>:</p>
         <ol>
          <li data-md>
-          <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑧">XR compatible</a> boolean to <code>true</code>.</p>
+          <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑧">XR compatible</a> boolean to <code>false</code>.</p>
+         <li data-md>
+          <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise①⓪">Reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑥">InvalidStateError</a></code> and abort these steps.</p>
+        </ol>
+       <li data-md>
+        <p>If <var>context</var> was created on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑥">compatible graphics adapter</a> for the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device②④">immersive XR device</a>:</p>
+        <ol>
+         <li data-md>
+          <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑨">XR compatible</a> boolean to <code>true</code>.</p>
          <li data-md>
           <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise⑥">Resolve</a> <var>promise</var> and abort these steps.</p>
         </ol>
@@ -3356,11 +3368,11 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
          <li data-md>
           <p>Force <var>context</var> to be lost and <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#CONTEXT_LOST" id="ref-for-CONTEXT_LOST">handle the context loss</a> as described by the WebGL specification.</p>
          <li data-md>
-          <p>If the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#canceled-flag" id="ref-for-canceled-flag">canceled flag</a> of the "webglcontextlost" event fired in the previous step was not set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise①⓪">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#aborterror" id="ref-for-aborterror">AbortError</a></code> and abort these steps.</p>
+          <p>If the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#canceled-flag" id="ref-for-canceled-flag">canceled flag</a> of the "webglcontextlost" event fired in the previous step was not set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise①①">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#aborterror" id="ref-for-aborterror">AbortError</a></code> and abort these steps.</p>
          <li data-md>
-          <p><a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#restore-the-drawing-buffer" id="ref-for-restore-the-drawing-buffer">Restore the context</a> on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑦">compatible graphics adapter</a> for the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device②④">immersive XR device</a>.</p>
+          <p><a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#restore-the-drawing-buffer" id="ref-for-restore-the-drawing-buffer">Restore the context</a> on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑦">compatible graphics adapter</a> for the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device②⑤">immersive XR device</a>.</p>
          <li data-md>
-          <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑨">XR compatible</a> boolean to <code>true</code>.</p>
+          <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①⓪">XR compatible</a> boolean to <code>true</code>.</p>
          <li data-md>
           <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise⑦">Resolve</a> <var>promise</var>.</p>
         </ol>
@@ -3373,7 +3385,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     <p>Additionally, when any WebGL <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#CONTEXT_LOST" id="ref-for-CONTEXT_LOST①">context is lost</a> run the following steps prior to firing the "webglcontextlost" event:</p>
     <ol>
      <li data-md>
-      <p>Set the context’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①⓪">XR compatible</a> boolean to <code>false</code>.</p>
+      <p>Set the context’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①①">XR compatible</a> boolean to <code>false</code>.</p>
     </ol>
    </div>
    <div class="example" id="example-d1414183">
@@ -3481,7 +3493,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceEvent" data-dfn-type="attribute" data-export id="dom-xrreferencespaceevent-transform"><code>transform</code></dfn> attribute describes the transform the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceevent-referencespace" id="ref-for-dom-xrreferencespaceevent-referencespace①">referenceSpace</a></code> underwent during this event, if applicable.</p>
    <h3 class="heading settled" data-level="12.5" id="event-types"><span class="secno">12.5. </span><span class="content">Event Types</span><a class="self-link" href="#event-types"></a></h3>
    <p>The user agent MUST provide the following new events. Registration for and firing of the events must follow the usual behavior of DOM4 Events.</p>
-   <p>The user agent MUST fire a <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="event" data-export id="eventdef-xr-devicechange"><code>devicechange</code></dfn> event on the <code class="idl"><a data-link-type="idl" href="#xr" id="ref-for-xr⑧">XR</a></code> object to indicate that the availability of <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device②⑤">immersive XR device</a>s has been changed. The event MUST be of type <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#event" id="ref-for-event④">Event</a></code>.</p>
+   <p>The user agent MUST fire a <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="event" data-export id="eventdef-xr-devicechange"><code>devicechange</code></dfn> event on the <code class="idl"><a data-link-type="idl" href="#xr" id="ref-for-xr⑧">XR</a></code> object to indicate that the availability of <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device②⑥">immersive XR device</a>s has been changed. The event MUST be of type <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#event" id="ref-for-event④">Event</a></code>.</p>
    <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-visibilitychange"><code>visibilitychange</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑤">XRSession</a></code> each time the <a data-link-type="dfn" href="#xrsession-visibility-state" id="ref-for-xrsession-visibility-state⑤">visibility state</a> of the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑥">XRSession</a></code> has changed. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrsessionevent" id="ref-for-xrsessionevent②">XRSessionEvent</a></code>.</p>
    <p>A user agent MUST dispatch an <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-end"><code>end</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑦">XRSession</a></code> when the session ends, either by the application or the user agent. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrsessionevent" id="ref-for-xrsessionevent③">XRSessionEvent</a></code>.</p>
    <p>A user agent MUST dispatch an <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-inputsourceschange"><code>inputsourceschange</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑧">XRSession</a></code> when the session’s <a data-link-type="dfn" href="#list-of-active-xr-input-sources" id="ref-for-list-of-active-xr-input-sources①①">list of active XR input sources</a> has changed. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrinputsourceschangeevent" id="ref-for-xrinputsourceschangeevent④">XRInputSourcesChangeEvent</a></code>.</p>
@@ -4357,7 +4369,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-reject-promise">3.2. XR</a> <a href="#ref-for-reject-promise①">(2)</a> <a href="#ref-for-reject-promise②">(3)</a> <a href="#ref-for-reject-promise③">(4)</a> <a href="#ref-for-reject-promise④">(5)</a> <a href="#ref-for-reject-promise⑤">(6)</a> <a href="#ref-for-reject-promise⑥">(7)</a>
     <li><a href="#ref-for-reject-promise⑦">4.1. XRSession</a> <a href="#ref-for-reject-promise⑧">(2)</a>
-    <li><a href="#ref-for-reject-promise⑨">11.2. WebGL Context Compatibility</a> <a href="#ref-for-reject-promise①⓪">(2)</a>
+    <li><a href="#ref-for-reject-promise⑨">11.2. WebGL Context Compatibility</a> <a href="#ref-for-reject-promise①⓪">(2)</a> <a href="#ref-for-reject-promise①①">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-resolve-promise">
@@ -4569,7 +4581,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-invalidstateerror⑥">6.1. XRSpace</a> <a href="#ref-for-invalidstateerror⑦">(2)</a> <a href="#ref-for-invalidstateerror⑧">(3)</a>
     <li><a href="#ref-for-invalidstateerror⑨">8.2. Normalization</a>
     <li><a href="#ref-for-invalidstateerror①⓪">11.1. XRWebGLLayer</a> <a href="#ref-for-invalidstateerror①①">(2)</a> <a href="#ref-for-invalidstateerror①②">(3)</a> <a href="#ref-for-invalidstateerror①③">(4)</a> <a href="#ref-for-invalidstateerror①④">(5)</a>
-    <li><a href="#ref-for-invalidstateerror①⑤">11.2. WebGL Context Compatibility</a>
+    <li><a href="#ref-for-invalidstateerror①⑤">11.2. WebGL Context Compatibility</a> <a href="#ref-for-invalidstateerror①⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-notsupportederror">
@@ -5176,8 +5188,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-xr-immersive-xr-device">2.1. XR device</a>
     <li><a href="#ref-for-xr-immersive-xr-device①">3.2. XR</a> <a href="#ref-for-xr-immersive-xr-device②">(2)</a> <a href="#ref-for-xr-immersive-xr-device③">(3)</a> <a href="#ref-for-xr-immersive-xr-device④">(4)</a> <a href="#ref-for-xr-immersive-xr-device⑤">(5)</a> <a href="#ref-for-xr-immersive-xr-device⑥">(6)</a> <a href="#ref-for-xr-immersive-xr-device⑦">(7)</a> <a href="#ref-for-xr-immersive-xr-device⑧">(8)</a> <a href="#ref-for-xr-immersive-xr-device⑨">(9)</a> <a href="#ref-for-xr-immersive-xr-device①⓪">(10)</a> <a href="#ref-for-xr-immersive-xr-device①①">(11)</a>
     <li><a href="#ref-for-xr-immersive-xr-device①②">3.3. XRSessionMode</a> <a href="#ref-for-xr-immersive-xr-device①③">(2)</a> <a href="#ref-for-xr-immersive-xr-device①④">(3)</a>
-    <li><a href="#ref-for-xr-immersive-xr-device①⑤">11.2. WebGL Context Compatibility</a> <a href="#ref-for-xr-immersive-xr-device①⑥">(2)</a> <a href="#ref-for-xr-immersive-xr-device①⑦">(3)</a> <a href="#ref-for-xr-immersive-xr-device①⑧">(4)</a> <a href="#ref-for-xr-immersive-xr-device①⑨">(5)</a> <a href="#ref-for-xr-immersive-xr-device②⓪">(6)</a> <a href="#ref-for-xr-immersive-xr-device②①">(7)</a> <a href="#ref-for-xr-immersive-xr-device②②">(8)</a> <a href="#ref-for-xr-immersive-xr-device②③">(9)</a> <a href="#ref-for-xr-immersive-xr-device②④">(10)</a>
-    <li><a href="#ref-for-xr-immersive-xr-device②⑤">12.5. Event Types</a>
+    <li><a href="#ref-for-xr-immersive-xr-device①⑤">11.2. WebGL Context Compatibility</a> <a href="#ref-for-xr-immersive-xr-device①⑥">(2)</a> <a href="#ref-for-xr-immersive-xr-device①⑦">(3)</a> <a href="#ref-for-xr-immersive-xr-device①⑧">(4)</a> <a href="#ref-for-xr-immersive-xr-device①⑨">(5)</a> <a href="#ref-for-xr-immersive-xr-device②⓪">(6)</a> <a href="#ref-for-xr-immersive-xr-device②①">(7)</a> <a href="#ref-for-xr-immersive-xr-device②②">(8)</a> <a href="#ref-for-xr-immersive-xr-device②③">(9)</a> <a href="#ref-for-xr-immersive-xr-device②④">(10)</a> <a href="#ref-for-xr-immersive-xr-device②⑤">(11)</a>
+    <li><a href="#ref-for-xr-immersive-xr-device②⑥">12.5. Event Types</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumerate-immersive-xr-devices">
@@ -5196,6 +5208,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#ensures-an-immersive-xr-device-is-selected">#ensures-an-immersive-xr-device-is-selected</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-ensures-an-immersive-xr-device-is-selected">3.2. XR</a> <a href="#ref-for-ensures-an-immersive-xr-device-is-selected①">(2)</a>
+    <li><a href="#ref-for-ensures-an-immersive-xr-device-is-selected②">11.2. WebGL Context Compatibility</a> <a href="#ref-for-ensures-an-immersive-xr-device-is-selected③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xr-ondevicechange">
@@ -6605,7 +6618,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-xr-compatible">3.2. XR</a>
     <li><a href="#ref-for-xr-compatible①">11.1. XRWebGLLayer</a>
-    <li><a href="#ref-for-xr-compatible②">11.2. WebGL Context Compatibility</a> <a href="#ref-for-xr-compatible③">(2)</a> <a href="#ref-for-xr-compatible④">(3)</a> <a href="#ref-for-xr-compatible⑤">(4)</a> <a href="#ref-for-xr-compatible⑥">(5)</a> <a href="#ref-for-xr-compatible⑦">(6)</a> <a href="#ref-for-xr-compatible⑧">(7)</a> <a href="#ref-for-xr-compatible⑨">(8)</a> <a href="#ref-for-xr-compatible①⓪">(9)</a>
+    <li><a href="#ref-for-xr-compatible②">11.2. WebGL Context Compatibility</a> <a href="#ref-for-xr-compatible③">(2)</a> <a href="#ref-for-xr-compatible④">(3)</a> <a href="#ref-for-xr-compatible⑤">(4)</a> <a href="#ref-for-xr-compatible⑥">(5)</a> <a href="#ref-for-xr-compatible⑦">(6)</a> <a href="#ref-for-xr-compatible⑧">(7)</a> <a href="#ref-for-xr-compatible⑨">(8)</a> <a href="#ref-for-xr-compatible①⓪">(9)</a> <a href="#ref-for-xr-compatible①①">(10)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-webglrenderingcontextbase-makexrcompatible">
