@@ -503,7 +503,7 @@ Session {#session}
 XRSession {#xrsession-interface}
 ---------
 
-Any interaction with XR hardware is done via an {{XRSession}} object, which can only be retrieved by calling {{requestSession()}} on the {{XR}} object. Once a session has been successfully acquired it can be used to {{XRFrame/getViewerPose()|poll the viewer pose}}, query information about the user's environment and, present imagery to the user.
+Any interaction with XR hardware is done via an {{XRSession}} object, which can only be retrieved by calling {{requestSession()}} on the {{XR}} object. Once a session has been successfully acquired, it can be used to {{XRFrame/getViewerPose()|poll the viewer pose}}, query information about the user's environment, and present imagery to the user.
 
 The user agent, when possible, <dfn>SHOULD NOT initialize device tracking</dfn> or rendering capabilities until an {{XRSession}} has been acquired. This is to prevent unwanted side effects of engaging the XR systems when they're not actively being used, such as increased battery usage or related utility applications from appearing when first navigating to a page that only wants to test for the presence of XR hardware in order to advertise XR features. Not all XR platforms offer ways to detect the hardware's presence without initializing tracking, however, so this is only a strong recommendation.
 
@@ -549,7 +549,7 @@ To <dfn>initialize the session</dfn>, given |session|, |mode|, and |device|, the
   1. [=Initialize the render state=].
   1. If no other features of the user agent have done so already, perform the necessary platform-specific steps to initialize the device's tracking and rendering capabilities, including showing any necessary instructions to the user.
 
-Note: Some devices require additional user instructions for activation, for example going into immersive mode on a phone-based headset device requires inserting the phone into the headset, and doing so on a desktop browser connected to an external headset requires wearing the headset. It is the responsibility of the user agent &mdash; not the author &mdash; to ensure any such instructions are shown.
+Note: Some devices require additional user instructions for activation. For example, going into immersive mode on a phone-based headset device requires inserting the phone into the headset, and doing so on a desktop browser connected to an external headset requires wearing the headset. It is the responsibility of the user agent &mdash; not the author &mdash; to ensure any such instructions are shown.
 
 </div>
 
