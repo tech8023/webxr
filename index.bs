@@ -171,7 +171,7 @@ Application flow {#applicationflow}
 
 Most applications using the WebXR Device API will follow a similar usage pattern:
 
-  * Query {{XR/sessionSupported()|navigator.xr.sessionSupported()}} to determine if the desired type of XR content is supported by the hardware and UA.
+  * Query {{XR/isSessionSupported()|navigator.xr.isSessionSupported()}} to determine if the desired type of XR content is supported by the hardware and UA.
   * If so, advertise the XR content to the user.
   * Wait for the user to [=triggered by user activation|trigger a user activation event=] indicating they want to begin viewing XR content.
   * Request an {{XRSession}} within the user activation event with {{XR/requestSession()|navigator.xr.requestSession()}}.
@@ -214,7 +214,7 @@ XR {#xr-interface}
 <pre class="idl">
 [SecureContext, Exposed=Window] interface XR : EventTarget {
   // Methods
-  Promise&lt;boolean&gt; sessionSupported(XRSessionMode mode);
+  Promise&lt;boolean&gt; isSessionSupported(XRSessionMode mode);
   [NewObject] Promise&lt;XRSession&gt; requestSession(XRSessionMode mode, optional XRSessionInit options = {});
 
   // Events
@@ -268,7 +268,7 @@ The user agent <dfn>ensures an immersive XR device is selected</dfn> by running 
 The <dfn attribute for="XR">ondevicechange</dfn> attribute is an [=Event handler IDL attribute=] for the {{devicechange}} event type.
 
 <div class="algorithm" data-algorithm="session-supported">
-The <dfn method for="XR">sessionSupported(|mode|)</dfn> method queries if a given |mode| is supported by the user agent and device capabilities.
+The <dfn method for="XR">isSessionSupported(|mode|)</dfn> method queries if a given |mode| is supported by the user agent and device capabilities.
 
 When this method is invoked, it MUST run the following steps:
 
@@ -283,13 +283,13 @@ When this method is invoked, it MUST run the following steps:
 
 </div>
 
-Calling {{XR/sessionSupported()}} MUST NOT trigger device-selection UI as this would cause many sites to display XR-specific dialogs early in the document lifecycle without user activation. Additionally, calling {{XR/sessionSupported()}} MUST NOT interfere with any running XR applications on the system, and MUST NOT cause XR-related applications to launch such as system trays or storefronts.
+Calling {{XR/isSessionSupported()}} MUST NOT trigger device-selection UI as this would cause many sites to display XR-specific dialogs early in the document lifecycle without user activation. Additionally, calling {{XR/isSessionSupported()}} MUST NOT interfere with any running XR applications on the system, and MUST NOT cause XR-related applications to launch such as system trays or storefronts.
 
 <div class="example">
 The following code checks to see if {{immersive-vr}} sessions are supported.
 
 <pre highlight="js">
-navigator.xr.sessionSupported('immersive-vr').then((supported) => {
+navigator.xr.isSessionSupported('immersive-vr').then((supported) => {
   if (supported) {
     // 'immersive-vr' sessions are supported.
     // Page should advertise support to the user.
