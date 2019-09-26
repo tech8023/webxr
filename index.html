@@ -1751,7 +1751,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <p>Most applications using the WebXR Device API will follow a similar usage pattern:</p>
     <ul>
      <li data-md>
-      <p>Query <code class="idl"><a data-link-type="idl" href="#dom-xr-supportssession" id="ref-for-dom-xr-supportssession">navigator.xr.supportsSession()</a></code> to determine if the desired type of XR content is supported by the hardware and UA.</p>
+      <p>Query <code class="idl"><a data-link-type="idl" href="#dom-xr-issessionsupported" id="ref-for-dom-xr-issessionsupported">navigator.xr.isSessionSupported()</a></code> to determine if the desired type of XR content is supported by the hardware and UA.</p>
      <li data-md>
       <p>If so, advertise the XR content to the user.</p>
      <li data-md>
@@ -1780,7 +1780,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <h3 class="heading settled" data-level="3.2" id="xr-interface"><span class="secno">3.2. </span><span class="content">XR</span><a class="self-link" href="#xr-interface"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xr"><code><c- g>XR</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget"><c- n>EventTarget</c-></a> {
   // Methods
-  <c- b>Promise</c->&lt;<c- b>void</c->> <a class="idl-code" data-link-type="method" href="#dom-xr-supportssession" id="ref-for-dom-xr-supportssession①"><c- g>supportsSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①"><c- n>XRSessionMode</c-></a> <dfn class="idl-code" data-dfn-for="XR/supportsSession(mode)" data-dfn-type="argument" data-export id="dom-xr-supportssession-mode-mode"><code><c- g>mode</c-></code><a class="self-link" href="#dom-xr-supportssession-mode-mode"></a></dfn>);
+  <c- b>Promise</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xr-issessionsupported" id="ref-for-dom-xr-issessionsupported①"><c- g>isSessionSupported</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①"><c- n>XRSessionMode</c-></a> <dfn class="idl-code" data-dfn-for="XR/isSessionSupported(mode)" data-dfn-type="argument" data-export id="dom-xr-issessionsupported-mode-mode"><code><c- g>mode</c-></code><a class="self-link" href="#dom-xr-issessionsupported-mode-mode"></a></dfn>);
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession①"><c- g>requestSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②"><c- n>XRSessionMode</c-></a> <dfn class="idl-code" data-dfn-for="XR/requestSession(mode, options), XR/requestSession(mode)" data-dfn-type="argument" data-export id="dom-xr-requestsession-mode-options-mode"><code><c- g>mode</c-></code><a class="self-link" href="#dom-xr-requestsession-mode-options-mode"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioninit" id="ref-for-dictdef-xrsessioninit"><c- n>XRSessionInit</c-></a> <dfn class="idl-code" data-dfn-for="XR/requestSession(mode, options), XR/requestSession(mode)" data-dfn-type="argument" data-export id="dom-xr-requestsession-mode-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-xr-requestsession-mode-options-options"></a></dfn> = {});
 
   // Events
@@ -1832,36 +1832,40 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </ol>
    </div>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="attribute" data-export id="dom-xr-ondevicechange"><code>ondevicechange</code></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes">Event handler IDL attribute</a> for the <code class="idl"><a data-link-type="idl" href="#eventdef-xr-devicechange" id="ref-for-eventdef-xr-devicechange①">devicechange</a></code> event type.</p>
-   <div class="algorithm" data-algorithm="supports-session">
-     The <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="method" data-export id="dom-xr-supportssession"><code>supportsSession(<var>mode</var>)</code></dfn> method queries if a given <var>mode</var> is supported by the user agent and device capabilities. 
+   <div class="algorithm" data-algorithm="session-supported">
+     The <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="method" data-export id="dom-xr-issessionsupported"><code>isSessionSupported(<var>mode</var>)</code></dfn> method queries if a given <var>mode</var> is supported by the user agent and device capabilities. 
     <p>When this method is invoked, it MUST run the following steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://heycam.github.io/webidl/#a-new-promise" id="ref-for-a-new-promise">a new Promise</a>.</p>
      <li data-md>
-      <p>If <var>mode</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline①">"inline"</a></code>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve">resolve</a> <var>promise</var> and return it.</p>
+      <p>If <var>mode</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline①">"inline"</a></code>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve">resolve</a> <var>promise</var> with <code>true</code> and return it.</p>
      <li data-md>
       <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
       <ol>
        <li data-md>
         <p><a data-link-type="dfn" href="#ensures-an-immersive-xr-device-is-selected" id="ref-for-ensures-an-immersive-xr-device-is-selected">Ensure an immersive XR device is selected</a>.</p>
        <li data-md>
-        <p>If the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device⑨">immersive XR device</a> is null, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code> and abort these steps.</p>
+        <p>If the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device⑨">immersive XR device</a> is null, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve①">resolve</a> <var>promise</var> with <code>false</code> and abort these steps.</p>
        <li data-md>
-        <p>If the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device①⓪">immersive XR device</a>'s <a data-link-type="dfn" href="#list-of-supported-modes" id="ref-for-list-of-supported-modes①">list of supported modes</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contain</a> <var>mode</var>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject①">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror①">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> and abort these steps.</p>
+        <p>If the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device①⓪">immersive XR device</a>'s <a data-link-type="dfn" href="#list-of-supported-modes" id="ref-for-list-of-supported-modes①">list of supported modes</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contain</a> <var>mode</var>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve②">resolve</a> <var>promise</var> with <code>false</code> and abort these steps.</p>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve①">Resolve</a> <var>promise</var>.</p>
+        <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve③">Resolve</a> <var>promise</var> with <code>true</code>.</p>
       </ol>
      <li data-md>
       <p>Return <var>promise</var>.</p>
     </ol>
    </div>
-   <p>Calling <code class="idl"><a data-link-type="idl" href="#dom-xr-supportssession" id="ref-for-dom-xr-supportssession②">supportsSession()</a></code> MUST NOT trigger device-selection UI as this would cause many sites to display XR-specific dialogs early in the document lifecycle without user activation. Additionally, calling <code class="idl"><a data-link-type="idl" href="#dom-xr-supportssession" id="ref-for-dom-xr-supportssession③">supportsSession()</a></code> MUST NOT interfere with any running XR applications on the system, and MUST NOT cause XR-related applications to launch such as system trays or storefronts.</p>
-   <div class="example" id="example-bb39663c">
-    <a class="self-link" href="#example-bb39663c"></a> The following code checks to see if <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr">immersive-vr</a></code> sessions are supported. 
-<pre class="highlight">navigator<c- p>.</c->xr<c- p>.</c->supportsSession<c- p>(</c-><c- t>'immersive-vr'</c-><c- p>).</c->then<c- p>(()</c-> <c- p>=></c-> <c- p>{</c->
-  <c- c1>// 'immersive-vr' sessions are supported.</c->
-  <c- c1>// Page should advertise support to the user.</c->
+   <p>Calling <code class="idl"><a data-link-type="idl" href="#dom-xr-issessionsupported" id="ref-for-dom-xr-issessionsupported②">isSessionSupported()</a></code> MUST NOT trigger device-selection UI as this would cause many sites to display XR-specific dialogs early in the document lifecycle without user activation. Additionally, calling <code class="idl"><a data-link-type="idl" href="#dom-xr-issessionsupported" id="ref-for-dom-xr-issessionsupported③">isSessionSupported()</a></code> MUST NOT interfere with any running XR applications on the system, and MUST NOT cause XR-related applications to launch such as system trays or storefronts.</p>
+   <div class="example" id="example-787228f4">
+    <a class="self-link" href="#example-787228f4"></a> The following code checks to see if <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr">immersive-vr</a></code> sessions are supported. 
+<pre class="highlight">navigator<c- p>.</c->xr<c- p>.</c->isSessionSupported<c- p>(</c-><c- t>'immersive-vr'</c-><c- p>).</c->then<c- p>((</c->supported<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
+  <c- k>if</c-> <c- p>(</c->supported<c- p>)</c-> <c- p>{</c->
+    <c- c1>// 'immersive-vr' sessions are supported.</c->
+    <c- c1>// Page should advertise support to the user.</c->
+  <c- p>}</c-> <c- k>else</c-> <c- p>{</c->
+    <c- c1>// 'immersive-vr' sessions are not supported.</c->
+  <c- p>}</c->
 <c- p>}</c->
 </pre>
    </div>
@@ -1881,14 +1885,14 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        <dd>
         <ol>
          <li data-md>
-          <p>Check if an <a data-link-type="dfn" href="#immersive-session-request-is-allowed" id="ref-for-immersive-session-request-is-allowed">immersive session request is allowed</a>, and if not <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject②">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code> and return <var>promise</var>.</p>
+          <p>Check if an <a data-link-type="dfn" href="#immersive-session-request-is-allowed" id="ref-for-immersive-session-request-is-allowed">immersive session request is allowed</a>, and if not <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code> and return <var>promise</var>.</p>
          <li data-md>
-          <p>If <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session">pending immersive session</a> is <code>true</code> or <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session">active immersive session</a> is not <code>null</code>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject③">reject</a> <var>promise</var> with an "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code> and return <var>promise</var>.</p>
+          <p>If <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session">pending immersive session</a> is <code>true</code> or <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session">active immersive session</a> is not <code>null</code>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject①">reject</a> <var>promise</var> with an "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> and return <var>promise</var>.</p>
          <li data-md>
           <p>Set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session①">pending immersive session</a> to <code>true</code>.</p>
         </ol>
        <dt>Otherwise
-       <dd>Check if an <a data-link-type="dfn" href="#inline-session-request-is-allowed" id="ref-for-inline-session-request-is-allowed">inline session request is allowed</a>, and if not <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject④">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror①">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException④">DOMException</a></code> and return <var>promise</var>.
+       <dd>Check if an <a data-link-type="dfn" href="#inline-session-request-is-allowed" id="ref-for-inline-session-request-is-allowed">inline session request is allowed</a>, and if not <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject②">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror①">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code> and return <var>promise</var>.
       </dl>
     </ol>
     <li data-md>
@@ -1915,7 +1919,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
          <p>If <var>device</var> is <code>null</code> or <var>device</var>’s <a data-link-type="dfn" href="#list-of-supported-modes" id="ref-for-list-of-supported-modes②">list of supported modes</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain④">contain</a> <var>mode</var>, run the following steps:</p>
          <ol>
           <li data-md>
-           <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑤">Reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror②">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException⑤">DOMException</a></code>.</p>
+           <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject③">Reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code>.</p>
           <li data-md>
            <p>If <var>immersive</var> is <code>true</code>, set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session②">pending immersive session</a> to <code>false</code>.</p>
           <li data-md>
@@ -1931,7 +1935,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
          <p>If <var>resolved</var> is <code>false</code>, run the following steps:</p>
          <ol>
           <li data-md>
-           <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑥">Reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror③">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException⑥">DOMException</a></code>.</p>
+           <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject④">Reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror①">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException④">DOMException</a></code>.</p>
           <li data-md>
            <p>If <var>immersive</var> is <code>true</code>, set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session③">pending immersive session</a> to <code>false</code>.</p>
           <li data-md>
@@ -1946,7 +1950,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
           <dd> Append <var>session</var> to the <a data-link-type="dfn" href="#list-of-inline-sessions" id="ref-for-list-of-inline-sessions">list of inline sessions</a>. 
          </dl>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve②">Resolve</a> <var>promise</var> with <var>session</var>.</p>
+         <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve④">Resolve</a> <var>promise</var> with <var>session</var>.</p>
        </ol>
      </ol>
     <li data-md>
@@ -2160,7 +2164,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
      <li data-md>
       <p>Remove <var>session</var> from the <a data-link-type="dfn" href="#list-of-inline-sessions" id="ref-for-list-of-inline-sessions①">list of inline sessions</a>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑦">Reject</a> any outstanding promises returned by <var>session</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①">InvalidStateError</a></code>, except for any promises returned by <code class="idl"><a data-link-type="idl" href="#dom-xrsession-end" id="ref-for-dom-xrsession-end①">end()</a></code>.</p>
+      <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑤">Reject</a> any outstanding promises returned by <var>session</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①">InvalidStateError</a></code>, except for any promises returned by <code class="idl"><a data-link-type="idl" href="#dom-xrsession-end" id="ref-for-dom-xrsession-end①">end()</a></code>.</p>
      <li data-md>
       <p>If no other features of the user agent are actively using them, perform the necessary platform-specific steps to shut down the device’s tracking and rendering capabilities. This MUST include:</p>
       <ul>
@@ -2188,7 +2192,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
        <li data-md>
         <p>Wait until any platform-specific steps related to shutting down the session have completed.</p>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve③">Resolve</a> <var>promise</var>.</p>
+        <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑤">Resolve</a> <var>promise</var>.</p>
       </ol>
      <li data-md>
       <p>Return <var>promise</var>.</p>
@@ -2272,9 +2276,9 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
        <li data-md>
         <p><a data-link-type="dfn" href="#create-a-reference-space" id="ref-for-create-a-reference-space">Create a reference space</a>, <var>referenceSpace</var>, with the <code class="idl"><a data-link-type="idl" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype②">XRReferenceSpaceType</a></code> <var>type</var>.</p>
        <li data-md>
-        <p>If <var>referenceSpace</var> is <code>null</code>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑧">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror④">NotSupportedError</a></code> and abort these steps.</p>
+        <p>If <var>referenceSpace</var> is <code>null</code>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑥">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror②">NotSupportedError</a></code> and abort these steps.</p>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve④">Resolve</a> <var>promise</var> with <var>referenceSpace</var>.</p>
+        <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑥">Resolve</a> <var>promise</var> with <var>referenceSpace</var>.</p>
       </ol>
      <li data-md>
       <p>Return <var>promise</var>.</p>
@@ -2969,7 +2973,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
    <p>An <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose⑥">XRPose</a></code> describes a position and orientation in space relative to an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①⑤">XRSpace</a></code>.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⓪"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrpose"><code><c- g>XRPose</c-></code></dfn> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject⑧"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②①"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrpose-transform" id="ref-for-dom-xrpose-transform②"><c- g>transform</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition⑥"><c- g>emulatedPosition</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition⑥"><c- g>emulatedPosition</c-></a>;
 };
 </pre>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRPose" data-dfn-type="attribute" data-export id="dom-xrpose-transform"><code>transform</code></dfn> attribute describes the position and orientation relative to the base <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①⑥">XRSpace</a></code>.</p>
@@ -3139,11 +3143,11 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
          <a class="n" data-link-type="idl-name" href="https://www.khronos.org/registry/webgl/specs/latest/2.0/#WebGL2RenderingContext" id="ref-for-WebGL2RenderingContext"><c- n>WebGL2RenderingContext</c-></a>) <dfn class="dfn-paneled idl-code" data-dfn-type="typedef" data-export id="typedefdef-xrwebglrenderingcontext"><code><c- g>XRWebGLRenderingContext</c-></code></dfn>;
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-xrwebgllayerinit"><code><c- g>XRWebGLLayerInit</c-></code></dfn> {
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="true" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-antialias"><code><c- g>antialias</c-></code></dfn> = <c- b>true</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="true" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-depth"><code><c- g>depth</c-></code></dfn> = <c- b>true</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="false" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-stencil"><code><c- g>stencil</c-></code></dfn> = <c- b>false</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean④"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="true" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-alpha"><code><c- g>alpha</c-></code></dfn> = <c- b>true</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑤"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="false" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-ignoredepthvalues"><code><c- g>ignoreDepthValues</c-></code></dfn> = <c- b>false</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="true" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-antialias"><code><c- g>antialias</c-></code></dfn> = <c- b>true</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="true" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-depth"><code><c- g>depth</c-></code></dfn> = <c- b>true</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean④"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="false" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-stencil"><code><c- g>stencil</c-></code></dfn> = <c- b>false</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑤"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="true" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-alpha"><code><c- g>alpha</c-></code></dfn> = <c- b>true</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑥"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="false" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-ignoredepthvalues"><code><c- g>ignoreDepthValues</c-></code></dfn> = <c- b>false</c->;
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥"><c- b>double</c-></a> <dfn class="idl-code" data-default="1.0" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="double " id="dom-xrwebgllayerinit-framebufferscalefactor"><code><c- g>framebufferScaleFactor</c-></code><a class="self-link" href="#dom-xrwebgllayerinit-framebufferscalefactor"></a></dfn> = 1.0;
 };
 
@@ -3153,8 +3157,8 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
              <a class="n" data-link-type="idl-name" href="#typedefdef-xrwebglrenderingcontext" id="ref-for-typedefdef-xrwebglrenderingcontext"><c- n>XRWebGLRenderingContext</c-></a> <dfn class="idl-code" data-dfn-for="XRWebGLLayer/constructor(session, context, layerInit), XRWebGLLayer/constructor(session, context)" data-dfn-type="argument" data-export id="dom-xrwebgllayer-constructor-session-context-layerinit-context"><code><c- g>context</c-></code><a class="self-link" href="#dom-xrwebgllayer-constructor-session-context-layerinit-context"></a></dfn>,
              <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrwebgllayerinit" id="ref-for-dictdef-xrwebgllayerinit"><c- n>XRWebGLLayerInit</c-></a> <dfn class="idl-code" data-dfn-for="XRWebGLLayer/constructor(session, context, layerInit), XRWebGLLayer/constructor(session, context)" data-dfn-type="argument" data-export id="dom-xrwebgllayer-constructor-session-context-layerinit-layerinit"><code><c- g>layerInit</c-></code><a class="self-link" href="#dom-xrwebgllayer-constructor-session-context-layerinit-layerinit"></a></dfn> = {});
   // Attributes
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑥"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrwebgllayer-antialias" id="ref-for-dom-xrwebgllayer-antialias"><c- g>antialias</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑦"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrwebgllayer-ignoredepthvalues" id="ref-for-dom-xrwebgllayer-ignoredepthvalues"><c- g>ignoreDepthValues</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑦"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrwebgllayer-antialias" id="ref-for-dom-xrwebgllayer-antialias"><c- g>antialias</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑧"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrwebgllayer-ignoredepthvalues" id="ref-for-dom-xrwebgllayer-ignoredepthvalues"><c- g>ignoreDepthValues</c-></a>;
 
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①③"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLFramebuffer" id="ref-for-WebGLFramebuffer"><c- n>WebGLFramebuffer</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="WebGLFramebuffer" href="#dom-xrwebgllayer-framebuffer" id="ref-for-dom-xrwebgllayer-framebuffer"><c- g>framebuffer</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long②"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-xrwebgllayer-framebufferwidth" id="ref-for-dom-xrwebgllayer-framebufferwidth"><c- g>framebufferWidth</c-></a>;
@@ -3312,7 +3316,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
    <p class="note" role="note"><span>Note:</span> On an XR platform with a single GPU, it can safely be assumed that the GPU is compatible with the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device①⑦">immersive XR device</a>s advertised by the platform, and thus any hardware accelerated WebGL contexts are compatible as well. On PCs with both an integrated and discrete GPU the discrete GPU is often considered the <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter②">compatible graphics adapter</a> since it generally a higher performance chip. On desktop PCs with multiple graphics adapters installed, the one with the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device①⑧">immersive XR device</a> physically connected to it is likely to be considered the <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter③">compatible graphics adapter</a>.</p>
    <p class="note" role="note"><span>Note:</span> <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline①⑤">"inline"</a></code> sessions render using the same graphics adapter as canvases, and thus do not need <code class="idl"><a data-link-type="idl" href="#dom-webglcontextattributes-xrcompatible" id="ref-for-dom-webglcontextattributes-xrcompatible">xrCompatible</a></code> contexts.</p>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>dictionary</c-> <a class="idl-code" data-link-type="dictionary" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLContextAttributes" id="ref-for-WebGLContextAttributes②"><c- g>WebGLContextAttributes</c-></a> {
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑧"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="null" data-dfn-for="WebGLContextAttributes" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-webglcontextattributes-xrcompatible"><code><c- g>xrCompatible</c-></code></dfn> = <c- b>null</c->;
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑨"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="null" data-dfn-for="WebGLContextAttributes" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-webglcontextattributes-xrcompatible"><code><c- g>xrCompatible</c-></code></dfn> = <c- b>null</c->;
 };
 
 <c- b>partial</c-> <c- b>interface</c-> <c- b>mixin</c-> <a class="idl-code" data-link-type="interface" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase④"><c- g>WebGLRenderingContextBase</c-></a> {
@@ -3361,9 +3365,9 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
        <li data-md>
         <p>Let <var>context</var> be the target <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase⑦">WebGLRenderingContextBase</a></code> object.</p>
        <li data-md>
-        <p>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑨">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑤">InvalidStateError</a></code> and abort these steps.</p>
+        <p>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑦">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑤">InvalidStateError</a></code> and abort these steps.</p>
        <li data-md>
-        <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑦">XR compatible</a> boolean is <code>true</code>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑤">resolve</a> <var>promise</var> and abort these steps.</p>
+        <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑦">XR compatible</a> boolean is <code>true</code>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑦">resolve</a> <var>promise</var> and abort these steps.</p>
        <li data-md>
         <p><a data-link-type="dfn" href="#ensures-an-immersive-xr-device-is-selected" id="ref-for-ensures-an-immersive-xr-device-is-selected③">Ensure an immersive XR device is selected</a>.</p>
        <li data-md>
@@ -3372,7 +3376,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
          <li data-md>
           <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑧">XR compatible</a> boolean to <code>false</code>.</p>
          <li data-md>
-          <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject①⓪">Reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑥">InvalidStateError</a></code> and abort these steps.</p>
+          <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑧">Reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑥">InvalidStateError</a></code> and abort these steps.</p>
         </ol>
        <li data-md>
         <p>If <var>context</var> was created on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑥">compatible graphics adapter</a> for the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device②④">immersive XR device</a>:</p>
@@ -3380,7 +3384,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
          <li data-md>
           <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑨">XR compatible</a> boolean to <code>true</code>.</p>
          <li data-md>
-          <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑥">Resolve</a> <var>promise</var> and abort these steps.</p>
+          <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑧">Resolve</a> <var>promise</var> and abort these steps.</p>
         </ol>
        <li data-md>
         <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①③">Queue a task</a> to perform the following steps:</p>
@@ -3388,13 +3392,13 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
          <li data-md>
           <p>Force <var>context</var> to be lost and <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#CONTEXT_LOST" id="ref-for-CONTEXT_LOST">handle the context loss</a> as described by the WebGL specification.</p>
          <li data-md>
-          <p>If the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#canceled-flag" id="ref-for-canceled-flag">canceled flag</a> of the "webglcontextlost" event fired in the previous step was not set, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject①①">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#aborterror" id="ref-for-aborterror">AbortError</a></code> and abort these steps.</p>
+          <p>If the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#canceled-flag" id="ref-for-canceled-flag">canceled flag</a> of the "webglcontextlost" event fired in the previous step was not set, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑨">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#aborterror" id="ref-for-aborterror">AbortError</a></code> and abort these steps.</p>
          <li data-md>
           <p><a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#restore-the-drawing-buffer" id="ref-for-restore-the-drawing-buffer">Restore the context</a> on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑦">compatible graphics adapter</a> for the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device②⑤">immersive XR device</a>.</p>
          <li data-md>
           <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①⓪">XR compatible</a> boolean to <code>true</code>.</p>
          <li data-md>
-          <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑦">Resolve</a> <var>promise</var>.</p>
+          <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑨">Resolve</a> <var>promise</var>.</p>
         </ol>
       </ol>
      <li data-md>
@@ -3859,6 +3863,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#xrrigidtransform-internal-matrix">internal matrix</a><span>, in §8.3</span>
    <li><a href="#xrview-internal-projection-matrix">internal projection matrix</a><span>, in §7.1</span>
    <li><a href="#dom-xrrigidtransform-inverse">inverse</a><span>, in §8.3</span>
+   <li><a href="#dom-xr-issessionsupported">isSessionSupported(mode)</a><span>, in §3.2</span>
    <li><a href="#launching-a-web-application">launching a web application</a><span>, in §13.2.2</span>
    <li>
     "left"
@@ -3981,7 +3986,6 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#should-not-initialize-device-tracking">SHOULD NOT initialize device tracking</a><span>, in §4.1</span>
    <li><a href="#shut-down-the-session">shut down the session</a><span>, in §4.1</span>
    <li><a href="#dom-xrwebgllayerinit-stencil">stencil</a><span>, in §11.1</span>
-   <li><a href="#dom-xr-supportssession">supportsSession(mode)</a><span>, in §3.2</span>
    <li><a href="#xrwebgllayer-target-framebuffer">target framebuffer</a><span>, in §11.1</span>
    <li><a href="#dom-xrinputsource-targetraymode">targetRayMode</a><span>, in §10.1</span>
    <li><a href="#dom-xrinputsource-targetrayspace">targetRaySpace</a><span>, in §10.1</span>
@@ -4539,7 +4543,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="term-for-idl-DOMException">
    <a href="https://heycam.github.io/webidl/#idl-DOMException">https://heycam.github.io/webidl/#idl-DOMException</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-idl-DOMException">3.2. XR</a> <a href="#ref-for-idl-DOMException①">(2)</a> <a href="#ref-for-idl-DOMException②">(3)</a> <a href="#ref-for-idl-DOMException③">(4)</a> <a href="#ref-for-idl-DOMException④">(5)</a> <a href="#ref-for-idl-DOMException⑤">(6)</a> <a href="#ref-for-idl-DOMException⑥">(7)</a>
+    <li><a href="#ref-for-idl-DOMException">3.2. XR</a> <a href="#ref-for-idl-DOMException①">(2)</a> <a href="#ref-for-idl-DOMException②">(3)</a> <a href="#ref-for-idl-DOMException③">(4)</a> <a href="#ref-for-idl-DOMException④">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-DOMString">
@@ -4608,8 +4612,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="term-for-notsupportederror">
    <a href="https://heycam.github.io/webidl/#notsupportederror">https://heycam.github.io/webidl/#notsupportederror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-notsupportederror">3.2. XR</a> <a href="#ref-for-notsupportederror①">(2)</a> <a href="#ref-for-notsupportederror②">(3)</a> <a href="#ref-for-notsupportederror③">(4)</a>
-    <li><a href="#ref-for-notsupportederror④">4.1. XRSession</a>
+    <li><a href="#ref-for-notsupportederror">3.2. XR</a> <a href="#ref-for-notsupportederror①">(2)</a>
+    <li><a href="#ref-for-notsupportederror②">4.1. XRSession</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-operationerror">
@@ -4685,9 +4689,10 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="term-for-idl-boolean">
    <a href="https://heycam.github.io/webidl/#idl-boolean">https://heycam.github.io/webidl/#idl-boolean</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-idl-boolean">9.1. XRPose</a>
-    <li><a href="#ref-for-idl-boolean①">11.1. XRWebGLLayer</a> <a href="#ref-for-idl-boolean②">(2)</a> <a href="#ref-for-idl-boolean③">(3)</a> <a href="#ref-for-idl-boolean④">(4)</a> <a href="#ref-for-idl-boolean⑤">(5)</a> <a href="#ref-for-idl-boolean⑥">(6)</a> <a href="#ref-for-idl-boolean⑦">(7)</a>
-    <li><a href="#ref-for-idl-boolean⑧">11.2. WebGL Context Compatibility</a>
+    <li><a href="#ref-for-idl-boolean">3.2. XR</a>
+    <li><a href="#ref-for-idl-boolean①">9.1. XRPose</a>
+    <li><a href="#ref-for-idl-boolean②">11.1. XRWebGLLayer</a> <a href="#ref-for-idl-boolean③">(2)</a> <a href="#ref-for-idl-boolean④">(3)</a> <a href="#ref-for-idl-boolean⑤">(4)</a> <a href="#ref-for-idl-boolean⑥">(5)</a> <a href="#ref-for-idl-boolean⑦">(6)</a> <a href="#ref-for-idl-boolean⑧">(7)</a>
+    <li><a href="#ref-for-idl-boolean⑨">11.2. WebGL Context Compatibility</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-double">
@@ -4725,17 +4730,17 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="term-for-reject">
    <a href="https://heycam.github.io/webidl/#reject">https://heycam.github.io/webidl/#reject</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-reject">3.2. XR</a> <a href="#ref-for-reject①">(2)</a> <a href="#ref-for-reject②">(3)</a> <a href="#ref-for-reject③">(4)</a> <a href="#ref-for-reject④">(5)</a> <a href="#ref-for-reject⑤">(6)</a> <a href="#ref-for-reject⑥">(7)</a>
-    <li><a href="#ref-for-reject⑦">4.1. XRSession</a> <a href="#ref-for-reject⑧">(2)</a>
-    <li><a href="#ref-for-reject⑨">11.2. WebGL Context Compatibility</a> <a href="#ref-for-reject①⓪">(2)</a> <a href="#ref-for-reject①①">(3)</a>
+    <li><a href="#ref-for-reject">3.2. XR</a> <a href="#ref-for-reject①">(2)</a> <a href="#ref-for-reject②">(3)</a> <a href="#ref-for-reject③">(4)</a> <a href="#ref-for-reject④">(5)</a>
+    <li><a href="#ref-for-reject⑤">4.1. XRSession</a> <a href="#ref-for-reject⑥">(2)</a>
+    <li><a href="#ref-for-reject⑦">11.2. WebGL Context Compatibility</a> <a href="#ref-for-reject⑧">(2)</a> <a href="#ref-for-reject⑨">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-resolve">
    <a href="https://heycam.github.io/webidl/#resolve">https://heycam.github.io/webidl/#resolve</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-resolve">3.2. XR</a> <a href="#ref-for-resolve①">(2)</a> <a href="#ref-for-resolve②">(3)</a>
-    <li><a href="#ref-for-resolve③">4.1. XRSession</a> <a href="#ref-for-resolve④">(2)</a>
-    <li><a href="#ref-for-resolve⑤">11.2. WebGL Context Compatibility</a> <a href="#ref-for-resolve⑥">(2)</a> <a href="#ref-for-resolve⑦">(3)</a>
+    <li><a href="#ref-for-resolve">3.2. XR</a> <a href="#ref-for-resolve①">(2)</a> <a href="#ref-for-resolve②">(3)</a> <a href="#ref-for-resolve③">(4)</a> <a href="#ref-for-resolve④">(5)</a>
+    <li><a href="#ref-for-resolve⑤">4.1. XRSession</a> <a href="#ref-for-resolve⑥">(2)</a>
+    <li><a href="#ref-for-resolve⑦">11.2. WebGL Context Compatibility</a> <a href="#ref-for-resolve⑧">(2)</a> <a href="#ref-for-resolve⑨">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-unsigned-long">
@@ -4909,7 +4914,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑨"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xr"><code><c- g>XR</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget③"><c- n>EventTarget</c-></a> {
   // Methods
-  <c- b>Promise</c->&lt;<c- b>void</c->> <a class="idl-code" data-link-type="method" href="#dom-xr-supportssession" id="ref-for-dom-xr-supportssession①①"><c- g>supportsSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①①"><c- n>XRSessionMode</c-></a> <a href="#dom-xr-supportssession-mode-mode"><code><c- g>mode</c-></code></a>);
+  <c- b>Promise</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①⓪"><c- b>boolean</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xr-issessionsupported" id="ref-for-dom-xr-issessionsupported①①"><c- g>isSessionSupported</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①①"><c- n>XRSessionMode</c-></a> <a href="#dom-xr-issessionsupported-mode-mode"><code><c- g>mode</c-></code></a>);
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject③"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②①⓪"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession①①"><c- g>requestSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②①"><c- n>XRSessionMode</c-></a> <a href="#dom-xr-requestsession-mode-options-mode"><code><c- g>mode</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioninit" id="ref-for-dictdef-xrsessioninit③"><c- n>XRSessionInit</c-></a> <a href="#dom-xr-requestsession-mode-options-options"><code><c- g>options</c-></code></a> = {});
 
   // Events
@@ -5033,7 +5038,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⓪①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrpose"><code><c- g>XRPose</c-></code></a> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject⑧①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②①①"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrpose-transform" id="ref-for-dom-xrpose-transform②①"><c- g>transform</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑨"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition⑥①"><c- g>emulatedPosition</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition⑥①"><c- g>emulatedPosition</c-></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①②①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrviewerpose"><code><c- g>XRViewerPose</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrpose" id="ref-for-xrpose⑨①"><c- n>XRPose</c-></a> {
@@ -5072,11 +5077,11 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
          <a class="n" data-link-type="idl-name" href="https://www.khronos.org/registry/webgl/specs/latest/2.0/#WebGL2RenderingContext" id="ref-for-WebGL2RenderingContext②"><c- n>WebGL2RenderingContext</c-></a>) <a href="#typedefdef-xrwebglrenderingcontext"><code><c- g>XRWebGLRenderingContext</c-></code></a>;
 
 <c- b>dictionary</c-> <a href="#dictdef-xrwebgllayerinit"><code><c- g>XRWebGLLayerInit</c-></code></a> {
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①①"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-antialias"><code><c- g>antialias</c-></code></a> = <c- b>true</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②①"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-depth"><code><c- g>depth</c-></code></a> = <c- b>true</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-xrwebgllayerinit-stencil"><code><c- g>stencil</c-></code></a> = <c- b>false</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean④①"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-alpha"><code><c- g>alpha</c-></code></a> = <c- b>true</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑤①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-xrwebgllayerinit-ignoredepthvalues"><code><c- g>ignoreDepthValues</c-></code></a> = <c- b>false</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②①"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-antialias"><code><c- g>antialias</c-></code></a> = <c- b>true</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③①"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-depth"><code><c- g>depth</c-></code></a> = <c- b>true</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean④①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-xrwebgllayerinit-stencil"><code><c- g>stencil</c-></code></a> = <c- b>false</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑤①"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-alpha"><code><c- g>alpha</c-></code></a> = <c- b>true</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑥①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-xrwebgllayerinit-ignoredepthvalues"><code><c- g>ignoreDepthValues</c-></code></a> = <c- b>false</c->;
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥①"><c- b>double</c-></a> <a data-default="1.0" data-type="double " href="#dom-xrwebgllayerinit-framebufferscalefactor"><code><c- g>framebufferScaleFactor</c-></code></a> = 1.0;
 };
 
@@ -5086,8 +5091,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
              <a class="n" data-link-type="idl-name" href="#typedefdef-xrwebglrenderingcontext" id="ref-for-typedefdef-xrwebglrenderingcontext①"><c- n>XRWebGLRenderingContext</c-></a> <a href="#dom-xrwebgllayer-constructor-session-context-layerinit-context"><code><c- g>context</c-></code></a>,
              <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrwebgllayerinit" id="ref-for-dictdef-xrwebgllayerinit②"><c- n>XRWebGLLayerInit</c-></a> <a href="#dom-xrwebgllayer-constructor-session-context-layerinit-layerinit"><code><c- g>layerInit</c-></code></a> = {});
   // Attributes
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑥①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrwebgllayer-antialias" id="ref-for-dom-xrwebgllayer-antialias③"><c- g>antialias</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑦①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrwebgllayer-ignoredepthvalues" id="ref-for-dom-xrwebgllayer-ignoredepthvalues④"><c- g>ignoreDepthValues</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑦①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrwebgllayer-antialias" id="ref-for-dom-xrwebgllayer-antialias③"><c- g>antialias</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑧①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrwebgllayer-ignoredepthvalues" id="ref-for-dom-xrwebgllayer-ignoredepthvalues④"><c- g>ignoreDepthValues</c-></a>;
 
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①③①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLFramebuffer" id="ref-for-WebGLFramebuffer④"><c- n>WebGLFramebuffer</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="WebGLFramebuffer" href="#dom-xrwebgllayer-framebuffer" id="ref-for-dom-xrwebgllayer-framebuffer⑥"><c- g>framebuffer</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long②①"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-xrwebgllayer-framebufferwidth" id="ref-for-dom-xrwebgllayer-framebufferwidth①"><c- g>framebufferWidth</c-></a>;
@@ -5101,7 +5106,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 };
 
 <c- b>partial</c-> <c- b>dictionary</c-> <a class="idl-code" data-link-type="dictionary" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLContextAttributes" id="ref-for-WebGLContextAttributes②①"><c- g>WebGLContextAttributes</c-></a> {
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑧①"><c- b>boolean</c-></a> <a data-default="null" data-type="boolean " href="#dom-webglcontextattributes-xrcompatible"><code><c- g>xrCompatible</c-></code></a> = <c- b>null</c->;
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑨①"><c- b>boolean</c-></a> <a data-default="null" data-type="boolean " href="#dom-webglcontextattributes-xrcompatible"><code><c- g>xrCompatible</c-></code></a> = <c- b>null</c->;
 };
 
 <c- b>partial</c-> <c- b>interface</c-> <c- b>mixin</c-> <a class="idl-code" data-link-type="interface" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase④①"><c- g>WebGLRenderingContextBase</c-></a> {
@@ -5262,11 +5267,11 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-dom-xr-ondevicechange">3.2. XR</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-xr-supportssession">
-   <b><a href="#dom-xr-supportssession">#dom-xr-supportssession</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-xr-issessionsupported">
+   <b><a href="#dom-xr-issessionsupported">#dom-xr-issessionsupported</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xr-supportssession">1.2. Application flow</a>
-    <li><a href="#ref-for-dom-xr-supportssession①">3.2. XR</a> <a href="#ref-for-dom-xr-supportssession②">(2)</a> <a href="#ref-for-dom-xr-supportssession③">(3)</a>
+    <li><a href="#ref-for-dom-xr-issessionsupported">1.2. Application flow</a>
+    <li><a href="#ref-for-dom-xr-issessionsupported①">3.2. XR</a> <a href="#ref-for-dom-xr-issessionsupported②">(2)</a> <a href="#ref-for-dom-xr-issessionsupported③">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="pending-immersive-session">
