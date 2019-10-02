@@ -41,7 +41,7 @@ spec: WebGL; urlPrefix: https://www.khronos.org/registry/webgl/specs/latest/1.0/
     type: method; text: framebufferTexture2D;  url: 5.14.6
     type: method; text: framebufferRenderbuffer;  url: 5.14.6
     type: method; text: getFramebufferAttachmentParameter;  url: 5.14.6
-    type: method; text: getRenderbufferParameter;  url: 5.14.7
+    type: method; text: deleteFramebuffer;  url: 5.14.6
     type: method; text: checkFramebufferStatus;  url: 5.14.6
     type: dictionary; text: WebGLContextAttributes; url: #WebGLContextAttributes
     type: dfn; text: Create the WebGL context; url:#2.1
@@ -239,7 +239,7 @@ Each time the [=list of immersive XR devices=] changes the user agent should <df
   1. Let |oldDevice| be the [=XR/immersive XR device=].
   1. If the [=list of immersive XR devices=] is an empty [=/list=], set the [=XR/immersive XR device=] to <code>null</code>.
   1. If the [=list of immersive XR devices=]'s [=list/size=] is one, set the [=XR/immersive XR device=] to the [=list of immersive XR devices=][0].
-  1. Set the [=XR/immersive XR device=] based on the following:
+  1. Set the [=XR/immersive XR device=] as follows:
     <dl class="switch">
       <dt> If there are any active {{XRSession}}s and the [=list of immersive XR devices=] [=list/contains=] |oldDevice|
       <dd> Set the [=XR/immersive XR device=] to |oldDevice|
@@ -311,7 +311,7 @@ When this method is invoked, the user agent MUST run the following steps:
 
   1. Let |promise| be [=a new Promise=].
   1. Let |immersive| be <code>true</code> if |mode| is {{XRSessionMode/"immersive-vr"}}, and <code>false</code> otherwise.
-  1. Check whether the session request is allowed based on the following:
+  1. Check whether the session request is allowed as follows:
       <dl class="switch">
         <dt>If |immersive| is <code>true</code></dt>
         <dd>
@@ -323,7 +323,7 @@ When this method is invoked, the user agent MUST run the following steps:
             <dd>Check if an [=inline session request is allowed=], and if not [=reject=] |promise| with a "{{SecurityError}}" {{DOMException}} and return |promise|.</dd>
       </dl>
   1. Run the following steps [=in parallel=]:
-    1. Choose |device| based on the following:
+    1. Choose |device| as follows:
         <dl class="switch">
           <dt>If |immersive| is <code>true</code></dt>
           <dd>
@@ -345,7 +345,7 @@ When this method is invoked, the user agent MUST run the following steps:
             1. [=Reject=] |promise| with a "{{NotSupportedError}}" {{DOMException}}.
             1. If |immersive| is <code>true</code>, set [=pending immersive session=] to <code>false</code>.
             1. Abort these steps.
-        1. Potentially set the [=active immersive session=] based on the following:
+        1. Potentially set the [=active immersive session=] as follows:
             <dl class="switch">
               <dt> If |immersive| is <code>true</code>
               <dd> Set the [=active immersive session=] to |session|, and set [=pending immersive session=] to <code>false</code>.
@@ -649,7 +649,7 @@ When requested, the {{XRSession}} MUST <dfn>apply the pending render state</dfn>
   1. If |activeState|'s {{XRRenderState/depthNear}} is less than |session|'s [=minimum near clip plane=] set |activeState|'s {{XRRenderState/depthNear}} to |session|'s [=minimum near clip plane=].
   1. If |activeState|'s {{XRRenderState/depthFar}} is less than |session|'s [=maximum far clip plane=] set |activeState|'s {{XRRenderState/depthFar}} to |session|'s [=maximum far clip plane=].
   1. Let |baseLayer| be |activeState|'s {{XRRenderState/baseLayer}}.
-  1. Set |activeState|'s [=XRRenderState/composition disabled=] and [=XRRenderState/output canvas=] based on the following:
+  1. Set |activeState|'s [=XRRenderState/composition disabled=] and [=XRRenderState/output canvas=] as follows:
     <dl class="switch">
       <dt> If |session|'s [=XRSession/mode=] is {{XRSessionMode/"inline"}} and |baseLayer| is an instance of an {{XRWebGLLayer}} with [=XRWebGLLayer/composition disabled=] set to <code>true</code>
       <dd> Set |activeState|'s [=XRRenderState/composition disabled=] boolean to <code>true</code>.
@@ -789,7 +789,7 @@ When an {{XRRenderState}} object is created for an {{XRSession}} |session|, the 
   1. Let |state| be the newly created {{XRRenderState}} object.
   1. Initialize |state|'s {{XRRenderState/depthNear}} to <code>0.1</code>.
   1. Initialize |state|'s {{XRRenderState/depthFar}} to <code>1000.0</code>.
-  1. Initialize |state|'s {{XRRenderState/inlineVerticalFieldOfView}} based on the following:
+  1. Initialize |state|'s {{XRRenderState/inlineVerticalFieldOfView}} as follows:
     <dl class="switch">
       <dt> If |session| is an [=inline session=]
       <dd> Initialize |state|'s {{XRRenderState/inlineVerticalFieldOfView}} to <code>PI * 0.5</code>.
@@ -916,7 +916,7 @@ Applications which use {{XRSessionMode/"inline"}} sessions for rendering to the 
 The XR Compositor {#compositor}
 -----------------
 
-The user agent MUST maintain an <dfn>XR Compositor</dfn> which handles presentation to the [=XRSession/XR device=] and frame timing. The compositor MUST use an independent rendering context whose state is isolated from that of any WebGL contexts used as {{XRWebGLLayer}} sources. The compositor MUST prevent the page from corrupting the compositor state or reading back content from other pages or applications. The compositor MUST also run in separate thread or processes to decouple performance of the page from the ability to present new imagery to the user at the appropriate framerate. The compositor MAY composite additional device or user agent UI over rendered content, like device menus.
+The user agent MUST maintain an <dfn>XR Compositor</dfn> which handles presentation to the [=XRSession/XR device=] and frame timing. The compositor MUST use an independent rendering context whose state is isolated from that of any graphics contexts created by the document. The compositor MUST prevent the page from corrupting the compositor state or reading back content from other pages or applications. The compositor MUST also run in separate thread or processes to decouple performance of the page from the ability to present new imagery to the user at the appropriate framerate. The compositor MAY composite additional device or user agent UI over rendered content, like device menus.
 
 NOTE: Future extensions to this spec may utilize the compositor to composite multiple layers coming from the same page as well.
 
@@ -1089,7 +1089,7 @@ When an {{XRReferenceSpace}} is requested, the user agent MUST <dfn>create a ref
   1. Let |session| be the {{XRSession}} object that requested creation of a reference space.
   1. Let |type| be set to the {{XRReferenceSpaceType}} passed to {{requestReferenceSpace()}}.
   1. If the [=reference space is supported=] for |type| and |session|, run the following steps:
-    1. Initialize |referenceSpace| based on the following:
+    1. Initialize |referenceSpace| as follows:
         <dl class="switch">
           <dt> If |type| is {{bounded-floor}}
           <dd> Let |referenceSpace| be a new {{XRBoundedReferenceSpace}}.
@@ -1120,7 +1120,7 @@ To check if a <dfn>reference space is supported</dfn> for a given reference spac
 The <dfn method for="XRReferenceSpace">getOffsetReferenceSpace(|originOffset|)</dfn> method MUST perform the following steps when invoked:
 
   1. Let |base| be the {{XRReferenceSpace}} the method was called on.
-  1. Initialize |offsetSpace| based on the following:
+  1. Initialize |offsetSpace| as follows:
     <dl class="switch">
       <dt> If |base| is an instance of {{XRBoundedReferenceSpace}}
       <dd> Let |offsetSpace| be a new {{XRBoundedReferenceSpace}} and set |offsetSpace|'s {{boundsGeometry}} to |base|'s {{boundsGeometry}}, with each point multiplied by the {{XRRigidTransform/inverse}} of |originOffset|.
@@ -1340,7 +1340,7 @@ The <dfn constructor for="XRRigidTransform">XRRigidTransform(|position|, |orient
   1. If |position| is not a {{DOMPointInit}} initialize |transform|'s {{XRRigidTransform/position}} to <code>{ x: 0.0, y: 0.0, z: 0.0, w: 1.0 }</code>.
   1. If |position|'s {{DOMPointReadOnly/w}} value is not 1.0, throw a {{TypeError}}.
   1. Initialize |transform|'s {{XRRigidTransform/position}}’s {{DOMPointReadOnly/x}} value to |position|'s x dictionary member, {{DOMPointReadOnly/y}} value to |position|'s y dictionary member, {{DOMPointReadOnly/z}} value to |position|'s z dictionary member and {{DOMPointReadOnly/w}} to <code>1.0</code>.
-  1. Initialize |transform|'s {{XRRigidTransform/orientation}} based on the following:
+  1. Initialize |transform|'s {{XRRigidTransform/orientation}} as follows:
     <dl class="switch">
       <dt> If |orientation| is not a {{DOMPointInit}}
       <dd> Initialize |transform|'s {{XRRigidTransform/orientation}} to <code>{ x: 0.0, y: 0.0, z: 0.0, w: 1.0 }</code>.
@@ -1480,7 +1480,7 @@ The {{gripSpace}} MUST be <code>null</code> if the input source isn't inherently
 
 The <dfn attribute for="XRInputSource">profiles</dfn> attribute is a [=/list=] of [=input profile name=]s indicating both the prefered visual representation and behavior of the input source.
 
-An <dfn for="XRInputSource">input profile name</dfn> is a lowercase {{DOMString}} containing no spaces, with separate words concatenated with a hyphen (<code>-</code>) character. A descriptive name should be chosen, using the prefered verbiage of the device vendor when possible. If the platform provides an appropriate identifier, such as a USB vendor and product ID, it MAY be used. Values that uniquely identify a single device, such as serial numbers, MUST NOT be used. The [=input profile name=] MUST NOT contain an indication of device handedness. If multiple user agents expose the same device, they SHOULD make an effort to report the same [=input profile name=].
+An <dfn for="XRInputSource">input profile name</dfn> is a lowercase {{DOMString}} containing no spaces, with separate words concatenated with a hyphen (<code>-</code>) character. A descriptive name should be chosen, using the prefered verbiage of the device vendor when possible. If the platform provides an appropriate identifier, such as a USB vendor and product ID, it MAY be used. Values that uniquely identify a single device, such as serial numbers, MUST NOT be used. The [=input profile name=] MUST NOT contain an indication of device handedness. If multiple user agents expose the same device, they SHOULD make an effort to report the same [=input profile name=]. The <a href="https://github.com/immersive-web/webxr-input-profiles/tree/master/packages/registry">WebXR Input Profiles Registry</a> is the recommended location for managing [=input profile name=]s.
 
 Profiles are given in descending order of specificity. Any [=input profile name=]s given after the first entry in the list should provide fallback values that represent alternative representations of the device. This may include a more generic or prior version of the device, a more widely recognized device that is sufficiently similar, or a broad description of the device type (such as "generic-trigger-touchpad"). If multiple profiles are given, the layouts they describe must all represent a superset or subset of every other profile in the list.
 
@@ -1490,10 +1490,10 @@ If the input device cannot be reliably identified, or the user agent wishes to m
 
 <p class="note">
 For example, the Samsung HMD Odyssey's controller is a design variant of the standard Windows Mixed Reality controller. Both controllers share the same input layout. As a result, the {{XRInputSource/profiles}} for a Samsung HMD Odyssey controller could be: <code>["samsung-odyssey", "microsoft-mixed-reality", "generic-trigger-squeeze-touchpad-thumbstick"]</code>. The appearance of the controller is most precisely communicated by the first profile in the list, with the second profile describing an acceptable substitute, and the last profile a generic fallback that describes the device in the roughest sense. (It's a controller with a trigger, squeeze button, touchpad and thumbstick.)
-
+</br></br>
 Similarly, the Valve Index controller is backwards compatible with the HTC Vive controller, but the Index controller has additional buttons and axes. As a result, the {{XRInputSource/profiles}} for the Valve Index controller could be: <code>["valve-index", "htc-vive", "generic-trigger-squeeze-touchpad-thumbstick"]</code>. In this case the input layout described by the <code>"valve-index"</code> profile is a superset of the layout described by the <code>"htc-vive"</code> profile. Also, the <code>"valve-index"</code> profile indicates the precise appearance of the controller, while the <code>"htc-vive"</code> controller has a significantly different appearance. In this case the UA would have deemed that difference acceptable. And as in the first example, the last profile is a generic fallback.
-
-(Exact strings are examples only. This specification does not make any recommendation for profile strings.)
+</br></br>
+(Exact strings are examples only. Actual profile names are managed in the <a href="https://github.com/immersive-web/webxr-input-profiles/tree/master/packages/registry">WebXR Input Profiles Registry</a>.)
 </p>
 
 Note: {{XRInputSource}}s in an {{XRSession}}'s {{XRSession/inputSources}} array are "live". As such values within them are updated in-place. This means that it doesn't work to save a reference to an {{XRInputSource}}'s attribute on one frame and compare it to the same attribute in a subsequent frame to test for state changes, because they will be the same object. Therefore developers that wish to compare input state from frame to frame should copy the content of the state in question.
@@ -1692,7 +1692,7 @@ The <dfn attribute for="XRWebGLLayer">framebuffer</dfn> attribute of an {{XRWebG
 An <dfn>opaque framebuffer</dfn> functions identically to a standard {{WebGLFramebuffer}} with the following changes that make it behave more like the default framebuffer:
 
  - An [=opaque framebuffer=] MAY support antialiasing, even in WebGL 1.0.
- - An [=opaque framebuffer=]'s attachments cannot be inspected or changed. Calling {{framebufferTexture2D}}, {{framebufferRenderbuffer}}, {{getFramebufferAttachmentParameter}}, or {{getRenderbufferParameter}} with an [=opaque framebuffer=] MUST generate an {{INVALID_OPERATION}} error.
+ - An [=opaque framebuffer=]'s attachments cannot be inspected or changed. Calling {{framebufferTexture2D}}, {{framebufferRenderbuffer}}, {{deleteFramebuffer}}, or {{getFramebufferAttachmentParameter}} with an [=opaque framebuffer=] MUST generate an {{INVALID_OPERATION}} error.
  - An [=opaque framebuffer=] is considered incomplete outside of a {{XRSession/requestAnimationFrame()}} callback. When not in a {{XRSession/requestAnimationFrame()}} callback calls to {{checkFramebufferStatus}} outside of a {{XRSession/requestAnimationFrame()}} callback MUST generate a {{FRAMEBUFFER_UNSUPPORTED}} error and attempts to clear, draw to, or read from the [=opaque framebuffer=] MUST generate an {{INVALID_FRAMEBUFFER_OPERATION}} error.
  - An [=opaque framebuffer=] initialized with {{XRWebGLLayerInit/depth}} <code>false</code> will not have an attached depth buffer.
  - An [=opaque framebuffer=] initialized with {{XRWebGLLayerInit/stencil}} <code>false</code> will not have an attached stencil buffer.
@@ -2174,7 +2174,7 @@ Any group of {{XRReferenceSpaceType/"local"}}, {{XRReferenceSpaceType/"local-flo
 To determine if <dfn>poses must be limited</dfn> between two spaces, |space| and |baseSpace|, the user agent MUST run the following steps:
 
   1. If either |space| or |baseSpace| are an {{XRBoundedReferenceSpace}} and the other space's [=native origin=]'s falls further outside the [=native bounds geometry=] than a reasonable distance determined by the user agent, return true.
-  1. If either |space| or |baseSpace| are an {{XRReferenceSpace}} with a [=XRReferenceSpace/type=] of {{XRReferenceSpaceType/"local"}} or {{XRReferenceSpaceType/"local-floor"}} and the distance between the space's [=native origin=]'s is greater than a reasonable distance determined by the user agent, return <code>true</code>.
+  1. If either |space| or |baseSpace| are an {{XRReferenceSpace}} with a [=XRReferenceSpace/type=] of {{XRReferenceSpaceType/"local"}} or {{XRReferenceSpaceType/"local-floor"}} and the distance between the spaces' [=native origin=]'s is greater than a reasonable distance determined by the user agent, return <code>true</code>.
   1. Return false.
 
 </div>
