@@ -1213,7 +1213,7 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-WD" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version c80088ef848c5e5446a2eaced80623027d194593" name="generator">
+  <meta content="Bikeshed version b76a1f3caa65320a39ee72dbf2680ea887ace619" name="generator">
   <link href="https://www.w3.org/TR/webxr/" rel="canonical">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
@@ -1892,67 +1892,67 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        <dt>Otherwise
        <dd>Check if an <a data-link-type="dfn" href="#inline-session-request-is-allowed" id="ref-for-inline-session-request-is-allowed">inline session request is allowed</a>, and if not <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject③">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror②">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code> and return <var>promise</var>.
       </dl>
+     <li data-md>
+      <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>:</p>
+      <ol>
+       <li data-md>
+        <p>Choose <var>device</var> as follows:</p>
+        <dl class="switch">
+         <dt>If <var>immersive</var> is <code>true</code>
+         <dd>
+          <ol>
+           <li data-md>
+            <p><a data-link-type="dfn" href="#ensures-an-immersive-xr-device-is-selected" id="ref-for-ensures-an-immersive-xr-device-is-selected①">Ensure an immersive XR device is selected</a>.</p>
+           <li data-md>
+            <p>Set <var>device</var> to the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device①①">immersive XR device</a>.</p>
+          </ol>
+         <dt>Otherwise
+         <dd>Set <var>device</var> to the <a data-link-type="dfn" href="#inline-xr-device" id="ref-for-inline-xr-device④">inline XR device</a>.
+        </dl>
+       <li data-md>
+        <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①">Queue a task</a> to perform the following steps:</p>
+        <ol>
+         <li data-md>
+          <p>If <var>device</var> is <code>null</code> or <var>device</var>’s <a data-link-type="dfn" href="#list-of-supported-modes" id="ref-for-list-of-supported-modes②">list of supported modes</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain④">contain</a> <var>mode</var>, run the following steps:</p>
+          <ol>
+           <li data-md>
+            <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject④">Reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException④">DOMException</a></code>.</p>
+           <li data-md>
+            <p>If <var>immersive</var> is <code>true</code>, set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session②">pending immersive session</a> to <code>false</code>.</p>
+           <li data-md>
+            <p>Abort these steps.</p>
+          </ol>
+         <li data-md>
+          <p>Let <var>session</var> be a new <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑦">XRSession</a></code> object.</p>
+         <li data-md>
+          <p><a data-link-type="dfn" href="#initialize-the-session" id="ref-for-initialize-the-session">Initialize the session</a> with <var>session</var>, <var>mode</var>, and <var>device</var>.</p>
+         <li data-md>
+          <p><a data-link-type="dfn" href="#resolve-the-requested-features" id="ref-for-resolve-the-requested-features">Resolve the requested features</a> given by <var>options</var>’ <code class="idl"><a data-link-type="idl" href="#dom-xrsessioninit-requiredfeatures" id="ref-for-dom-xrsessioninit-requiredfeatures">requiredFeatures</a></code> and <var>options</var>’ <code class="idl"><a data-link-type="idl" href="#dom-xrsessioninit-optionalfeatures" id="ref-for-dom-xrsessioninit-optionalfeatures">optionalFeatures</a></code> values for <var>session</var>, and let <var>resolved</var> be the returned value.</p>
+         <li data-md>
+          <p>If <var>resolved</var> is <code>false</code>, run the following steps:</p>
+          <ol>
+           <li data-md>
+            <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑤">Reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror①">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException⑤">DOMException</a></code>.</p>
+           <li data-md>
+            <p>If <var>immersive</var> is <code>true</code>, set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session③">pending immersive session</a> to <code>false</code>.</p>
+           <li data-md>
+            <p>Abort these steps.</p>
+          </ol>
+         <li data-md>
+          <p>Potentially set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session①">active immersive session</a> as follows:</p>
+          <dl class="switch">
+           <dt> If <var>immersive</var> is <code>true</code> 
+           <dd> Set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session②">active immersive session</a> to <var>session</var>, and set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session④">pending immersive session</a> to <code>false</code>. 
+           <dt> Otherwise 
+           <dd> Append <var>session</var> to the <a data-link-type="dfn" href="#list-of-inline-sessions" id="ref-for-list-of-inline-sessions">list of inline sessions</a>. 
+          </dl>
+         <li data-md>
+          <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve④">Resolve</a> <var>promise</var> with <var>session</var>.</p>
+        </ol>
+      </ol>
+     <li data-md>
+      <p>Return <var>promise</var>.</p>
     </ol>
-    <li data-md>
-     <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>:</p>
-     <ol>
-      <li data-md>
-       <p>Choose <var>device</var> as follows:</p>
-       <dl class="switch">
-        <dt>If <var>immersive</var> is <code>true</code>
-        <dd>
-         <ol>
-          <li data-md>
-           <p><a data-link-type="dfn" href="#ensures-an-immersive-xr-device-is-selected" id="ref-for-ensures-an-immersive-xr-device-is-selected①">Ensure an immersive XR device is selected</a>.</p>
-          <li data-md>
-           <p>Set <var>device</var> to the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device①①">immersive XR device</a>.</p>
-         </ol>
-        <dt>Otherwise
-        <dd>Set <var>device</var> to the <a data-link-type="dfn" href="#inline-xr-device" id="ref-for-inline-xr-device④">inline XR device</a>.
-       </dl>
-      <li data-md>
-       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①">Queue a task</a> to perform the following steps:</p>
-       <ol>
-        <li data-md>
-         <p>If <var>device</var> is <code>null</code> or <var>device</var>’s <a data-link-type="dfn" href="#list-of-supported-modes" id="ref-for-list-of-supported-modes②">list of supported modes</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain④">contain</a> <var>mode</var>, run the following steps:</p>
-         <ol>
-          <li data-md>
-           <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject④">Reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException④">DOMException</a></code>.</p>
-          <li data-md>
-           <p>If <var>immersive</var> is <code>true</code>, set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session②">pending immersive session</a> to <code>false</code>.</p>
-          <li data-md>
-           <p>Abort these steps.</p>
-         </ol>
-        <li data-md>
-         <p>Let <var>session</var> be a new <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑦">XRSession</a></code> object.</p>
-        <li data-md>
-         <p><a data-link-type="dfn" href="#initialize-the-session" id="ref-for-initialize-the-session">Initialize the session</a> with <var>session</var>, <var>mode</var>, and <var>device</var>.</p>
-        <li data-md>
-         <p><a data-link-type="dfn" href="#resolve-the-requested-features" id="ref-for-resolve-the-requested-features">Resolve the requested features</a> given by <var>options</var>’ <code class="idl"><a data-link-type="idl" href="#dom-xrsessioninit-requiredfeatures" id="ref-for-dom-xrsessioninit-requiredfeatures">requiredFeatures</a></code> and <var>options</var>’ <code class="idl"><a data-link-type="idl" href="#dom-xrsessioninit-optionalfeatures" id="ref-for-dom-xrsessioninit-optionalfeatures">optionalFeatures</a></code> values for <var>session</var>, and let <var>resolved</var> be the returned value.</p>
-        <li data-md>
-         <p>If <var>resolved</var> is <code>false</code>, run the following steps:</p>
-         <ol>
-          <li data-md>
-           <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑤">Reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror①">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException⑤">DOMException</a></code>.</p>
-          <li data-md>
-           <p>If <var>immersive</var> is <code>true</code>, set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session③">pending immersive session</a> to <code>false</code>.</p>
-          <li data-md>
-           <p>Abort these steps.</p>
-         </ol>
-        <li data-md>
-         <p>Potentially set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session①">active immersive session</a> as follows:</p>
-         <dl class="switch">
-          <dt> If <var>immersive</var> is <code>true</code> 
-          <dd> Set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session②">active immersive session</a> to <var>session</var>, and set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session④">pending immersive session</a> to <code>false</code>. 
-          <dt> Otherwise 
-          <dd> Append <var>session</var> to the <a data-link-type="dfn" href="#list-of-inline-sessions" id="ref-for-list-of-inline-sessions">list of inline sessions</a>. 
-         </dl>
-        <li data-md>
-         <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve④">Resolve</a> <var>promise</var> with <var>session</var>.</p>
-       </ol>
-     </ol>
-    <li data-md>
-     <p>Return <var>promise</var>.</p>
    </div>
    <div class="example" id="example-a17c6da1">
     <a class="self-link" href="#example-a17c6da1"></a> The following code attempts to retrieve an <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr②">immersive-vr</a></code> <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑧">XRSession</a></code>. 
@@ -2538,7 +2538,7 @@ window<c- p>.</c->requestAnimationFrame<c- p>(</c->onWindowAnimationFrame<c- p>)
    </div>
    <h3 class="heading settled" data-level="4.4" id="compositor"><span class="secno">4.4. </span><span class="content">The XR Compositor</span><a class="self-link" href="#compositor"></a></h3>
    <p>The user agent MUST maintain an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="xr-compositor">XR Compositor</dfn> which handles presentation to the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device①⑧">XR device</a> and frame timing. The compositor MUST use an independent rendering context whose state is isolated from that of any graphics contexts created by the document. The compositor MUST prevent the page from corrupting the compositor state or reading back content from other pages or applications. The compositor MUST also run in separate thread or processes to decouple performance of the page from the ability to present new imagery to the user at the appropriate framerate. The compositor MAY composite additional device or user agent UI over rendered content, like device menus.</p>
-   <p class="note" role="note"><span>NOTE:</span> Future extensions to this spec may utilize the compositor to composite multiple layers coming from the same page as well.</p>
+   <p class="note" role="note"><span>Note:</span> Future extensions to this spec may utilize the compositor to composite multiple layers coming from the same page as well.</p>
    <h2 class="heading settled" data-level="5" id="frame"><span class="secno">5. </span><span class="content">Frame Loop</span><a class="self-link" href="#frame"></a></h2>
    <h3 class="heading settled" data-level="5.1" id="xrframe-interface"><span class="secno">5.1. </span><span class="content">XRFrame</span><a class="self-link" href="#xrframe-interface"></a></h3>
    <p>An <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②">XRFrame</a></code> represents a snapshot of the state of all of the tracked objects for an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥④">XRSession</a></code>. Applications can acquire an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe③">XRFrame</a></code> by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestanimationframe" id="ref-for-dom-xrsession-requestanimationframe⑥">requestAnimationFrame()</a></code> on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥⑤">XRSession</a></code> with an <code class="idl"><a data-link-type="idl" href="#callbackdef-xrframerequestcallback" id="ref-for-callbackdef-xrframerequestcallback②">XRFrameRequestCallback</a></code>. When the callback is called it will be passed an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe④">XRFrame</a></code>. Events which need to communicate tracking state, such as the <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-select" id="ref-for-eventdef-xrsession-select①">select</a></code> event, will also provide an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe⑤">XRFrame</a></code>.</p>
@@ -2940,13 +2940,13 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
       <p>If the operation <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-isdetachedbuffer" id="ref-for-sec-isdetachedbuffer①">IsDetachedBuffer</a></code> on <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix②">internal matrix</a> is <code>false</code>, return <var>transform</var>’s <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix③">internal matrix</a>.</p>
      <li data-md>
       <p>Let <var>translation</var> be a new <a data-link-type="dfn" href="#matrix" id="ref-for-matrix④">matrix</a> which is a column-vector translation matrix corresponding to <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position①②">position</a></code>. Mathematically, if <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position①③">position</a></code> is <code>(x, y, z)</code>, this matrix is</p>
-      <p><img src="images/translation_matrix.svg"></p>
+      <p><img alt="Mathematical expression for column-vector translation matrix" src="images/translation_matrix.svg"></p>
      <li data-md>
       <p>Let <var>rotation</var> be a new <a data-link-type="dfn" href="#matrix" id="ref-for-matrix⑤">matrix</a> which is a column-vector rotation matrix corresponding to <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation①④">orientation</a></code>. Mathematically, if <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation①⑤">orientation</a></code> is the unit quaternion <code>(q<sub>x</sub>, q<sub>y</sub>, q<sub>z</sub>, q<sub>w</sub>)</code>, this matrix is</p>
-      <p><img src="images/rotation_matrix.svg"></p>
+      <p><img alt="Mathematical expression for column-vector rotation matrix" src="images/rotation_matrix.svg"></p>
      <li data-md>
       <p>Set <var>transform</var>’s <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix④">internal matrix</a> to a new <a data-link-type="dfn" href="#matrix" id="ref-for-matrix⑥">matrix</a> set to the result of multiplying <var>translation</var> and <var>rotation</var> with <var>translation</var> on the left (<code>translation * rotation</code>). Mathematically, this matrix is</p>
-      <p><img src="images/rigid_matrix.svg"></p>
+      <p><img alt="Mathematical expression for matrix of multiplying translation and rotation with translation on the left" src="images/rigid_matrix.svg"></p>
      <li data-md>
       <p>Return <var>transform</var>’s <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix⑤">internal matrix</a>.</p>
     </ol>
@@ -3234,7 +3234,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRWebGLLayer" data-dfn-type="attribute" data-export id="dom-xrwebgllayer-context"><code>context</code></dfn> attribute is the <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContext" id="ref-for-WebGLRenderingContext④">WebGLRenderingContext</a></code> the <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer①③">XRWebGLLayer</a></code> was created with.</p>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer①④">XRWebGLLayer</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRWebGLLayer" data-dfn-type="dfn" data-noexport id="xrwebgllayer-composition-disabled">composition disabled</dfn> boolean which is initially set to <code>false</code>. If set to <code>true</code> it indicates that the <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer①⑤">XRWebGLLayer</a></code> MUST NOT allocate its own <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLFramebuffer" id="ref-for-WebGLFramebuffer①">WebGLFramebuffer</a></code>, and all properties of the <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer①⑥">XRWebGLLayer</a></code> that reflect <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-framebuffer" id="ref-for-dom-xrwebgllayer-framebuffer③">framebuffer</a></code> properties MUST instead reflect the properties of the <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context②">context</a>'s default framebuffer.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRWebGLLayer" data-dfn-type="attribute" data-export id="dom-xrwebgllayer-framebuffer"><code>framebuffer</code></dfn> attribute of an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer①⑦">XRWebGLLayer</a></code> is an instance of a <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLFramebuffer" id="ref-for-WebGLFramebuffer②">WebGLFramebuffer</a></code> which has been marked as <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer①">opaque</a> if <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled⑥">composition disabled</a> is <code>false</code>, and <code>null</code> otherwise. The <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-framebuffer" id="ref-for-dom-xrwebgllayer-framebuffer④">framebuffer</a></code> size cannot be adjusted by the developer after the <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer①⑧">XRWebGLLayer</a></code> has been created.</p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="opaque-framebuffer">opaque framebuffer</dfn> functions identically to a standard <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLFramebuffer" id="ref-for-WebGLFramebuffer③">WebGLFramebuffer</a></code> with the following changes that make it behave more like the default framebuffer:</p>
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="opaque-framebuffer">opaque framebuffer</dfn> functions identically to a standard <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLFramebuffer" id="ref-for-WebGLFramebuffer③">WebGLFramebuffer</a></code> with the following changes that make it behave more like the <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#2.2" id="ref-for-2.2">default framebuffer</a>:</p>
    <ul>
     <li data-md>
      <p>An <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer②">opaque framebuffer</a> MAY support antialiasing, even in WebGL 1.0.</p>
@@ -3251,7 +3251,25 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     <li data-md>
      <p>The <a data-link-type="dfn" href="#xr-compositor" id="ref-for-xr-compositor③">XR Compositor</a> will assume the <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer①⓪">opaque framebuffer</a> contains colors with premultiplied alpha. This is true regardless of the <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLContextAttributes" id="ref-for-WebGLContextAttributes①">premultipliedAlpha</a></code> value set in the <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-context" id="ref-for-dom-xrwebgllayer-context①">context</a></code>'s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#actual-context-parameters" id="ref-for-actual-context-parameters②">actual context parameters</a>.</p>
    </ul>
-   <p class="note" role="note"><span>NOTE:</span> User agents are not required to respect <code>true</code> values of <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-depth" id="ref-for-dom-xrwebgllayerinit-depth②">depth</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-stencil" id="ref-for-dom-xrwebgllayerinit-stencil②">stencil</a></code>, which is similar to WebGL’s behavior when <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#create-a-drawing-buffer" id="ref-for-create-a-drawing-buffer">creating a drawing buffer</a></p>
+   <p class="note" role="note"><span>Note:</span> User agents are not required to respect <code>true</code> values of <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-depth" id="ref-for-dom-xrwebgllayerinit-depth②">depth</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-stencil" id="ref-for-dom-xrwebgllayerinit-stencil②">stencil</a></code>, which is similar to WebGL’s behavior when <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#create-a-drawing-buffer" id="ref-for-create-a-drawing-buffer">creating a drawing buffer</a></p>
+   <p>The buffers attached to an <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer①①">opaque framebuffer</a> MUST be cleared to the values in the table below when first created, or prior to the processing of each <a data-link-type="dfn" href="#xr-animation-frame" id="ref-for-xr-animation-frame①">XR animation frame</a>. This is identical to the behavior of the WebGL context’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#2.2" id="ref-for-2.2①">default framebuffer</a>.</p>
+   <table class="tg">
+    <thead>
+     <tr>
+      <th>Buffer
+      <th>Clear Value
+    <tbody>
+     <tr>
+      <td>Color
+      <td>(0, 0, 0, 0)
+     <tr>
+      <td>Depth
+      <td>1.0
+     <tr>
+      <td>Stencil
+      <td>0
+   </table>
+   <p class="note" role="note"><span>Note:</span> Implementations may optimize away the required implicit clear operation of the <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer①②">opaque framebuffer</a> as long as a guarantee can be made that the developer cannot gain access to buffer contents from another process. For instance, if the developer performs an explicit clear then the implicit clear is not needed.</p>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer①⑨">XRWebGLLayer</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRWebGLLayer" data-dfn-type="dfn" data-noexport id="xrwebgllayer-target-framebuffer">target framebuffer</dfn>, which is the <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-framebuffer" id="ref-for-dom-xrwebgllayer-framebuffer⑤">framebuffer</a></code> if <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled⑦">composition disabled</a> is <code>false</code>, and the <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context③">context</a>'s default framebuffer otherwise.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRWebGLLayer" data-dfn-type="attribute" data-export id="dom-xrwebgllayer-framebufferwidth"><code>framebufferWidth</code></dfn> and <dfn class="dfn-paneled idl-code" data-dfn-for="XRWebGLLayer" data-dfn-type="attribute" data-export id="dom-xrwebgllayer-framebufferheight"><code>framebufferHeight</code></dfn> attributes return the width and height of the <a data-link-type="dfn" href="#xrwebgllayer-target-framebuffer" id="ref-for-xrwebgllayer-target-framebuffer">target framebuffer</a>'s attachments, respectively.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRWebGLLayer" data-dfn-type="attribute" data-export id="dom-xrwebgllayer-antialias"><code>antialias</code></dfn> attribute is <code>true</code> if the <a data-link-type="dfn" href="#xrwebgllayer-target-framebuffer" id="ref-for-xrwebgllayer-target-framebuffer①">target framebuffer</a> supports antialiasing using a technique of the UAs choosing, and <code>false</code> if no antialiasing will be performed.</p>
@@ -3527,7 +3545,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-selectstart"><code>selectstart</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑨">XRSession</a></code> when one of its <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource②⑨">XRInputSource</a></code>s begins its <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action①③">primary action</a>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent④">XRInputSourceEvent</a></code>.</p>
    <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-selectend"><code>selectend</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①⓪">XRSession</a></code> when one of its <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource③⓪">XRInputSource</a></code>s ends its <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action①④">primary action</a> or when an <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource③①">XRInputSource</a></code> that has begun a <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action①⑤">primary action</a> is disconnected. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent⑤">XRInputSourceEvent</a></code>.</p>
    <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-select"><code>select</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①①">XRSession</a></code> when one of its <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource③②">XRInputSource</a></code>s has fully completed a <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action①⑥">primary action</a>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent⑥">XRInputSourceEvent</a></code>.</p>
-   <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpace" data-dfn-type="event" data-export id="eventdef-xrreferencespace-reset"><code>reset</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③②">XRReferenceSpace</a></code> when discontinuities of the <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin①⑦">native origin</a> or <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin⑧">effective origin</a> occur, i.e. there are significant changes in the origin’s position or orientation relative to the user’s environment. (For example: After user recalibration of their XR device or if the XR device automatically shifts its origin after losing and regaining tracking.) A <code class="idl"><a data-link-type="idl" href="#eventdef-xrreferencespace-reset" id="ref-for-eventdef-xrreferencespace-reset①">reset</a></code> event MUST also be dispatched when the <code class="idl"><a data-link-type="idl" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry⑧">boundsGeometry</a></code> changes for an <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace①①">XRBoundedReferenceSpace</a></code>. A <code class="idl"><a data-link-type="idl" href="#eventdef-xrreferencespace-reset" id="ref-for-eventdef-xrreferencespace-reset②">reset</a></code> event MUST NOT be dispatched if the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑨">viewer</a>'s pose experiences discontinuities but the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③③">XRReferenceSpace</a></code>'s origin physical mapping remains stable, such as when the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer①⓪">viewer</a> momentarily loses and regains tracking within the same tracking area. A <code class="idl"><a data-link-type="idl" href="#eventdef-xrreferencespace-reset" id="ref-for-eventdef-xrreferencespace-reset③">reset</a></code> event also MUST NOT be dispatched as an <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded⑤">unbounded</a></code> reference space makes small adjustments to its <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin①⑧">native origin</a> over time to maintain space stability near the user, if a significant discontinuity has not occurred. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrreferencespaceevent" id="ref-for-xrreferencespaceevent①">XRReferenceSpaceEvent</a></code>, and MUST be dispatched prior to the execution of any <a data-link-type="dfn" href="#xr-animation-frame" id="ref-for-xr-animation-frame①">XR animation frame</a>s that make use of the new origin.</p>
+   <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpace" data-dfn-type="event" data-export id="eventdef-xrreferencespace-reset"><code>reset</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③②">XRReferenceSpace</a></code> when discontinuities of the <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin①⑦">native origin</a> or <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin⑧">effective origin</a> occur, i.e. there are significant changes in the origin’s position or orientation relative to the user’s environment. (For example: After user recalibration of their XR device or if the XR device automatically shifts its origin after losing and regaining tracking.) A <code class="idl"><a data-link-type="idl" href="#eventdef-xrreferencespace-reset" id="ref-for-eventdef-xrreferencespace-reset①">reset</a></code> event MUST also be dispatched when the <code class="idl"><a data-link-type="idl" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry⑧">boundsGeometry</a></code> changes for an <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace①①">XRBoundedReferenceSpace</a></code>. A <code class="idl"><a data-link-type="idl" href="#eventdef-xrreferencespace-reset" id="ref-for-eventdef-xrreferencespace-reset②">reset</a></code> event MUST NOT be dispatched if the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑨">viewer</a>'s pose experiences discontinuities but the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③③">XRReferenceSpace</a></code>'s origin physical mapping remains stable, such as when the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer①⓪">viewer</a> momentarily loses and regains tracking within the same tracking area. A <code class="idl"><a data-link-type="idl" href="#eventdef-xrreferencespace-reset" id="ref-for-eventdef-xrreferencespace-reset③">reset</a></code> event also MUST NOT be dispatched as an <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded⑤">unbounded</a></code> reference space makes small adjustments to its <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin①⑧">native origin</a> over time to maintain space stability near the user, if a significant discontinuity has not occurred. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrreferencespaceevent" id="ref-for-xrreferencespaceevent①">XRReferenceSpaceEvent</a></code>, and MUST be dispatched prior to the execution of any <a data-link-type="dfn" href="#xr-animation-frame" id="ref-for-xr-animation-frame②">XR animation frame</a>s that make use of the new origin.</p>
    <p class="note" role="note"><span>Note:</span> Jumps in <a data-link-type="dfn" href="#viewer" id="ref-for-viewer①①">viewer</a> position can be handled by the application by observing the <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition⑦">emulatedPosition</a></code> boolean. If a jump in <a data-link-type="dfn" href="#viewer" id="ref-for-viewer①②">viewer</a> position coincides with <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition⑧">emulatedPosition</a></code> switching from <code>true</code> to <code>false</code>, it indicates that the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer①③">viewer</a> has regained tracking and their new position represents a correction from the previously emulated values. For experiences without a "teleportation" mechanic, where the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer①④">viewer</a> can move through the virtual world without moving physically, this is generally the application’s desired behavior. However, if an experience does provide a "teleportation" mechanic, it may be needlessly jarring to jump the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer①⑤">viewer</a>'s position back after tracking recovery. Instead, when such an application recovers tracking, it can simply resume the experience from the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer①⑥">viewer</a>'s current position in the virtual world by absorbing that sudden jump in position into its teleportation offset. To do so, the developer calls <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespace-getoffsetreferencespace" id="ref-for-dom-xrreferencespace-getoffsetreferencespace④">getOffsetReferenceSpace()</a></code> to create a replacement reference space with its <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin⑨">effective origin</a> adjusted by the amount that the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer①⑦">viewer</a>'s position jumped since the previous frame.</p>
    <h2 class="heading settled" data-level="13" id="security"><span class="secno">13. </span><span class="content">Security, Privacy, and Comfort Considerations</span><a class="self-link" href="#security"></a></h2>
    <p>The WebXR Device API provides powerful new features which bring with them several unique privacy, security, and comfort risks that user agents must take steps to mitigate.</p>
@@ -4497,6 +4515,12 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-2.1">11.2. WebGL Context Compatibility</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-2.2">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#2.2">https://www.khronos.org/registry/webgl/specs/latest/1.0/#2.2</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-2.2">11.1. XRWebGLLayer</a> <a href="#ref-for-2.2①">(2)</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-5.14.6">
    <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.6">https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.6</a><b>Referenced in:</b>
    <ul>
@@ -4867,6 +4891,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><span class="dfn-paneled" id="term-for-5.14.6" style="color:initial">checkFramebufferStatus</span>
      <li><span class="dfn-paneled" id="term-for-create-a-drawing-buffer" style="color:initial">create a drawing buffer</span>
      <li><span class="dfn-paneled" id="term-for-2.1" style="color:initial">create the webgl context</span>
+     <li><span class="dfn-paneled" id="term-for-2.2" style="color:initial">default framebuffer</span>
      <li><span class="dfn-paneled" id="term-for-5.14.6①" style="color:initial">deleteFramebuffer</span>
      <li><span class="dfn-paneled" id="term-for-5.14.6②" style="color:initial">framebufferRenderbuffer</span>
      <li><span class="dfn-paneled" id="term-for-5.14.6③" style="color:initial">framebufferTexture2D</span>
@@ -5885,7 +5910,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#xr-animation-frame">#xr-animation-frame</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-xr-animation-frame">4.1. XRSession</a>
-    <li><a href="#ref-for-xr-animation-frame①">12.5. Event Types</a>
+    <li><a href="#ref-for-xr-animation-frame①">11.1. XRWebGLLayer</a>
+    <li><a href="#ref-for-xr-animation-frame②">12.5. Event Types</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xr-compositor">
@@ -6642,7 +6668,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="opaque-framebuffer">
    <b><a href="#opaque-framebuffer">#opaque-framebuffer</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-opaque-framebuffer">11.1. XRWebGLLayer</a> <a href="#ref-for-opaque-framebuffer①">(2)</a> <a href="#ref-for-opaque-framebuffer②">(3)</a> <a href="#ref-for-opaque-framebuffer③">(4)</a> <a href="#ref-for-opaque-framebuffer④">(5)</a> <a href="#ref-for-opaque-framebuffer⑤">(6)</a> <a href="#ref-for-opaque-framebuffer⑥">(7)</a> <a href="#ref-for-opaque-framebuffer⑦">(8)</a> <a href="#ref-for-opaque-framebuffer⑧">(9)</a> <a href="#ref-for-opaque-framebuffer⑨">(10)</a> <a href="#ref-for-opaque-framebuffer①⓪">(11)</a>
+    <li><a href="#ref-for-opaque-framebuffer">11.1. XRWebGLLayer</a> <a href="#ref-for-opaque-framebuffer①">(2)</a> <a href="#ref-for-opaque-framebuffer②">(3)</a> <a href="#ref-for-opaque-framebuffer③">(4)</a> <a href="#ref-for-opaque-framebuffer④">(5)</a> <a href="#ref-for-opaque-framebuffer⑤">(6)</a> <a href="#ref-for-opaque-framebuffer⑥">(7)</a> <a href="#ref-for-opaque-framebuffer⑦">(8)</a> <a href="#ref-for-opaque-framebuffer⑧">(9)</a> <a href="#ref-for-opaque-framebuffer⑨">(10)</a> <a href="#ref-for-opaque-framebuffer①⓪">(11)</a> <a href="#ref-for-opaque-framebuffer①①">(12)</a> <a href="#ref-for-opaque-framebuffer①②">(13)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrwebgllayer-target-framebuffer">
