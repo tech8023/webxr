@@ -820,7 +820,7 @@ callback XRFrameRequestCallback = void (DOMHighResTimeStamp time, XRFrame frame)
 
 Each {{XRFrameRequestCallback}} object has a <dfn for="XRFrameRequestCallback">cancelled</dfn> boolean initially set to <code>false</code>.
 
-Each {{XRSession}} has a <dfn>list of animation frame callbacks</dfn>, which is initially empty, and an <dfn>animation frame callback identifier</dfn>, which is a number initially be zero.
+Each {{XRSession}} has a <dfn>list of animation frame callbacks</dfn>, which is initially empty, and an <dfn>animation frame callback identifier</dfn>, which is a number which is initially zero.
 
 <div class="algorithm" data-algorithm="request-animation-frame">
 
