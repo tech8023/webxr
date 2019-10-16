@@ -2341,7 +2341,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
     </ol>
    </div>
    <div class="algorithm" data-algorithm="on-input-source-change">
-    <p>When the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-handedness" id="ref-for-dom-xrinputsource-handedness">handedness</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode">targetRayMode</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-profiles" id="ref-for-dom-xrinputsource-profiles">profiles</a></code>, or presence of a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace">gripSpace</a></code> for any <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source⑦">XR input source</a>s change for <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③⑨">XRSession</a></code> <var>session</var>, the user agent MUST run the following steps:</p>
+    <p>When the <dfn data-dfn-for="XRSession" data-dfn-type="dfn" data-export data-lt="change input source" id="xrsession-change-input-source"><code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-handedness" id="ref-for-dom-xrinputsource-handedness">handedness</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode">targetRayMode</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-profiles" id="ref-for-dom-xrinputsource-profiles">profiles</a></code>, or presence of a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace">gripSpace</a></code> for any <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source⑦">XR input source</a>s change<a class="self-link" href="#xrsession-change-input-source"></a></dfn> for <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③⑨">XRSession</a></code> <var>session</var>, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>added</var> be a new <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①②">list</a>.</p>
@@ -3770,6 +3770,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#dom-xrsession-cancelanimationframe">cancelAnimationFrame(handle)</a><span>, in §4.3</span>
    <li><a href="#xrframerequestcallback-cancelled">cancelled</a><span>, in §4.3</span>
    <li><a href="#capable-of-supporting">capable of supporting</a><span>, in §3.4</span>
+   <li><a href="#xrsession-change-input-source">change input source</a><span>, in §4.1</span>
    <li><a href="#compatible-graphics-adapter">compatible graphics adapter</a><span>, in §11.2</span>
    <li>
     composition disabled
