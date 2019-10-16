@@ -2223,6 +2223,14 @@ The user agent MUST support showing a <dfn>Trusted UI</dfn>, that is, an interfa
 
 A [=trusted UI=] which does not exit immersive mode is known as a <dfn>trusted immersive UI</dfn>. User agents are not required to support [=trusted immersive UI=], they may instead temporarily pause/exit immersive mode to handle prompts to the user.
 
+A [=trusted UI=] MUST have the following properties:
+
+
+    - It must not be spoofable
+    - It indicates where the request/content displayed originates from
+    - It doesn't rely on a shared secret that can be observed by a mixed reality capture (e.g. a gesture that can be seen by the camera)
+    - It is consistent between immersive experiences in the same UA
+
 <div class="note">
 Note: Examples of [=trusted UI=] include:
   - The default 2D mode browser shown when not in immersive mode
