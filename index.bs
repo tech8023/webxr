@@ -2235,7 +2235,7 @@ A [=trusted UI=] MUST have the following properties:
 Note: Examples of [=trusted UI=] include:
   - The default 2D mode browser shown when not in immersive mode
   - A prompt shown within immersive mode which can only be interacted with via a reserved hardware button to prevent spoofing
-  - Pausing the immersive session and showing some form of desktop environment in which a prompt can be shown
+  - Pausing the immersive session and showing some form of native system environment in which a prompt can be shown
 
 </div>
 
