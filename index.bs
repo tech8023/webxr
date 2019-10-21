@@ -2218,17 +2218,16 @@ Note: Is is suggested that poses reported relative to a {{XRBoundedReferenceSpac
 Trusted Environment {#trustedenvironment-security}
 -------------------
 
-The user agent MUST support showing a <dfn>Trusted UI</dfn>, that is, an interface that the user can trust comes from the user agent, which the user may interact with without interference from the page. Some form of [=trusted UI=] MUST be used to show permissions prompts.
+A <dfn>Trusted UI</dfn> is an interface that the user can trust comes from the user agent, which the user may interact with without interference from the page. The user agent MUST support showing a [=trusted UI=]. Some form of [=trusted UI=] MUST be used to show permissions prompts.
 
 
-A [=trusted UI=] which does not exit immersive mode is known as a <dfn>trusted immersive UI</dfn>. User agents are not required to support [=trusted immersive UI=], they may instead temporarily pause/exit immersive mode to handle prompts to the user.
+Broadly speaking, there are two options for user agents who wish to support [=trusted UI=]. One option is the <dfn>trusted immersive UI</dfn>, which is a [=trusted UI=] which does not exit immersive mode. It is tricky to design a good [=trusted immersive UI=] since the page can effectively draw any pixels it wishes to. User agents are not required to support [=trusted immersive UI=], they may instead temporarily pause/exit immersive mode and show non-immersive [=trusted UI=] to the user.
 
 A [=trusted UI=] MUST have the following properties:
 
-
     - It must not be spoofable
     - It indicates where the request/content displayed originates from
-    - It doesn't rely on a shared secret that can be observed by a mixed reality capture (e.g. a gesture that can be seen by the camera)
+    - If it relies on a shared secret with the user, this shared secret cannot be observed by a mixed reality capture (e.g. it may not be a gesture that can be seen by the camera)
     - It is consistent between immersive experiences in the same UA
 
 <div class="note">
@@ -2239,21 +2238,17 @@ Note: Examples of [=trusted UI=] include:
 
 </div>
 
+In some cases it may be possible for a malicious page to infer what a user is typing on a virtual keyboard or how they are interacting with a virtual UI based solely on monitoring their head movements. This is especially true on devices that have limited input capabilities, such as Google Cardboard, which frequently require users to control a "gaze cursor" with their head orientation. For example: if not prevented from doing so a page could estimate what URL a user is entering into the user agent's URL bar by monitoring the user's interaction with the keyboard.
+
+To prevent this risk the user agent MUST set the [=visibility state=] of all {{XRSession}}s to {{XRVisibilityState/"hidden"}} when the user is interacting with sensitive, [=trusted UI=] ([=trusted immersive ui|immersive=] or non-immersive) such as URL bars or system dialogs. Additionally, to prevent a malicious page from being able to monitor input on other pages the user agent MUST set the {{XRSession}}'s [=visibility state=] to {{XRVisibilityState/"hidden"}} if the [=currently focused area=] does belong to the document which created the {{XRSession}}.
 
 
 If the virtual environment does not consistently track the user's head motion with low latency and at a high frame rate the user may become disoriented or physically ill. Since it is impossible to force pages to produce consistently performant and correct content the user agent MUST provide a tracked, trusted environment and an [=XR Compositor=] which runs asynchronously from page content. The compositor is responsible for compositing the trusted and untrusted content. If content is not performant, does not submit frames, or terminates unexpectedly the user agent should be able to continue presenting a responsive, [=trusted UI=].
 
 Additionally, page content has the ability to make users uncomfortable in ways not related to performance. Badly applied tracking, strobing colors, and content intended to offend, frighten, or intimidate are examples of content which may cause the user to want to quickly exit the XR experience. Removing the XR device in these cases may not always be a fast or practical option. To accommodate this the user agent SHOULD provide users with an action, such as pressing a reserved hardware button or performing a gesture, that escapes out of WebXR content and displays the user agent's [=trusted UI=].
 
-{{XRSession}}s MUST have their [=visibility state=] set to {{XRVisibilityState/"hidden"}} when the user is interacting with potentially sensitive UI from the user agent (such as entering a URL) in the trusted environment.
-
 <section class="unstable">
-Gaze Tracking {#gazetracking-security}
--------------
 
-While the API does not yet expose eye tracking capabilities a lot can be inferred about where the user is looking by tracking the orientation of their head. This is especially true of XR devices that have limited input capabilities, such as Google Cardboard, which frequently require users to control a "gaze cursor" with their head orientation. This means that it may be possible for a malicious page to infer what a user is typing on a virtual keyboard or how they are interacting with a virtual UI based solely on monitoring their head movements. For example: if not prevented from doing so a page could estimate what URL a user is entering into the user agent's URL bar.
-
-To prevent this risk the user agent MUST set the [=visibility state=] of all {{XRSession}}s to {{XRVisibilityState/"hidden"}} when the user is interacting with sensitive, trusted UI such as URL bars or system dialogs. Additionally, to prevent a malicious page from being able to monitor input on other pages the user agent MUST set the {{XRSession}}'s [=visibility state=] to {{XRVisibilityState/"hidden"}} if the [=currently focused area=] does belong to the document which created the {{XRSession}}.
 
 Context Isolation {#contextisolation-security}
 -----------------
