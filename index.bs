@@ -2220,15 +2220,14 @@ Trusted Environment {#trustedenvironment-security}
 
 A <dfn>Trusted UI</dfn> is an interface presented by the User Agent that the user is able to interact with but the page cannot. The user agent MUST support showing [=trusted UI=] and the [=trusted UI=] MUST be used to show permissions prompts when needed.
 
-
-Broadly speaking, there are two options for user agents who wish to support [=trusted UI=]. One option is <dfn>trusted immersive UI</dfn>, which is a [=trusted UI=] which does not exit immersive mode. Implementing [=trusted immersive UI=] can be challenging because `XRWebGLLayer` buffers fill the XR Device display and the User Agent does not typically "reserve" pixels for its own use. User agents are not required to support [=trusted immersive UI=], they may instead temporarily pause/exit immersive mode and show non-immersive [=trusted UI=] to the user.
-
 A [=trusted UI=] MUST have the following properties:
 
     - It must not be spoofable
     - It indicates where the request/content displayed originates from
     - If it relies on a shared secret with the user, this shared secret cannot be observed by a mixed reality capture (e.g. it may not be a gesture that can be seen by the camera)
     - It is consistent between immersive experiences in the same UA
+
+Broadly speaking, there are two options for user agents who wish to support [=trusted UI=]. One option is <dfn>trusted immersive UI</dfn>, which is a [=trusted UI=] which does not exit immersive mode. Implementing [=trusted immersive UI=] can be challenging because `XRWebGLLayer` buffers fill the XR Device display and the User Agent does not typically "reserve" pixels for its own use. User agents are not required to support [=trusted immersive UI=], they may instead temporarily pause/exit immersive mode and show non-immersive [=trusted UI=] to the user.
 
 <div class="note">
 Note: Examples of [=trusted UI=] include:
