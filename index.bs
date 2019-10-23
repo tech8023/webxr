@@ -2218,10 +2218,10 @@ Note: Is is suggested that poses reported relative to a {{XRBoundedReferenceSpac
 Trusted Environment {#trustedenvironment-security}
 -------------------
 
-A <dfn>Trusted UI</dfn> is an interface that the user can trust comes from the user agent, which the user may interact with without interference from the page. The user agent MUST support showing a [=trusted UI=]. Some form of [=trusted UI=] MUST be used to show permissions prompts.
+A <dfn>Trusted UI</dfn> is an interface presented by the User Agent that the user is able to interact with but the page cannot. The user agent MUST support showing [=trusted UI=] and the [=trusted UI=] MUST be used to show permissions prompts when needed.
 
 
-Broadly speaking, there are two options for user agents who wish to support [=trusted UI=]. One option is the <dfn>trusted immersive UI</dfn>, which is a [=trusted UI=] which does not exit immersive mode. It is tricky to design a good [=trusted immersive UI=] since the page can effectively draw any pixels it wishes to. User agents are not required to support [=trusted immersive UI=], they may instead temporarily pause/exit immersive mode and show non-immersive [=trusted UI=] to the user.
+Broadly speaking, there are two options for user agents who wish to support [=trusted UI=]. One option is <dfn>trusted immersive UI</dfn>, which is a [=trusted UI=] which does not exit immersive mode. Implementing [=trusted immersive UI=] can be challenging because `XRWebGLLayer` buffers fill the XR Device display and the User Agent does not typically "reserve" pixels for its own use. User agents are not required to support [=trusted immersive UI=], they may instead temporarily pause/exit immersive mode and show non-immersive [=trusted UI=] to the user.
 
 A [=trusted UI=] MUST have the following properties:
 
