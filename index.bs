@@ -1536,7 +1536,7 @@ When an [=XR input source=] |source| for {{XRSession}} |session| ends its [=prim
 
 Sometimes platform-specific behavior can result in a [=primary action=] being interrupted or cancelled. For example, a [=/XR input source=] may be removed from the [=XRSession/XR device=] after the [=primary action=] is started but before it ends.
 
-Each [=XR input source=] MAY define a <dfn>primary squeeze action</dfn>. The [=primary squeeze action=] is a platform-specific action that, when engaged, produces {{XRSession/squeezestart}}, {{XRSession/squeezeend}}, and {{XRSession/squeeze}} events. The [=primary squeeze action=] should be used for actions rougly mapping to squeezing or grabbing. Examples of possible [=primary squeeze action=]s are pressing a grip trigger or making a grabbing hand gesture. If the platform guidelines define a recommended primary squeeze action then it should be used as the [=primary squeeze action=], otherwise the user agent MAY select one.
+Each [=XR input source=] MAY define a <dfn>primary squeeze action</dfn>. The [=primary squeeze action=] is a platform-specific action that, when engaged, produces {{XRSession/squeezestart}}, {{XRSession/squeezeend}}, and {{XRSession/squeeze}} events. The [=primary squeeze action=] should be used for actions roughly mapping to squeezing or grabbing. Examples of possible [=primary squeeze action=]s are pressing a grip trigger or making a grabbing hand gesture. If the platform guidelines define a recommended primary squeeze action then it should be used as the [=primary squeeze action=], otherwise the user agent MAY select one.
 
 <div class="algorithm" data-algorithm="on-squeeze-start">
 
