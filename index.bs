@@ -1519,9 +1519,10 @@ Each [=XR input source=] MUST define a <dfn>primary action</dfn>. The [=primary 
 
 <div class="algorithm" data-algorithm="on-input-start">
 
-When an [=XR input source=] for {{XRSession}} |session| begins its [=primary action=] the UA MUST run the following steps:
+When an [=XR input source=] |source| for {{XRSession}} |session| begins its [=primary action=] the UA MUST run the following steps:
 
-  1. [=Queue a task=] to [=fire an event|fire=] an {{XRInputSourceEvent}} named {{selectstart!!event}} on |session|.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. [=Queue a task=] to [=fire an input source event=] with name {{selectstart!!event}}, frame |frame|, and source |source|.
 
 </div>
 
@@ -1542,9 +1543,10 @@ Each [=XR input source=] MAY define a <dfn>primary squeeze action</dfn>. The [=p
 
 <div class="algorithm" data-algorithm="on-squeeze-start">
 
-When an [=XR input source=] for {{XRSession}} |session| begins its [=primary squeeze action=] the UA MUST run the following steps:
+When an [=XR input source=] |source| for {{XRSession}} |session| begins its [=primary squeeze action=] the UA MUST run the following steps:
 
-  1. [=Queue a task=] to [=fire an event|fire=] an {{XRInputSourceEvent}} named {{squeezestart!!event}} on |session|.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. [=Queue a task=] to [=fire an input source event=] with name {{squeezestart!!event}}, frame |frame|, and source |source|.
 
 </div>
 
