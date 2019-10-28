@@ -872,6 +872,7 @@ When an {{XRSession}} |session| receives updated [=viewer=] state from the [=XRS
   1. Set |session|'s [=list of animation frame callbacks=] to the empty list.
   1. Set |frame|'s [=active=] boolean to <code>true</code>.
   1. Set |frame|'s [=animationFrame=] boolean to <code>true</code>.
+  1. [=XRFrame/Apply frame updates=] for |frame|.
   1. For each entry in |callbacks|, in order:
     1. If the entry's [=cancelled=] boolean is <code>true</code>, continue to the next entry.
     1. [=Invoke the Web IDL callback function=], passing |now| and |frame| as the  arguments
@@ -996,6 +997,17 @@ When this method is invoked, the user agent MUST run the following steps:
   1. Return |pose|.
 
 </div>
+
+
+<div class="algorithm" data-algorithm="apply-frame-updates">
+
+To <dfn for=XRFrame>apply frame updates</dfn> for an {{XRFrame}}, the user agent MUST run the following steps:
+
+ 1. Do nothing.
+
+</div>
+
+NOTE: Further specs may add new kinds of frame updates to these steps, e.g. for gamepad state.
 
 Spaces {#spaces}
 ======
@@ -2010,6 +2022,7 @@ When the user agent has to <dfn>fire an input source event</dfn> with name |name
   1. Create an {{XRInputSourceEvent}} |event| with {{Event/type}} |name|, {{XRInputSourceEvent/frame}} |frame|, and {{XRInputSourceEvent/inputSource}} |source|
   1. 
   1. Set |frame|'s [=active=] boolean to <code>true</code>.
+  1. [=XRFrame/Apply frame updates=] for |frame|.
   1. [=Dispatch=] |event| on |frame|'s {{XRFrame/session}}
   1. Set |frame|'s [=active=] boolean to <code>false</code>.
 
