@@ -555,10 +555,13 @@ enum XRVisibilityState {
 
   // Events
   attribute EventHandler onend;
-  attribute EventHandler onselect;
   attribute EventHandler oninputsourceschange;
+  attribute EventHandler onselect;
   attribute EventHandler onselectstart;
   attribute EventHandler onselectend;
+  attribute EventHandler onsqueeze;
+  attribute EventHandler onsqueezestart;
+  attribute EventHandler onsqueezeend;
   attribute EventHandler onvisibilitychange;
 };
 </pre>
@@ -757,6 +760,13 @@ The <dfn attribute for="XRSession">onselectstart</dfn> attribute is an [=Event h
 The <dfn attribute for="XRSession">onselectend</dfn> attribute is an [=Event handler IDL attribute=] for the {{selectend}} event type.
 
 The <dfn attribute for="XRSession">onselect</dfn> attribute is an [=Event handler IDL attribute=] for the {{XRSession/select}} event type.
+
+
+The <dfn attribute for="XRSession">onsqueezestart</dfn> attribute is an [=Event handler IDL attribute=] for the {{squeezestart}} event type.
+
+The <dfn attribute for="XRSession">onsqueezeend</dfn> attribute is an [=Event handler IDL attribute=] for the {{squeezeend}} event type.
+
+The <dfn attribute for="XRSession">onsqueeze</dfn> attribute is an [=Event handler IDL attribute=] for the {{XRSession/squeeze}} event type.
 
 XRRenderState {#xrrenderstate-interface}
 -------------
@@ -1505,7 +1515,7 @@ Similarly, the Valve Index controller is backwards compatible with the HTC Vive 
 
 Note: {{XRInputSource}}s in an {{XRSession}}'s {{XRSession/inputSources}} array are "live". As such values within them are updated in-place. This means that it doesn't work to save a reference to an {{XRInputSource}}'s attribute on one frame and compare it to the same attribute in a subsequent frame to test for state changes, because they will be the same object. Therefore developers that wish to compare input state from frame to frame should copy the content of the state in question.
 
-Each [=XR input source=] SHOULD define a <dfn>primary action</dfn>. The [=primary action=] is a platform-specific action that, when engaged, produces {{XRSession/selectstart}}, {{XRSession/selectend}}, and {{XRSession/select}} events. Examples of possible [=primary action=]s are pressing a trigger, touchpad, or button, speaking a command, or making a hand gesture. If the platform guidelines define a recommended primary input then it should be used as the [=primary action=], otherwise the user agent is free to select one.
+Each [=XR input source=] MUST define a <dfn>primary action</dfn>. The [=primary action=] is a platform-specific action that, when engaged, produces {{XRSession/selectstart}}, {{XRSession/selectend}}, and {{XRSession/select}} events. Examples of possible [=primary action=]s are pressing a trigger, touchpad, or button, speaking a command, or making a hand gesture. If the platform guidelines define a recommended primary input then it should be used as the [=primary action=], otherwise the user agent is free to select one.
 
 <div class="algorithm" data-algorithm="on-input-start">
 
@@ -1528,12 +1538,44 @@ When an [=XR input source=] |source| for {{XRSession}} |session| ends its [=prim
 
 Sometimes platform-specific behavior can result in a [=primary action=] being interrupted or cancelled. For example, a [=/XR input source=] may be removed from the [=XRSession/XR device=] after the [=primary action=] is started but before it ends.
 
+Each [=XR input source=] MAY define a <dfn>primary squeeze action</dfn>. The [=primary squeeze action=] is a platform-specific action that, when engaged, produces {{XRSession/squeezestart}}, {{XRSession/squeezeend}}, and {{XRSession/squeeze}} events. The [=primary squeeze action=] should be used for actions roughly mapping to squeezing or grabbing. Examples of possible [=primary squeeze action=]s are pressing a grip trigger or making a grabbing hand gesture. If the platform guidelines define a recommended primary squeeze action then it should be used as the [=primary squeeze action=], otherwise the user agent MAY select one.
+
+<div class="algorithm" data-algorithm="on-squeeze-start">
+
+When an [=XR input source=] for {{XRSession}} |session| begins its [=primary squeeze action=] the UA MUST run the following steps:
+
+  1. [=Queue a task=] to [=fire an event|fire=] an {{XRInputSourceEvent}} named {{squeezestart!!event}} on |session|.
+
+</div>
+
+<div class="algorithm" data-algorithm="on-squeeze-end">
+
+When an [=XR input source=] |source| for {{XRSession}} |session| ends its [=primary squeeze action=] the UA MUST run the following steps:
+
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. [=Queue a task=] to perform the following steps:
+    1. [=Fire an input source event=] with name {{squeeze!!event}}, frame |frame|, and source |source|.
+    1. [=Fire an input source event=] with name {{squeezeend!!event}}, frame |frame|, and source |source|.
+
+</div>
+
+Sometimes platform-specific behavior can result in a [=primary action=] or [=primary squeeze action=] being interrupted or cancelled. For example, a [=/XR input source=] may be removed from the [=XRSession/XR device=] after the [=primary action=] or [=primary squeeze action=] is started but before it ends.
+
 <div class="algorithm" data-algorithm="on-input-cancelled">
 
 When an [=XR input source=] |source| for {{XRSession}} |session| has its [=primary action=] cancelled the UA MUST run the following steps:
 
   1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
   1. [=Queue a task=] to [=fire an input source event=] an {{XRInputSourceEvent}} with name {{selectend!!event}}, frame |frame|, and source |source|.
+
+</div>
+
+<div class="algorithm" data-algorithm="on-squeeze-cancelled">
+
+When an [=XR input source=] |source| for {{XRSession}} |session| has its [=primary squeeze action=] cancelled the UA MUST run the following steps:
+
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. [=Queue a task=] to [=fire an input source event=] an {{XRInputSourceEvent}} with name {{squeezeend!!event}}, frame |frame|, and source |source|.
 
 </div>
 
@@ -2039,6 +2081,12 @@ A user agent MUST dispatch a <dfn event for="XRSession">selectstart</dfn> event 
 A user agent MUST dispatch a <dfn event for="XRSession">selectend</dfn> event on an {{XRSession}} when one of its {{XRInputSource}}s ends its [=primary action=] or when an {{XRInputSource}} that has begun a [=primary action=] is disconnected. The event MUST be of type {{XRInputSourceEvent}}.
 
 A user agent MUST dispatch a <dfn event for="XRSession">select</dfn> event on an {{XRSession}} when one of its {{XRInputSource}}s has fully completed a [=primary action=]. The event MUST be of type {{XRInputSourceEvent}}.
+
+A user agent MUST dispatch a <dfn event for="XRSession">squeezestart</dfn> event on an {{XRSession}} when one of its {{XRInputSource}}s begins its [=primary squeeze action=]. The event MUST be of type {{XRInputSourceEvent}}.
+
+A user agent MUST dispatch a <dfn event for="XRSession">squeezeend</dfn> event on an {{XRSession}} when one of its {{XRInputSource}}s ends its [=primary squeeze action=] or when an {{XRInputSource}} that has begun a [=primary squeeze action=] is disconnected. The event MUST be of type {{XRInputSourceEvent}}.
+
+A user agent MUST dispatch a <dfn event for="XRSession">squeeze</dfn> event on an {{XRSession}} when one of its {{XRInputSource}}s has fully completed a [=primary squeeze action=]. The event MUST be of type {{XRInputSourceEvent}}.
 
 A user agent MUST dispatch a <dfn event for="XRReferenceSpace">reset</dfn> event on an {{XRReferenceSpace}} when discontinuities of the [=native origin=] or [=effective origin=] occur, i.e. there are significant changes in the origin’s position or orientation relative to the user’s environment. (For example: After user recalibration of their XR device or if the XR device automatically shifts its origin after losing and regaining tracking.) A {{reset}} event MUST also be dispatched when the {{boundsGeometry}} changes for an {{XRBoundedReferenceSpace}}. A {{reset}} event MUST NOT be dispatched if the [=viewer=]'s pose experiences discontinuities but the {{XRReferenceSpace}}'s origin physical mapping remains stable, such as when the [=viewer=] momentarily loses and regains tracking within the same tracking area. A {{reset}} event also MUST NOT be dispatched as an {{unbounded}} reference space makes small adjustments to its [=native origin=] over time to maintain space stability near the user, if a significant discontinuity has not occurred. The event MUST be of type {{XRReferenceSpaceEvent}}, and MUST be dispatched prior to the execution of any [=XR animation frame=]s that make use of the new origin.
 
