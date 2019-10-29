@@ -2020,8 +2020,7 @@ The <dfn attribute for="XRInputSourceEvent">frame</dfn> attribute is an {{XRFram
 
 When the user agent has to <dfn>fire an input source event</dfn> with name |name|, {{XRFrame}} |frame|, and {{XRInputSource}} |source| it MUST run the following steps:
 
-  1. Create an {{XRInputSourceEvent}} |event| with {{Event/type}} |name|, {{XRInputSourceEvent/frame}} |frame|, and {{XRInputSourceEvent/inputSource}} |source|
-  1. 
+  1. Create an {{XRInputSourceEvent}} |event| with {{Event/type}} |name|, {{XRInputSourceEvent/frame}} |frame|, and {{XRInputSourceEvent/inputSource}} |source|.
   1. Set |frame|'s [=active=] boolean to <code>true</code>.
   1. [=XRFrame/Apply frame updates=] for |frame|.
   1. [=Dispatch=] |event| on |frame|'s {{XRFrame/session}}
