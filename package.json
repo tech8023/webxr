@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "devDependencies": {
     "browser-sync": "^2.18.8",
-    "doctoc": "^1.4.0"
+    "doctoc": "^1.4.0",
+    "request": "^2.88.0"
   },
   "scripts": {
     "start": "npm run dev",
