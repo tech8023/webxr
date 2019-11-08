@@ -1533,7 +1533,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-11-06">6 November 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-11-08">8 November 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2839,8 +2839,10 @@ window<c- p>.</c->requestAnimationFrame<c- p>(</c->onWindowAnimationFrame<c- p>)
     <ol>
      <li data-md>
       <p>If <var>view</var>’s <a data-link-type="dfn" href="#xrview-internal-projection-matrix" id="ref-for-xrview-internal-projection-matrix">internal projection matrix</a> is not <code>null</code>, perform the following steps:</p>
-     <li data-md>
-      <p>If the operation <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-isdetachedbuffer" id="ref-for-sec-isdetachedbuffer">IsDetachedBuffer</a></code> on <a data-link-type="dfn" href="#xrview-internal-projection-matrix" id="ref-for-xrview-internal-projection-matrix①">internal projection matrix</a> is <code>false</code>, return <var>view</var>’s <a data-link-type="dfn" href="#xrview-internal-projection-matrix" id="ref-for-xrview-internal-projection-matrix②">internal projection matrix</a>.</p>
+      <ol>
+       <li data-md>
+        <p>If the operation <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-isdetachedbuffer" id="ref-for-sec-isdetachedbuffer">IsDetachedBuffer</a></code> on <a data-link-type="dfn" href="#xrview-internal-projection-matrix" id="ref-for-xrview-internal-projection-matrix①">internal projection matrix</a> is <code>false</code>, return <var>view</var>’s <a data-link-type="dfn" href="#xrview-internal-projection-matrix" id="ref-for-xrview-internal-projection-matrix②">internal projection matrix</a>.</p>
+      </ol>
      <li data-md>
       <p>Set <var>view</var>’s <a data-link-type="dfn" href="#xrview-internal-projection-matrix" id="ref-for-xrview-internal-projection-matrix③">internal projection matrix</a> to a new <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①">matrix</a> which is equal to <var>view</var>’s <a data-link-type="dfn" href="#xrview-underlying-view" id="ref-for-xrview-underlying-view②">underlying view</a>'s <a data-link-type="dfn" href="#view-projection-matrix" id="ref-for-view-projection-matrix③">projection matrix</a>.</p>
      <li data-md>
@@ -2954,8 +2956,10 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     <ol>
      <li data-md>
       <p>If <var>transform</var>’s <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix①">internal matrix</a> is not <code>null</code>, perform the following steps:</p>
-     <li data-md>
-      <p>If the operation <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-isdetachedbuffer" id="ref-for-sec-isdetachedbuffer①">IsDetachedBuffer</a></code> on <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix②">internal matrix</a> is <code>false</code>, return <var>transform</var>’s <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix③">internal matrix</a>.</p>
+      <ol>
+       <li data-md>
+        <p>If the operation <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-isdetachedbuffer" id="ref-for-sec-isdetachedbuffer①">IsDetachedBuffer</a></code> on <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix②">internal matrix</a> is <code>false</code>, return <var>transform</var>’s <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix③">internal matrix</a>.</p>
+      </ol>
      <li data-md>
       <p>Let <var>translation</var> be a new <a data-link-type="dfn" href="#matrix" id="ref-for-matrix④">matrix</a> which is a column-vector translation matrix corresponding to <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position①②">position</a></code>. Mathematically, if <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position①③">position</a></code> is <code>(x, y, z)</code>, this matrix is</p>
       <p><img alt="Mathematical expression for column-vector translation matrix" src="images/translation_matrix.svg"></p>
