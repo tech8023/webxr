@@ -589,13 +589,13 @@ If `ignoreDepthValues` is not set to `true` the The UA is allowed (but not requi
 
 Whenever possible the matrices given by `XRView`'s `projectionMatrix` attribute should make use of physical properties, such as the headset optics or camera lens, to determine the field of view to use. Most inline content, however, won't have any physically based values from which to infer a field of view. In order to provide a unified render pipeline for inline content an arbitrary field of view must be selected.
 
-By default a vertical field of view of 0.5 radians (90 degrees) is used for inline sessions. The horizontal field of view can be computed from the vertical field of view based on the width/height ratio of the `XRWebGLLayer`'s associated canvas.
+By default a vertical field of view of 0.5π radians (90 degrees) is used for inline sessions. The horizontal field of view can be computed from the vertical field of view based on the width/height ratio of the `XRWebGLLayer`'s associated canvas.
 
 If a different default field of view is desired, it can be specified by passing a new `inlineVerticalFieldOfView` value, in radians, to the `updateRenderState` method:
 
 ```js
 // This changes the default vertical field of view for an inline session to
-// 0.4 radians (72 degrees).
+// 0.4 pi radians (72 degrees).
 xrSession.updateRenderState({
   inlineVerticalFieldOfView: 0.4 * Math.PI,
 });
