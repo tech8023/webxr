@@ -1852,7 +1852,7 @@ Note: {{XRSessionMode/"inline"}} sessions render using the same graphics adapter
 
 <pre class="idl">
 partial dictionary WebGLContextAttributes {
-    boolean xrCompatible = null;
+    boolean xrCompatible = false;
 };
 
 partial interface mixin WebGLRenderingContextBase {
