@@ -1856,7 +1856,7 @@ partial dictionary WebGLContextAttributes {
 };
 
 partial interface mixin WebGLRenderingContextBase {
-    Promise&lt;void&gt; makeXRCompatible();
+    [NewObject] Promise&lt;void&gt; makeXRCompatible();
 };
 </pre>
 

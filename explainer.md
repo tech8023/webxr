@@ -796,6 +796,6 @@ partial dictionary WebGLContextAttributes {
 };
 
 partial interface WebGLRenderingContextBase {
-    Promise<void> makeXRCompatible();
+    [NewObject] Promise<void> makeXRCompatible();
 };
 ```
