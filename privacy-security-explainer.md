@@ -74,7 +74,6 @@ When sensitive information can be exposed, the requesting document must be:
 * The [currently focused area](https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context)
 * Of the [same origin-domain](https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain) as the [active document](https://html.spec.whatwg.org/multipage/browsers.html#active-document)
 * Of an origin not blocked by [feature policy](#feature-policy)
-* **TODO** Address the outcome of [#732](https://github.com/immersive-web/webxr/issues/732)
 
 ### Focus and visibility
 XRSessions may have one of three visibility states: visible, visible-blurred, and hidden. When the user is interacting with a potentially sensitive UI from the UA (like URL entry), XRSessions must have their [visibility state set to hidden or visible-blurred](https://github.com/immersive-web/webxr/issues/724). If the visibility state is set to visible-blurred in this situation, the following restrictions must be placed on data delivered to sessions:
@@ -86,7 +85,7 @@ However, visible-blurred should not be viewed as a substitute for TrustedUI and 
 
 
 ### Feature policy
-**TODO** Fill this in with what is agreed upon in [#308](https://github.com/immersive-web/webxr/issues/308), [#729](https://github.com/immersive-web/webxr/issues/729), [#730](https://github.com/immersive-web/webxr/issues/730), and [#731](https://github.com/immersive-web/webxr/issues/731).
+All features in core WebXR module are controlled by the [feature policy "xr-spatial-tracking."](https://github.com/immersive-web/webxr/issues/729)
 
 #### Underlying sensors feature policy
 In addition to the WebXR specific feature policy, feature policies for underlying sensors must also be respected if a site could isolate and extract sensor data that would otherwise be blocked by those feature policies. WebXR must not be a 'back door' for accessing data that is otherwise prevented.
@@ -181,7 +180,6 @@ For every call to `XRFrame.getPose()`, the UA must ensure that:
 * The request originates from the document which owns the `XRFrame`'s `XRSession`
 * The document is [visible and has focus](#visibility-and-focus)
 * The `XRSession.visibility` is set to `visible` 
-* **TODO** address issues [#696](https://github.com/immersive-web/webxr/issues/696) and [#724](https://github.com/immersive-web/webxr/issues/724)
 
 > Note: On some systems it is possible that XRPose data may allow a site to fingerprint a device through sensor calibration data (ref: [1](https://www.ieee-security.org/TC/SP2019/papers/405.pdf), [2](https://arxiv.org/pdf/1605.08763.pdf), [3](https://arxiv.org/pdf/1503.01874.pdf)). This risk may vary depending upon hardware, operating system, and the methods used to generate pose data from sensors. User agents must either mitigate such fingerprinting risk, or be sure of user intent before exposing such data.
 
