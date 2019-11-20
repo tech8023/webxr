@@ -2313,7 +2313,7 @@ Note: If the document's origin is not allowed to use the <code>"xr-spatial-track
 Permissions API Integration {#permissions}
 ---------
 
-The [[!permissions]] API provides a uniform way for websites to request permissions from users and query which permissions they have. 
+The [[!permissions]] API provides a uniform way for websites to request permissions from users and query which permissions they have been granted. 
 
 The <dfn enum-value for="PermissionName">"xr"</dfn> [=powerful feature=]’s permission-related algorithms and types are defined as follows: 
 
@@ -2330,7 +2330,7 @@ dictionary XRPermissionDescriptor: PermissionDescriptor {
 };
 </pre>
 
-where {{PermissionDescriptor/name}} is {{PermissionName/"xr"}}.
+{{PermissionDescriptor/name}} for {{XRPermissionDescriptor}} is {{PermissionName/"xr"}}.
 
 
 </dd>
@@ -2358,10 +2358,10 @@ To <dfn lt="request the xr permission">request the "xr" permission</dfn> with an
     1. Abort these steps.
   1. Let <code>(|consentRequired|, |consentOptional|, |granted|)</code> be the fields of |result|.
   1. For each |feature| in |consentRequired| perform the following steps:
-      1. If a clear signal of [=user intent=] to enable |feature| has not been given, set |status|'s   {{PermissionStatus/state}} to {{PermissionState/"denied"}} and abort these steps.
+      1. If a clear signal of [=user intent=] to enable |feature| has not been determined, set |status|'s {{PermissionStatus/state}} to {{PermissionState/"denied"}} and abort these steps.
       1. If |feature| is not in |granted|, append |feature| to |granted|.
   1. For each |feature| in |consentOptional| perform the following steps:
-      1. If a clear signal of [=user intent=] to enable |feature| has not been given, continue to the next entry.
+      1. If a clear signal of [=user intent=] to enable |feature| has not been determined, continue to the next entry.
       1. If |feature| is not in |granted|, append |feature| to |granted|.
   1. Set |status|'s {{XRPermissionStatus/granted}} to |granted|.
   1. Set |session|'s [=list of enabled features=] to |granted|.
