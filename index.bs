@@ -2357,17 +2357,20 @@ To <dfn lt="request the xr permission">request the "xr" permission</dfn> with an
     1. Set |status|'s {{PermissionStatus/state}} to {{PermissionState/"denied"}}.
     1. Abort these steps.
   1. Let <code>(|consentRequired|, |consentOptional|, |granted|)</code> be the fields of |result|.
+  1. The user agent MAY at this point perform any necessary steps, like showing permissions prompts, to determine if there is a clear signal of [=user intent=] for any features in |requiredFeatures| and |optionalFeatures|.
   1. For each |feature| in |consentRequired| perform the following steps:
+      1. The user agent MAY at this point perform any necessary steps, like showing permissions prompts, to determine if there is a clear signal of [=user intent=] for |feature|.
       1. If a clear signal of [=user intent=] to enable |feature| has not been determined, set |status|'s {{PermissionStatus/state}} to {{PermissionState/"denied"}} and abort these steps.
       1. If |feature| is not in |granted|, append |feature| to |granted|.
   1. For each |feature| in |consentOptional| perform the following steps:
+      1. The user agent MAY at this point perform any necessary steps, like showing permissions prompts, to determine if there is a clear signal of [=user intent=] for |feature|.
       1. If a clear signal of [=user intent=] to enable |feature| has not been determined, continue to the next entry.
       1. If |feature| is not in |granted|, append |feature| to |granted|.
   1. Set |status|'s {{XRPermissionStatus/granted}} to |granted|.
   1. Set |session|'s [=list of enabled features=] to |granted|.
   1. Set |status|'s {{PermissionStatus/state}} to {{PermissionState/"granted"}}.
 
-Note: The user agent may choose to batch up permissions prompts for all requested features when gauging if there is a clear signal of [=user intent=].
+Note: The user agent has the freedom to batch up permissions prompts for all requested features when gauging if there is a clear signal of [=user intent=], but it is also allowed to show them one at a time.
 
 </div>
 
