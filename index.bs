@@ -1536,7 +1536,7 @@ Each [=XR input source=] MUST define a <dfn>primary action</dfn>. The [=primary 
 
 When an [=XR input source=] |source| for {{XRSession}} |session| begins its [=primary action=] the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the action occurred.
   1. [=Queue a task=] to [=fire an input source event=] with name {{selectstart!!event}}, frame |frame|, and source |source|.
 
 </div>
@@ -1545,7 +1545,7 @@ When an [=XR input source=] |source| for {{XRSession}} |session| begins its [=pr
 
 When an [=XR input source=] |source| for {{XRSession}} |session| ends its [=primary action=] the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the action occurred.
   1. [=Queue a task=] to perform the following steps:
     1. [=Fire an input source event=] with name {{select!!event}}, frame |frame|, and source |source|.
     1. [=Fire an input source event=] with name {{selectend!!event}}, frame |frame|, and source |source|.
@@ -1560,7 +1560,7 @@ Each [=XR input source=] MAY define a <dfn>primary squeeze action</dfn>. The [=p
 
 When an [=XR input source=] |source| for {{XRSession}} |session| begins its [=primary squeeze action=] the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the action occurred.
   1. [=Queue a task=] to [=fire an input source event=] with name {{squeezestart!!event}}, frame |frame|, and source |source|.
 
 </div>
@@ -1569,7 +1569,7 @@ When an [=XR input source=] |source| for {{XRSession}} |session| begins its [=pr
 
 When an [=XR input source=] |source| for {{XRSession}} |session| ends its [=primary squeeze action=] the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the action occurred.
   1. [=Queue a task=] to perform the following steps:
     1. [=Fire an input source event=] with name {{squeeze!!event}}, frame |frame|, and source |source|.
     1. [=Fire an input source event=] with name {{squeezeend!!event}}, frame |frame|, and source |source|.
@@ -1582,7 +1582,7 @@ Sometimes platform-specific behavior can result in a [=primary action=] or [=pri
 
 When an [=XR input source=] |source| for {{XRSession}} |session| has its [=primary action=] cancelled the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the action occurred.
   1. [=Queue a task=] to [=fire an input source event=] an {{XRInputSourceEvent}} with name {{selectend!!event}}, frame |frame|, and source |source|.
 
 </div>
@@ -1591,7 +1591,7 @@ When an [=XR input source=] |source| for {{XRSession}} |session| has its [=prima
 
 When an [=XR input source=] |source| for {{XRSession}} |session| has its [=primary squeeze action=] cancelled the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the action occurred.
   1. [=Queue a task=] to [=fire an input source event=] an {{XRInputSourceEvent}} with name {{squeezeend!!event}}, frame |frame|, and source |source|.
 
 </div>
@@ -1607,7 +1607,7 @@ Some [=/XR device=]s may support <dfn>transient input sources</dfn>, where the [
 
 When a [=transient input source=] |source| for {{XRSession}} |session| begins its [=primary action=] the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the action occurred.
   1. [=Queue a task=] to perform the following steps:
     1. Fire any <code>"pointerdown"</code> events produced by the [=XR input source=]'s action, if necessary.
     1. [=add input source|Add the XR input source=] to the [=list of active XR input sources=].
@@ -1619,7 +1619,7 @@ When a [=transient input source=] |source| for {{XRSession}} |session| begins it
 
 When a [=transient input source=] |source| for {{XRSession}} |session| ends its [=primary action=] the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the action occurred.
   1. [=Queue a task=] to perform the following steps:
     1. [=Fire an input source event=] with name {{select!!event}}, frame |frame|, and source |source|.
     1. Fire any <code>"click"</code> events produced by the [=XR input source=]'s action, if necessary.
@@ -1633,7 +1633,7 @@ When a [=transient input source=] |source| for {{XRSession}} |session| ends its 
 
 When a [=transient input source=] |source| for {{XRSession}} |session| has its [=primary action=] cancelled the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the action occurred.
   1. [=Queue a task=] to perform the following steps:
     1. [=Fire an input source event=] with name {{selectend!!event}}, frame |frame|, and source |source|.
     1. [=remove input source|Remove the XR input source=] from the [=list of active XR input sources=].
