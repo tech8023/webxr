@@ -3,6 +3,11 @@ WebVR to WebXR Migration Guide
 
 This guide is intended to help developers that have created content with the now deprecated WebVR API migrate to the WebXR API that replaced it. For simplicity this document is going to primarily focus on the differences between how WebVR and WebXR presenting VR content to a headset, since that’s the primary draw of the API. Differences in displaying inline content are not covered.
 
+Secure origin required
+----------------------
+The WebXR API is considered a ["powerful feature" and thus only available on secure origins](https://w3c.github.io/webappsec-secure-contexts/#new) (ie: URLs using HTTPS). For development purposes `localhost` counts as a secure origin, and other domains can be temporarily treated as secure via browser-specific mechanisms:
+  - [Chrome/Chromium](https://sites.google.com/a/chromium.org/dev/Home/chromium-security/deprecating-powerful-features-on-insecure-origins)
+
 Hardware enumeration
 --------------------
 WebVR applications start by calling `navigator.getVRDisplays()`, which returns a list of connected VR hardware. The developer then chooses a `VRDisplay` from the list and keeps a reference to it. This object is what almost all further interaction is done with for the remainder of the application. Changes to the available set of VR hardware is indicated with the `vrdisplayconnect` and `vrdisplaydisconnect` events on the `Window` object.
