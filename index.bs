@@ -2351,9 +2351,9 @@ dictionary XRPermissionStatus: PermissionStatus {
 <div class=algorithm data-algorithm="xr-permission-request-algorithm">
 To <dfn lt="request the xr permission">request the "xr" permission</dfn> with an {{XRPermissionDescriptor}} |descriptor| and a {{XRPermissionStatus}} |status|, the UA MUST run the following steps:
 
+  1. Set |status|'s {{XRPermissionStatus/granted}} to an empty {{FrozenArray}}.
   1. Let |result| be the result of [=resolve the requested features|resolving the requested features=] given |descriptor|'s {{XRPermissionDescriptor/requiredFeatures}}, {{XRPermissionDescriptor/optionalFeatures}}, and {{XRPermissionDescriptor/session}}.
   1. If |result| is <code>null</code>, run the following steps:
-    1. Set |status|'s {{XRPermissionStatus/granted}} to an empty {{FrozenArray}}.
     1. Set |status|'s {{PermissionStatus/state}} to {{PermissionState/"denied"}}.
     1. Abort these steps.
   1. Let <code>(|consentRequired|, |consentOptional|, |granted|)</code> be the fields of |result|.
