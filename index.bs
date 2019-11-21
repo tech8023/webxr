@@ -999,16 +999,20 @@ When this method is invoked, the user agent MUST run the following steps:
 
 </div>
 
+A <dfn>frame update</dfn> is an algorithm that can be run given an {{XRFrame}}, which is intended to be run each {{XRFrame}}.
+
+Every {{XRSession}} has a <dfn for=XRSession>list of frame updates</dfn>, which is a [=/list=] of [=frame updates=], initially the empty [=/list=].
 
 <div class="algorithm" data-algorithm="apply-frame-updates">
 
-To <dfn for=XRFrame>apply frame updates</dfn> for an {{XRFrame}}, the user agent MUST run the following steps:
+To <dfn for=XRFrame>apply frame updates</dfn> for an {{XRFrame}} |frame|, the user agent MUST run the following steps:
 
- 1. Do nothing.
+ 1. For each |frame update| in |frame|'s {{XRFrame/session}}'s [=XRSession/list of frame updates=], perform the following steps:
+    1. Run |frame update| with |frame|.
 
 </div>
 
-NOTE: Further specs may add new kinds of frame updates to these steps, e.g. for gamepad state.
+NOTE: This spec does not define any [=frame updates=], but other specifications may add some.
 
 Spaces {#spaces}
 ======
