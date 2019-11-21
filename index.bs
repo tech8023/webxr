@@ -870,8 +870,9 @@ When this method is invoked, the user agent MUST run the following steps:
 
 <div class="algorithm" data-algorithm="run-animation-frames">
 
-When an {{XRSession}} |session| receives updated [=viewer=] state from the [=XRSession/XR device=], it runs an <dfn>XR animation frame</dfn> with a timestamp |now| and an {{XRFrame}} |frame|, which MUST run the following steps regardless of if the [=list of animation frame callbacks=] is empty or not:
+When an {{XRSession}} |session| receives updated [=viewer=] state for timestamp |now| from the [=XRSession/XR device=], it runs an <dfn>XR animation frame</dfn>, which MUST run the following steps regardless of if the [=list of animation frame callbacks=] is empty or not:
 
+  1. Let |frame| be a new {{XRFrame}} with [=XRFrame/time=] |now| and {{XRFrame/session}} |session|.
   1. If |session|'s [=pending render state=] is not <code>null</code>, [=apply the pending render state=].
   1. If |session|'s {{XRSession/renderState}}'s {{XRRenderState/baseLayer}} is <code>null</code>, abort these steps.
   1. If |session|'s  [=XRSession/mode=] is {{XRSessionMode/"inline"}} and |session|'s {{XRSession/renderState}}'s [=XRRenderState/output canvas=] is <code>null</code>, abort these steps.
@@ -879,6 +880,7 @@ When an {{XRSession}} |session| receives updated [=viewer=] state from the [=XRS
   1. Set |session|'s [=list of animation frame callbacks=] to the empty list.
   1. Set |frame|'s [=active=] boolean to <code>true</code>.
   1. Set |frame|'s [=animationFrame=] boolean to <code>true</code>.
+  1. [=XRFrame/Apply frame updates=] for |frame|.
   1. For each entry in |callbacks|, in order:
     1. If the entry's [=cancelled=] boolean is <code>true</code>, continue to the next entry.
     1. [=Invoke the Web IDL callback function=], passing |now| and |frame| as the  arguments
@@ -965,9 +967,11 @@ Each {{XRFrame}} has an <dfn for="XRFrame">active</dfn> boolean which is initial
 
 The <dfn attribute for="XRFrame">session</dfn> attribute returns the {{XRSession}} that produced the {{XRFrame}}.
 
+Each {{XRFrame}} represents the state of all tracked objects for a given <dfn for="XRFrame">time</dfn>, and either stores or is able to query concrete information about this state at the [=XRFrame/time=].
+
 <div class="algorithm" data-algorithm="get-viewer-pose">
 
-The <dfn method for="XRFrame">getViewerPose(|referenceSpace|)</dfn> method provides the pose of the [=viewer=] relative to |referenceSpace| as an {{XRViewerPose}}, at the time represented by the {{XRFrame}}.
+The <dfn method for="XRFrame">getViewerPose(|referenceSpace|)</dfn> method provides the pose of the [=viewer=] relative to |referenceSpace| as an {{XRViewerPose}}, at the {{XRFrame}}'s [=XRFrame/time=].
 
 When this method is invoked, the user agent MUST run the following steps:
 
@@ -1004,6 +1008,21 @@ When this method is invoked, the user agent MUST run the following steps:
 
 </div>
 
+A <dfn>frame update</dfn> is an algorithm that can be run given an {{XRFrame}}, which is intended to be run each {{XRFrame}}.
+
+Every {{XRSession}} has a <dfn for=XRSession>list of frame updates</dfn>, which is a [=/list=] of [=frame updates=], initially the empty [=/list=].
+
+<div class="algorithm" data-algorithm="apply-frame-updates">
+
+To <dfn for=XRFrame>apply frame updates</dfn> for an {{XRFrame}} |frame|, the user agent MUST run the following steps:
+
+ 1. For each |frame update| in |frame|'s {{XRFrame/session}}'s [=XRSession/list of frame updates=], perform the following steps:
+    1. Run |frame update| with |frame|.
+
+</div>
+
+NOTE: This spec does not define any [=frame updates=], but other specifications may add some.
+
 Spaces {#spaces}
 ======
 
@@ -1037,7 +1056,7 @@ To <dfn>populate the pose</dfn> of an {{XRSpace}} |space| in an {{XRSpace}} |bas
   1. Check if [=poses may be reported=] and, if not, throw a {{SecurityError}} and abort these steps.
   1. Let |limit| be the result of whether [=poses must be limited=] between |space| and |baseSpace|.
   1. Let |transform| be |pose|'s {{XRPose/transform}}.
-  1. Query the [=/XR device=]'s tracking system for |space|'s pose relative to |baseSpace| at the time represented by |frame|, then perform the following steps:
+  1. Query the [=/XR device=]'s tracking system for |space|'s pose relative to |baseSpace| at the |frame|'s [=XRFrame/time=], then perform the following steps:
     <dl class="switch">
       <dt> If |limit| is <code>false</code> and the tracking system provides a [=6DoF=] pose whose position is actively tracked or statically known for |space|'s pose relative to |baseSpace|:
         <dd> Set |transform|'s {{XRRigidTransform/orientation}} to the orientation of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
@@ -1528,9 +1547,10 @@ Each [=XR input source=] MUST define a <dfn>primary action</dfn>. The [=primary 
 
 <div class="algorithm" data-algorithm="on-input-start">
 
-When an [=XR input source=] for {{XRSession}} |session| begins its [=primary action=] the UA MUST run the following steps:
+When an [=XR input source=] |source| for {{XRSession}} |session| begins its [=primary action=] the UA MUST run the following steps:
 
-  1. [=Queue a task=] to [=fire an event|fire=] an {{XRInputSourceEvent}} named {{selectstart!!event}} on |session|.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the action occurred.
+  1. [=Queue a task=] to [=fire an input source event=] with name {{selectstart!!event}}, frame |frame|, and source |source|.
 
 </div>
 
@@ -1538,7 +1558,7 @@ When an [=XR input source=] for {{XRSession}} |session| begins its [=primary act
 
 When an [=XR input source=] |source| for {{XRSession}} |session| ends its [=primary action=] the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the action occurred.
   1. [=Queue a task=] to perform the following steps:
     1. [=Fire an input source event=] with name {{select!!event}}, frame |frame|, and source |source|.
     1. [=Fire an input source event=] with name {{selectend!!event}}, frame |frame|, and source |source|.
@@ -1549,9 +1569,10 @@ Each [=XR input source=] MAY define a <dfn>primary squeeze action</dfn>. The [=p
 
 <div class="algorithm" data-algorithm="on-squeeze-start">
 
-When an [=XR input source=] for {{XRSession}} |session| begins its [=primary squeeze action=] the UA MUST run the following steps:
+When an [=XR input source=] |source| for {{XRSession}} |session| begins its [=primary squeeze action=] the UA MUST run the following steps:
 
-  1. [=Queue a task=] to [=fire an event|fire=] an {{XRInputSourceEvent}} named {{squeezestart!!event}} on |session|.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the action occurred.
+  1. [=Queue a task=] to [=fire an input source event=] with name {{squeezestart!!event}}, frame |frame|, and source |source|.
 
 </div>
 
@@ -1559,7 +1580,7 @@ When an [=XR input source=] for {{XRSession}} |session| begins its [=primary squ
 
 When an [=XR input source=] |source| for {{XRSession}} |session| ends its [=primary squeeze action=] the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the action occurred.
   1. [=Queue a task=] to perform the following steps:
     1. [=Fire an input source event=] with name {{squeeze!!event}}, frame |frame|, and source |source|.
     1. [=Fire an input source event=] with name {{squeezeend!!event}}, frame |frame|, and source |source|.
@@ -1572,7 +1593,7 @@ Sometimes platform-specific behavior can result in a [=primary action=] or [=pri
 
 When an [=XR input source=] |source| for {{XRSession}} |session| has its [=primary action=] cancelled the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the action occurred.
   1. [=Queue a task=] to [=fire an input source event=] an {{XRInputSourceEvent}} with name {{selectend!!event}}, frame |frame|, and source |source|.
 
 </div>
@@ -1581,7 +1602,7 @@ When an [=XR input source=] |source| for {{XRSession}} |session| has its [=prima
 
 When an [=XR input source=] |source| for {{XRSession}} |session| has its [=primary squeeze action=] cancelled the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| with [=XRFrame/time=] being the time the action occurred.
   1. [=Queue a task=] to [=fire an input source event=] an {{XRInputSourceEvent}} with name {{squeezeend!!event}}, frame |frame|, and source |source|.
 
 </div>
@@ -1597,7 +1618,7 @@ Some [=/XR device=]s may support <dfn>transient input sources</dfn>, where the [
 
 When a [=transient input source=] |source| for {{XRSession}} |session| begins its [=primary action=] the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the action occurred.
   1. [=Queue a task=] to perform the following steps:
     1. Fire any <code>"pointerdown"</code> events produced by the [=XR input source=]'s action, if necessary.
     1. [=add input source|Add the XR input source=] to the [=list of active XR input sources=].
@@ -1609,7 +1630,7 @@ When a [=transient input source=] |source| for {{XRSession}} |session| begins it
 
 When a [=transient input source=] |source| for {{XRSession}} |session| ends its [=primary action=] the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the action occurred.
   1. [=Queue a task=] to perform the following steps:
     1. [=Fire an input source event=] with name {{select!!event}}, frame |frame|, and source |source|.
     1. Fire any <code>"click"</code> events produced by the [=XR input source=]'s action, if necessary.
@@ -1623,7 +1644,7 @@ When a [=transient input source=] |source| for {{XRSession}} |session| ends its 
 
 When a [=transient input source=] |source| for {{XRSession}} |session| has its [=primary action=] cancelled the UA MUST run the following steps:
 
-  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the event occurred.
+  1. Let |frame| be a new {{XRFrame}} with {{XRFrame/session}} |session| for the time the action occurred.
   1. [=Queue a task=] to perform the following steps:
     1. [=Fire an input source event=] with name {{selectend!!event}}, frame |frame|, and source |source|.
     1. [=remove input source|Remove the XR input source=] from the [=list of active XR input sources=].
@@ -2010,8 +2031,9 @@ The <dfn attribute for="XRInputSourceEvent">frame</dfn> attribute is an {{XRFram
 
 When the user agent has to <dfn>fire an input source event</dfn> with name |name|, {{XRFrame}} |frame|, and {{XRInputSource}} |source| it MUST run the following steps:
 
-  1. Create an {{XRInputSourceEvent}} |event| with {{Event/type}} |name|, {{XRInputSourceEvent/frame}} |frame|, and {{XRInputSourceEvent/inputSource}} |source|
+  1. Create an {{XRInputSourceEvent}} |event| with {{Event/type}} |name|, {{XRInputSourceEvent/frame}} |frame|, and {{XRInputSourceEvent/inputSource}} |source|.
   1. Set |frame|'s [=active=] boolean to <code>true</code>.
+  1. [=XRFrame/Apply frame updates=] for |frame|.
   1. [=Dispatch=] |event| on |frame|'s {{XRFrame/session}}
   1. Set |frame|'s [=active=] boolean to <code>false</code>.
 
