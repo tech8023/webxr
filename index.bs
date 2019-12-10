@@ -1208,6 +1208,8 @@ Note: It is suggested that points of the [=native bounds geometry=] be [=quantiz
 
 The <dfn attribute for="XRBoundedReferenceSpace">boundsGeometry</dfn> attribute is an array of {{DOMPointReadOnly}}s such that each entry is equal to the entry in the {{XRBoundedReferenceSpace}}'s [=XRBoundedReferenceSpace/native bounds geometry=] premultiplied by the {{XRRigidTransform/inverse}} of the [=XRSpace/origin offset=]. In other words, it provides the same border in {{XRBoundedReferenceSpace}} coordinates relative to the [=XRSpace/effective origin=].
 
+If the [=native bounds geometry=] is temporarily unavailable, which may occur for several reasons such as during XR device initialization, extended periods of tracking loss, or movement between pre-configured spaces, the {{boundsGeometry}} MUST report an empty array.
+
 
 <div class="algorithm" data-algorithm="bounded-space-supported">
 To check if <dfn>bounded reference spaces are supported</dfn> run the following steps:
@@ -1216,6 +1218,7 @@ To check if <dfn>bounded reference spaces are supported</dfn> run the following 
     1. Return true.
 </div>
 
+Note: Bounded references spaces may be returned if the boundaries or floor height have not been resolved at the time of the reference space request, but the XR device is known to support them.
 
 Note: Content should not require the user to move beyond the {{boundsGeometry}}. It is possible for the user to move beyond the bounds if their physical surroundings allow for it, resulting in position values outside of the polygon they describe. This is not an error condition and should be handled gracefully by page content.
 
