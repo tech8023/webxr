@@ -199,6 +199,9 @@ An <dfn for="">XR device</dfn> is a physical unit of hardware that can present i
 
 An [=/XR device=] has a <dfn>list of supported modes</dfn> (a [=/list=] of [=/strings=]) that [=list/contains=] the enumeration values of {{XRSessionMode}} that the [=/XR device=] supports.
 
+Each [=/XR device=] has a <dfn for="XR device">list of enabled features</dfn> for each {{XRSessionMode}} in its [=list of supported modes=], which is a [=/list=] of [=feature descriptors=] which MUST be initially an empty [=/list=].
+
+
 The user-agent MUST have an <dfn>inline XR device</dfn>, which is an [=/XR device=] that MUST [=list/contains|contain=] {{XRSessionMode/"inline"}} in its [=list of supported modes=]. The [=inline XR device=] SHOULD report as much pose information of the physical device the user agent is rendering to as possible. This device MAY be the same as the [=XR/immersive XR device=] if one is present, but doesn't have to be.
 
 Note: On phones, the [=inline XR device=] may report pose information derived from the phone's internal sensors, such as the gyroscope and accelerometer. On desktops and laptops without similar sensors, the [=inline XR device=] will not be able to report a pose. In case the user agent is already running on an [=/XR device=], the [=inline XR device=] will be the same device, and may support multiple [=view|views=].
@@ -259,6 +262,7 @@ Each time the [=list of immersive XR devices=] changes the user agent should <df
   1. [=Shut down the session|Shut down=] any active {{XRSession}}s.
   1. Set the [=XR compatible=] boolean of all {{WebGLRenderingContextBase}} instances to <code>false</code>.
   1. [=Queue a task=] to [=fire an event=] named {{devicechange!!event}} on the [=context object=].
+  1. [=Queue a task=] to fire appropriate <code>change</code> events on any {{XRPermissionStatus}} objects who are affected by the change in the [=XR/immersive XR device=] or [=inline XR device=].
 
 </div>
 
@@ -332,16 +336,7 @@ When this method is invoked, the user agent MUST run the following steps:
       <dd>Check if an [=inline session request is allowed=], and if not [=reject=] |promise| with a "{{SecurityError}}" {{DOMException}} and return |promise|.</dd>
     </dl>
   1. Run the following steps [=in parallel=]:
-    1. Choose |device| as follows:
-        <dl class="switch">
-          <dt>If |immersive| is <code>true</code></dt>
-          <dd>
-              1. [=ensures an immersive XR device is selected|Ensure an immersive XR device is selected=].
-              1. Set |device| to the [=XR/immersive XR device=].
-          </dd>
-          <dt>Otherwise</dt>
-          <dd>Set |device| to the [=inline XR device=].</dd>
-        </dl>
+    1. Set |device| to the result of [=obtain the current device|obtaining the current device=] for |mode|.
     1. [=Queue a task=] to perform the following steps:
         1. If |device| is <code>null</code> or |device|'s [=list of supported modes=] does not [=list/contain=] |mode|, run the following steps:
             1. [=Reject=] |promise| with a "{{NotSupportedError}}" {{DOMException}}.
@@ -365,6 +360,24 @@ When this method is invoked, the user agent MUST run the following steps:
             </dl>
         1. [=/Resolve=] |promise| with |session|.
   1. Return |promise|.
+
+</div>
+
+<div class=algorithm data-algorithm="device-for-mode">
+
+To <dfn>obtain the current device</dfn> for an {{XRSessionMode}} |mode|, the user agent MUST run the following steps:
+
+  1. Choose |device| as follows:
+      <dl class="switch">
+        <dt>If |mode| is an [=immersive session=] mode:</dt>
+        <dd>
+            1. [=ensures an immersive XR device is selected|Ensure an immersive XR device is selected=].
+            1. Set |device| to the [=XR/immersive XR device=].
+        </dd>
+        <dt>Otherwise</dt>
+        <dd>Set |device| to the [=inline XR device=].</dd>
+      </dl>
+  1. Return |device|.
 
 </div>
 
@@ -591,8 +604,6 @@ The <dfn method for="XRSession">end()</dfn> method provides a way to manually sh
   1. Return |promise|.
 
 </div>
-
-Each {{XRSession}} has a <dfn for="XRSession">list of enabled features</dfn>, which is a [=/list=] of [=feature descriptors=] which MUST be initially an empty [=/list=]
 
 Each {{XRSession}} has an <dfn>active render state</dfn> which is a new {{XRRenderState}}, and a <dfn>pending render state</dfn>, which is an {{XRRenderState}} which is initially <code>null</code>.
 
@@ -1101,7 +1112,7 @@ When an {{XRReferenceSpace}} is requested, the user agent MUST <dfn>create a ref
 <div class="algorithm" data-algorithm="reference-space-supported">
 To check if a <dfn>reference space is supported</dfn> for a given reference space type |type| and {{XRSession}} |session|, run the following steps:
 
-  1. If |type| is not [=list/contain|contained=] in |session|'s [=list of enabled features=] return <code>false</code>.
+  1. If |type| is not [=list/contain|contained=] in |session|'s [=XRSession/XR device=]'s [=XR device/list of enabled features=] for [=XRSession/mode=] return <code>false</code>.
   1. If |type| is {{viewer}}, return <code>true</code>.
   1. If |type| is {{local}} or {{local-floor}}, and |session| is an [=immersive session=], return <code>true</code>.
   1. If |type| is {{local}} or {{local-floor}}, and the [=XRSession/XR device=] supports reporting orientation data, return <code>true</code>.
@@ -2324,7 +2335,7 @@ The <dfn enum-value for="PermissionName">"xr"</dfn> [=powerful feature=]’s per
 
 <pre class="idl">
 dictionary XRPermissionDescriptor: PermissionDescriptor {
-  XRSession session;
+  XRSessionMode mode;
   sequence&lt;any&gt; requiredFeatures;
   sequence&lt;any&gt; optionalFeatures;
 };
@@ -2352,7 +2363,8 @@ dictionary XRPermissionStatus: PermissionStatus {
 To <dfn lt="request the xr permission">request the "xr" permission</dfn> with an {{XRPermissionDescriptor}} |descriptor| and a {{XRPermissionStatus}} |status|, the UA MUST run the following steps:
 
   1. Set |status|'s {{XRPermissionStatus/granted}} to an empty {{FrozenArray}}.
-  1. Let |result| be the result of [=resolve the requested features|resolving the requested features=] given |descriptor|'s {{XRPermissionDescriptor/requiredFeatures}}, {{XRPermissionDescriptor/optionalFeatures}}, and {{XRPermissionDescriptor/session}}.
+  1. Let |device| be the result of [=obtain the current device|obtaining the current device=] for |mode|.
+  1. Let |result| be the result of [=resolve the requested features|resolving the requested features=] given |descriptor|'s {{XRPermissionDescriptor/requiredFeatures}}, {{XRPermissionDescriptor/optionalFeatures}}, and {{XRPermissionDescriptor/mode}}.
   1. If |result| is <code>null</code>, run the following steps:
     1. Set |status|'s {{PermissionStatus/state}} to {{PermissionState/"denied"}}.
     1. Abort these steps.
@@ -2367,7 +2379,7 @@ To <dfn lt="request the xr permission">request the "xr" permission</dfn> with an
       1. If a clear signal of [=user intent=] to enable |feature| has not been determined, continue to the next entry.
       1. If |feature| is not in |granted|, append |feature| to |granted|.
   1. Set |status|'s {{XRPermissionStatus/granted}} to |granted|.
-  1. Set |session|'s [=list of enabled features=] to |granted|.
+  1. Set |device|'s [=list of enabled features=] for |mode| to |granted|.
   1. Set |status|'s {{PermissionStatus/state}} to {{PermissionState/"granted"}}.
 
 Note: The user agent has the freedom to batch up permissions prompts for all requested features when gauging if there is a clear signal of [=user intent=], but it is also allowed to show them one at a time.
@@ -2382,7 +2394,7 @@ To query the "xr" permission with an {{XRPermissionDescriptor}} |descriptor| and
 
   1. Set |status|'s {{PermissionStatus/state}} to |descriptor|'s [=permission state=].
   1. If |status|'s {{PermissionStatus/state}} is {{PermissionState/"denied"}}, set |status|'s {{XRPermissionStatus/granted}} to an empty {{FrozenArray}} and abort these steps.
-  1. Let |result| be the result of [=resolve the requested features|resolving the requested features=] given |descriptor|'s {{XRPermissionDescriptor/requiredFeatures}}, {{XRPermissionDescriptor/optionalFeatures}}, and {{XRPermissionDescriptor/session}}.
+  1. Let |result| be the result of [=resolve the requested features|resolving the requested features=] given |descriptor|'s {{XRPermissionDescriptor/requiredFeatures}}, {{XRPermissionDescriptor/optionalFeatures}}, and {{XRPermissionDescriptor/mode}}.
   1. If |result| is <code>null</code>, run the following steps:
     1. Set |status|'s {{XRPermissionStatus/granted}} to an empty {{FrozenArray}}.
     1. Set |status|'s {{PermissionStatus/state}} to {{PermissionState/"denied"}}.
@@ -2400,12 +2412,15 @@ To query the "xr" permission with an {{XRPermissionDescriptor}} |descriptor| and
 
 <div class="algorithm" data-algorithm="resolve-features">
 
-To <dfn>resolve the requested features</dfn> given |requiredFeatures| and |optionalFeatures| for an {{XRSession}} |session|, the user agent MUST run the following steps:
+To <dfn>resolve the requested features</dfn> given |requiredFeatures| and |optionalFeatures| for an {{XRSessionMode}} |mode|, the user agent MUST run the following steps:
 
   1. Let |consentRequired| be an empty [=/list=] of {{DOMString}}.
   1. Let |consentOptional| be an empty [=/list=] of {{DOMString}}.
-  1. Let |granted| be a [=/list=] of {{DOMString}} initialized to |session|'s [=list of enabled features=].
-  1. Add every [=feature descriptor=] in the [=default features=] table associated with |session|'s [=XRSession/mode=] to the indicated feature list if it is not already present.
+  1. Let |device| be the result of [=obtain the current device|obtaining the current device=] for |mode|.
+  1. Let |granted| be a [=/list=] of {{DOMString}} initialized to |device|'s [=XR device/list of enabled features=] for |mode|.
+  1. If |device| is <code>null</code> or |device|'s [=list of supported modes=] does not [=list/contain=] |mode|, run the following steps:
+    1. Return the [=tuple=] <code>(|consentRequired|, |consentOptional|, |granted|)</code>
+  1. Add every [=feature descriptor=] in the [=default features=] table associated with |mode| to the indicated feature list if it is not already present.
   1. For each |feature| in |requiredFeatures| perform the following steps:
     1. If |feature| is not a valid [=feature descriptor=], return <code>null</code>.
     1. If |feature| is already in |granted|, continue to the next entry.
