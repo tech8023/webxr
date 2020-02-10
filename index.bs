@@ -300,13 +300,12 @@ Calling {{XRSystem/isSessionSupported()}} MUST NOT trigger device-selection UI a
 The following code checks to see if {{immersive-vr}} sessions are supported.
 
 <pre highlight="js">
-navigator.xr.isSessionSupported('immersive-vr').then((supported) => {
-  if (supported) {
-    // 'immersive-vr' sessions are supported.
-    // Page should advertise support to the user.
-  } else {
-    // 'immersive-vr' sessions are not supported.
-  }
+const supported = await navigator.xr.isSessionSupported('immersive-vr');
+if (supported) {
+  // 'immersive-vr' sessions are supported.
+  // Page should advertise support to the user.
+} else {
+  // 'immersive-vr' sessions are not supported.
 }
 </pre>
 </div>
@@ -919,14 +918,12 @@ function renderFrame(time, xrFrame) {
 }
 
 // Assumed to be called by a user gesture event elsewhere in code.
-function startXRSession() {
-  navigator.xr.requestSession('immersive-vr').then((session) => {
-    xrSession = session;
-    xrSession.addEventListener('end', onXRSessionEnded);
-    // Do necessary session setup here.
-    // Begin the session's animation loop.
-    xrSession.requestAnimationFrame(onXRAnimationFrame);
-  });
+async function startXRSession() {
+  xrSession = await navigator.xr.requestSession('immersive-vr');
+  xrSession.addEventListener('end', onXRSessionEnded);
+  // Do necessary session setup here.
+  // Begin the session's animation loop.
+  xrSession.requestAnimationFrame(onXRAnimationFrame);
 }
 
 function onXRSessionEnded() {
@@ -1304,7 +1301,7 @@ The following code loops through all of the {{XRView}}s of an {{XRViewerPose}}, 
 
 <pre highlight="js">
 xrSession.requestAnimationFrame((time, xrFrame) => {
-  let viewer = xrFrame.getViewerPose(xrReferenceSpace);
+  const viewer = xrFrame.getViewerPose(xrReferenceSpace);
 
   gl.bindFramebuffer(xrWebGLLayer.framebuffer);
   for (xrView of viewer.views) {
@@ -1912,8 +1909,8 @@ The following code creates a WebGL context that is compatible with an [=XR/immer
 
 <pre highlight="js">
 function onXRSessionStarted(xrSession) {
-  let glCanvas = document.createElement("canvas");
-  let gl = glCanvas.getContext("webgl", { xrCompatible: true });
+  const glCanvas = document.createElement("canvas");
+  const gl = glCanvas.getContext("webgl", { xrCompatible: true });
 
   loadWebGLResources();
 
@@ -1966,8 +1963,8 @@ Additionally, when any WebGL [=handle the context loss|context is lost=] run the
 The following code creates an {{XRWebGLLayer}} from a pre-existing WebGL context.
 
 <pre highlight="js">
-let glCanvas = document.createElement("canvas");
-let gl = glCanvas.getContext("webgl");
+const glCanvas = document.createElement("canvas");
+const gl = glCanvas.getContext("webgl");
 
 loadWebGLResources();
 
@@ -1981,14 +1978,11 @@ glCanvas.addEventListener("webglcontextrestored", (event) => {
   loadWebGLResources();
 });
 
-function onXRSessionStarted(xrSession) {
+async function onXRSessionStarted(xrSession) {
   // Make sure the canvas context we want to use is compatible with the device.
   // May trigger a context loss.
-  return gl.makeXRCompatible().then(() => {
-    return xrSession.updateRenderState({
-      baseLayer: new XRWebGLLayer(xrSession, gl)
-    });
-  });
+  await gl.makeXRCompatible();
+  xrSession.updateRenderState({ baseLayer: new XRWebGLLayer(xrSession, gl) });
 }
 </pre>
 </div>
