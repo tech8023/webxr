@@ -1793,11 +1793,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <h3 class="heading settled" data-level="3.2" id="xrsystem-interface"><span class="secno">3.2. </span><span class="content">XRSystem</span><a class="self-link" href="#xrsystem-interface"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrsystem"><code><c- g>XRSystem</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget"><c- n>EventTarget</c-></a> {
   // Methods
-  <c- b>Promise</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="XRSystem" data-dfn-type="method" data-export data-lt="isSessionSupported(mode)" id="dom-xrsystem-issessionsupported"><code><c- g>isSessionSupported</c-></code></dfn>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①"><c- n>XRSessionMode</c-></a> <dfn class="idl-code" data-dfn-for="XRSystem/isSessionSupported(mode)" data-dfn-type="argument" data-export id="dom-xrsystem-issessionsupported-mode-mode"><code><c- g>mode</c-></code><a class="self-link" href="#dom-xrsystem-issessionsupported-mode-mode"></a></dfn>);
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②"><c- n>XRSession</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="XRSystem" data-dfn-type="method" data-export data-lt="requestSession(mode, options)|requestSession(mode)" id="dom-xrsystem-requestsession"><code><c- g>requestSession</c-></code></dfn>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②"><c- n>XRSessionMode</c-></a> <dfn class="idl-code" data-dfn-for="XRSystem/requestSession(mode, options), XRSystem/requestSession(mode)" data-dfn-type="argument" data-export id="dom-xrsystem-requestsession-mode-options-mode"><code><c- g>mode</c-></code><a class="self-link" href="#dom-xrsystem-requestsession-mode-options-mode"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioninit" id="ref-for-dictdef-xrsessioninit"><c- n>XRSessionInit</c-></a> <dfn class="idl-code" data-dfn-for="XRSystem/requestSession(mode, options), XRSystem/requestSession(mode)" data-dfn-type="argument" data-export id="dom-xrsystem-requestsession-mode-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-xrsystem-requestsession-mode-options-options"></a></dfn> = {});
+  <c- b>Promise</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①"><c- g>isSessionSupported</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①"><c- n>XRSessionMode</c-></a> <dfn class="idl-code" data-dfn-for="XRSystem/isSessionSupported(mode)" data-dfn-type="argument" data-export id="dom-xrsystem-issessionsupported-mode-mode"><code><c- g>mode</c-></code><a class="self-link" href="#dom-xrsystem-issessionsupported-mode-mode"></a></dfn>);
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession①"><c- g>requestSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②"><c- n>XRSessionMode</c-></a> <dfn class="idl-code" data-dfn-for="XRSystem/requestSession(mode, options), XRSystem/requestSession(mode)" data-dfn-type="argument" data-export id="dom-xrsystem-requestsession-mode-options-mode"><code><c- g>mode</c-></code><a class="self-link" href="#dom-xrsystem-requestsession-mode-options-mode"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioninit" id="ref-for-dictdef-xrsessioninit"><c- n>XRSessionInit</c-></a> <dfn class="idl-code" data-dfn-for="XRSystem/requestSession(mode, options), XRSystem/requestSession(mode)" data-dfn-type="argument" data-export id="dom-xrsystem-requestsession-mode-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-xrsystem-requestsession-mode-options-options"></a></dfn> = {});
 
   // Events
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler"><c- n>EventHandler</c-></a> <dfn class="idl-code" data-dfn-for="XRSystem" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-xrsystem-ondevicechange"><code><c- g>ondevicechange</c-></code><a class="self-link" href="#dom-xrsystem-ondevicechange"></a></dfn>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsystem-ondevicechange" id="ref-for-dom-xrsystem-ondevicechange"><c- g>ondevicechange</c-></a>;
 };
 </pre>
    <p>The user agent MUST create an <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem②">XRSystem</a></code> object when a <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator①">Navigator</a></code> object is created and associate it with that object.</p>
@@ -1831,7 +1831,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p>Set the <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible">XR compatible</a> boolean of all <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase">WebGLRenderingContextBase</a></code> instances to <code>false</code>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">fire an event</a> named <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xr-devicechange" id="ref-for-eventdef-xr-devicechange">devicechange</a></code> on the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object" id="ref-for-context-object①">context object</a>.</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">fire an event</a> named <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange">devicechange</a></code> on the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object" id="ref-for-context-object①">context object</a>.</p>
     </ol>
    </div>
    <p class="note" role="note"><span>Note:</span> The user agent is allowed to use any criteria it wishes to <a data-link-type="dfn" href="#select-an-immersive-xr-device" id="ref-for-select-an-immersive-xr-device">select an immersive XR device</a> when the <a data-link-type="dfn" href="#list-of-immersive-xr-devices" id="ref-for-list-of-immersive-xr-devices⑨">list of immersive XR devices</a> contains multiple devices. For example, the user agent may always select the first item in the list, or provide settings UI that allows users to manage device priority. Ideally the algorithm used to select the default device is stable and will result in the same device being selected across multiple browsing sessions.</p>
@@ -1846,9 +1846,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <p><a data-link-type="dfn" href="#select-an-immersive-xr-device" id="ref-for-select-an-immersive-xr-device①">Select an immersive XR device</a>.</p>
     </ol>
    </div>
-   <p>The <dfn class="idl-code" data-dfn-for="XR" data-dfn-type="attribute" data-export id="dom-xr-ondevicechange"><code>ondevicechange</code><a class="self-link" href="#dom-xr-ondevicechange"></a></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes">Event handler IDL attribute</a> for the <code class="idl"><a data-link-type="idl" href="#eventdef-xr-devicechange" id="ref-for-eventdef-xr-devicechange①">devicechange</a></code> event type.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSystem" data-dfn-type="attribute" data-export id="dom-xrsystem-ondevicechange"><code>ondevicechange</code></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes">Event handler IDL attribute</a> for the <code class="idl"><a data-link-type="idl" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange①">devicechange</a></code> event type.</p>
    <div class="algorithm" data-algorithm="session-supported">
-     The <dfn class="idl-code" data-dfn-for="XR" data-dfn-type="method" data-export id="dom-xr-issessionsupported"><code>isSessionSupported(<var>mode</var>)</code><a class="self-link" href="#dom-xr-issessionsupported"></a></dfn> method queries if a given <var>mode</var> is supported by the user agent and device capabilities. 
+     The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSystem" data-dfn-type="method" data-export id="dom-xrsystem-issessionsupported"><code>isSessionSupported(<var>mode</var>)</code></dfn> method queries if a given <var>mode</var> is supported by the user agent and device capabilities. 
     <p>When this method is invoked, it MUST run the following steps:</p>
     <ol>
      <li data-md>
@@ -1873,7 +1873,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <p>Return <var>promise</var>.</p>
     </ol>
    </div>
-   <p>Calling <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①">isSessionSupported()</a></code> MUST NOT trigger device-selection UI as this would cause many sites to display XR-specific dialogs early in the document lifecycle without user activation. Additionally, calling <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported②">isSessionSupported()</a></code> MUST NOT interfere with any running XR applications on the system, and MUST NOT cause XR-related applications to launch such as system trays or storefronts.</p>
+   <p>Calling <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported②">isSessionSupported()</a></code> MUST NOT trigger device-selection UI as this would cause many sites to display XR-specific dialogs early in the document lifecycle without user activation. Additionally, calling <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported③">isSessionSupported()</a></code> MUST NOT interfere with any running XR applications on the system, and MUST NOT cause XR-related applications to launch such as system trays or storefronts.</p>
    <div class="example" id="example-a5eafbb1">
     <a class="self-link" href="#example-a5eafbb1"></a> The following code checks to see if <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr">immersive-vr</a></code> sessions are supported. 
 <pre class="highlight"><c- kr>const</c-> supported <c- o>=</c-> await navigator<c- p>.</c->xr<c- p>.</c->isSessionSupported<c- p>(</c-><c- t>'immersive-vr'</c-><c- p>);</c->
@@ -1887,7 +1887,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </div>
    <p>The <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑥">XRSystem</a></code> object has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="pending-immersive-session">pending immersive session</dfn> boolean, which MUST be initially <code>false</code>, an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="active-immersive-session">active immersive session</dfn>, which MUST be initially <code>null</code>, and a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="list-of-inline-sessions">list of inline sessions</dfn>, which MUST be initially empty.</p>
    <div class="algorithm" data-algorithm="request-session">
-    <p>The <dfn class="idl-code" data-dfn-for="XR" data-dfn-type="method" data-export id="dom-xr-requestsession"><code>requestSession(<var>mode</var>, <var>options</var>)</code><a class="self-link" href="#dom-xr-requestsession"></a></dfn> method attempts to initialize an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥">XRSession</a></code> for the given <var>mode</var> if possible, entering immersive mode if necessary.</p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSystem" data-dfn-type="method" data-export data-lt="requestSession(mode, options)|requestSession(mode)" id="dom-xrsystem-requestsession"><code>requestSession(<var>mode</var>, <var>options</var>)</code></dfn> method attempts to initialize an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥">XRSession</a></code> for the given <var>mode</var> if possible, entering immersive mode if necessary.</p>
     <p>When this method is invoked, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
@@ -2000,7 +2000,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p class="note" role="note"><span>Note:</span> As an example of overlaid UI, the user-agent or operating system in an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session⑤">immersive session</a> may show notifications over the rendered content.</p>
    <h3 class="heading settled" data-level="3.4" id="feature-dependencies"><span class="secno">3.4. </span><span class="content">Feature Dependencies</span><a class="self-link" href="#feature-dependencies"></a></h3>
    <p>Some features of an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪">XRSession</a></code> may not be universally available for a number of reasons, among which is the fact not all XR devices can support the full set of features. Another consideration is that some features expose <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information">sensitive information</a> which may require a clear signal of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent">user intent</a> before functioning.</p>
-   <p>Since it is a poor user experience to initialize the underlying XR platform and create an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①">XRSession</a></code> only to immediately notify the user that the applications cannot function correctly, developers can indicate <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="required-features">required features</dfn> by passing an <code class="idl"><a data-link-type="idl" href="#dictdef-xrsessioninit" id="ref-for-dictdef-xrsessioninit①">XRSessionInit</a></code> dictionary to <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession①">requestSession()</a></code>. This will block the creation of the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②">XRSession</a></code> if any of the <a data-link-type="dfn" href="#required-features" id="ref-for-required-features">required features</a> are unavailable due to device limitations or in the absence of a clear signal of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①">user intent</a> to expose <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information①">sensitive information</a> related to the feature.</p>
+   <p>Since it is a poor user experience to initialize the underlying XR platform and create an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①">XRSession</a></code> only to immediately notify the user that the applications cannot function correctly, developers can indicate <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="required-features">required features</dfn> by passing an <code class="idl"><a data-link-type="idl" href="#dictdef-xrsessioninit" id="ref-for-dictdef-xrsessioninit①">XRSessionInit</a></code> dictionary to <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession②">requestSession()</a></code>. This will block the creation of the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②">XRSession</a></code> if any of the <a data-link-type="dfn" href="#required-features" id="ref-for-required-features">required features</a> are unavailable due to device limitations or in the absence of a clear signal of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①">user intent</a> to expose <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information①">sensitive information</a> related to the feature.</p>
    <p>Additionally, developers are encouraged to design experiences which progressively enhance their functionality when run one more capable devices. <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="optional-features">Optional features</dfn> which the experience does not require but will take advantage of when available must also be indicated in an <code class="idl"><a data-link-type="idl" href="#dictdef-xrsessioninit" id="ref-for-dictdef-xrsessioninit②">XRSessionInit</a></code> dictionary to ensure that <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent②">user intent</a> can be determined before enabling the feature if necessary.</p>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-xrsessioninit"><code><c- g>XRSessionInit</c-></code></dfn> {
   <c- b>sequence</c->&lt;<c- b>any</c->> <a class="idl-code" data-link-type="dict-member" data-type="sequence<any> " href="#dom-xrsessioninit-requiredfeatures" id="ref-for-dom-xrsessioninit-requiredfeatures①"><c- g>requiredFeatures</c-></a>;
@@ -2123,7 +2123,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </div>
    <h2 class="heading settled" data-level="4" id="session"><span class="secno">4. </span><span class="content">Session</span><a class="self-link" href="#session"></a></h2>
    <h3 class="heading settled" data-level="4.1" id="xrsession-interface"><span class="secno">4.1. </span><span class="content">XRSession</span><a class="self-link" href="#xrsession-interface"></a></h3>
-   <p>Any interaction with XR hardware is done via an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑧">XRSession</a></code> object, which can only be retrieved by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession②">requestSession()</a></code> on the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑦">XRSystem</a></code> object. Once a session has been successfully acquired, it can be used to <code class="idl"><a data-link-type="idl" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose">poll the viewer pose</a></code>, query information about the user’s environment, and present imagery to the user.</p>
+   <p>Any interaction with XR hardware is done via an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑧">XRSession</a></code> object, which can only be retrieved by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession③">requestSession()</a></code> on the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑦">XRSystem</a></code> object. Once a session has been successfully acquired, it can be used to <code class="idl"><a data-link-type="idl" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose">poll the viewer pose</a></code>, query information about the user’s environment, and present imagery to the user.</p>
    <p>The user agent, when possible, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="should-not-initialize-device-tracking">SHOULD NOT initialize device tracking</dfn> or rendering capabilities until an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑨">XRSession</a></code> has been acquired. This is to prevent unwanted side effects of engaging the XR systems when they’re not actively being used, such as increased battery usage or related utility applications from appearing when first navigating to a page that only wants to test for the presence of XR hardware in order to advertise XR features. Not all XR platforms offer ways to detect the hardware’s presence without initializing tracking, however, so this is only a strong recommendation.</p>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-xrvisibilitystate"><code><c- g>XRVisibilityState</c-></code></dfn> {
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrvisibilitystate-visible" id="ref-for-dom-xrvisibilitystate-visible①"><c- s>"visible"</c-></a>,
@@ -3626,7 +3626,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceEvent" data-dfn-type="attribute" data-export id="dom-xrreferencespaceevent-transform"><code>transform</code></dfn> attribute describes the post-event position and orientation of the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceevent-referencespace" id="ref-for-dom-xrreferencespaceevent-referencespace①">referenceSpace</a></code>'s <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin①⑥">native origin</a> in the pre-event coordinate system.</p>
    <h3 class="heading settled" data-level="12.5" id="event-types"><span class="secno">12.5. </span><span class="content">Event Types</span><a class="self-link" href="#event-types"></a></h3>
    <p>The user agent MUST provide the following new events. Registration for and firing of the events must follow the usual behavior of DOM4 Events.</p>
-   <p>The user agent MUST fire a <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="event" data-export id="eventdef-xr-devicechange"><code>devicechange</code></dfn> event on the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑧">XRSystem</a></code> object to indicate that the availability of <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device③⓪">immersive XR device</a>s has been changed unless the document’s origin is not allowed to use the "xr-spatial-tracking" <a href="#feature-policy">feature policy</a>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#event" id="ref-for-event④">Event</a></code>.</p>
+   <p>The user agent MUST fire a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSystem" data-dfn-type="event" data-export id="eventdef-xrsystem-devicechange"><code>devicechange</code></dfn> event on the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑧">XRSystem</a></code> object to indicate that the availability of <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device③⓪">immersive XR device</a>s has been changed unless the document’s origin is not allowed to use the "xr-spatial-tracking" <a href="#feature-policy">feature policy</a>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#event" id="ref-for-event④">Event</a></code>.</p>
    <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-visibilitychange"><code>visibilitychange</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑨">XRSession</a></code> each time the <a data-link-type="dfn" href="#xrsession-visibility-state" id="ref-for-xrsession-visibility-state⑤">visibility state</a> of the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①⓪">XRSession</a></code> has changed. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrsessionevent" id="ref-for-xrsessionevent②">XRSessionEvent</a></code>.</p>
    <p>A user agent MUST dispatch an <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-end"><code>end</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①①">XRSession</a></code> when the session ends, either by the application or the user agent. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrsessionevent" id="ref-for-xrsessionevent③">XRSessionEvent</a></code>.</p>
    <p>A user agent MUST dispatch an <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-inputsourceschange"><code>inputsourceschange</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①②">XRSession</a></code> when the session’s <a data-link-type="dfn" href="#list-of-active-xr-input-sources" id="ref-for-list-of-active-xr-input-sources①①">list of active XR input sources</a> has changed. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrinputsourceschangeevent" id="ref-for-xrinputsourceschangeevent④">XRInputSourcesChangeEvent</a></code>.</p>
@@ -3818,7 +3818,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    </section>
    <h2 class="heading settled" data-level="14" id="integrations"><span class="secno">14. </span><span class="content">Integrations</span><a class="self-link" href="#integrations"></a></h2>
    <h3 class="heading settled" data-level="14.1" id="feature-policy"><span class="secno">14.1. </span><span class="content">Feature Policy</span><a class="self-link" href="#feature-policy"></a></h3>
-   <p>This specification defines a <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> that controls whether any <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②⑤">XRSession</a></code> that requires the use of spatial tracking may be returned by <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession③">requestSession()</a></code>, and whether support for session modes that require spatial tracking may be indicated by either <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported③">isSessionSupported()</a></code> or <code class="idl"><a data-link-type="idl" href="#eventdef-xr-devicechange" id="ref-for-eventdef-xr-devicechange②">devicechange</a></code> events on the <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr①">navigator.xr</a></code> object.</p>
+   <p>This specification defines a <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> that controls whether any <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②⑤">XRSession</a></code> that requires the use of spatial tracking may be returned by <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession④">requestSession()</a></code>, and whether support for session modes that require spatial tracking may be indicated by either <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported④">isSessionSupported()</a></code> or <code class="idl"><a data-link-type="idl" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange②">devicechange</a></code> events on the <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr①">navigator.xr</a></code> object.</p>
    <p>The feature identifier for this feature is <code>"xr-spatial-tracking"</code>.</p>
    <p>The <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#default-allowlist" id="ref-for-default-allowlist">default allowlist</a> for this feature is <code>["self"]</code>.</p>
    <p class="note" role="note"><span>Note:</span> If the document’s origin is not allowed to use the <code>"xr-spatial-tracking"</code> feature policy any <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session②⑤">immersive sessions</a> will be blocked, because all <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session②⑥">immersive sessions</a> require some use of spatial tracking. <a data-link-type="dfn" href="#inline-session" id="ref-for-inline-session④">Inline sessions</a> will still be allowed, but restricted to only using the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-viewer" id="ref-for-dom-xrreferencespacetype-viewer⑤">"viewer"</a></code> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③⑦">XRReferenceSpace</a></code>.</p>
@@ -3925,7 +3925,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
      <li><a href="#dom-xrrenderstate-depthnear">attribute for XRRenderState</a><span>, in §4.2</span>
      <li><a href="#dom-xrrenderstateinit-depthnear">dict-member for XRRenderStateInit</a><span>, in §4.2</span>
     </ul>
-   <li><a href="#eventdef-xr-devicechange">devicechange</a><span>, in §12.5</span>
+   <li><a href="#eventdef-xrsystem-devicechange">devicechange</a><span>, in §12.5</span>
    <li><a href="#xrspace-effective-origin">effective origin</a><span>, in §6.1</span>
    <li><a href="#dom-xrpose-emulatedposition">emulatedPosition</a><span>, in §9.1</span>
    <li><a href="#eventdef-xrsession-end">end</a><span>, in §12.5</span>
@@ -4010,12 +4010,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li><a href="#xrrigidtransform-internal-matrix">internal matrix</a><span>, in §8.3</span>
    <li><a href="#xrview-internal-projection-matrix">internal projection matrix</a><span>, in §7.1</span>
    <li><a href="#dom-xrrigidtransform-inverse">inverse</a><span>, in §8.3</span>
-   <li>
-    isSessionSupported(mode)
-    <ul>
-     <li><a href="#dom-xr-issessionsupported">method for XR</a><span>, in §3.2</span>
-     <li><a href="#dom-xrsystem-issessionsupported">method for XRSystem</a><span>, in §3.2</span>
-    </ul>
+   <li><a href="#dom-xrsystem-issessionsupported">isSessionSupported(mode)</a><span>, in §3.2</span>
    <li><a href="#launching-a-web-application">launching a web application</a><span>, in §13.2.2</span>
    <li>
     "left"
@@ -4063,12 +4058,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li><a href="#normalize">normalize</a><span>, in §8.2</span>
    <li><a href="#xrrigidtransform-obtain-the-matrix">obtain the matrix</a><span>, in §8.3</span>
    <li><a href="#xrview-obtain-the-projection-matrix">obtain the projection matrix</a><span>, in §7.1</span>
-   <li>
-    ondevicechange
-    <ul>
-     <li><a href="#dom-xr-ondevicechange">attribute for XR</a><span>, in §3.2</span>
-     <li><a href="#dom-xrsystem-ondevicechange">attribute for XRSystem</a><span>, in §3.2</span>
-    </ul>
+   <li><a href="#dom-xrsystem-ondevicechange">ondevicechange</a><span>, in §3.2</span>
    <li><a href="#dom-xrsession-onend">onend</a><span>, in §4.1</span>
    <li><a href="#dom-xrsession-oninputsourceschange">oninputsourceschange</a><span>, in §4.1</span>
    <li><a href="#dom-xrreferencespace-onreset">onreset</a><span>, in §6.2</span>
@@ -4118,12 +4108,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li><a href="#requested-features">requested features</a><span>, in §3.4</span>
    <li><a href="#dom-xrsession-requestreferencespace">requestReferenceSpace(type)</a><span>, in §4.1</span>
    <li><a href="#dom-xrsystem-requestsession">requestSession(mode)</a><span>, in §3.2</span>
-   <li>
-    requestSession(mode, options)
-    <ul>
-     <li><a href="#dom-xr-requestsession">method for XR</a><span>, in §3.2</span>
-     <li><a href="#dom-xrsystem-requestsession">method for XRSystem</a><span>, in §3.2</span>
-    </ul>
+   <li><a href="#dom-xrsystem-requestsession">requestSession(mode, options)</a><span>, in §3.2</span>
    <li><a href="#required-features">required features</a><span>, in §3.4</span>
    <li><a href="#dom-xrsessioninit-requiredfeatures">requiredFeatures</a><span>, in §3.4</span>
    <li><a href="#eventdef-xrreferencespace-reset">reset</a><span>, in §12.5</span>
@@ -5112,11 +5097,11 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑨"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrsystem"><code><c- g>XRSystem</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget③"><c- n>EventTarget</c-></a> {
   // Methods
-  <c- b>Promise</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①⓪"><c- b>boolean</c-></a>> <a href="#dom-xrsystem-issessionsupported"><code><c- g>isSessionSupported</c-></code></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①①"><c- n>XRSessionMode</c-></a> <a href="#dom-xrsystem-issessionsupported-mode-mode"><code><c- g>mode</c-></code></a>);
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject④"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②①⓪"><c- n>XRSession</c-></a>> <a href="#dom-xrsystem-requestsession"><code><c- g>requestSession</c-></code></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②①"><c- n>XRSessionMode</c-></a> <a href="#dom-xrsystem-requestsession-mode-options-mode"><code><c- g>mode</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioninit" id="ref-for-dictdef-xrsessioninit③"><c- n>XRSessionInit</c-></a> <a href="#dom-xrsystem-requestsession-mode-options-options"><code><c- g>options</c-></code></a> = {});
+  <c- b>Promise</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①⓪"><c- b>boolean</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①①"><c- g>isSessionSupported</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①①"><c- n>XRSessionMode</c-></a> <a href="#dom-xrsystem-issessionsupported-mode-mode"><code><c- g>mode</c-></code></a>);
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject④"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②①⓪"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession①①"><c- g>requestSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②①"><c- n>XRSessionMode</c-></a> <a href="#dom-xrsystem-requestsession-mode-options-mode"><code><c- g>mode</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioninit" id="ref-for-dictdef-xrsessioninit③"><c- n>XRSessionInit</c-></a> <a href="#dom-xrsystem-requestsession-mode-options-options"><code><c- g>options</c-></code></a> = {});
 
   // Events
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler①①"><c- n>EventHandler</c-></a> <a data-type="EventHandler" href="#dom-xrsystem-ondevicechange"><code><c- g>ondevicechange</c-></code></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler①①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsystem-ondevicechange" id="ref-for-dom-xrsystem-ondevicechange①"><c- g>ondevicechange</c-></a>;
 };
 
 <c- b>enum</c-> <a href="#enumdef-xrsessionmode"><code><c- g>XRSessionMode</c-></code></a> {
@@ -5429,23 +5414,6 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <li><a href="#ref-for-xrsystem⑧">12.5. Event Types</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-xrsystem-issessionsupported">
-   <b><a href="#dom-xrsystem-issessionsupported">#dom-xrsystem-issessionsupported</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrsystem-issessionsupported">1.2. Application flow</a>
-    <li><a href="#ref-for-dom-xrsystem-issessionsupported①">3.2. XRSystem</a> <a href="#ref-for-dom-xrsystem-issessionsupported②">(2)</a>
-    <li><a href="#ref-for-dom-xrsystem-issessionsupported③">14.1. Feature Policy</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrsystem-requestsession">
-   <b><a href="#dom-xrsystem-requestsession">#dom-xrsystem-requestsession</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrsystem-requestsession">1.2. Application flow</a>
-    <li><a href="#ref-for-dom-xrsystem-requestsession①">3.4. Feature Dependencies</a>
-    <li><a href="#ref-for-dom-xrsystem-requestsession②">4.1. XRSession</a>
-    <li><a href="#ref-for-dom-xrsystem-requestsession③">14.1. Feature Policy</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="list-of-immersive-xr-devices">
    <b><a href="#list-of-immersive-xr-devices">#list-of-immersive-xr-devices</a></b><b>Referenced in:</b>
    <ul>
@@ -5482,6 +5450,20 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <li><a href="#ref-for-ensures-an-immersive-xr-device-is-selected②">11.2. WebGL Context Compatibility</a> <a href="#ref-for-ensures-an-immersive-xr-device-is-selected③">(2)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="dom-xrsystem-ondevicechange">
+   <b><a href="#dom-xrsystem-ondevicechange">#dom-xrsystem-ondevicechange</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrsystem-ondevicechange">3.2. XRSystem</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrsystem-issessionsupported">
+   <b><a href="#dom-xrsystem-issessionsupported">#dom-xrsystem-issessionsupported</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrsystem-issessionsupported">1.2. Application flow</a>
+    <li><a href="#ref-for-dom-xrsystem-issessionsupported①">3.2. XRSystem</a> <a href="#ref-for-dom-xrsystem-issessionsupported②">(2)</a> <a href="#ref-for-dom-xrsystem-issessionsupported③">(3)</a>
+    <li><a href="#ref-for-dom-xrsystem-issessionsupported④">14.1. Feature Policy</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="pending-immersive-session">
    <b><a href="#pending-immersive-session">#pending-immersive-session</a></b><b>Referenced in:</b>
    <ul>
@@ -5502,6 +5484,16 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <ul>
     <li><a href="#ref-for-list-of-inline-sessions">3.2. XRSystem</a>
     <li><a href="#ref-for-list-of-inline-sessions①">4.1. XRSession</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrsystem-requestsession">
+   <b><a href="#dom-xrsystem-requestsession">#dom-xrsystem-requestsession</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrsystem-requestsession">1.2. Application flow</a>
+    <li><a href="#ref-for-dom-xrsystem-requestsession①">3.2. XRSystem</a>
+    <li><a href="#ref-for-dom-xrsystem-requestsession②">3.4. Feature Dependencies</a>
+    <li><a href="#ref-for-dom-xrsystem-requestsession③">4.1. XRSession</a>
+    <li><a href="#ref-for-dom-xrsystem-requestsession④">14.1. Feature Policy</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-xrsessionmode">
@@ -7122,11 +7114,11 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <li><a href="#ref-for-dom-xrreferencespaceevent-transform">12.4. XRReferenceSpaceEvent</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="eventdef-xr-devicechange">
-   <b><a href="#eventdef-xr-devicechange">#eventdef-xr-devicechange</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="eventdef-xrsystem-devicechange">
+   <b><a href="#eventdef-xrsystem-devicechange">#eventdef-xrsystem-devicechange</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-eventdef-xr-devicechange">3.2. XRSystem</a> <a href="#ref-for-eventdef-xr-devicechange①">(2)</a>
-    <li><a href="#ref-for-eventdef-xr-devicechange②">14.1. Feature Policy</a>
+    <li><a href="#ref-for-eventdef-xrsystem-devicechange">3.2. XRSystem</a> <a href="#ref-for-eventdef-xrsystem-devicechange①">(2)</a>
+    <li><a href="#ref-for-eventdef-xrsystem-devicechange②">14.1. Feature Policy</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="eventdef-xrsession-visibilitychange">
