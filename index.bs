@@ -2378,8 +2378,8 @@ dictionary XRPermissionDescriptor: PermissionDescriptor {
 <dt>[=permission result type=]</dt>
 <dd>
 <pre class=idl>
-dictionary XRPermissionStatus: PermissionStatus {
-  sequence&lt;any&gt; granted;
+interface XRPermissionStatus: PermissionStatus {
+  attribute FrozenArray<any> granted;
 };
 </pre>
 
