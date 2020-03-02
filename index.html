@@ -1542,7 +1542,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-02-28">28 February 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-03-02">2 March 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -3795,7 +3795,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <dt><a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-result-type" id="ref-for-permission-result-type">permission result type</a>
     <dd>
 <pre class="idl highlight def"><c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrpermissionstatus"><code><c- g>XRPermissionStatus</c-></code></dfn>: <a class="n" data-link-type="idl-name" href="https://w3c.github.io/permissions/#permissionstatus" id="ref-for-permissionstatus"><c- n>PermissionStatus</c-></a> {
-  attribute FrozenArray granted;
+  <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<c- b>any</c->> <dfn class="dfn-paneled idl-code" data-dfn-for="XRPermissionStatus" data-dfn-type="attribute" data-export data-type="FrozenArray<any>" id="dom-xrpermissionstatus-granted"><code><c- g>granted</c-></code></dfn>;
 };
 </pre>
     <dt><a data-link-type="dfn" href="https://wicg.github.io/permissions-request/#permission-request-algorithm" id="ref-for-permission-request-algorithm">permission request algorithm</a>
@@ -3804,7 +3804,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
        To <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="request the xr permission" data-noexport id="request-the-xr-permission">request the "xr" permission</dfn> with an <code class="idl"><a data-link-type="idl" href="#dictdef-xrpermissiondescriptor" id="ref-for-dictdef-xrpermissiondescriptor②">XRPermissionDescriptor</a></code> <var>descriptor</var> and a <code class="idl"><a data-link-type="idl" href="#xrpermissionstatus" id="ref-for-xrpermissionstatus②">XRPermissionStatus</a></code> <var>status</var>, the UA MUST run the following steps: 
       <ol>
        <li data-md>
-        <p>Set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrpermissionstatus-granted" id="ref-for-dom-xrpermissionstatus-granted">granted</a></code> to an empty <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-frozen-array" id="ref-for-idl-frozen-array">FrozenArray</a></code>.</p>
+        <p>Set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpermissionstatus-granted" id="ref-for-dom-xrpermissionstatus-granted">granted</a></code> to an empty <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-frozen-array" id="ref-for-idl-frozen-array">FrozenArray</a></code>.</p>
        <li data-md>
         <p>Let <var>device</var> be the result of <a data-link-type="dfn" href="#obtain-the-current-device" id="ref-for-obtain-the-current-device①">obtaining the current device</a> for <var>mode</var>.</p>
        <li data-md>
@@ -3842,7 +3842,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
           <p>If <var>feature</var> is not in <var>granted</var>, append <var>feature</var> to <var>granted</var>.</p>
         </ol>
        <li data-md>
-        <p>Set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrpermissionstatus-granted" id="ref-for-dom-xrpermissionstatus-granted①">granted</a></code> to <var>granted</var>.</p>
+        <p>Set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpermissionstatus-granted" id="ref-for-dom-xrpermissionstatus-granted①">granted</a></code> to <var>granted</var>.</p>
        <li data-md>
         <p>Set <var>device</var>’s <a data-link-type="dfn" href="#xr-device-list-of-enabled-features" id="ref-for-xr-device-list-of-enabled-features①">list of enabled features</a> for <var>mode</var> to <var>granted</var>.</p>
        <li data-md>
@@ -3858,14 +3858,14 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
        <li data-md>
         <p>Set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstatus-state" id="ref-for-dom-permissionstatus-state④">state</a></code> to <var>descriptor</var>’s <a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-state" id="ref-for-permission-state">permission state</a>.</p>
        <li data-md>
-        <p>If <var>status</var>’s <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstatus-state" id="ref-for-dom-permissionstatus-state⑤">state</a></code> is <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstate-denied" id="ref-for-dom-permissionstate-denied③">"denied"</a></code>, set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrpermissionstatus-granted" id="ref-for-dom-xrpermissionstatus-granted②">granted</a></code> to an empty <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-frozen-array" id="ref-for-idl-frozen-array①">FrozenArray</a></code> and abort these steps.</p>
+        <p>If <var>status</var>’s <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstatus-state" id="ref-for-dom-permissionstatus-state⑤">state</a></code> is <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstate-denied" id="ref-for-dom-permissionstate-denied③">"denied"</a></code>, set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpermissionstatus-granted" id="ref-for-dom-xrpermissionstatus-granted②">granted</a></code> to an empty <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-frozen-array" id="ref-for-idl-frozen-array①">FrozenArray</a></code> and abort these steps.</p>
        <li data-md>
         <p>Let <var>result</var> be the result of <a data-link-type="dfn" href="#resolve-the-requested-features" id="ref-for-resolve-the-requested-features②">resolving the requested features</a> given <var>descriptor</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpermissiondescriptor-requiredfeatures" id="ref-for-dom-xrpermissiondescriptor-requiredfeatures①">requiredFeatures</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrpermissiondescriptor-optionalfeatures" id="ref-for-dom-xrpermissiondescriptor-optionalfeatures①">optionalFeatures</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-xrpermissiondescriptor-mode" id="ref-for-dom-xrpermissiondescriptor-mode①">mode</a></code>.</p>
        <li data-md>
         <p>If <var>result</var> is <code>null</code>, run the following steps:</p>
         <ol>
          <li data-md>
-          <p>Set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrpermissionstatus-granted" id="ref-for-dom-xrpermissionstatus-granted③">granted</a></code> to an empty <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-frozen-array" id="ref-for-idl-frozen-array②">FrozenArray</a></code>.</p>
+          <p>Set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpermissionstatus-granted" id="ref-for-dom-xrpermissionstatus-granted③">granted</a></code> to an empty <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-frozen-array" id="ref-for-idl-frozen-array②">FrozenArray</a></code>.</p>
          <li data-md>
           <p>Set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstatus-state" id="ref-for-dom-permissionstatus-state⑥">state</a></code> to <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstate-denied" id="ref-for-dom-permissionstate-denied④">"denied"</a></code>.</p>
          <li data-md>
@@ -3874,7 +3874,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
        <li data-md>
         <p>Let <code>(<var>consentRequired</var>, <var>consentOptional</var>, <var>granted</var>)</code> be the fields of <var>result</var>.</p>
        <li data-md>
-        <p>Set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrpermissionstatus-granted" id="ref-for-dom-xrpermissionstatus-granted④">granted</a></code> to <var>granted</var>.</p>
+        <p>Set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpermissionstatus-granted" id="ref-for-dom-xrpermissionstatus-granted④">granted</a></code> to <var>granted</var>.</p>
        <li data-md>
         <p>If <var>consentRequired</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty">is empty</a> and <var>consentOptional</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty①">is empty</a>, set <var>status</var>’s <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstatus-state" id="ref-for-dom-permissionstatus-state⑦">state</a></code> to <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstate-granted" id="ref-for-dom-permissionstate-granted①">"granted"</a></code> and abort these steps</p>
        <li data-md>
@@ -4079,6 +4079,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li><a href="#dom-xrframe-getpose">getPose(space, baseSpace)</a><span>, in §5.1</span>
    <li><a href="#dom-xrframe-getviewerpose">getViewerPose(referenceSpace)</a><span>, in §5.1</span>
    <li><a href="#dom-xrwebgllayer-getviewport">getViewport(view)</a><span>, in §11.1</span>
+   <li><a href="#dom-xrpermissionstatus-granted">granted</a><span>, in §14.2</span>
    <li><a href="#dom-xrinputsource-gripspace">gripSpace</a><span>, in §10.1</span>
    <li><a href="#dom-xrinputsource-handedness">handedness</a><span>, in §10.1</span>
    <li><a href="#dom-xrviewport-height">height</a><span>, in §7.2</span>
@@ -5618,7 +5619,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
 };
 
 <c- b>interface</c-> <a href="#xrpermissionstatus"><code><c- g>XRPermissionStatus</c-></code></a>: <a class="n" data-link-type="idl-name" href="https://w3c.github.io/permissions/#permissionstatus" id="ref-for-permissionstatus①"><c- n>PermissionStatus</c-></a> {
-  attribute FrozenArray granted;
+  <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<c- b>any</c->> <a data-type="FrozenArray<any>" href="#dom-xrpermissionstatus-granted"><code><c- g>granted</c-></code></a>;
 };
 
 </pre>
@@ -7645,6 +7646,12 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <ul>
     <li><a href="#ref-for-xrpermissionstatus">3.2. XRSystem</a> <a href="#ref-for-xrpermissionstatus①">(2)</a>
     <li><a href="#ref-for-xrpermissionstatus②">14.2. Permissions API Integration</a> <a href="#ref-for-xrpermissionstatus③">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrpermissionstatus-granted">
+   <b><a href="#dom-xrpermissionstatus-granted">#dom-xrpermissionstatus-granted</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrpermissionstatus-granted">14.2. Permissions API Integration</a> <a href="#ref-for-dom-xrpermissionstatus-granted①">(2)</a> <a href="#ref-for-dom-xrpermissionstatus-granted②">(3)</a> <a href="#ref-for-dom-xrpermissionstatus-granted③">(4)</a> <a href="#ref-for-dom-xrpermissionstatus-granted④">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="request-the-xr-permission">
