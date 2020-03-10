@@ -1222,7 +1222,7 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version 5721fde7f6b8111f662b83b678f9e181a9838206" name="generator">
+  <meta content="Bikeshed version 70c86369151f7b7b97b78c0f664dba09a4024ca2" name="generator">
   <link href="https://www.w3.org/TR/webxr/" rel="canonical">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
@@ -1542,7 +1542,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-03-04">4 March 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-03-10">10 March 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1769,7 +1769,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p>If so, advertise the XR content to the user.</p>
      <li data-md>
-      <p>Wait for the user to <a data-link-type="dfn">trigger a user activation event</a> indicating they want to begin viewing XR content.</p>
+      <p>Wait for the window to have <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation">transient activation</a>. This is most commonly indicated by the user clicking a button on the page indicating they want to begin viewing XR content.</p>
      <li data-md>
       <p>Request an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession">XRSession</a></code> within the user activation event with <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession">navigator.xr.requestSession()</a></code>.</p>
      <li data-md>
@@ -1899,20 +1899,22 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p>Let <var>immersive</var> be <code>true</code> if <var>mode</var> is an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session">immersive session</a> mode, and <code>false</code> otherwise.</p>
      <li data-md>
+      <p>Let <var>global object</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant Global object</a> for the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑦">XRSystem</a></code> on which this method was invoked.</p>
+     <li data-md>
       <p>Check whether the session request is allowed as follows:</p>
       <dl class="switch">
        <dt>If <var>immersive</var> is <code>true</code>
        <dd>
         <ol>
          <li data-md>
-          <p>Check if an <a data-link-type="dfn" href="#immersive-session-request-is-allowed" id="ref-for-immersive-session-request-is-allowed">immersive session request is allowed</a>, and if not <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject①">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror①">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> and return <var>promise</var>.</p>
+          <p>Check if an <a data-link-type="dfn" href="#immersive-session-request-is-allowed" id="ref-for-immersive-session-request-is-allowed">immersive session request is allowed</a> for the <var>global object</var>, and if not <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject①">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror①">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> and return <var>promise</var>.</p>
          <li data-md>
           <p>If <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session">pending immersive session</a> is <code>true</code> or <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session">active immersive session</a> is not <code>null</code>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject②">reject</a> <var>promise</var> with an "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code> and return <var>promise</var>.</p>
          <li data-md>
           <p>Set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session①">pending immersive session</a> to <code>true</code>.</p>
         </ol>
        <dt>Otherwise
-       <dd>Check if an <a data-link-type="dfn" href="#inline-session-request-is-allowed" id="ref-for-inline-session-request-is-allowed">inline session request is allowed</a>, and if not <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject③">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror②">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code> and return <var>promise</var>.
+       <dd>Check if an <a data-link-type="dfn" href="#inline-session-request-is-allowed" id="ref-for-inline-session-request-is-allowed">inline session request is allowed</a> for the <var>global object</var>, and if not <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject③">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror②">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code> and return <var>promise</var>.
       </dl>
      <li data-md>
       <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>:</p>
@@ -2081,7 +2083,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p class="note" role="note"><span>Note:</span> For example, several VR devices support either configuring a safe boundary for the user to move around within or skipping boundary configuration and operating in a mode where the user is expected to stand in place. Such a device can be considered to be <a data-link-type="dfn" href="#capable-of-supporting" id="ref-for-capable-of-supporting">capable of supporting</a> <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor①">"bounded-floor"</a></code> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace">XRReferenceSpace</a></code>s even if they are currently not configured with safety boundaries, because it’s expected that the user could configure the device appropriately if the experience required it. This is to allow user agents to avoid fully initializing the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device⑤">XR device</a> or waiting for the user’s environment to be recognized prior to <a data-link-type="dfn" href="#resolve-the-requested-features" id="ref-for-resolve-the-requested-features">resolving the requested features</a> if desired. If, however, the user agent knows that the boundary state at the time the session is requested without additional initialization it may choose to reject the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor②">"bounded-floor"</a></code> feature if the safety boundary not already configured.</p>
    <h2 class="heading settled" data-level="4" id="session"><span class="secno">4. </span><span class="content">Session</span><a class="self-link" href="#session"></a></h2>
    <h3 class="heading settled" data-level="4.1" id="xrsession-interface"><span class="secno">4.1. </span><span class="content">XRSession</span><a class="self-link" href="#xrsession-interface"></a></h3>
-   <p>Any interaction with XR hardware is done via an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑦">XRSession</a></code> object, which can only be retrieved by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession③">requestSession()</a></code> on the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑦">XRSystem</a></code> object. Once a session has been successfully acquired, it can be used to <code class="idl"><a data-link-type="idl" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose">poll the viewer pose</a></code>, query information about the user’s environment, and present imagery to the user.</p>
+   <p>Any interaction with XR hardware is done via an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑦">XRSession</a></code> object, which can only be retrieved by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession③">requestSession()</a></code> on the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑧">XRSystem</a></code> object. Once a session has been successfully acquired, it can be used to <code class="idl"><a data-link-type="idl" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose">poll the viewer pose</a></code>, query information about the user’s environment, and present imagery to the user.</p>
    <p>The user agent, when possible, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="should-not-initialize-device-tracking">SHOULD NOT initialize device tracking</dfn> or rendering capabilities until an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑧">XRSession</a></code> has been acquired. This is to prevent unwanted side effects of engaging the XR systems when they’re not actively being used, such as increased battery usage or related utility applications from appearing when first navigating to a page that only wants to test for the presence of XR hardware in order to advertise XR features. Not all XR platforms offer ways to detect the hardware’s presence without initializing tracking, however, so this is only a strong recommendation.</p>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-xrvisibilitystate"><code><c- g>XRVisibilityState</c-></code></dfn> {
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrvisibilitystate-visible" id="ref-for-dom-xrvisibilitystate-visible①"><c- s>"visible"</c-></a>,
@@ -3591,7 +3593,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceEvent" data-dfn-type="attribute" data-export id="dom-xrreferencespaceevent-transform"><code>transform</code></dfn> attribute describes the post-event position and orientation of the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceevent-referencespace" id="ref-for-dom-xrreferencespaceevent-referencespace①">referenceSpace</a></code>'s <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin①⑥">native origin</a> in the pre-event coordinate system.</p>
    <h3 class="heading settled" data-level="12.5" id="event-types"><span class="secno">12.5. </span><span class="content">Event Types</span><a class="self-link" href="#event-types"></a></h3>
    <p>The user agent MUST provide the following new events. Registration for and firing of the events must follow the usual behavior of DOM4 Events.</p>
-   <p>The user agent MUST fire a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSystem" data-dfn-type="event" data-export id="eventdef-xrsystem-devicechange"><code>devicechange</code></dfn> event on the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑧">XRSystem</a></code> object to indicate that the availability of <a data-link-type="dfn" href="#xrsystem-immersive-xr-device" id="ref-for-xrsystem-immersive-xr-device③①">immersive XR device</a>s has been changed unless the document’s origin is not allowed to use the "xr-spatial-tracking" <a href="#feature-policy">feature policy</a>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#event" id="ref-for-event④">Event</a></code>.</p>
+   <p>The user agent MUST fire a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSystem" data-dfn-type="event" data-export id="eventdef-xrsystem-devicechange"><code>devicechange</code></dfn> event on the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑨">XRSystem</a></code> object to indicate that the availability of <a data-link-type="dfn" href="#xrsystem-immersive-xr-device" id="ref-for-xrsystem-immersive-xr-device③①">immersive XR device</a>s has been changed unless the document’s origin is not allowed to use the "xr-spatial-tracking" <a href="#feature-policy">feature policy</a>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#event" id="ref-for-event④">Event</a></code>.</p>
    <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-visibilitychange"><code>visibilitychange</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑦">XRSession</a></code> each time the <a data-link-type="dfn" href="#xrsession-visibility-state" id="ref-for-xrsession-visibility-state⑦">visibility state</a> of the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑧">XRSession</a></code> has changed. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrsessionevent" id="ref-for-xrsessionevent②">XRSessionEvent</a></code>.</p>
    <p>A user agent MUST dispatch an <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-end"><code>end</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑨">XRSession</a></code> when the session ends, either by the application or the user agent. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrsessionevent" id="ref-for-xrsessionevent③">XRSessionEvent</a></code>.</p>
    <p>A user agent MUST dispatch an <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-inputsourceschange"><code>inputsourceschange</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①⓪">XRSession</a></code> when the session’s <a data-link-type="dfn" href="#list-of-active-xr-input-sources" id="ref-for-list-of-active-xr-input-sources①①">list of active XR input sources</a> has changed. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrinputsourceschangeevent" id="ref-for-xrinputsourceschangeevent④">XRInputSourcesChangeEvent</a></code>.</p>
@@ -3637,7 +3639,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <h3 class="heading settled" data-level="13.2" id="user-intention"><span class="secno">13.2. </span><span class="content">User intention</span><a class="self-link" href="#user-intention"></a></h3>
    <p>It is often necessary to be sure of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="user-intent">user intent</dfn> before exposing sensitive information or allowing actions with a significant effect on the user’s experience. This intent may be communicated or observed in a number of ways.</p>
    <h4 class="heading settled" data-level="13.2.1" id="user-activation"><span class="secno">13.2.1. </span><span class="content">User activation</span><a class="self-link" href="#user-activation"></a></h4>
-    Events which are <a data-link-type="dfn">triggered by user activation</a> MAY serve as an indication of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑥">user intent</a> in some scenarios. 
+    <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation①">Transient activation</a> MAY serve as an indication of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑥">user intent</a> in some scenarios. 
    <h4 class="heading settled" data-level="13.2.2" id="application-launch"><span class="secno">13.2.2. </span><span class="content">Launching a web application</span><a class="self-link" href="#application-launch"></a></h4>
     In some environments a page may be presented as an application, installed with the express intent of running immersive content. In that case <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="launching-a-web-application">launching a web application</dfn> MAY also serve as an indication of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑦">user intent</a>. 
    <h4 class="heading settled" data-level="13.2.3" id="user-consent"><span class="secno">13.2.3. </span><span class="content">Implicit and Explicit consent</span><a class="self-link" href="#user-consent"></a></h4>
@@ -3662,10 +3664,10 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <h4 class="heading settled" data-level="13.5.1" id="protect-immersiveness"><span class="secno">13.5.1. </span><span class="content">Immersiveness</span><a class="self-link" href="#protect-immersiveness"></a></h4>
     Users must be in control of when immersive sessions are created because the creation causes invasive changes on a user’s machine. For example, starting an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session②⑦">immersive session</a> will engage the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⑤">XR device</a> sensors, take over access to the device’s display, and begin presentating immersive content which may terminate another application’s access to the XR hardware. It may also incur significant power or performance overhead on some systems or trigger the launching of a status tray or storefront. 
    <div class="algorithm" data-algorithm="immersive-session-allowed">
-    <p>To determine if an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="immersive-session-request-is-allowed">immersive session request is allowed</dfn> the user agent MUST run the following steps:</p>
+    <p>To determine if an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="immersive-session-request-is-allowed">immersive session request is allowed</dfn> for a given <var>global object</var> the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>If the request was not <a data-link-type="dfn">triggered by user activation</a> or <a data-link-type="dfn" href="#launching-a-web-application" id="ref-for-launching-a-web-application">launching a web application</a>, return <code>false</code></p>
+      <p>If the request was not made while the <var>global object</var> has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation②">transient activation</a> or when <a data-link-type="dfn" href="#launching-a-web-application" id="ref-for-launching-a-web-application">launching a web application</a>, return <code>false</code></p>
      <li data-md>
       <p>If the requesting document is not considered <a data-link-type="dfn" href="#trustworthy" id="ref-for-trustworthy①">trustworthy</a>, return <code>false</code></p>
      <li data-md>
@@ -3676,10 +3678,10 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    </div>
    <p>Starting an <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline①⑦">"inline"</a></code> session does not implicitly carry the same requirements, though additional requirements may be imposed depending on the session’s <a data-link-type="dfn" href="#requested-features" id="ref-for-requested-features③">requested features</a>.</p>
    <div class="algorithm" data-algorithm="inline-session-allowed">
-    <p>To determine if an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="inline-session-request-is-allowed">inline session request is allowed</dfn> the user agent MUST run the following steps:</p>
+    <p>To determine if an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="inline-session-request-is-allowed">inline session request is allowed</dfn> for a given <var>global object</var> the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>If the session request contained any <a data-link-type="dfn" href="#required-features" id="ref-for-required-features②">required features</a> or <a data-link-type="dfn" href="#optional-features" id="ref-for-optional-features①">optional features</a> and the request was not <a data-link-type="dfn">triggered by user activation</a> or <a data-link-type="dfn" href="#launching-a-web-application" id="ref-for-launching-a-web-application①">launching a web application</a>, return <code>false</code></p>
+      <p>If the session request contained any <a data-link-type="dfn" href="#required-features" id="ref-for-required-features②">required features</a> or <a data-link-type="dfn" href="#optional-features" id="ref-for-optional-features①">optional features</a> and the request was not made while the <var>global object</var> has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation③">transient activation</a> or when <a data-link-type="dfn" href="#launching-a-web-application" id="ref-for-launching-a-web-application①">launching a web application</a>, return <code>false</code></p>
      <li data-md>
       <p>If the requesting document is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document" id="ref-for-responsible-document①">responsible</a>, return <code>false</code></p>
      <li data-md>
@@ -4615,6 +4617,12 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <li><a href="#ref-for-queue-a-task①⑦">11.2. WebGL Context Compatibility</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-relevant-global">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-relevant-global">3.2. XRSystem</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-rendering-opportunity">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#rendering-opportunity">https://html.spec.whatwg.org/multipage/webappapis.html#rendering-opportunity</a><b>Referenced in:</b>
    <ul>
@@ -4644,6 +4652,14 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain">https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-same-origin-domain">13.1.1. Active and focused document</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-transient-activation">
+   <a href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation">https://html.spec.whatwg.org/multipage/interaction.html#transient-activation</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-transient-activation">1.2. Application flow</a>
+    <li><a href="#ref-for-transient-activation①">13.2.1. User activation</a>
+    <li><a href="#ref-for-transient-activation②">13.5.1. Immersiveness</a> <a href="#ref-for-transient-activation③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-append">
@@ -5262,11 +5278,13 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
      <li><span class="dfn-paneled" id="term-for-in-parallel" style="color:initial">in parallel</span>
      <li><span class="dfn-paneled" id="term-for-concept-origin" style="color:initial">origin</span>
      <li><span class="dfn-paneled" id="term-for-queue-a-task" style="color:initial">queue a task</span>
+     <li><span class="dfn-paneled" id="term-for-concept-relevant-global" style="color:initial">relevant global object</span>
      <li><span class="dfn-paneled" id="term-for-rendering-opportunity" style="color:initial">rendering opportunity</span>
      <li><span class="dfn-paneled" id="term-for-report-the-exception" style="color:initial">report the exception</span>
      <li><span class="dfn-paneled" id="term-for-dom-animationframeprovider-requestanimationframe" style="color:initial">requestAnimationFrame(callback)</span>
      <li><span class="dfn-paneled" id="term-for-responsible-document" style="color:initial">responsible</span>
      <li><span class="dfn-paneled" id="term-for-same-origin-domain" style="color:initial">same origin-domain</span>
+     <li><span class="dfn-paneled" id="term-for-transient-activation" style="color:initial">transient activation</span>
     </ul>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
@@ -5409,7 +5427,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator②"><c- g>Navigator</c-></a> {
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject②③"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsystem" id="ref-for-xrsystem⑨"><c- n>XRSystem</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSystem" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr②"><c- g>xr</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject②③"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsystem" id="ref-for-xrsystem①⓪"><c- n>XRSystem</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSystem" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr②"><c- g>xr</c-></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑨"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrsystem"><code><c- g>XRSystem</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget③"><c- n>EventTarget</c-></a> {
@@ -5744,9 +5762,9 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <b><a href="#xrsystem">#xrsystem</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-xrsystem">3.1. navigator.xr</a> <a href="#ref-for-xrsystem①">(2)</a>
-    <li><a href="#ref-for-xrsystem②">3.2. XRSystem</a> <a href="#ref-for-xrsystem③">(2)</a> <a href="#ref-for-xrsystem④">(3)</a> <a href="#ref-for-xrsystem⑤">(4)</a> <a href="#ref-for-xrsystem⑥">(5)</a>
-    <li><a href="#ref-for-xrsystem⑦">4.1. XRSession</a>
-    <li><a href="#ref-for-xrsystem⑧">12.5. Event Types</a>
+    <li><a href="#ref-for-xrsystem②">3.2. XRSystem</a> <a href="#ref-for-xrsystem③">(2)</a> <a href="#ref-for-xrsystem④">(3)</a> <a href="#ref-for-xrsystem⑤">(4)</a> <a href="#ref-for-xrsystem⑥">(5)</a> <a href="#ref-for-xrsystem⑦">(6)</a>
+    <li><a href="#ref-for-xrsystem⑧">4.1. XRSession</a>
+    <li><a href="#ref-for-xrsystem⑨">12.5. Event Types</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="list-of-immersive-xr-devices">
