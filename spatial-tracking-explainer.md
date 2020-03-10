@@ -548,6 +548,6 @@ interface XRReferenceSpaceEvent : Event {
 
 dictionary XRReferenceSpaceEventInit : EventInit {
   required XRReferenceSpace referenceSpace;
-  XRRigidTransform transform;
+  XRRigidTransform transform? = null;
 };
 ```
