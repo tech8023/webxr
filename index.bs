@@ -333,7 +333,7 @@ When this method is invoked, the user agent MUST run the following steps:
 
   1. Let |promise| be [=a new Promise=].
   1. Let |immersive| be <code>true</code> if |mode| is an [=immersive session=] mode, and <code>false</code> otherwise.
-  1. Let |global object| be the [=relevant Global object=] for the {{XRSystem}} on which this method was invoked. 
+  1. Let |global object| be the [=relevant Global object=] for the {{XRSystem}} on which this method was invoked.
   1. Check whether the session request is allowed as follows:
     <dl class="switch">
       <dt>If |immersive| is <code>true</code></dt>
@@ -1060,7 +1060,7 @@ To <dfn>populate the pose</dfn> of an {{XRSpace}} |space| in an {{XRSpace}} |bas
         <dd> Set |transform|'s {{XRRigidTransform/position}} to the last known position of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
         <dd> Set |transform|'s {{XRRigidTransform/orientation}} to the last known orientation of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
         <dd> Set |pose|'s {{XRPose/emulatedPosition}} boolean to <code>true</code>.
-      
+
       <dt> Else if |space|'s pose relative to |baseSpace| has never been determined:
         <dd> Set |pose| to <code>null</code>.
     </dl>
@@ -1405,7 +1405,7 @@ To <dfn for="XRRigidTransform">obtain the matrix</dfn> for a given {{XRRigidTran
 
         <img src="images/translation_matrix.svg" alt="Mathematical expression for column-vector translation matrix" />
   1. Let |rotation| be a new [=matrix=] which is a column-vector rotation matrix corresponding to {{XRRigidTransform/orientation}}. Mathematically, if {{XRRigidTransform/orientation}} is the unit quaternion <code>(q<sub>x</sub>, q<sub>y</sub>, q<sub>z</sub>, q<sub>w</sub>)</code>, this matrix is
- 
+
         <img src="images/rotation_matrix.svg" alt="Mathematical expression for column-vector rotation matrix" />
   1. Set |transform|'s [=XRRigidTransform/internal matrix=] to a new [=matrix=] set to the result of multiplying |translation| and |rotation| with |translation| on the left (<code>translation * rotation</code>). Mathematically, this matrix is
 
@@ -1798,12 +1798,12 @@ The buffers attached to an [=opaque framebuffer=] MUST be cleared to the values 
 
 Note: Implementations may optimize away the required implicit clear operation of the [=opaque framebuffer=] as long as a guarantee can be made that the developer cannot gain access to buffer contents from another process. For instance, if the developer performs an explicit clear then the implicit clear is not needed.
 
-When an {{XRWebGLLayer}} is set as an [=immersive session=]'s {{XRRenderState/baseLayer}} the content of the [=opaque framebuffer=] is presented to the [=XR/immersive XR device=] immediately after an [=XR animation frame=] completes, but only if at least one of the following has occurred since the previous [=XR animation frame=]:
+When an {{XRWebGLLayer}} is set as an [=immersive session=]'s {{XRRenderState/baseLayer}} the content of the [=opaque framebuffer=] is presented to the [=XRSystem/immersive XR device=] immediately after an [=XR animation frame=] completes, but only if at least one of the following has occurred since the previous [=XR animation frame=]:
 
   - The [=immersive session=]'s {{XRRenderState/baseLayer}} was changed.
   - {{clear}}, {{drawArrays}}, {{drawElements}}, or any other rendering operation which similarly affects the framebuffer's color values has been called while the [=opaque framebuffer=] is the currently bound framebuffer of the {{WebGLRenderingContext}} associated with the {{XRWebGLLayer}}.
 
-Before the [=opaque framebuffer=] is presented to the [=XR/immersive XR device=] the user agent shall ensure that all rendering operations have been flushed to the [=opaque framebuffer=].
+Before the [=opaque framebuffer=] is presented to the [=XRSystem/immersive XR device=] the user agent shall ensure that all rendering operations have been flushed to the [=opaque framebuffer=].
 
 Each {{XRWebGLLayer}} has a <dfn for="XRWebGLLayer">target framebuffer</dfn>, which is the {{XRWebGLLayer/framebuffer}} if [=XRWebGLLayer/composition disabled=] is <code>false</code>, and the [=XRWebGLLayer/context=]'s default framebuffer otherwise.
 
@@ -2176,7 +2176,7 @@ It is often necessary to be sure of <dfn>user intent</dfn> before exposing sensi
 In some environments a page may be presented as an application, installed with the express intent of running immersive content. In that case <dfn>launching a web application</dfn> MAY also serve as an indication of [=user intent=].
 
 ### Implicit and Explicit consent ### {#user-consent}
-A user agent MAY use <dfn>implicit consent</dfn> based, for example, on the install status of a web application or frequency and recency of visits. Given the sensitivity of XR data, caution is strongly advised when relying on implicit signals. 
+A user agent MAY use <dfn>implicit consent</dfn> based, for example, on the install status of a web application or frequency and recency of visits. Given the sensitivity of XR data, caution is strongly advised when relying on implicit signals.
 
 It is often useful to get <dfn>explicit consent</dfn> from the user before exposing [=sensitive information=]. When gathering explicit user consent, user agents present an explanation of what is being requested and provide users the option to decline. Requests for user consent can be presented in many visual forms based on the features being protected and user agent choice.
 
@@ -2188,9 +2188,9 @@ Regardless of how long the user agent chooses to persist the user's consent, [=s
 Mid-session consent {#mid-session-consent}
 -------------------
 
-There are multiple non-XR APIs which cause user agents to request [=explicit consent=] to use a feature. If the user agent will request the user's consent while there is an [=active immersive session=], the user agent MUST [=shut down the session=] prior to displaying the consent request to the user. If the user's consent for the feature had been granted prior to the [=active immersive session=] being created the session does not need to be terminated. 
+There are multiple non-XR APIs which cause user agents to request [=explicit consent=] to use a feature. If the user agent will request the user's consent while there is an [=active immersive session=], the user agent MUST [=shut down the session=] prior to displaying the consent request to the user. If the user's consent for the feature had been granted prior to the [=active immersive session=] being created the session does not need to be terminated.
 
-Note: This limitation is to ensure that there is behavioral parity between all user agents until consensus is reached about how user agents should manage mid-session [=explicit consent=]. It is not expected to be a long term requirement. 
+Note: This limitation is to ensure that there is behavioral parity between all user agents until consensus is reached about how user agents should manage mid-session [=explicit consent=]. It is not expected to be a long term requirement.
 
 Data adjustments {#data-adjustments-header}
 ----------------
@@ -2284,7 +2284,7 @@ Depending on the reference spaces used, several different types of [=sensitive i
 As a result the various reference space types have restrictions placed on their creation to ensure the [=sensitive information=] expose is handled safely:
 
 Most reference spaces require that [=user intent=] to use the reference space is well understood, either via [=explicit consent=] or [=implicit consent=]. See the [=feature requirements=] table for details.
- 
+
 Any group of {{XRReferenceSpaceType/"local"}}, {{XRReferenceSpaceType/"local-floor"}}, and {{XRReferenceSpaceType/"bounded-floor"}} reference spaces that are capable of being related to one another MUST share a common [=native origin=]; This restriction only applies when the creation of {{XRReferenceSpaceType/"unbounded"}} reference spaces has been restricted.
 
 <div class="algorithm" data-algorithm="poses-limited">
@@ -2367,9 +2367,9 @@ Note: If the document's origin is not allowed to use the <code>"xr-spatial-track
 Permissions API Integration {#permissions}
 ---------
 
-The [[!permissions]] API provides a uniform way for websites to request permissions from users and query which permissions they have been granted. 
+The [[!permissions]] API provides a uniform way for websites to request permissions from users and query which permissions they have been granted.
 
-The <dfn enum-value for="PermissionName">"xr"</dfn> [=powerful feature=]’s permission-related algorithms and types are defined as follows: 
+The <dfn enum-value for="PermissionName">"xr"</dfn> [=powerful feature=]’s permission-related algorithms and types are defined as follows:
 
 
 <dl>
