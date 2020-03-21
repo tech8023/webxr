@@ -1542,7 +1542,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-03-19">19 March 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-03-21">21 March 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -3813,7 +3813,8 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
      <p><code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissiondescriptor-name" id="ref-for-dom-permissiondescriptor-name">name</a></code> for <code class="idl"><a data-link-type="idl" href="#dictdef-xrpermissiondescriptor" id="ref-for-dictdef-xrpermissiondescriptor①">XRPermissionDescriptor</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr" id="ref-for-dom-permissionname-xr">"xr"</a></code>.</p>
     <dt><a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-result-type" id="ref-for-permission-result-type">permission result type</a>
     <dd>
-<pre class="idl highlight def"><c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrpermissionstatus"><code><c- g>XRPermissionStatus</c-></code></dfn>: <a class="n" data-link-type="idl-name" href="https://w3c.github.io/permissions/#permissionstatus" id="ref-for-permissionstatus"><c- n>PermissionStatus</c-></a> {
+<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑨"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrpermissionstatus"><code><c- g>XRPermissionStatus</c-></code></dfn>: <a class="n" data-link-type="idl-name" href="https://w3c.github.io/permissions/#permissionstatus" id="ref-for-permissionstatus"><c- n>PermissionStatus</c-></a> {
   <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<c- b>any</c->> <dfn class="dfn-paneled idl-code" data-dfn-for="XRPermissionStatus" data-dfn-type="attribute" data-export data-type="FrozenArray<any>" id="dom-xrpermissionstatus-granted"><code><c- g>granted</c-></code></dfn>;
 };
 </pre>
@@ -5057,6 +5058,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <li><a href="#ref-for-Exposed①⑥">12.2. XRInputSourceEvent</a>
     <li><a href="#ref-for-Exposed①⑦">12.3. XRInputSourcesChangeEvent</a>
     <li><a href="#ref-for-Exposed①⑧">12.4. XRReferenceSpaceEvent</a>
+    <li><a href="#ref-for-Exposed①⑨">14.2. Permissions API Integration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-Float32Array">
@@ -5444,7 +5446,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject②③"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsystem" id="ref-for-xrsystem①⓪"><c- n>XRSystem</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSystem" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr②"><c- g>xr</c-></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑨"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrsystem"><code><c- g>XRSystem</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget③"><c- n>EventTarget</c-></a> {
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②⓪"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrsystem"><code><c- g>XRSystem</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget③"><c- n>EventTarget</c-></a> {
   // Methods
   <c- b>Promise</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①⓪"><c- b>boolean</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①①"><c- g>isSessionSupported</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②①"><c- n>XRSessionMode</c-></a> <a href="#dom-xrsystem-issessionsupported-mode-mode"><code><c- g>mode</c-></code></a>);
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject④"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②①⓪"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession①①"><c- g>requestSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode③①"><c- n>XRSessionMode</c-></a> <a href="#dom-xrsystem-requestsession-mode-options-mode"><code><c- g>mode</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioninit" id="ref-for-dictdef-xrsessioninit③"><c- n>XRSessionInit</c-></a> <a href="#dom-xrsystem-requestsession-mode-options-options"><code><c- g>options</c-></code></a> = {});
@@ -5704,6 +5706,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   <c- b>sequence</c->&lt;<c- b>any</c->> <a data-type="sequence<any> " href="#dom-xrpermissiondescriptor-optionalfeatures"><code><c- g>optionalFeatures</c-></code></a>;
 };
 
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑨①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#xrpermissionstatus"><code><c- g>XRPermissionStatus</c-></code></a>: <a class="n" data-link-type="idl-name" href="https://w3c.github.io/permissions/#permissionstatus" id="ref-for-permissionstatus①"><c- n>PermissionStatus</c-></a> {
   <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<c- b>any</c->> <a data-type="FrozenArray<any>" href="#dom-xrpermissionstatus-granted"><code><c- g>granted</c-></code></a>;
 };
