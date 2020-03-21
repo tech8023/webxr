@@ -2406,6 +2406,7 @@ dictionary XRPermissionDescriptor: PermissionDescriptor {
 <dt>[=permission result type=]</dt>
 <dd>
 <pre class=idl>
+[Exposed=Window]
 interface XRPermissionStatus: PermissionStatus {
   attribute FrozenArray&lt;any&gt; granted;
 };
