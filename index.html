@@ -1542,7 +1542,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-03-21">21 March 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-03-23">23 March 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -3297,9 +3297,9 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     <li data-md>
      <p>An <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer⑤">opaque framebuffer</a> is considered incomplete outside of a <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestanimationframe" id="ref-for-dom-xrsession-requestanimationframe⑧">requestAnimationFrame()</a></code> callback. When not in a <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestanimationframe" id="ref-for-dom-xrsession-requestanimationframe⑨">requestAnimationFrame()</a></code> callback calls to <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.6" id="ref-for-5.14.6④">checkFramebufferStatus</a></code> MUST generate a <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase②">FRAMEBUFFER_UNSUPPORTED</a></code> error and attempts to clear, draw to, or read from the <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer⑥">opaque framebuffer</a> MUST generate an <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase③">INVALID_FRAMEBUFFER_OPERATION</a></code> error.</p>
     <li data-md>
-     <p>An <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer⑦">opaque framebuffer</a> initialized with <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-depth" id="ref-for-dom-xrwebgllayerinit-depth①">depth</a></code> <code>false</code> will not have an attached depth buffer.</p>
+     <p>An <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer⑦">opaque framebuffer</a> initialized with <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-depth" id="ref-for-dom-xrwebgllayerinit-depth①">depth</a></code> <code>true</code> will have an attached depth buffer.</p>
     <li data-md>
-     <p>An <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer⑧">opaque framebuffer</a> initialized with <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-stencil" id="ref-for-dom-xrwebgllayerinit-stencil①">stencil</a></code> <code>false</code> will not have an attached stencil buffer.</p>
+     <p>An <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer⑧">opaque framebuffer</a> initialized with <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-stencil" id="ref-for-dom-xrwebgllayerinit-stencil①">stencil</a></code> <code>true</code> will have an attached stencil buffer.</p>
     <li data-md>
      <p>An <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer⑨">opaque framebuffer</a>'s color buffer will have an alpha channel if and only if <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-alpha" id="ref-for-dom-xrwebgllayerinit-alpha①">alpha</a></code> is <code>true</code>.</p>
     <li data-md>
