@@ -1542,7 +1542,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-03-23">23 March 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-03-27">27 March 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -3595,7 +3595,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-xrreferencespaceeventinit"><code><c- g>XRReferenceSpaceEventInit</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit③"><c- n>EventInit</c-></a> {
   <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace③⓪"><c- n>XRReferenceSpace</c-></a> <dfn class="idl-code" data-dfn-for="XRReferenceSpaceEventInit" data-dfn-type="dict-member" data-export data-type="XRReferenceSpace " id="dom-xrreferencespaceeventinit-referencespace"><code><c- g>referenceSpace</c-></code><a class="self-link" href="#dom-xrreferencespaceeventinit-referencespace"></a></dfn>;
-  <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②③"><c- n>XRRigidTransform</c-></a> <dfn class="idl-code" data-dfn-for="XRReferenceSpaceEventInit" data-dfn-type="dict-member" data-export data-type="XRRigidTransform " id="dom-xrreferencespaceeventinit-transform"><code><c- g>transform</c-></code><a class="self-link" href="#dom-xrreferencespaceeventinit-transform"></a></dfn>;
+  <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②③"><c- n>XRRigidTransform</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="XRReferenceSpaceEventInit" data-dfn-type="dict-member" data-export data-type="XRRigidTransform? " id="dom-xrreferencespaceeventinit-transform"><code><c- g>transform</c-></code><a class="self-link" href="#dom-xrreferencespaceeventinit-transform"></a></dfn> = <c- b>null</c->;
 };
 </pre>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceEvent" data-dfn-type="attribute" data-export id="dom-xrreferencespaceevent-referencespace"><code>referenceSpace</code></dfn> attribute indicates the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③①">XRReferenceSpace</a></code> that generated this event.</p>
@@ -5697,7 +5697,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
 
 <c- b>dictionary</c-> <a href="#dictdef-xrreferencespaceeventinit"><code><c- g>XRReferenceSpaceEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit③①"><c- n>EventInit</c-></a> {
   <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace③⓪①"><c- n>XRReferenceSpace</c-></a> <a data-type="XRReferenceSpace " href="#dom-xrreferencespaceeventinit-referencespace"><code><c- g>referenceSpace</c-></code></a>;
-  <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②③①"><c- n>XRRigidTransform</c-></a> <a data-type="XRRigidTransform " href="#dom-xrreferencespaceeventinit-transform"><code><c- g>transform</c-></code></a>;
+  <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②③①"><c- n>XRRigidTransform</c-></a>? <a data-default="null" data-type="XRRigidTransform? " href="#dom-xrreferencespaceeventinit-transform"><code><c- g>transform</c-></code></a> = <c- b>null</c->;
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-xrpermissiondescriptor"><code><c- g>XRPermissionDescriptor</c-></code></a>: <a class="n" data-link-type="idl-name" href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor" id="ref-for-dictdef-permissiondescriptor①"><c- n>PermissionDescriptor</c-></a> {
