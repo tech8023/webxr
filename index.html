@@ -1222,7 +1222,7 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version 576ef4f5126e3fb83bf07d9bbe1a64f99aa4944e" name="generator">
+  <meta content="Bikeshed version c80ee3ab, updated Thu Mar 26 10:21:28 2020 -0700" name="generator">
   <link href="https://www.w3.org/TR/webxr/" rel="canonical">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
@@ -1285,102 +1285,6 @@ Possible extra rowspan handling
     word-break: normal;
   }
 </style>
-<style>/* style-md-lists */
-
-/* This is a weird hack for me not yet following the commonmark spec
-   regarding paragraph and lists. */
-[data-md] > :first-child {
-    margin-top: 0;
-}
-[data-md] > :last-child {
-    margin-bottom: 0;
-}</style>
-<style>/* style-selflinks */
-
-.heading, .issue, .note, .example, li, dt {
-    position: relative;
-}
-a.self-link {
-    position: absolute;
-    top: 0;
-    left: calc(-1 * (3.5rem - 26px));
-    width: calc(3.5rem - 26px);
-    height: 2em;
-    text-align: center;
-    border: none;
-    transition: opacity .2s;
-    opacity: .5;
-}
-a.self-link:hover {
-    opacity: 1;
-}
-.heading > a.self-link {
-    font-size: 83%;
-}
-li > a.self-link {
-    left: calc(-1 * (3.5rem - 26px) - 2em);
-}
-dfn > a.self-link {
-    top: auto;
-    left: auto;
-    opacity: 0;
-    width: 1.5em;
-    height: 1.5em;
-    background: gray;
-    color: white;
-    font-style: normal;
-    transition: opacity .2s, background-color .2s, color .2s;
-}
-dfn:hover > a.self-link {
-    opacity: 1;
-}
-dfn > a.self-link:hover {
-    color: black;
-}
-
-a.self-link::before            { content: "¶"; }
-.heading > a.self-link::before { content: "§"; }
-dfn > a.self-link::before      { content: "#"; }</style>
-<style>/* style-counters */
-
-body {
-    counter-reset: example figure issue;
-}
-.issue {
-    counter-increment: issue;
-}
-.issue:not(.no-marker)::before {
-    content: "Issue " counter(issue);
-}
-
-.example {
-    counter-increment: example;
-}
-.example:not(.no-marker)::before {
-    content: "Example " counter(example);
-}
-.invalid.example:not(.no-marker)::before,
-.illegal.example:not(.no-marker)::before {
-    content: "Invalid Example" counter(example);
-}
-
-figcaption {
-    counter-increment: figure;
-}
-figcaption:not(.no-marker)::before {
-    content: "Figure " counter(figure) " ";
-}</style>
-<style>/* style-var-click-highlighting */
-
-    var { cursor: pointer; }
-    var.selected0 { background-color: #F4D200; box-shadow: 0 0 0 2px #F4D200; }
-    var.selected1 { background-color: #FF87A2; box-shadow: 0 0 0 2px #FF87A2; }
-    var.selected2 { background-color: #96E885; box-shadow: 0 0 0 2px #96E885; }
-    var.selected3 { background-color: #3EEED2; box-shadow: 0 0 0 2px #3EEED2; }
-    var.selected4 { background-color: #EACFB6; box-shadow: 0 0 0 2px #EACFB6; }
-    var.selected5 { background-color: #82DDFF; box-shadow: 0 0 0 2px #82DDFF; }
-    var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
-    </style>
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1443,6 +1347,35 @@ pre .property::before, pre .property::after {
 [data-link-type=biblio] {
     white-space: pre;
 }</style>
+<style>/* style-counters */
+
+body {
+    counter-reset: example figure issue;
+}
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
+}
+
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example" counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}</style>
 <style>/* style-dfn-panel */
 
 .dfn-panel {
@@ -1480,6 +1413,62 @@ pre .property::before, pre .property::after {
 
 .dfn-paneled { cursor: pointer; }
 </style>
+<style>/* style-md-lists */
+
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}</style>
+<style>/* style-selflinks */
+
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: gray;
+    color: white;
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: black;
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }</style>
 <style>/* style-syntax-highlighting */
 pre.idl.highlight { color: #708090; }
 .highlight:not(.idl) { background: hsl(24, 20%, 95%); }
@@ -1538,11 +1527,22 @@ c-[vg] { color: #0077aa } /* Name.Variable.Global */
 c-[vi] { color: #0077aa } /* Name.Variable.Instance */
 c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 </style>
+<style>/* style-var-click-highlighting */
+
+    var { cursor: pointer; }
+    var.selected0 { background-color: #F4D200; box-shadow: 0 0 0 2px #F4D200; }
+    var.selected1 { background-color: #FF87A2; box-shadow: 0 0 0 2px #FF87A2; }
+    var.selected2 { background-color: #96E885; box-shadow: 0 0 0 2px #96E885; }
+    var.selected3 { background-color: #3EEED2; box-shadow: 0 0 0 2px #3EEED2; }
+    var.selected4 { background-color: #EACFB6; box-shadow: 0 0 0 2px #EACFB6; }
+    var.selected5 { background-color: #82DDFF; box-shadow: 0 0 0 2px #82DDFF; }
+    var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
+    </style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-03-27">27 March 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-04-01">1 April 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -3201,7 +3201,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean④"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="false" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-stencil"><code><c- g>stencil</c-></code></dfn> = <c- b>false</c->;
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑤"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="true" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-alpha"><code><c- g>alpha</c-></code></dfn> = <c- b>true</c->;
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑥"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="false" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-ignoredepthvalues"><code><c- g>ignoreDepthValues</c-></code></dfn> = <c- b>false</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥"><c- b>double</c-></a> <dfn class="idl-code" data-default="1.0" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="double " id="dom-xrwebgllayerinit-framebufferscalefactor"><code><c- g>framebufferScaleFactor</c-></code><a class="self-link" href="#dom-xrwebgllayerinit-framebufferscalefactor"></a></dfn> = 1.0;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥"><c- b>double</c-></a> <dfn class="dfn-paneled idl-code" data-default="1.0" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="double " id="dom-xrwebgllayerinit-framebufferscalefactor"><code><c- g>framebufferScaleFactor</c-></code></dfn> = 1.0;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑤"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①④"><c- g>Exposed</c-></a>=<c- n>Window</c->]
@@ -3265,7 +3265,9 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
          <li data-md>
           <p>Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-antialias" id="ref-for-dom-xrwebgllayer-antialias①">antialias</a></code> to <var>layerInit</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-antialias" id="ref-for-dom-xrwebgllayerinit-antialias">antialias</a></code> value.</p>
          <li data-md>
-          <p>Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-framebuffer" id="ref-for-dom-xrwebgllayer-framebuffer①">framebuffer</a></code> to a new <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer">opaque framebuffer</a> created with <var>context</var> and <var>layerInit</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-depth" id="ref-for-dom-xrwebgllayerinit-depth">depth</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-stencil" id="ref-for-dom-xrwebgllayerinit-stencil">stencil</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-alpha" id="ref-for-dom-xrwebgllayerinit-alpha">alpha</a></code> values.</p>
+          <p>Let <var>framebufferSize</var> be the <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution">recommended WebGL framebuffer resolution</a> multiplied by <var>layerInit</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-framebufferscalefactor" id="ref-for-dom-xrwebgllayerinit-framebufferscalefactor">framebufferScaleFactor</a></code>.</p>
+         <li data-md>
+          <p>Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-framebuffer" id="ref-for-dom-xrwebgllayer-framebuffer①">framebuffer</a></code> to a new <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer">opaque framebuffer</a> with the dimensions <var>framebufferSize</var> created with <var>context</var> and <var>layerInit</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-depth" id="ref-for-dom-xrwebgllayerinit-depth">depth</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-stencil" id="ref-for-dom-xrwebgllayerinit-stencil">stencil</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-alpha" id="ref-for-dom-xrwebgllayerinit-alpha">alpha</a></code> values.</p>
          <li data-md>
           <p>Allocate and initialize resources compatible with <var>session</var>’s <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device②⑧">XR device</a>, including GPU accessible memory buffers, as required to support the compositing of <var>layer</var>.</p>
          <li data-md>
@@ -3372,13 +3374,13 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>session</var> be the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨④">XRSession</a></code>.</p>
      <li data-md>
-      <p>If <var>session</var>’s <a data-link-type="dfn" href="#xrsession-mode" id="ref-for-xrsession-mode⑤">mode</a> value is not <code>"inline"</code>, set the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution①">native WebGL framebuffer resolution</a> to the resolution required to have a 1:1 ratio between the pixels of a framebuffer large enough to contain all of the session’s <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑤">XRView</a></code>s and the physical screen pixels in the area of the display under the highest magnification and abort these steps. If no method exists to determine the native resolution as described, the <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution">recommended WebGL framebuffer resolution</a> MAY be used.</p>
+      <p>If <var>session</var>’s <a data-link-type="dfn" href="#xrsession-mode" id="ref-for-xrsession-mode⑤">mode</a> value is not <code>"inline"</code>, set the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution①">native WebGL framebuffer resolution</a> to the resolution required to have a 1:1 ratio between the pixels of a framebuffer large enough to contain all of the session’s <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑤">XRView</a></code>s and the physical screen pixels in the area of the display under the highest magnification and abort these steps. If no method exists to determine the native resolution as described, the <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution①">recommended WebGL framebuffer resolution</a> MAY be used.</p>
      <li data-md>
       <p>If <var>session</var>’s <a data-link-type="dfn" href="#xrsession-mode" id="ref-for-xrsession-mode⑥">mode</a> value is <code>"inline"</code>, set the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution②">native WebGL framebuffer resolution</a> to the size of the <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-renderstate" id="ref-for-dom-xrsession-renderstate④">renderState</a></code>'s <a data-link-type="dfn" href="#xrrenderstate-output-canvas" id="ref-for-xrrenderstate-output-canvas⑨">output canvas</a> in physical display pixels and reevaluate these steps every time the size of the canvas changes or the <a data-link-type="dfn" href="#xrrenderstate-output-canvas" id="ref-for-xrrenderstate-output-canvas①⓪">output canvas</a> is changed.</p>
     </ol>
    </div>
-   <p>Additionally, the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨⑤">XRSession</a></code> MUST identify a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="recommended-webgl-framebuffer-resolution">recommended WebGL framebuffer resolution</dfn>, which represents a best estimate of the WebGL framebuffer resolution large enough to contain all of the session’s <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑥">XRView</a></code>s that provides an average application a good balance between performance and quality. It MAY be smaller than, larger than, or equal to the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution③">native WebGL framebuffer resolution</a>.</p>
-   <p class="note" role="note"><span>Note:</span> The user agent is free to use and method of its choosing to estimate the <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution①">recommended WebGL framebuffer resolution</a>. If there are platform-specific methods for querying a recommended size it is recommended that they be used, but not required.</p>
+   <p>Additionally, the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨⑤">XRSession</a></code> MUST identify a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="recommended-webgl-framebuffer-resolution">recommended WebGL framebuffer resolution</dfn>, which represents a best estimate of the WebGL framebuffer resolution large enough to contain all of the session’s <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑥">XRView</a></code>s that provides an average application a good balance between performance and quality. It MAY be smaller than, larger than, or equal to the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution③">native WebGL framebuffer resolution</a>. New <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer①⑧">opaque framebuffer</a> will be created with this resolution, scaled by any <code class="idl"><a data-link-type="idl" href="#dictdef-xrwebgllayerinit" id="ref-for-dictdef-xrwebgllayerinit②">XRWebGLLayerInit</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-framebufferscalefactor" id="ref-for-dom-xrwebgllayerinit-framebufferscalefactor①">framebufferScaleFactor</a></code> provided.</p>
+   <p class="note" role="note"><span>Note:</span> The user agent is free to use and method of its choosing to estimate the <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution②">recommended WebGL framebuffer resolution</a>. If there are platform-specific methods for querying a recommended size it is recommended that they be used, but not required.</p>
    <div class="algorithm" data-algorithm="get-native-framebuffer-scale-factor">
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRWebGLLayer" data-dfn-type="method" data-export id="dom-xrwebgllayer-getnativeframebufferscalefactor"><code>getNativeFramebufferScaleFactor(<var>session</var>)</code></dfn> method, when invoked, MUST run the following steps:</p>
     <ol>
@@ -3387,7 +3389,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended③">ended</a> value is <code>true</code>, return <code>0.0</code> and abort these steps.</p>
      <li data-md>
-      <p>Return the value that the <var>session</var>’s <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution②">recommended WebGL framebuffer resolution</a> must be multiplied by to yield the <var>session</var>’s <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution④">native WebGL framebuffer resolution</a>.</p>
+      <p>Return the value that the <var>session</var>’s <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution③">recommended WebGL framebuffer resolution</a> must be multiplied by to yield the <var>session</var>’s <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution④">native WebGL framebuffer resolution</a>.</p>
     </ol>
    </div>
    <h3 class="heading settled" data-level="11.2" id="contextcompatibility"><span class="secno">11.2. </span><span class="content">WebGL Context Compatibility</span><a class="self-link" href="#contextcompatibility"></a></h3>
@@ -4108,8 +4110,8 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li><a href="#dom-xrinputsource-gripspace">gripSpace</a><span>, in §10.1</span>
    <li><a href="#dom-xrinputsource-handedness">handedness</a><span>, in §10.1</span>
    <li><a href="#dom-xrviewport-height">height</a><span>, in §7.2</span>
-   <li><a href="#dom-xrvisibilitystate-hidden">hidden</a><span>, in §4.1</span>
    <li><a href="#dom-xrvisibilitystate-hidden">"hidden"</a><span>, in §4.1</span>
+   <li><a href="#dom-xrvisibilitystate-hidden">hidden</a><span>, in §4.1</span>
    <li><a href="#identity-transform">identity transform</a><span>, in §8.3</span>
    <li>
     ignoreDepthValues
@@ -4121,8 +4123,8 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li><a href="#dom-xrsessionmode-immersive-ar">immersive-ar</a><span>, in §3.3</span>
    <li><a href="#immersive-session">immersive session</a><span>, in §3.3</span>
    <li><a href="#immersive-session-request-is-allowed">immersive session request is allowed</a><span>, in §13.5.1</span>
-   <li><a href="#dom-xrsessionmode-immersive-vr">immersive-vr</a><span>, in §3.3</span>
    <li><a href="#dom-xrsessionmode-immersive-vr">"immersive-vr"</a><span>, in §3.3</span>
+   <li><a href="#dom-xrsessionmode-immersive-vr">immersive-vr</a><span>, in §3.3</span>
    <li><a href="#xrsystem-immersive-xr-device">immersive XR device</a><span>, in §3.2</span>
    <li><a href="#implicit-consent">implicit consent</a><span>, in §13.2.3</span>
    <li><a href="#xrinputsourcearray-indexed-property-getter">indexed property getter</a><span>, in §10.3</span>
@@ -4217,13 +4219,13 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li><a href="#dom-xrsession-onsqueezestart">onsqueezestart</a><span>, in §4.1</span>
    <li><a href="#dom-xrsession-onvisibilitychange">onvisibilitychange</a><span>, in §4.1</span>
    <li><a href="#opaque-framebuffer">opaque framebuffer</a><span>, in §11.1</span>
+   <li><a href="#optional-features">Optional features</a><span>, in §3.4</span>
    <li>
     optionalFeatures
     <ul>
      <li><a href="#dom-xrpermissiondescriptor-optionalfeatures">dict-member for XRPermissionDescriptor</a><span>, in §14.2</span>
      <li><a href="#dom-xrsessioninit-optionalfeatures">dict-member for XRSessionInit</a><span>, in §3.4</span>
     </ul>
-   <li><a href="#optional-features">Optional features</a><span>, in §3.4</span>
    <li><a href="#dom-xrrigidtransform-orientation">orientation</a><span>, in §8.3</span>
    <li><a href="#xrspace-origin-offset">origin offset</a><span>, in §6.1</span>
    <li><a href="#xrrenderstate-output-canvas">output canvas</a><span>, in §4.2</span>
@@ -4278,8 +4280,8 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
      <li><a href="#dom-xrhandedness-right">enum-value for XRHandedness</a><span>, in §10.1</span>
     </ul>
    <li><a href="#rounding">Rounding</a><span>, in §13.4.2</span>
-   <li><a href="#dom-xrtargetraymode-screen">screen</a><span>, in §10.1</span>
    <li><a href="#dom-xrtargetraymode-screen">"screen"</a><span>, in §10.1</span>
+   <li><a href="#dom-xrtargetraymode-screen">screen</a><span>, in §10.1</span>
    <li><a href="#eventdef-xrsession-select">select</a><span>, in §12.5</span>
    <li><a href="#select-an-immersive-xr-device">select an immersive XR device</a><span>, in §3.2</span>
    <li><a href="#eventdef-xrsession-selectend">selectend</a><span>, in §12.5</span>
@@ -4344,18 +4346,18 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li><a href="#eventdef-xrsession-visibilitychange">visibilitychange</a><span>, in §12.5</span>
    <li><a href="#xrsession-visibility-state">visibility state</a><span>, in §4.1</span>
    <li><a href="#dom-xrsession-visibilitystate">visibilityState</a><span>, in §4.1</span>
-   <li><a href="#dom-xrvisibilitystate-visible">visible</a><span>, in §4.1</span>
    <li><a href="#dom-xrvisibilitystate-visible">"visible"</a><span>, in §4.1</span>
+   <li><a href="#dom-xrvisibilitystate-visible">visible</a><span>, in §4.1</span>
    <li><a href="#dom-xrvisibilitystate-visible-blurred">"visible-blurred"</a><span>, in §4.1</span>
    <li><a href="#dom-xrvisibilitystate-visible-blurred">visible-blurred</a><span>, in §4.1</span>
    <li><a href="#dom-xrviewport-width">width</a><span>, in §7.2</span>
    <li><a href="#dom-xrviewport-x">x</a><span>, in §7.2</span>
-   <li><a href="#dom-navigator-xr">xr</a><span>, in §3.1</span>
    <li><a href="#dom-permissionname-xr">"xr"</a><span>, in §14.2</span>
+   <li><a href="#dom-navigator-xr">xr</a><span>, in §3.1</span>
    <li><a href="#xr-animation-frame">XR animation frame</a><span>, in §4.3</span>
    <li><a href="#xrboundedreferencespace">XRBoundedReferenceSpace</a><span>, in §6.3</span>
-   <li><a href="#dom-webglcontextattributes-xrcompatible">xrCompatible</a><span>, in §11.2</span>
    <li><a href="#xr-compatible">XR compatible</a><span>, in §11.2</span>
+   <li><a href="#dom-webglcontextattributes-xrcompatible">xrCompatible</a><span>, in §11.2</span>
    <li><a href="#xr-compositor">XR Compositor</a><span>, in §4.4</span>
    <li>
     XR device
@@ -4367,8 +4369,8 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li><a href="#xrframe">XRFrame</a><span>, in §5.1</span>
    <li><a href="#callbackdef-xrframerequestcallback">XRFrameRequestCallback</a><span>, in §4.3</span>
    <li><a href="#enumdef-xrhandedness">XRHandedness</a><span>, in §10.1</span>
-   <li><a href="#xrinputsource">XRInputSource</a><span>, in §10.1</span>
    <li><a href="#xr-input-source">XR input source</a><span>, in §10.1</span>
+   <li><a href="#xrinputsource">XRInputSource</a><span>, in §10.1</span>
    <li><a href="#xrinputsourcearray">XRInputSourceArray</a><span>, in §10.3</span>
    <li><a href="#xrinputsourceevent">XRInputSourceEvent</a><span>, in §12.2</span>
    <li><a href="#dictdef-xrinputsourceeventinit">XRInputSourceEventInit</a><span>, in §12.2</span>
@@ -5442,108 +5444,108 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
-<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator②"><c- g>Navigator</c-></a> {
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject②③"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsystem" id="ref-for-xrsystem①⓪"><c- n>XRSystem</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSystem" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr②"><c- g>xr</c-></a>;
+<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator"><c- g>Navigator</c-></a> {
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsystem"><c- n>XRSystem</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSystem" href="#dom-navigator-xr"><c- g>xr</c-></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②⓪"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrsystem"><code><c- g>XRSystem</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget③"><c- n>EventTarget</c-></a> {
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrsystem"><code><c- g>XRSystem</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget"><c- n>EventTarget</c-></a> {
   // Methods
-  <c- b>Promise</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①⓪"><c- b>boolean</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①①"><c- g>isSessionSupported</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②①"><c- n>XRSessionMode</c-></a> <a href="#dom-xrsystem-issessionsupported-mode-mode"><code><c- g>mode</c-></code></a>);
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject④"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②①⓪"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession①①"><c- g>requestSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode③①"><c- n>XRSessionMode</c-></a> <a href="#dom-xrsystem-requestsession-mode-options-mode"><code><c- g>mode</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioninit" id="ref-for-dictdef-xrsessioninit③"><c- n>XRSessionInit</c-></a> <a href="#dom-xrsystem-requestsession-mode-options-options"><code><c- g>options</c-></code></a> = {});
+  <c- b>Promise</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><c- b>boolean</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsystem-issessionsupported"><c- g>isSessionSupported</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode"><c- n>XRSessionMode</c-></a> <a href="#dom-xrsystem-issessionsupported-mode-mode"><code><c- g>mode</c-></code></a>);
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsystem-requestsession"><c- g>requestSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode"><c- n>XRSessionMode</c-></a> <a href="#dom-xrsystem-requestsession-mode-options-mode"><code><c- g>mode</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioninit"><c- n>XRSessionInit</c-></a> <a href="#dom-xrsystem-requestsession-mode-options-options"><code><c- g>options</c-></code></a> = {});
 
   // Events
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler①①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsystem-ondevicechange" id="ref-for-dom-xrsystem-ondevicechange①"><c- g>ondevicechange</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsystem-ondevicechange"><c- g>ondevicechange</c-></a>;
 };
 
 <c- b>enum</c-> <a href="#enumdef-xrsessionmode"><code><c- g>XRSessionMode</c-></code></a> {
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline③①"><c- s>"inline"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr②①"><c- s>"immersive-vr"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-immersive-ar" id="ref-for-dom-xrsessionmode-immersive-ar②"><c- s>"immersive-ar"</c-></a>
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-inline"><c- s>"inline"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-immersive-vr"><c- s>"immersive-vr"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-immersive-ar"><c- s>"immersive-ar"</c-></a>
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-xrsessioninit"><code><c- g>XRSessionInit</c-></code></a> {
-  <c- b>sequence</c->&lt;<c- b>any</c->> <a class="idl-code" data-link-type="dict-member" data-type="sequence<any> " href="#dom-xrsessioninit-requiredfeatures" id="ref-for-dom-xrsessioninit-requiredfeatures①①"><c- g>requiredFeatures</c-></a>;
-  <c- b>sequence</c->&lt;<c- b>any</c->> <a class="idl-code" data-link-type="dict-member" data-type="sequence<any> " href="#dom-xrsessioninit-optionalfeatures" id="ref-for-dom-xrsessioninit-optionalfeatures①①"><c- g>optionalFeatures</c-></a>;
+  <c- b>sequence</c->&lt;<c- b>any</c->> <a class="idl-code" data-link-type="dict-member" data-type="sequence<any> " href="#dom-xrsessioninit-requiredfeatures"><c- g>requiredFeatures</c-></a>;
+  <c- b>sequence</c->&lt;<c- b>any</c->> <a class="idl-code" data-link-type="dict-member" data-type="sequence<any> " href="#dom-xrsessioninit-optionalfeatures"><c- g>optionalFeatures</c-></a>;
 };
 
 <c- b>enum</c-> <a href="#enumdef-xrvisibilitystate"><code><c- g>XRVisibilityState</c-></code></a> {
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrvisibilitystate-visible" id="ref-for-dom-xrvisibilitystate-visible①①"><c- s>"visible"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrvisibilitystate-visible-blurred" id="ref-for-dom-xrvisibilitystate-visible-blurred①"><c- s>"visible-blurred"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrvisibilitystate-hidden" id="ref-for-dom-xrvisibilitystate-hidden③"><c- s>"hidden"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrvisibilitystate-visible"><c- s>"visible"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrvisibilitystate-visible-blurred"><c- s>"visible-blurred"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrvisibilitystate-hidden"><c- s>"hidden"</c-></a>,
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①⓪"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrsession"><code><c- g>XRSession</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget①①"><c- n>EventTarget</c-></a> {
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrsession"><code><c- g>XRSession</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget"><c- n>EventTarget</c-></a> {
   // Attributes
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrvisibilitystate" id="ref-for-enumdef-xrvisibilitystate①"><c- n>XRVisibilityState</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRVisibilityState" href="#dom-xrsession-visibilitystate" id="ref-for-dom-xrsession-visibilitystate②"><c- g>visibilityState</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①①⓪"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrenderstate" id="ref-for-xrrenderstate①⓪"><c- n>XRRenderState</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRenderState" href="#dom-xrsession-renderstate" id="ref-for-dom-xrsession-renderstate⑤"><c- g>renderState</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject②②"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrinputsourcearray" id="ref-for-xrinputsourcearray⑤"><c- n>XRInputSourceArray</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRInputSourceArray" href="#dom-xrsession-inputsources" id="ref-for-dom-xrsession-inputsources③"><c- g>inputSources</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrvisibilitystate"><c- n>XRVisibilityState</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRVisibilityState" href="#dom-xrsession-visibilitystate"><c- g>visibilityState</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrenderstate"><c- n>XRRenderState</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRenderState" href="#dom-xrsession-renderstate"><c- g>renderState</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrinputsourcearray"><c- n>XRInputSourceArray</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRInputSourceArray" href="#dom-xrsession-inputsources"><c- g>inputSources</c-></a>;
 
   // Methods
-  <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-xrsession-updaterenderstate" id="ref-for-dom-xrsession-updaterenderstate②"><c- g>updateRenderState</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrrenderstateinit" id="ref-for-dictdef-xrrenderstateinit②"><c- n>XRRenderStateInit</c-></a> <a href="#dom-xrsession-updaterenderstate-state-state"><code><c- g>state</c-></code></a> = {});
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject①①"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①①⓪"><c- n>XRReferenceSpace</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace③"><c- g>requestReferenceSpace</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype①①"><c- n>XRReferenceSpaceType</c-></a> <a href="#dom-xrsession-requestreferencespace-type-type"><code><c- g>type</c-></code></a>);
+  <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-xrsession-updaterenderstate"><c- g>updateRenderState</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrrenderstateinit"><c- n>XRRenderStateInit</c-></a> <a href="#dom-xrsession-updaterenderstate-state-state"><code><c- g>state</c-></code></a> = {});
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrreferencespace"><c- n>XRReferenceSpace</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-requestreferencespace"><c- g>requestReferenceSpace</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrreferencespacetype"><c- n>XRReferenceSpaceType</c-></a> <a href="#dom-xrsession-requestreferencespace-type-type"><code><c- g>type</c-></code></a>);
 
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long" id="ref-for-idl-long⑥"><c- b>long</c-></a> <a class="idl-code" data-link-type="method" href="#dom-xrsession-requestanimationframe" id="ref-for-dom-xrsession-requestanimationframe①⓪"><c- g>requestAnimationFrame</c-></a>(<a class="n" data-link-type="idl-name" href="#callbackdef-xrframerequestcallback" id="ref-for-callbackdef-xrframerequestcallback③"><c- n>XRFrameRequestCallback</c-></a> <a href="#dom-xrsession-requestanimationframe-callback-callback"><code><c- g>callback</c-></code></a>);
-  <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-xrsession-cancelanimationframe" id="ref-for-dom-xrsession-cancelanimationframe①"><c- g>cancelAnimationFrame</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long" id="ref-for-idl-long①①"><c- b>long</c-></a> <a href="#dom-xrsession-cancelanimationframe-handle-handle"><code><c- g>handle</c-></code></a>);
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long"><c- b>long</c-></a> <a class="idl-code" data-link-type="method" href="#dom-xrsession-requestanimationframe"><c- g>requestAnimationFrame</c-></a>(<a class="n" data-link-type="idl-name" href="#callbackdef-xrframerequestcallback"><c- n>XRFrameRequestCallback</c-></a> <a href="#dom-xrsession-requestanimationframe-callback-callback"><code><c- g>callback</c-></code></a>);
+  <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-xrsession-cancelanimationframe"><c- g>cancelAnimationFrame</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long"><c- b>long</c-></a> <a href="#dom-xrsession-cancelanimationframe-handle-handle"><code><c- g>handle</c-></code></a>);
 
-  <c- b>Promise</c->&lt;<c- b>void</c->> <a class="idl-code" data-link-type="method" href="#dom-xrsession-end" id="ref-for-dom-xrsession-end②"><c- g>end</c-></a>();
+  <c- b>Promise</c->&lt;<c- b>void</c->> <a class="idl-code" data-link-type="method" href="#dom-xrsession-end"><c- g>end</c-></a>();
 
   // Events
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler①②"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onend" id="ref-for-dom-xrsession-onend①"><c- g>onend</c-></a>;
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler②①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-oninputsourceschange" id="ref-for-dom-xrsession-oninputsourceschange①"><c- g>oninputsourceschange</c-></a>;
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler③①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onselect" id="ref-for-dom-xrsession-onselect①"><c- g>onselect</c-></a>;
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler④①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onselectstart" id="ref-for-dom-xrsession-onselectstart①"><c- g>onselectstart</c-></a>;
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑤①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onselectend" id="ref-for-dom-xrsession-onselectend①"><c- g>onselectend</c-></a>;
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑥①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onsqueeze" id="ref-for-dom-xrsession-onsqueeze①"><c- g>onsqueeze</c-></a>;
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑦①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onsqueezestart" id="ref-for-dom-xrsession-onsqueezestart①"><c- g>onsqueezestart</c-></a>;
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑧①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onsqueezeend" id="ref-for-dom-xrsession-onsqueezeend①"><c- g>onsqueezeend</c-></a>;
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑨①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onvisibilitychange" id="ref-for-dom-xrsession-onvisibilitychange①"><c- g>onvisibilitychange</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onend"><c- g>onend</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-oninputsourceschange"><c- g>oninputsourceschange</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onselect"><c- g>onselect</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onselectstart"><c- g>onselectstart</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onselectend"><c- g>onselectend</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onsqueeze"><c- g>onsqueeze</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onsqueezestart"><c- g>onsqueezestart</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onsqueezeend"><c- g>onsqueezeend</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onvisibilitychange"><c- g>onvisibilitychange</c-></a>;
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-xrrenderstateinit"><code><c- g>XRRenderStateInit</c-></code></a> {
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧"><c- b>double</c-></a> <a data-type="double " href="#dom-xrrenderstateinit-depthnear"><code><c- g>depthNear</c-></code></a>;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①"><c- b>double</c-></a> <a data-type="double " href="#dom-xrrenderstateinit-depthfar"><code><c- g>depthFar</c-></code></a>;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①"><c- b>double</c-></a> <a data-type="double " href="#dom-xrrenderstateinit-inlineverticalfieldofview"><code><c- g>inlineVerticalFieldOfView</c-></code></a>;
-  <a class="n" data-link-type="idl-name" href="#xrwebgllayer" id="ref-for-xrwebgllayer①①⓪"><c- n>XRWebGLLayer</c-></a>? <a data-type="XRWebGLLayer? " href="#dom-xrrenderstateinit-baselayer"><code><c- g>baseLayer</c-></code></a>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a data-type="double " href="#dom-xrrenderstateinit-depthnear"><code><c- g>depthNear</c-></code></a>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a data-type="double " href="#dom-xrrenderstateinit-depthfar"><code><c- g>depthFar</c-></code></a>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a data-type="double " href="#dom-xrrenderstateinit-inlineverticalfieldofview"><code><c- g>inlineVerticalFieldOfView</c-></code></a>;
+  <a class="n" data-link-type="idl-name" href="#xrwebgllayer"><c- n>XRWebGLLayer</c-></a>? <a data-type="XRWebGLLayer? " href="#dom-xrrenderstateinit-baselayer"><code><c- g>baseLayer</c-></code></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext③①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrrenderstate"><code><c- g>XRRenderState</c-></code></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③①"><c- b>double</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="double" href="#dom-xrrenderstate-depthnear" id="ref-for-dom-xrrenderstate-depthnear③①"><c- g>depthNear</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double④①"><c- b>double</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="double" href="#dom-xrrenderstate-depthfar" id="ref-for-dom-xrrenderstate-depthfar③①"><c- g>depthFar</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤①"><c- b>double</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="double?" href="#dom-xrrenderstate-inlineverticalfieldofview" id="ref-for-dom-xrrenderstate-inlineverticalfieldofview⑤①"><c- g>inlineVerticalFieldOfView</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrwebgllayer" id="ref-for-xrwebgllayer②⑦"><c- n>XRWebGLLayer</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRWebGLLayer?" href="#dom-xrrenderstate-baselayer" id="ref-for-dom-xrrenderstate-baselayer②①"><c- g>baseLayer</c-></a>;
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrrenderstate"><code><c- g>XRRenderState</c-></code></a> {
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="double" href="#dom-xrrenderstate-depthnear"><c- g>depthNear</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="double" href="#dom-xrrenderstate-depthfar"><c- g>depthFar</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="double?" href="#dom-xrrenderstate-inlineverticalfieldofview"><c- g>inlineVerticalFieldOfView</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrwebgllayer"><c- n>XRWebGLLayer</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRWebGLLayer?" href="#dom-xrrenderstate-baselayer"><c- g>baseLayer</c-></a>;
 };
 
-<c- b>callback</c-> <a href="#callbackdef-xrframerequestcallback"><code><c- g>XRFrameRequestCallback</c-></code></a> = <c- b>void</c-> (<a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/hr-time/#dom-domhighrestimestamp" id="ref-for-dom-domhighrestimestamp①"><c- n>DOMHighResTimeStamp</c-></a> <a href="#dom-xrframerequestcallback-time"><code><c- g>time</c-></code></a>, <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe③④"><c- n>XRFrame</c-></a> <a href="#dom-xrframerequestcallback-frame"><code><c- g>frame</c-></code></a>);
+<c- b>callback</c-> <a href="#callbackdef-xrframerequestcallback"><code><c- g>XRFrameRequestCallback</c-></code></a> = <c- b>void</c-> (<a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/hr-time/#dom-domhighrestimestamp"><c- n>DOMHighResTimeStamp</c-></a> <a href="#dom-xrframerequestcallback-time"><code><c- g>time</c-></code></a>, <a class="n" data-link-type="idl-name" href="#xrframe"><c- n>XRFrame</c-></a> <a href="#dom-xrframerequestcallback-frame"><code><c- g>frame</c-></code></a>);
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext④①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed③①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrframe"><code><c- g>XRFrame</c-></code></a> {
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject③①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession⑥⑦①"><c- n>XRSession</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSession" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session①⑦"><c- g>session</c-></a>;
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrframe"><code><c- g>XRFrame</c-></code></a> {
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsession"><c- n>XRSession</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSession" href="#dom-xrframe-session"><c- g>session</c-></a>;
 
-  <a class="n" data-link-type="idl-name" href="#xrviewerpose" id="ref-for-xrviewerpose①②"><c- n>XRViewerPose</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose①①"><c- g>getViewerPose</c-></a>(<a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace④①"><c- n>XRReferenceSpace</c-></a> <a href="#dom-xrframe-getviewerpose-referencespace-referencespace"><code><c- g>referenceSpace</c-></code></a>);
-  <a class="n" data-link-type="idl-name" href="#xrpose" id="ref-for-xrpose①④"><c- n>XRPose</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrframe-getpose" id="ref-for-dom-xrframe-getpose②"><c- g>getPose</c-></a>(<a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace②②"><c- n>XRSpace</c-></a> <a href="#dom-xrframe-getpose-space-basespace-space"><code><c- g>space</c-></code></a>, <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace①①⓪"><c- n>XRSpace</c-></a> <a href="#dom-xrframe-getpose-space-basespace-basespace"><code><c- g>baseSpace</c-></code></a>);
+  <a class="n" data-link-type="idl-name" href="#xrviewerpose"><c- n>XRViewerPose</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrframe-getviewerpose"><c- g>getViewerPose</c-></a>(<a class="n" data-link-type="idl-name" href="#xrreferencespace"><c- n>XRReferenceSpace</c-></a> <a href="#dom-xrframe-getviewerpose-referencespace-referencespace"><code><c- g>referenceSpace</c-></code></a>);
+  <a class="n" data-link-type="idl-name" href="#xrpose"><c- n>XRPose</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrframe-getpose"><c- g>getPose</c-></a>(<a class="n" data-link-type="idl-name" href="#xrspace"><c- n>XRSpace</c-></a> <a href="#dom-xrframe-getpose-space-basespace-space"><code><c- g>space</c-></code></a>, <a class="n" data-link-type="idl-name" href="#xrspace"><c- n>XRSpace</c-></a> <a href="#dom-xrframe-getpose-space-basespace-basespace"><code><c- g>baseSpace</c-></code></a>);
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑤①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed④①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrspace"><code><c- g>XRSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget②①"><c- n>EventTarget</c-></a> {
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrspace"><code><c- g>XRSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget"><c- n>EventTarget</c-></a> {
 
 };
 
 <c- b>enum</c-> <a href="#enumdef-xrreferencespacetype"><code><c- g>XRReferenceSpaceType</c-></code></a> {
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-viewer" id="ref-for-dom-xrreferencespacetype-viewer②①"><c- s>"viewer"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-local" id="ref-for-dom-xrreferencespacetype-local③①"><c- s>"local"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-local-floor" id="ref-for-dom-xrreferencespacetype-local-floor①②"><c- s>"local-floor"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor③①"><c- s>"bounded-floor"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded①①"><c- s>"unbounded"</c-></a>
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-viewer"><c- s>"viewer"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-local"><c- s>"local"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-local-floor"><c- s>"local-floor"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-bounded-floor"><c- s>"bounded-floor"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-unbounded"><c- s>"unbounded"</c-></a>
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑥①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑤①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#xrreferencespace"><code><c- g>XRReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace①④①"><c- n>XRSpace</c-></a> {
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject②①"><c- g>NewObject</c-></a>] <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace⑨①"><c- n>XRReferenceSpace</c-></a> <a class="idl-code" data-link-type="method" href="#dom-xrreferencespace-getoffsetreferencespace" id="ref-for-dom-xrreferencespace-getoffsetreferencespace⑤"><c- g>getOffsetReferenceSpace</c-></a>(<a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②④"><c- n>XRRigidTransform</c-></a> <a href="#dom-xrreferencespace-getoffsetreferencespace-originoffset-originoffset"><code><c- g>originOffset</c-></code></a>);
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+<c- b>interface</c-> <a href="#xrreferencespace"><code><c- g>XRReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrspace"><c- n>XRSpace</c-></a> {
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject"><c- g>NewObject</c-></a>] <a class="n" data-link-type="idl-name" href="#xrreferencespace"><c- n>XRReferenceSpace</c-></a> <a class="idl-code" data-link-type="method" href="#dom-xrreferencespace-getoffsetreferencespace"><c- g>getOffsetReferenceSpace</c-></a>(<a class="n" data-link-type="idl-name" href="#xrrigidtransform"><c- n>XRRigidTransform</c-></a> <a href="#dom-xrreferencespace-getoffsetreferencespace-originoffset-originoffset"><code><c- g>originOffset</c-></code></a>);
 
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler①⓪①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrreferencespace-onreset" id="ref-for-dom-xrreferencespace-onreset①"><c- g>onreset</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrreferencespace-onreset"><c- g>onreset</c-></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑦①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑥①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#xrboundedreferencespace"><code><c- g>XRBoundedReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②④①"><c- n>XRReferenceSpace</c-></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑥"><c- n>DOMPointReadOnly</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<DOMPointReadOnly>" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry⑤①"><c- g>boundsGeometry</c-></a>;
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+<c- b>interface</c-> <a href="#xrboundedreferencespace"><code><c- g>XRBoundedReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrreferencespace"><c- n>XRReferenceSpace</c-></a> {
+  <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<DOMPointReadOnly>" href="#dom-xrboundedreferencespace-boundsgeometry"><c- g>boundsGeometry</c-></a>;
 };
 
 <c- b>enum</c-> <a href="#enumdef-xreye"><code><c- g>XREye</c-></code></a> {
@@ -5552,35 +5554,35 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   <a href="#dom-xreye-right"><code><c- s>"right"</c-></code></a>
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑧①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑦①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrview"><code><c- g>XRView</c-></code></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xreye" id="ref-for-enumdef-xreye①①"><c- n>XREye</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XREye" href="#dom-xrview-eye" id="ref-for-dom-xrview-eye①①"><c- g>eye</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array④"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrview-projectionmatrix" id="ref-for-dom-xrview-projectionmatrix②①"><c- g>projectionMatrix</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject④①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform④①"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrview-transform" id="ref-for-dom-xrview-transform①①"><c- g>transform</c-></a>;
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrview"><code><c- g>XRView</c-></code></a> {
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xreye"><c- n>XREye</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XREye" href="#dom-xrview-eye"><c- g>eye</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrview-projectionmatrix"><c- g>projectionMatrix</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrview-transform"><c- g>transform</c-></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑨①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑧①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrviewport"><code><c- g>XRViewport</c-></code></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long" id="ref-for-idl-long②①"><c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="long" href="#dom-xrviewport-x" id="ref-for-dom-xrviewport-x④"><c- g>x</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long" id="ref-for-idl-long③①"><c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="long" href="#dom-xrviewport-y" id="ref-for-dom-xrviewport-y④"><c- g>y</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long" id="ref-for-idl-long④①"><c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="long" href="#dom-xrviewport-width" id="ref-for-dom-xrviewport-width④"><c- g>width</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long" id="ref-for-idl-long⑤①"><c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="long" href="#dom-xrviewport-height" id="ref-for-dom-xrviewport-height④"><c- g>height</c-></a>;
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrviewport"><code><c- g>XRViewport</c-></code></a> {
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long"><c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="long" href="#dom-xrviewport-x"><c- g>x</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long"><c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="long" href="#dom-xrviewport-y"><c- g>y</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long"><c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="long" href="#dom-xrviewport-width"><c- g>width</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long"><c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="long" href="#dom-xrviewport-height"><c- g>height</c-></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⓪①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑨①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#xrrigidtransform"><code><c- g>XRRigidTransform</c-></code></a> {
-  <a class="idl-code" data-link-type="constructor" href="#dom-xrrigidtransform-xrrigidtransform" id="ref-for-dom-xrrigidtransform-xrrigidtransform①"><c- g>constructor</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit④"><c- n>DOMPointInit</c-></a> <a href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-position"><code><c- g>position</c-></code></a> = {}, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit①①"><c- n>DOMPointInit</c-></a> <a href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-orientation"><code><c- g>orientation</c-></code></a> = {});
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject⑤①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly④①"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑤①"><c- g>position</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject⑥①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑤①"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑤①"><c- g>orientation</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array③①"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix⑥"><c- g>matrix</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject⑦①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑨①"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrrigidtransform-inverse" id="ref-for-dom-xrrigidtransform-inverse②①"><c- g>inverse</c-></a>;
+  <a class="idl-code" data-link-type="constructor" href="#dom-xrrigidtransform-xrrigidtransform"><c- g>constructor</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit"><c- n>DOMPointInit</c-></a> <a href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-position"><code><c- g>position</c-></code></a> = {}, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit"><c- n>DOMPointInit</c-></a> <a href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-orientation"><code><c- g>orientation</c-></code></a> = {});
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrrigidtransform-position"><c- g>position</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrrigidtransform-orientation"><c- g>orientation</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrrigidtransform-matrix"><c- g>matrix</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrrigidtransform-inverse"><c- g>inverse</c-></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⓪①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrpose"><code><c- g>XRPose</c-></code></a> {
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject⑧①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②①①"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrpose-transform" id="ref-for-dom-xrpose-transform②①"><c- g>transform</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition⑥①"><c- g>emulatedPosition</c-></a>;
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrpose"><code><c- g>XRPose</c-></code></a> {
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrpose-transform"><c- g>transform</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrpose-emulatedposition"><c- g>emulatedPosition</c-></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①②①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrviewerpose"><code><c- g>XRViewerPose</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrpose" id="ref-for-xrpose①⓪①"><c- n>XRPose</c-></a> {
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject⑨①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrview" id="ref-for-xrview⑨①"><c- n>XRView</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<XRView>" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views①①"><c- g>views</c-></a>;
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrviewerpose"><code><c- g>XRViewerPose</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrpose"><c- n>XRPose</c-></a> {
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrview"><c- n>XRView</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<XRView>" href="#dom-xrviewerpose-views"><c- g>views</c-></a>;
 };
 
 <c- b>enum</c-> <a href="#enumdef-xrhandedness"><code><c- g>XRHandedness</c-></code></a> {
@@ -5590,124 +5592,124 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
 };
 
 <c- b>enum</c-> <a href="#enumdef-xrtargetraymode"><code><c- g>XRTargetRayMode</c-></code></a> {
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-gaze" id="ref-for-dom-xrtargetraymode-gaze②"><c- s>"gaze"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-tracked-pointer" id="ref-for-dom-xrtargetraymode-tracked-pointer①"><c- s>"tracked-pointer"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-screen" id="ref-for-dom-xrtargetraymode-screen③"><c- s>"screen"</c-></a>
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-gaze"><c- s>"gaze"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-tracked-pointer"><c- s>"tracked-pointer"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-screen"><c- s>"screen"</c-></a>
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①③①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①②①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#xrinputsource"><code><c- g>XRInputSource</c-></code></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrhandedness" id="ref-for-enumdef-xrhandedness①"><c- n>XRHandedness</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRHandedness" href="#dom-xrinputsource-handedness" id="ref-for-dom-xrinputsource-handedness①①"><c- g>handedness</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrtargetraymode" id="ref-for-enumdef-xrtargetraymode①"><c- n>XRTargetRayMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRTargetRayMode" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode①①"><c- g>targetRayMode</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①⓪①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace①⑦①"><c- n>XRSpace</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSpace" href="#dom-xrinputsource-targetrayspace" id="ref-for-dom-xrinputsource-targetrayspace②①"><c- g>targetRaySpace</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①①①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace①⑧①"><c- n>XRSpace</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSpace?" href="#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace③①"><c- g>gripSpace</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①②①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑨"><c- b>DOMString</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<DOMString>" href="#dom-xrinputsource-profiles" id="ref-for-dom-xrinputsource-profiles①①"><c- g>profiles</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrhandedness"><c- n>XRHandedness</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRHandedness" href="#dom-xrinputsource-handedness"><c- g>handedness</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrtargetraymode"><c- n>XRTargetRayMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRTargetRayMode" href="#dom-xrinputsource-targetraymode"><c- g>targetRayMode</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrspace"><c- n>XRSpace</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSpace" href="#dom-xrinputsource-targetrayspace"><c- g>targetRaySpace</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrspace"><c- n>XRSpace</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSpace?" href="#dom-xrinputsource-gripspace"><c- g>gripSpace</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><c- b>DOMString</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<DOMString>" href="#dom-xrinputsource-profiles"><c- g>profiles</c-></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①④①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①③①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#xrinputsourcearray"><code><c- g>XRInputSourceArray</c-></code></a> {
-  <c- b>iterable</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource①④①"><c- n>XRInputSource</c-></a>>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long④"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-xrinputsourcearray-length" id="ref-for-dom-xrinputsourcearray-length①"><c- g>length</c-></a>;
-  <c- b>getter</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource①⑤①"><c- n>XRInputSource</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long①①"><c- b>unsigned</c-> <c- b>long</c-></a> <a href="#dom-xrinputsourcearray-__getter__-index-index"><code><c- g>index</c-></code></a>);
+  <c- b>iterable</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource"><c- n>XRInputSource</c-></a>>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-xrinputsourcearray-length"><c- g>length</c-></a>;
+  <c- b>getter</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource"><c- n>XRInputSource</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><c- b>unsigned</c-> <c- b>long</c-></a> <a href="#dom-xrinputsourcearray-__getter__-index-index"><code><c- g>index</c-></code></a>);
 };
 
-<c- b>typedef</c-> (<a class="n" data-link-type="idl-name" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContext" id="ref-for-WebGLRenderingContext①①"><c- n>WebGLRenderingContext</c-></a> <c- b>or</c->
-         <a class="n" data-link-type="idl-name" href="https://www.khronos.org/registry/webgl/specs/latest/2.0/#WebGL2RenderingContext" id="ref-for-WebGL2RenderingContext②"><c- n>WebGL2RenderingContext</c-></a>) <a href="#typedefdef-xrwebglrenderingcontext"><code><c- g>XRWebGLRenderingContext</c-></code></a>;
+<c- b>typedef</c-> (<a class="n" data-link-type="idl-name" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContext"><c- n>WebGLRenderingContext</c-></a> <c- b>or</c->
+         <a class="n" data-link-type="idl-name" href="https://www.khronos.org/registry/webgl/specs/latest/2.0/#WebGL2RenderingContext"><c- n>WebGL2RenderingContext</c-></a>) <a href="#typedefdef-xrwebglrenderingcontext"><code><c- g>XRWebGLRenderingContext</c-></code></a>;
 
 <c- b>dictionary</c-> <a href="#dictdef-xrwebgllayerinit"><code><c- g>XRWebGLLayerInit</c-></code></a> {
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②①"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-antialias"><code><c- g>antialias</c-></code></a> = <c- b>true</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③①"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-depth"><code><c- g>depth</c-></code></a> = <c- b>true</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean④①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-xrwebgllayerinit-stencil"><code><c- g>stencil</c-></code></a> = <c- b>false</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑤①"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-alpha"><code><c- g>alpha</c-></code></a> = <c- b>true</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑥①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-xrwebgllayerinit-ignoredepthvalues"><code><c- g>ignoreDepthValues</c-></code></a> = <c- b>false</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥①"><c- b>double</c-></a> <a data-default="1.0" data-type="double " href="#dom-xrwebgllayerinit-framebufferscalefactor"><code><c- g>framebufferScaleFactor</c-></code></a> = 1.0;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-antialias"><code><c- g>antialias</c-></code></a> = <c- b>true</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-depth"><code><c- g>depth</c-></code></a> = <c- b>true</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-xrwebgllayerinit-stencil"><code><c- g>stencil</c-></code></a> = <c- b>false</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-alpha"><code><c- g>alpha</c-></code></a> = <c- b>true</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-xrwebgllayerinit-ignoredepthvalues"><code><c- g>ignoreDepthValues</c-></code></a> = <c- b>false</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a data-default="1.0" data-type="double " href="#dom-xrwebgllayerinit-framebufferscalefactor"><code><c- g>framebufferScaleFactor</c-></code></a> = 1.0;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑤①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①④①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#xrwebgllayer"><code><c- g>XRWebGLLayer</c-></code></a> {
-  <a class="idl-code" data-link-type="constructor" href="#dom-xrwebgllayer-xrwebgllayer" id="ref-for-dom-xrwebgllayer-xrwebgllayer①"><c- g>constructor</c-></a>(<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession⑧⑨①"><c- n>XRSession</c-></a> <a href="#dom-xrwebgllayer-xrwebgllayer-session-context-layerinit-session"><code><c- g>session</c-></code></a>,
-             <a class="n" data-link-type="idl-name" href="#typedefdef-xrwebglrenderingcontext" id="ref-for-typedefdef-xrwebglrenderingcontext①"><c- n>XRWebGLRenderingContext</c-></a> <a href="#dom-xrwebgllayer-xrwebgllayer-session-context-layerinit-context"><code><c- g>context</c-></code></a>,
-             <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrwebgllayerinit" id="ref-for-dictdef-xrwebgllayerinit②"><c- n>XRWebGLLayerInit</c-></a> <a href="#dom-xrwebgllayer-xrwebgllayer-session-context-layerinit-layerinit"><code><c- g>layerInit</c-></code></a> = {});
+  <a class="idl-code" data-link-type="constructor" href="#dom-xrwebgllayer-xrwebgllayer"><c- g>constructor</c-></a>(<a class="n" data-link-type="idl-name" href="#xrsession"><c- n>XRSession</c-></a> <a href="#dom-xrwebgllayer-xrwebgllayer-session-context-layerinit-session"><code><c- g>session</c-></code></a>,
+             <a class="n" data-link-type="idl-name" href="#typedefdef-xrwebglrenderingcontext"><c- n>XRWebGLRenderingContext</c-></a> <a href="#dom-xrwebgllayer-xrwebgllayer-session-context-layerinit-context"><code><c- g>context</c-></code></a>,
+             <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrwebgllayerinit"><c- n>XRWebGLLayerInit</c-></a> <a href="#dom-xrwebgllayer-xrwebgllayer-session-context-layerinit-layerinit"><code><c- g>layerInit</c-></code></a> = {});
   // Attributes
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑦①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrwebgllayer-antialias" id="ref-for-dom-xrwebgllayer-antialias③"><c- g>antialias</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑧①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrwebgllayer-ignoredepthvalues" id="ref-for-dom-xrwebgllayer-ignoredepthvalues④"><c- g>ignoreDepthValues</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrwebgllayer-antialias"><c- g>antialias</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrwebgllayer-ignoredepthvalues"><c- g>ignoreDepthValues</c-></a>;
 
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①③①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLFramebuffer" id="ref-for-WebGLFramebuffer④"><c- n>WebGLFramebuffer</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="WebGLFramebuffer?" href="#dom-xrwebgllayer-framebuffer" id="ref-for-dom-xrwebgllayer-framebuffer⑥"><c- g>framebuffer</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long②①"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-xrwebgllayer-framebufferwidth" id="ref-for-dom-xrwebgllayer-framebufferwidth①"><c- g>framebufferWidth</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long③①"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-xrwebgllayer-framebufferheight" id="ref-for-dom-xrwebgllayer-framebufferheight①"><c- g>framebufferHeight</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLFramebuffer"><c- n>WebGLFramebuffer</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="WebGLFramebuffer?" href="#dom-xrwebgllayer-framebuffer"><c- g>framebuffer</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-xrwebgllayer-framebufferwidth"><c- g>framebufferWidth</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-xrwebgllayer-framebufferheight"><c- g>framebufferHeight</c-></a>;
 
   // Methods
-  <a class="n" data-link-type="idl-name" href="#xrviewport" id="ref-for-xrviewport③①"><c- n>XRViewport</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrwebgllayer-getviewport" id="ref-for-dom-xrwebgllayer-getviewport②"><c- g>getViewport</c-></a>(<a class="n" data-link-type="idl-name" href="#xrview" id="ref-for-xrview①②①"><c- n>XRView</c-></a> <a href="#dom-xrwebgllayer-getviewport-view-view"><code><c- g>view</c-></code></a>);
+  <a class="n" data-link-type="idl-name" href="#xrviewport"><c- n>XRViewport</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrwebgllayer-getviewport"><c- g>getViewport</c-></a>(<a class="n" data-link-type="idl-name" href="#xrview"><c- n>XRView</c-></a> <a href="#dom-xrwebgllayer-getviewport-view-view"><code><c- g>view</c-></code></a>);
 
   // Static Methods
-  <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦①"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-xrwebgllayer-getnativeframebufferscalefactor" id="ref-for-dom-xrwebgllayer-getnativeframebufferscalefactor①"><c- g>getNativeFramebufferScaleFactor</c-></a>(<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession⑨⓪①"><c- n>XRSession</c-></a> <a href="#dom-xrwebgllayer-getnativeframebufferscalefactor-session-session"><code><c- g>session</c-></code></a>);
+  <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-xrwebgllayer-getnativeframebufferscalefactor"><c- g>getNativeFramebufferScaleFactor</c-></a>(<a class="n" data-link-type="idl-name" href="#xrsession"><c- n>XRSession</c-></a> <a href="#dom-xrwebgllayer-getnativeframebufferscalefactor-session-session"><code><c- g>session</c-></code></a>);
 };
 
-<c- b>partial</c-> <c- b>dictionary</c-> <a class="idl-code" data-link-type="dictionary" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLContextAttributes" id="ref-for-WebGLContextAttributes③①"><c- g>WebGLContextAttributes</c-></a> {
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑨①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-webglcontextattributes-xrcompatible"><code><c- g>xrCompatible</c-></code></a> = <c- b>false</c->;
+<c- b>partial</c-> <c- b>dictionary</c-> <a class="idl-code" data-link-type="dictionary" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLContextAttributes"><c- g>WebGLContextAttributes</c-></a> {
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-webglcontextattributes-xrcompatible"><code><c- g>xrCompatible</c-></code></a> = <c- b>false</c->;
 };
 
-<c- b>partial</c-> <c- b>interface</c-> <c- b>mixin</c-> <a class="idl-code" data-link-type="interface" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase④①"><c- g>WebGLRenderingContextBase</c-></a> {
-    [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject③①"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<c- b>void</c->> <a class="idl-code" data-link-type="method" href="#dom-webglrenderingcontextbase-makexrcompatible" id="ref-for-dom-webglrenderingcontextbase-makexrcompatible②"><c- g>makeXRCompatible</c-></a>();
+<c- b>partial</c-> <c- b>interface</c-> <c- b>mixin</c-> <a class="idl-code" data-link-type="interface" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase"><c- g>WebGLRenderingContextBase</c-></a> {
+    [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject"><c- g>NewObject</c-></a>] <c- b>Promise</c->&lt;<c- b>void</c->> <a class="idl-code" data-link-type="method" href="#dom-webglrenderingcontextbase-makexrcompatible"><c- g>makeXRCompatible</c-></a>();
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑥①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑤①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#xrsessionevent"><code><c- g>XRSessionEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event⑤"><c- n>Event</c-></a> {
-  <a href="#dom-xrsessionevent-xrsessionevent"><code><c- g>constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②①"><c- b>DOMString</c-></a> <a href="#dom-xrsessionevent-xrsessionevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioneventinit" id="ref-for-dictdef-xrsessioneventinit①"><c- n>XRSessionEventInit</c-></a> <a href="#dom-xrsessionevent-xrsessionevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>);
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①④①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession⑨⑨①"><c- n>XRSession</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSession" href="#dom-xrsessionevent-session" id="ref-for-dom-xrsessionevent-session①"><c- g>session</c-></a>;
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+<c- b>interface</c-> <a href="#xrsessionevent"><code><c- g>XRSessionEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event"><c- n>Event</c-></a> {
+  <a href="#dom-xrsessionevent-xrsessionevent"><code><c- g>constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><c- b>DOMString</c-></a> <a href="#dom-xrsessionevent-xrsessionevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioneventinit"><c- n>XRSessionEventInit</c-></a> <a href="#dom-xrsessionevent-xrsessionevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>);
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsession"><c- n>XRSession</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSession" href="#dom-xrsessionevent-session"><c- g>session</c-></a>;
 };
 
-<c- b>dictionary</c-> <a href="#dictdef-xrsessioneventinit"><code><c- g>XRSessionEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit④"><c- n>EventInit</c-></a> {
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession①⓪⓪①"><c- n>XRSession</c-></a> <a data-type="XRSession " href="#dom-xrsessioneventinit-session"><code><c- g>session</c-></code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-xrsessioneventinit"><code><c- g>XRSessionEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit"><c- n>EventInit</c-></a> {
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrsession"><c- n>XRSession</c-></a> <a data-type="XRSession " href="#dom-xrsessioneventinit-session"><code><c- g>session</c-></code></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑦①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑥①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#xrinputsourceevent"><code><c- g>XRInputSourceEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event①①"><c- n>Event</c-></a> {
-  <a href="#dom-xrinputsourceevent-xrinputsourceevent"><code><c- g>constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString③①"><c- b>DOMString</c-></a> <a href="#dom-xrinputsourceevent-xrinputsourceevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-xrinputsourceeventinit" id="ref-for-dictdef-xrinputsourceeventinit①"><c- n>XRInputSourceEventInit</c-></a> <a href="#dom-xrinputsourceevent-xrinputsourceevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>);
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①⑤①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe③⓪①"><c- n>XRFrame</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRFrame" href="#dom-xrinputsourceevent-frame" id="ref-for-dom-xrinputsourceevent-frame③"><c- g>frame</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①⑥①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource①⑨①"><c- n>XRInputSource</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRInputSource" href="#dom-xrinputsourceevent-inputsource" id="ref-for-dom-xrinputsourceevent-inputsource②"><c- g>inputSource</c-></a>;
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+<c- b>interface</c-> <a href="#xrinputsourceevent"><code><c- g>XRInputSourceEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event"><c- n>Event</c-></a> {
+  <a href="#dom-xrinputsourceevent-xrinputsourceevent"><code><c- g>constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><c- b>DOMString</c-></a> <a href="#dom-xrinputsourceevent-xrinputsourceevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-xrinputsourceeventinit"><c- n>XRInputSourceEventInit</c-></a> <a href="#dom-xrinputsourceevent-xrinputsourceevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>);
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrframe"><c- n>XRFrame</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRFrame" href="#dom-xrinputsourceevent-frame"><c- g>frame</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource"><c- n>XRInputSource</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRInputSource" href="#dom-xrinputsourceevent-inputsource"><c- g>inputSource</c-></a>;
 };
 
-<c- b>dictionary</c-> <a href="#dictdef-xrinputsourceeventinit"><code><c- g>XRInputSourceEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit①①"><c- n>EventInit</c-></a> {
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe③①①"><c- n>XRFrame</c-></a> <a data-type="XRFrame " href="#dom-xrinputsourceeventinit-frame"><code><c- g>frame</c-></code></a>;
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource②⓪①"><c- n>XRInputSource</c-></a> <a data-type="XRInputSource " href="#dom-xrinputsourceeventinit-inputsource"><code><c- g>inputSource</c-></code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-xrinputsourceeventinit"><code><c- g>XRInputSourceEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit"><c- n>EventInit</c-></a> {
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrframe"><c- n>XRFrame</c-></a> <a data-type="XRFrame " href="#dom-xrinputsourceeventinit-frame"><code><c- g>frame</c-></code></a>;
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource"><c- n>XRInputSource</c-></a> <a data-type="XRInputSource " href="#dom-xrinputsourceeventinit-inputsource"><code><c- g>inputSource</c-></code></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑧①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑦①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#xrinputsourceschangeevent"><code><c- g>XRInputSourcesChangeEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event②①"><c- n>Event</c-></a> {
-  <a href="#dom-xrinputsourceschangeevent-xrinputsourceschangeevent"><code><c- g>constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString④①"><c- b>DOMString</c-></a> <a href="#dom-xrinputsourceschangeevent-xrinputsourceschangeevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-xrinputsourceschangeeventinit" id="ref-for-dictdef-xrinputsourceschangeeventinit①"><c- n>XRInputSourcesChangeEventInit</c-></a> <a href="#dom-xrinputsourceschangeevent-xrinputsourceschangeevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>);
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①⑦①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession①⓪③①"><c- n>XRSession</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSession" href="#dom-xrinputsourceschangeevent-session" id="ref-for-dom-xrinputsourceschangeevent-session①"><c- g>session</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①⑧①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource②④①"><c- n>XRInputSource</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<XRInputSource>" href="#dom-xrinputsourceschangeevent-added" id="ref-for-dom-xrinputsourceschangeevent-added②①"><c- g>added</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①⑨①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource②⑤①"><c- n>XRInputSource</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<XRInputSource>" href="#dom-xrinputsourceschangeevent-removed" id="ref-for-dom-xrinputsourceschangeevent-removed②①"><c- g>removed</c-></a>;
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+<c- b>interface</c-> <a href="#xrinputsourceschangeevent"><code><c- g>XRInputSourcesChangeEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event"><c- n>Event</c-></a> {
+  <a href="#dom-xrinputsourceschangeevent-xrinputsourceschangeevent"><code><c- g>constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><c- b>DOMString</c-></a> <a href="#dom-xrinputsourceschangeevent-xrinputsourceschangeevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-xrinputsourceschangeeventinit"><c- n>XRInputSourcesChangeEventInit</c-></a> <a href="#dom-xrinputsourceschangeevent-xrinputsourceschangeevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>);
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsession"><c- n>XRSession</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSession" href="#dom-xrinputsourceschangeevent-session"><c- g>session</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource"><c- n>XRInputSource</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<XRInputSource>" href="#dom-xrinputsourceschangeevent-added"><c- g>added</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource"><c- n>XRInputSource</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<XRInputSource>" href="#dom-xrinputsourceschangeevent-removed"><c- g>removed</c-></a>;
 };
 
-<c- b>dictionary</c-> <a href="#dictdef-xrinputsourceschangeeventinit"><code><c- g>XRInputSourcesChangeEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit②①"><c- n>EventInit</c-></a> {
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession①⓪④①"><c- n>XRSession</c-></a> <a data-type="XRSession " href="#dom-xrinputsourceschangeeventinit-session"><code><c- g>session</c-></code></a>;
-  <c- b>required</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource②⑥①"><c- n>XRInputSource</c-></a>> <a data-type="FrozenArray<XRInputSource> " href="#dom-xrinputsourceschangeeventinit-added"><code><c- g>added</c-></code></a>;
-  <c- b>required</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource②⑦①"><c- n>XRInputSource</c-></a>> <a data-type="FrozenArray<XRInputSource> " href="#dom-xrinputsourceschangeeventinit-removed"><code><c- g>removed</c-></code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-xrinputsourceschangeeventinit"><code><c- g>XRInputSourcesChangeEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit"><c- n>EventInit</c-></a> {
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrsession"><c- n>XRSession</c-></a> <a data-type="XRSession " href="#dom-xrinputsourceschangeeventinit-session"><code><c- g>session</c-></code></a>;
+  <c- b>required</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource"><c- n>XRInputSource</c-></a>> <a data-type="FrozenArray<XRInputSource> " href="#dom-xrinputsourceschangeeventinit-added"><code><c- g>added</c-></code></a>;
+  <c- b>required</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource"><c- n>XRInputSource</c-></a>> <a data-type="FrozenArray<XRInputSource> " href="#dom-xrinputsourceschangeeventinit-removed"><code><c- g>removed</c-></code></a>;
 
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑨①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑧①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#xrreferencespaceevent"><code><c- g>XRReferenceSpaceEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event③①"><c- n>Event</c-></a> {
-  <a href="#dom-xrreferencespaceevent-xrreferencespaceevent"><code><c- g>constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑤①"><c- b>DOMString</c-></a> <a href="#dom-xrreferencespaceevent-xrreferencespaceevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceeventinit" id="ref-for-dictdef-xrreferencespaceeventinit①"><c- n>XRReferenceSpaceEventInit</c-></a> <a href="#dom-xrreferencespaceevent-xrreferencespaceevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>);
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject②⓪①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②⑨①"><c- n>XRReferenceSpace</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRReferenceSpace" href="#dom-xrreferencespaceevent-referencespace" id="ref-for-dom-xrreferencespaceevent-referencespace②"><c- g>referenceSpace</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject②①①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②②①"><c- n>XRRigidTransform</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform?" href="#dom-xrreferencespaceevent-transform" id="ref-for-dom-xrreferencespaceevent-transform①"><c- g>transform</c-></a>;
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+<c- b>interface</c-> <a href="#xrreferencespaceevent"><code><c- g>XRReferenceSpaceEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event"><c- n>Event</c-></a> {
+  <a href="#dom-xrreferencespaceevent-xrreferencespaceevent"><code><c- g>constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><c- b>DOMString</c-></a> <a href="#dom-xrreferencespaceevent-xrreferencespaceevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceeventinit"><c- n>XRReferenceSpaceEventInit</c-></a> <a href="#dom-xrreferencespaceevent-xrreferencespaceevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>);
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace"><c- n>XRReferenceSpace</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRReferenceSpace" href="#dom-xrreferencespaceevent-referencespace"><c- g>referenceSpace</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform"><c- n>XRRigidTransform</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform?" href="#dom-xrreferencespaceevent-transform"><c- g>transform</c-></a>;
 };
 
-<c- b>dictionary</c-> <a href="#dictdef-xrreferencespaceeventinit"><code><c- g>XRReferenceSpaceEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit③①"><c- n>EventInit</c-></a> {
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace③⓪①"><c- n>XRReferenceSpace</c-></a> <a data-type="XRReferenceSpace " href="#dom-xrreferencespaceeventinit-referencespace"><code><c- g>referenceSpace</c-></code></a>;
-  <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②③①"><c- n>XRRigidTransform</c-></a>? <a data-default="null" data-type="XRRigidTransform? " href="#dom-xrreferencespaceeventinit-transform"><code><c- g>transform</c-></code></a> = <c- b>null</c->;
+<c- b>dictionary</c-> <a href="#dictdef-xrreferencespaceeventinit"><code><c- g>XRReferenceSpaceEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit"><c- n>EventInit</c-></a> {
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace"><c- n>XRReferenceSpace</c-></a> <a data-type="XRReferenceSpace " href="#dom-xrreferencespaceeventinit-referencespace"><code><c- g>referenceSpace</c-></code></a>;
+  <a class="n" data-link-type="idl-name" href="#xrrigidtransform"><c- n>XRRigidTransform</c-></a>? <a data-default="null" data-type="XRRigidTransform? " href="#dom-xrreferencespaceeventinit-transform"><code><c- g>transform</c-></code></a> = <c- b>null</c->;
 };
 
-<c- b>dictionary</c-> <a href="#dictdef-xrpermissiondescriptor"><code><c- g>XRPermissionDescriptor</c-></code></a>: <a class="n" data-link-type="idl-name" href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor" id="ref-for-dictdef-permissiondescriptor①"><c- n>PermissionDescriptor</c-></a> {
-  <a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode⑧①"><c- n>XRSessionMode</c-></a> <a data-type="XRSessionMode " href="#dom-xrpermissiondescriptor-mode"><code><c- g>mode</c-></code></a>;
+<c- b>dictionary</c-> <a href="#dictdef-xrpermissiondescriptor"><code><c- g>XRPermissionDescriptor</c-></code></a>: <a class="n" data-link-type="idl-name" href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor"><c- n>PermissionDescriptor</c-></a> {
+  <a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode"><c- n>XRSessionMode</c-></a> <a data-type="XRSessionMode " href="#dom-xrpermissiondescriptor-mode"><code><c- g>mode</c-></code></a>;
   <c- b>sequence</c->&lt;<c- b>any</c->> <a data-type="sequence<any> " href="#dom-xrpermissiondescriptor-requiredfeatures"><code><c- g>requiredFeatures</c-></code></a>;
   <c- b>sequence</c->&lt;<c- b>any</c->> <a data-type="sequence<any> " href="#dom-xrpermissiondescriptor-optionalfeatures"><code><c- g>optionalFeatures</c-></code></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑨①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#xrpermissionstatus"><code><c- g>XRPermissionStatus</c-></code></a>: <a class="n" data-link-type="idl-name" href="https://w3c.github.io/permissions/#permissionstatus" id="ref-for-permissionstatus①"><c- n>PermissionStatus</c-></a> {
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+<c- b>interface</c-> <a href="#xrpermissionstatus"><code><c- g>XRPermissionStatus</c-></code></a>: <a class="n" data-link-type="idl-name" href="https://w3c.github.io/permissions/#permissionstatus"><c- n>PermissionStatus</c-></a> {
   <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<c- b>any</c->> <a data-type="FrozenArray<any>" href="#dom-xrpermissionstatus-granted"><code><c- g>granted</c-></code></a>;
 };
 
@@ -7206,7 +7208,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   <aside class="dfn-panel" data-for="dictdef-xrwebgllayerinit">
    <b><a href="#dictdef-xrwebgllayerinit">#dictdef-xrwebgllayerinit</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-xrwebgllayerinit">11.1. XRWebGLLayer</a> <a href="#ref-for-dictdef-xrwebgllayerinit①">(2)</a>
+    <li><a href="#ref-for-dictdef-xrwebgllayerinit">11.1. XRWebGLLayer</a> <a href="#ref-for-dictdef-xrwebgllayerinit①">(2)</a> <a href="#ref-for-dictdef-xrwebgllayerinit②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrwebgllayerinit-antialias">
@@ -7237,6 +7239,12 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <b><a href="#dom-xrwebgllayerinit-ignoredepthvalues">#dom-xrwebgllayerinit-ignoredepthvalues</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrwebgllayerinit-ignoredepthvalues">11.1. XRWebGLLayer</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrwebgllayerinit-framebufferscalefactor">
+   <b><a href="#dom-xrwebgllayerinit-framebufferscalefactor">#dom-xrwebgllayerinit-framebufferscalefactor</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrwebgllayerinit-framebufferscalefactor">11.1. XRWebGLLayer</a> <a href="#ref-for-dom-xrwebgllayerinit-framebufferscalefactor①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrwebgllayer">
@@ -7292,7 +7300,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   <aside class="dfn-panel" data-for="opaque-framebuffer">
    <b><a href="#opaque-framebuffer">#opaque-framebuffer</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-opaque-framebuffer">11.1. XRWebGLLayer</a> <a href="#ref-for-opaque-framebuffer①">(2)</a> <a href="#ref-for-opaque-framebuffer②">(3)</a> <a href="#ref-for-opaque-framebuffer③">(4)</a> <a href="#ref-for-opaque-framebuffer④">(5)</a> <a href="#ref-for-opaque-framebuffer⑤">(6)</a> <a href="#ref-for-opaque-framebuffer⑥">(7)</a> <a href="#ref-for-opaque-framebuffer⑦">(8)</a> <a href="#ref-for-opaque-framebuffer⑧">(9)</a> <a href="#ref-for-opaque-framebuffer⑨">(10)</a> <a href="#ref-for-opaque-framebuffer①⓪">(11)</a> <a href="#ref-for-opaque-framebuffer①①">(12)</a> <a href="#ref-for-opaque-framebuffer①②">(13)</a> <a href="#ref-for-opaque-framebuffer①③">(14)</a> <a href="#ref-for-opaque-framebuffer①④">(15)</a> <a href="#ref-for-opaque-framebuffer①⑤">(16)</a> <a href="#ref-for-opaque-framebuffer①⑥">(17)</a> <a href="#ref-for-opaque-framebuffer①⑦">(18)</a>
+    <li><a href="#ref-for-opaque-framebuffer">11.1. XRWebGLLayer</a> <a href="#ref-for-opaque-framebuffer①">(2)</a> <a href="#ref-for-opaque-framebuffer②">(3)</a> <a href="#ref-for-opaque-framebuffer③">(4)</a> <a href="#ref-for-opaque-framebuffer④">(5)</a> <a href="#ref-for-opaque-framebuffer⑤">(6)</a> <a href="#ref-for-opaque-framebuffer⑥">(7)</a> <a href="#ref-for-opaque-framebuffer⑦">(8)</a> <a href="#ref-for-opaque-framebuffer⑧">(9)</a> <a href="#ref-for-opaque-framebuffer⑨">(10)</a> <a href="#ref-for-opaque-framebuffer①⓪">(11)</a> <a href="#ref-for-opaque-framebuffer①①">(12)</a> <a href="#ref-for-opaque-framebuffer①②">(13)</a> <a href="#ref-for-opaque-framebuffer①③">(14)</a> <a href="#ref-for-opaque-framebuffer①④">(15)</a> <a href="#ref-for-opaque-framebuffer①⑤">(16)</a> <a href="#ref-for-opaque-framebuffer①⑥">(17)</a> <a href="#ref-for-opaque-framebuffer①⑦">(18)</a> <a href="#ref-for-opaque-framebuffer①⑧">(19)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrwebgllayer-target-framebuffer">
@@ -7346,7 +7354,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   <aside class="dfn-panel" data-for="recommended-webgl-framebuffer-resolution">
    <b><a href="#recommended-webgl-framebuffer-resolution">#recommended-webgl-framebuffer-resolution</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-recommended-webgl-framebuffer-resolution">11.1. XRWebGLLayer</a> <a href="#ref-for-recommended-webgl-framebuffer-resolution①">(2)</a> <a href="#ref-for-recommended-webgl-framebuffer-resolution②">(3)</a>
+    <li><a href="#ref-for-recommended-webgl-framebuffer-resolution">11.1. XRWebGLLayer</a> <a href="#ref-for-recommended-webgl-framebuffer-resolution①">(2)</a> <a href="#ref-for-recommended-webgl-framebuffer-resolution②">(3)</a> <a href="#ref-for-recommended-webgl-framebuffer-resolution③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrwebgllayer-getnativeframebufferscalefactor">
@@ -7767,6 +7775,62 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <li><a href="#ref-for-resolve-the-requested-features①">14.2. Permissions API Integration</a> <a href="#ref-for-resolve-the-requested-features②">(2)</a>
    </ul>
   </aside>
+<script>/* script-dfn-panel */
+
+document.body.addEventListener("click", function(e) {
+    var queryAll = function(sel) { return [].slice.call(document.querySelectorAll(sel)); }
+    // Find the dfn element or panel, if any, that was clicked on.
+    var el = e.target;
+    var target;
+    var hitALink = false;
+    while(el.parentElement) {
+        if(el.tagName == "A") {
+            // Clicking on a link in a <dfn> shouldn't summon the panel
+            hitALink = true;
+        }
+        if(el.classList.contains("dfn-paneled")) {
+            target = "dfn";
+            break;
+        }
+        if(el.classList.contains("dfn-panel")) {
+            target = "dfn-panel";
+            break;
+        }
+        el = el.parentElement;
+    }
+    if(target != "dfn-panel") {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(function(el){
+            el.classList.remove("on");
+            el.classList.remove("activated");
+        });
+    }
+    if(target == "dfn" && !hitALink) {
+        // open the panel
+        var dfnPanel = document.querySelector(".dfn-panel[data-for='" + el.id + "']");
+        if(dfnPanel) {
+            dfnPanel.classList.add("on");
+            var rect = el.getBoundingClientRect();
+            dfnPanel.style.left = window.scrollX + rect.right + 5 + "px";
+            dfnPanel.style.top = window.scrollY + rect.top + "px";
+            var panelRect = dfnPanel.getBoundingClientRect();
+            var panelWidth = panelRect.right - panelRect.left;
+            if(panelRect.right > document.body.scrollWidth && (rect.left - (panelWidth + 5)) > 0) {
+                // Reposition, because the panel is overflowing
+                dfnPanel.style.left = window.scrollX + rect.left - (panelWidth + 5) + "px";
+            }
+        } else {
+            console.log("Couldn't find .dfn-panel[data-for='" + el.id + "']");
+        }
+    } else if(target == "dfn-panel") {
+        // Switch it to "activated" state, which pins it.
+        el.classList.add("activated");
+        el.style.left = null;
+        el.style.top = null;
+    }
+
+});
+</script>
 <script>/* script-var-click-highlighting */
 
     document.addEventListener("click", e=>{
@@ -7851,59 +7915,3 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
         }
     }
     </script>
-<script>/* script-dfn-panel */
-
-document.body.addEventListener("click", function(e) {
-    var queryAll = function(sel) { return [].slice.call(document.querySelectorAll(sel)); }
-    // Find the dfn element or panel, if any, that was clicked on.
-    var el = e.target;
-    var target;
-    var hitALink = false;
-    while(el.parentElement) {
-        if(el.tagName == "A") {
-            // Clicking on a link in a <dfn> shouldn't summon the panel
-            hitALink = true;
-        }
-        if(el.classList.contains("dfn-paneled")) {
-            target = "dfn";
-            break;
-        }
-        if(el.classList.contains("dfn-panel")) {
-            target = "dfn-panel";
-            break;
-        }
-        el = el.parentElement;
-    }
-    if(target != "dfn-panel") {
-        // Turn off any currently "on" or "activated" panels.
-        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(function(el){
-            el.classList.remove("on");
-            el.classList.remove("activated");
-        });
-    }
-    if(target == "dfn" && !hitALink) {
-        // open the panel
-        var dfnPanel = document.querySelector(".dfn-panel[data-for='" + el.id + "']");
-        if(dfnPanel) {
-            dfnPanel.classList.add("on");
-            var rect = el.getBoundingClientRect();
-            dfnPanel.style.left = window.scrollX + rect.right + 5 + "px";
-            dfnPanel.style.top = window.scrollY + rect.top + "px";
-            var panelRect = dfnPanel.getBoundingClientRect();
-            var panelWidth = panelRect.right - panelRect.left;
-            if(panelRect.right > document.body.scrollWidth && (rect.left - (panelWidth + 5)) > 0) {
-                // Reposition, because the panel is overflowing
-                dfnPanel.style.left = window.scrollX + rect.left - (panelWidth + 5) + "px";
-            }
-        } else {
-            console.log("Couldn't find .dfn-panel[data-for='" + el.id + "']");
-        }
-    } else if(target == "dfn-panel") {
-        // Switch it to "activated" state, which pins it.
-        el.classList.add("activated");
-        el.style.left = null;
-        el.style.top = null;
-    }
-
-});
-</script>
