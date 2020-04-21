@@ -25,6 +25,7 @@ Abstract: This specification describes support for accessing virtual reality (VR
 spec:infra;
     type:dfn; text:string
     type:dfn; text:tuple
+    type:dfn; text:continue
 spec:permissions-1;
     type:dfn; text:powerful feature
 </pre>
@@ -85,6 +86,8 @@ spec: PageVisibility; urlPrefix: https://www.w3.org/TR/page-visibility-2/#
 
 spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
     type: method; text: IsDetachedBuffer; url: sec-isdetachedbuffer
+    type: dfn; text: ?; url: sec-returnifabrupt-shorthands
+    type: abstract-op; text: ToString; url: sec-tostring
 spec: dom; urlPrefix: https://dom.spec.whatwg.org/#
     type:algorithm; text:fire an event; url: concept-event-fire
 
@@ -475,6 +478,8 @@ Values given in the feature lists are considered a valid <dfn>feature descriptor
 Future iterations of this specification and additional modules may expand the list of accepted [=feature descriptors=].
 
 Note: Features are accepted as an array of <code>any</code> values to ensure forwards compatibility. It allows unrecognized optional values to be properly ignored as new [=feature descriptor=] types are added.
+
+Note: Features that can be stringified via <a abstract-op>ToString</a>() will be converted.
 
 Depending on the {{XRSessionMode}} requested, certain [=feature descriptors=] are added to the {{XRSessionInit/requiredFeatures}} or {{XRSessionInit/optionalFeatures}} lists by default. The following table describes the <dfn>default features</dfn> associated with each session type and feature list:
 
@@ -1792,7 +1797,7 @@ The <dfn constructor for="XRWebGLLayer">XRWebGLLayer(|session|, |context|, |laye
       <dd>
         1. Initialize |layer|'s {{XRWebGLLayer/antialias}} to |layerInit|'s {{XRWebGLLayerInit/antialias}} value.
         1. Let |framebufferSize| be the [=recommended WebGL framebuffer resolution=] multiplied by |layerInit|'s {{XRWebGLLayerInit/framebufferScaleFactor}}.
-        1. Initialize |layer|'s {{XRWebGLLayer/framebuffer}} to a new [=opaque framebuffer=] with the dimensions |framebufferSize| created with |context| and |layerInit|'s {{XRWebGLLayerInit/depth}}, {{XRWebGLLayerInit/stencil}}, and {{XRWebGLLayerInit/alpha}} values.
+        1. Initialize |layer|'s {{XRWebGLLayer/framebuffer}} to a new [=opaque framebuffer=] with the dimensions |framebufferSize| created with |context|, [=opaque framebuffer/session=] initialized to |session|, and |layerInit|'s {{XRWebGLLayerInit/depth}}, {{XRWebGLLayerInit/stencil}}, and {{XRWebGLLayerInit/alpha}} values.
         1. Allocate and initialize resources compatible with |session|'s [=XRSession/XR device=], including GPU accessible memory buffers, as required to support the compositing of |layer|.
         1. If |layer|’s resources were unable to be created for any reason, throw an {{OperationError}} and abort these steps.
       <dt> Otherwise
@@ -1816,7 +1821,8 @@ An <dfn>opaque framebuffer</dfn> functions identically to a standard {{WebGLFram
 
  - An [=opaque framebuffer=] MAY support antialiasing, even in WebGL 1.0.
  - An [=opaque framebuffer=]'s attachments cannot be inspected or changed. Calling {{framebufferTexture2D}}, {{framebufferRenderbuffer}}, {{deleteFramebuffer}}, or {{getFramebufferAttachmentParameter}} with an [=opaque framebuffer=] MUST generate an {{INVALID_OPERATION}} error.
- - An [=opaque framebuffer=] is considered incomplete outside of a {{XRSession/requestAnimationFrame()}} callback. When not in a {{XRSession/requestAnimationFrame()}} callback calls to {{checkFramebufferStatus}} MUST generate a {{FRAMEBUFFER_UNSUPPORTED}} error and attempts to clear, draw to, or read from the [=opaque framebuffer=] MUST generate an {{INVALID_FRAMEBUFFER_OPERATION}} error.
+ - An [=opaque framebuffer=] has a related <dfn for="opaque framebuffer">session</dfn>, which is the {{XRSession}} it was created for.
+ - An [=opaque framebuffer=] is considered incomplete outside of a {{XRSession/requestAnimationFrame()}} callback. When not in the {{XRSession/requestAnimationFrame()}} callback of its [=opaque framebuffer/session=], calls to {{checkFramebufferStatus}} MUST generate a {{FRAMEBUFFER_UNSUPPORTED}} error and attempts to clear, draw to, or read from the [=opaque framebuffer=] MUST generate an {{INVALID_FRAMEBUFFER_OPERATION}} error.
  - An [=opaque framebuffer=] initialized with {{XRWebGLLayerInit/depth}} <code>true</code> will have an attached depth buffer.
  - An [=opaque framebuffer=] initialized with {{XRWebGLLayerInit/stencil}} <code>true</code> will have an attached stencil buffer.
  - An [=opaque framebuffer=]'s color buffer will have an alpha channel if and only if {{XRWebGLLayerInit/alpha}} is <code>true</code>.
@@ -2521,14 +2527,22 @@ To <dfn>resolve the requested features</dfn> given |requiredFeatures| and |optio
     1. Return the [=tuple=] <code>(|consentRequired|, |consentOptional|, |granted|)</code>
   1. Add every [=feature descriptor=] in the [=default features=] table associated with |mode| to the indicated feature list if it is not already present.
   1. For each |feature| in |requiredFeatures| perform the following steps:
-    1. If |feature| is not a valid [=feature descriptor=], return <code>null</code>.
+    1. If the |feature| is <code>null</code>, [=continue=] to the next entry.
+    1. If |feature| is not a valid [=feature descriptor=], perform the following steps:
+        1. Let |s| be the result of calling [=?=] <a abstract-op>ToString</a>(|feature|).
+        1. If |s| is not a valid [=feature descriptor=] or is <code>undefined</code>, return <code>null</code>.
+        1. Set |feature| to |s|.
     1. If |feature| is already in |granted|, continue to the next entry.
     1. If the requesting document's origin is not allowed to use any [[#feature-policy|feature policy]] required by |feature| as indicated by the [=feature requirements=] table, return <code>null</code>.
     1. If |session|'s [=XRSession/XR device=] is not [=capable of supporting=] the functionality described by |feature| or the user agent has otherwise determined to reject the feature, return <code>null</code>.
     1. If the functionality described by |feature| requires [=explicit consent=], append it to |consentRequired|.
     1. Else append |feature| to |granted|.
   1. For each |feature| in |optionalFeatures| perform the following steps:
-    1. If |feature| is not a valid [=feature descriptor=], continue to the next entry.
+    1. If the |feature| is <code>null</code>, [=continue=] to the next entry.
+    1. If |feature| is not a valid [=feature descriptor=], perform the following steps:
+        1. Let |s| be the result of calling [=?=] <a abstract-op>ToString</a>(|feature|).
+        1. If |s| is not a valid [=feature descriptor=] or is <code>undefined</code>, [=continue=] to the next entry.
+        1. Set |feature| to |s|.
     1. If |feature| is already in |granted|, continue to the next entry.
     1. If the requesting document's origin is not allowed to use any [[#feature-policy|feature policy]] required by |feature| as indicated by the [=feature requirements=] table, continue to the next entry.
     1. If |session|'s [=XRSession/XR device=] is not [=capable of supporting=] the functionality described by |feature| or the user agent has otherwise determined to reject the feature, continue to the next entry.
