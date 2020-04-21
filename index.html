@@ -1542,7 +1542,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-04-20">20 April 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-04-21">21 April 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1795,7 +1795,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsystem" id="ref-for-xrsystem"><c- n>XRSystem</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSystem" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr"><c- g>xr</c-></a>;
 };
 </pre>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Navigator" data-dfn-type="attribute" data-export id="dom-navigator-xr"><code>xr</code></dfn> attribute’s getter MUST return the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem①">XRSystem</a></code> object that is associated with the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object" id="ref-for-context-object">context object</a>.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Navigator" data-dfn-type="attribute" data-export id="dom-navigator-xr"><code>xr</code></dfn> attribute’s getter MUST return the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem①">XRSystem</a></code> object that is associated with it.</p>
    <h3 class="heading settled" data-level="3.2" id="xrsystem-interface"><span class="secno">3.2. </span><span class="content">XRSystem</span><a class="self-link" href="#xrsystem-interface"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrsystem"><code><c- g>XRSystem</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget"><c- n>EventTarget</c-></a> {
   // Methods
@@ -1837,7 +1837,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p>Set the <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible">XR compatible</a> boolean of all <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase">WebGLRenderingContextBase</a></code> instances to <code>false</code>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">fire an event</a> named <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange">devicechange</a></code> on the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object" id="ref-for-context-object①">context object</a>.</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">fire an event</a> named <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange">devicechange</a></code> on the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object" id="ref-for-context-object">context object</a>'s <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator" id="ref-for-dom-navigator">navigator</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr①">xr</a></code>.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①">Queue a task</a> to fire appropriate <code>change</code> events on any <code class="idl"><a data-link-type="idl" href="#xrpermissionstatus" id="ref-for-xrpermissionstatus">XRPermissionStatus</a></code> objects who are affected by the change in the <a data-link-type="dfn" href="#xrsystem-immersive-xr-device" id="ref-for-xrsystem-immersive-xr-device⑨">immersive XR device</a> or <a data-link-type="dfn" href="#inline-xr-device" id="ref-for-inline-xr-device⑤">inline XR device</a>.</p>
     </ol>
@@ -1847,7 +1847,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <p>The user agent <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="ensures-an-immersive-xr-device-is-selected">ensures an immersive XR device is selected</dfn> by running the following steps:</p>
     <ol>
      <li data-md>
-      <p>If the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object" id="ref-for-context-object②">context object</a>'s <a data-link-type="dfn" href="#xrsystem-immersive-xr-device" id="ref-for-xrsystem-immersive-xr-device①⓪">immersive XR device</a> is not null, abort these steps.</p>
+      <p>If the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object" id="ref-for-context-object①">context object</a>'s <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator" id="ref-for-dom-navigator①">navigator</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr②">xr</a></code>'s <a data-link-type="dfn" href="#xrsystem-immersive-xr-device" id="ref-for-xrsystem-immersive-xr-device①⓪">immersive XR device</a> is not null, abort these steps.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="#enumerate-immersive-xr-devices" id="ref-for-enumerate-immersive-xr-devices">Enumerate immersive XR devices</a>.</p>
      <li data-md>
@@ -3815,7 +3815,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    </section>
    <h2 class="heading settled" data-level="14" id="integrations"><span class="secno">14. </span><span class="content">Integrations</span><a class="self-link" href="#integrations"></a></h2>
    <h3 class="heading settled" data-level="14.1" id="feature-policy"><span class="secno">14.1. </span><span class="content">Feature Policy</span><a class="self-link" href="#feature-policy"></a></h3>
-   <p>This specification defines a <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> that controls whether any <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②⑤">XRSession</a></code> that requires the use of spatial tracking may be returned by <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession④">requestSession()</a></code>, and whether support for session modes that require spatial tracking may be indicated by either <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported⑦">isSessionSupported()</a></code> or <code class="idl"><a data-link-type="idl" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange②">devicechange</a></code> events on the <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr①">navigator.xr</a></code> object.</p>
+   <p>This specification defines a <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> that controls whether any <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②⑤">XRSession</a></code> that requires the use of spatial tracking may be returned by <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession④">requestSession()</a></code>, and whether support for session modes that require spatial tracking may be indicated by either <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported⑦">isSessionSupported()</a></code> or <code class="idl"><a data-link-type="idl" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange②">devicechange</a></code> events on the <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr③">navigator.xr</a></code> object.</p>
    <p>The feature identifier for this feature is <code>"xr-spatial-tracking"</code>.</p>
    <p>The <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#default-allowlist" id="ref-for-default-allowlist">default allowlist</a> for this feature is <code>["self"]</code>.</p>
    <p class="note" role="note"><span>Note:</span> If the document’s origin is not allowed to use the <code>"xr-spatial-tracking"</code> feature policy any <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session②⑨">immersive sessions</a> will be blocked, because all <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session③⓪">immersive sessions</a> require some use of spatial tracking. <a data-link-type="dfn" href="#inline-session" id="ref-for-inline-session⑤">Inline sessions</a> will still be allowed, but restricted to only using the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-viewer" id="ref-for-dom-xrreferencespacetype-viewer⑤">"viewer"</a></code> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③⑦">XRReferenceSpace</a></code>.</p>
@@ -4478,8 +4478,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   <aside class="dfn-panel" data-for="term-for-context-object">
    <a href="https://dom.spec.whatwg.org/#context-object">https://dom.spec.whatwg.org/#context-object</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-context-object">3.1. navigator.xr</a>
-    <li><a href="#ref-for-context-object①">3.2. XRSystem</a> <a href="#ref-for-context-object②">(2)</a>
+    <li><a href="#ref-for-context-object">3.2. XRSystem</a> <a href="#ref-for-context-object①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-event-dispatch">
@@ -4638,6 +4637,12 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <ul>
     <li><a href="#ref-for-in-parallel">3.2. XRSystem</a> <a href="#ref-for-in-parallel①">(2)</a>
     <li><a href="#ref-for-in-parallel②">4.1. XRSession</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-navigator">
+   <a href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator">https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-navigator">3.2. XRSystem</a> <a href="#ref-for-dom-navigator①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-origin">
@@ -5318,6 +5323,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
      <li><span class="dfn-paneled" id="term-for-event-handler-idl-attributes" style="color:initial">event handler idl attribute</span>
      <li><span class="dfn-paneled" id="term-for-dom-canvas-getcontext" style="color:initial">getContext(contextId)</span>
      <li><span class="dfn-paneled" id="term-for-in-parallel" style="color:initial">in parallel</span>
+     <li><span class="dfn-paneled" id="term-for-dom-navigator" style="color:initial">navigator</span>
      <li><span class="dfn-paneled" id="term-for-concept-origin" style="color:initial">origin</span>
      <li><span class="dfn-paneled" id="term-for-queue-a-task" style="color:initial">queue a task</span>
      <li><span class="dfn-paneled" id="term-for-concept-relevant-global" style="color:initial">relevant global object</span>
@@ -5810,7 +5816,8 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <b><a href="#dom-navigator-xr">#dom-navigator-xr</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-navigator-xr">3.1. navigator.xr</a>
-    <li><a href="#ref-for-dom-navigator-xr①">14.1. Feature Policy</a>
+    <li><a href="#ref-for-dom-navigator-xr①">3.2. XRSystem</a> <a href="#ref-for-dom-navigator-xr②">(2)</a>
+    <li><a href="#ref-for-dom-navigator-xr③">14.1. Feature Policy</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrsystem">
