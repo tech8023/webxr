@@ -1777,7 +1777,7 @@ The <dfn constructor for="XRWebGLLayer">XRWebGLLayer(|session|, |context|, |laye
       <dd>
         1. Initialize |layer|'s {{XRWebGLLayer/antialias}} to |layerInit|'s {{XRWebGLLayerInit/antialias}} value.
         1. Let |framebufferSize| be the [=recommended WebGL framebuffer resolution=] multiplied by |layerInit|'s {{XRWebGLLayerInit/framebufferScaleFactor}}.
-        1. Initialize |layer|'s {{XRWebGLLayer/framebuffer}} to a new [=opaque framebuffer=] with the dimensions |framebufferSize| created with |context| and |layerInit|'s {{XRWebGLLayerInit/depth}}, {{XRWebGLLayerInit/stencil}}, and {{XRWebGLLayerInit/alpha}} values.
+        1. Initialize |layer|'s {{XRWebGLLayer/framebuffer}} to a new [=opaque framebuffer=] with the dimensions |framebufferSize| created with |context|, [=opaque framebuffer/session=] initialized to |session|, and |layerInit|'s {{XRWebGLLayerInit/depth}}, {{XRWebGLLayerInit/stencil}}, and {{XRWebGLLayerInit/alpha}} values.
         1. Allocate and initialize resources compatible with |session|'s [=XRSession/XR device=], including GPU accessible memory buffers, as required to support the compositing of |layer|.
         1. If |layer|’s resources were unable to be created for any reason, throw an {{OperationError}} and abort these steps.
       <dt> Otherwise
@@ -1801,7 +1801,8 @@ An <dfn>opaque framebuffer</dfn> functions identically to a standard {{WebGLFram
 
  - An [=opaque framebuffer=] MAY support antialiasing, even in WebGL 1.0.
  - An [=opaque framebuffer=]'s attachments cannot be inspected or changed. Calling {{framebufferTexture2D}}, {{framebufferRenderbuffer}}, {{deleteFramebuffer}}, or {{getFramebufferAttachmentParameter}} with an [=opaque framebuffer=] MUST generate an {{INVALID_OPERATION}} error.
- - An [=opaque framebuffer=] is considered incomplete outside of a {{XRSession/requestAnimationFrame()}} callback. When not in a {{XRSession/requestAnimationFrame()}} callback calls to {{checkFramebufferStatus}} MUST generate a {{FRAMEBUFFER_UNSUPPORTED}} error and attempts to clear, draw to, or read from the [=opaque framebuffer=] MUST generate an {{INVALID_FRAMEBUFFER_OPERATION}} error.
+ - An [=opaque framebuffer=] has a related <dfn for="opaque framebuffer">session</dfn>, which is the {{XRSession}} it was created for.
+ - An [=opaque framebuffer=] is considered incomplete outside of a {{XRSession/requestAnimationFrame()}} callback. When not in the {{XRSession/requestAnimationFrame()}} callback of its [=opaque framebuffer/session=], calls to {{checkFramebufferStatus}} MUST generate a {{FRAMEBUFFER_UNSUPPORTED}} error and attempts to clear, draw to, or read from the [=opaque framebuffer=] MUST generate an {{INVALID_FRAMEBUFFER_OPERATION}} error.
  - An [=opaque framebuffer=] initialized with {{XRWebGLLayerInit/depth}} <code>true</code> will have an attached depth buffer.
  - An [=opaque framebuffer=] initialized with {{XRWebGLLayerInit/stencil}} <code>true</code> will have an attached stencil buffer.
  - An [=opaque framebuffer=]'s color buffer will have an alpha channel if and only if {{XRWebGLLayerInit/alpha}} is <code>true</code>.
