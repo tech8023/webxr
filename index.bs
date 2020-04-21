@@ -857,7 +857,7 @@ callback XRFrameRequestCallback = void (DOMHighResTimeStamp time, XRFrame frame)
 
 Each {{XRFrameRequestCallback}} object has a <dfn for="XRFrameRequestCallback">cancelled</dfn> boolean initially set to <code>false</code>.
 
-Each {{XRSession}} has a <dfn>list of animation frame callbacks</dfn>, which is initially empty, and an <dfn>animation frame callback identifier</dfn>, which is a number which is initially zero.
+Each {{XRSession}} has a <dfn>list of animation frame callbacks</dfn>, which is initially empty, a  <dfn>list of currently running animation frame callbacks</dfn>, which is also initially empty, and an <dfn>animation frame callback identifier</dfn>, which is a number which is initially zero.
 
 <div class="algorithm" data-algorithm="request-animation-frame">
 
@@ -879,7 +879,7 @@ The <dfn method for="XRSession">cancelAnimationFrame(|handle|)</dfn> method canc
 When this method is invoked, the user agent MUST run the following steps:
 
   1. Let |session| be the target {{XRSession}} object.
-  1. Find the entry in |session|'s [=list of animation frame callbacks=] that is associated with the value |handle|.
+  1. Find the entry in |session|'s [=list of animation frame callbacks=] and |session|'s [=list of currently running animation frame callbacks=] that is associated with the value |handle|.
   1. If there is such an entry, set its [=cancelled=] boolean to <code>true</code> and remove it from |session|'s [=list of animation frame callbacks=].
 
 </div>
@@ -892,15 +892,16 @@ When an {{XRSession}} |session| receives updated [=viewer=] state for timestamp 
   1. If |session|'s [=pending render state=] is not <code>null</code>, [=apply the pending render state=].
   1. If |session|'s {{XRSession/renderState}}'s {{XRRenderState/baseLayer}} is <code>null</code>, abort these steps.
   1. If |session|'s  [=XRSession/mode=] is {{XRSessionMode/"inline"}} and |session|'s {{XRSession/renderState}}'s [=XRRenderState/output canvas=] is <code>null</code>, abort these steps.
-  1. Let |callbacks| be a list of the entries in |session|'s [=list of animation frame callback=], in the order in which they were added to the list.
+  1. Set  |session|'s [=list of currently running animation frame callbacks=] to be a copy of the list of the entries in |session|'s [=list of animation frame callbacks=], in the order in which they were added to the list.
   1. Set |session|'s [=list of animation frame callbacks=] to the empty list.
   1. Set |frame|'s [=active=] boolean to <code>true</code>.
   1. Set |frame|'s [=animationFrame=] boolean to <code>true</code>.
   1. [=XRFrame/Apply frame updates=] for |frame|.
-  1. For each entry in |callbacks|, in order:
-    1. If the entry's [=cancelled=] boolean is <code>true</code>, continue to the next entry.
-    1. [=Invoke the Web IDL callback function=], passing |now| and |frame| as the  arguments
+  1. For each |entry| in |session|'s [=list of currently running animation frame callbacks=], in order:
+    1. If the |entry|'s [=cancelled=] boolean is <code>true</code>, continue to the next entry.
+    1. [=Invoke the Web IDL callback function=] for |entry|, passing |now| and |frame| as the  arguments
     1. If an exception is thrown, [=report the exception=].
+  1. Set |session|'s [=list of currently running animation frame callbacks=] to the empty [=/list=].
   1. Set |frame|'s [=active=] boolean to <code>false</code>.
 
 </div>
