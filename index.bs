@@ -382,6 +382,13 @@ When this method is invoked, the user agent MUST run the following steps:
               <dd> Append |session| to the [=list of inline sessions=].
             </dl>
         1. [=/Resolve=] |promise| with |session|.
+        1. [=Queue a task=] to perform the following steps:
+            NOTE: These steps ensure that initial <code>inputsourceschange</code> events occur after the initial session is resolved.
+            1. Set |session|'s [=XRSession/promise resolved=] flag to <code>true</code>.
+            1. Let |sources| be any existing input sources attached to |session|.
+            1. If |sources| is non-empty, perform the following steps:
+                1. Set |session|'s [=list of active XR input sources=] to |sources|.
+                1. Fire an {{XRInputSourcesChangeEvent}} named {{inputsourceschange!!event}} on |session| with {{XRInputSourcesChangeEvent/added}} set to |sources|.
   1. Return |promise|.
 
 </div>
@@ -711,10 +718,15 @@ The <dfn attribute for="XRSession">inputSources</dfn> attribute returns the {{XR
 
 The user agent MUST monitor any [=XR input source=]s associated with the [=XRSession/XR device=], including detecting when [=XR input source=]s are added, removed, or changed.
 
+Each {{XRSession}} has a <dfn for=XRSession>promise resolved</dfn> flag, initially <code>false</code>.
+
+NOTE: The purpose of this flag is to ensure that the [=XRSession/add input source=], [=XRSession/remove input source=], and [=XRSession/change input source=] algorithms do not run until the user code actually has had a chance to attach event listeners. Implementations may not need this flag if they simply choose to start listening for input source changes after the session resolves.
+
 <div class="algorithm" data-algorithm="on-input-source-added">
 
 When <dfn for="XRSession" lt="add input source">new [=XR input source=]s become available</dfn> for {{XRSession}} |session|, the user agent MUST run the following steps:
 
+  1. If |session|'s [=XRSession/promise resolved=] flag is not set, abort these steps.
   1. Let |added| be a new [=/list=].
   1. For each new [=XR input source=]:
     1. Let |inputSource| be a new {{XRInputSource}}.
@@ -729,6 +741,7 @@ When <dfn for="XRSession" lt="add input source">new [=XR input source=]s become 
 
 When any previously added <dfn for="XRSession" lt="remove input source">[=XR input source=]s are no longer available</dfn> for {{XRSession}} |session|, the user agent MUST run the following steps:
 
+  1. If |session|'s [=XRSession/promise resolved=] flag is not set, abort these steps.
   1. Let |removed| be a new [=/list=].
   1. For each [=XR input source=] that is no longer available:
     1. Let |inputSource| be the {{XRInputSource}} in |session|'s [=list of active XR input sources=] associated with the [=XR input source=].
@@ -743,6 +756,7 @@ When any previously added <dfn for="XRSession" lt="remove input source">[=XR inp
 
 When the <dfn for="XRSession" export lt="change input source">{{XRInputSource/handedness}}, {{XRInputSource/targetRayMode}}, {{XRInputSource/profiles}}, or presence of a {{XRInputSource/gripSpace}} for any [=XR input source=]s change</dfn> for {{XRSession}} |session|, the user agent MUST run the following steps:
 
+  1. If |session|'s [=XRSession/promise resolved=] flag is not set, abort these steps.
   1. Let |added| be a new [=/list=].
   1. Let |removed| be a new [=/list=].
   1. For each changed [=XR input source=]:
