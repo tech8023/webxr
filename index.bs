@@ -25,6 +25,7 @@ Abstract: This specification describes support for accessing virtual reality (VR
 spec:infra;
     type:dfn; text:string
     type:dfn; text:tuple
+    type:dfn; text:continue
 spec:permissions-1;
     type:dfn; text:powerful feature
 </pre>
@@ -2506,6 +2507,7 @@ To <dfn>resolve the requested features</dfn> given |requiredFeatures| and |optio
     1. Return the [=tuple=] <code>(|consentRequired|, |consentOptional|, |granted|)</code>
   1. Add every [=feature descriptor=] in the [=default features=] table associated with |mode| to the indicated feature list if it is not already present.
   1. For each |feature| in |requiredFeatures| perform the following steps:
+    1. If the |feature| is <code>null</code>, [=continue=] to the next entry.
     1. If |feature| is not a valid [=feature descriptor=], return <code>null</code>.
     1. If |feature| is already in |granted|, continue to the next entry.
     1. If the requesting document's origin is not allowed to use any [[#feature-policy|feature policy]] required by |feature| as indicated by the [=feature requirements=] table, return <code>null</code>.
@@ -2513,7 +2515,8 @@ To <dfn>resolve the requested features</dfn> given |requiredFeatures| and |optio
     1. If the functionality described by |feature| requires [=explicit consent=], append it to |consentRequired|.
     1. Else append |feature| to |granted|.
   1. For each |feature| in |optionalFeatures| perform the following steps:
-    1. If |feature| is not a valid [=feature descriptor=], continue to the next entry.
+    1. If the |feature| is <code>null</code>, [=continue=] to the next entry.
+    1. If |feature| is not a valid [=feature descriptor=], [=continue=] to the next entry.
     1. If |feature| is already in |granted|, continue to the next entry.
     1. If the requesting document's origin is not allowed to use any [[#feature-policy|feature policy]] required by |feature| as indicated by the [=feature requirements=] table, continue to the next entry.
     1. If |session|'s [=XRSession/XR device=] is not [=capable of supporting=] the functionality described by |feature| or the user agent has otherwise determined to reject the feature, continue to the next entry.
