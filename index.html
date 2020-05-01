@@ -2493,10 +2493,12 @@ NOTE: These steps ensure that initial <code>inputsourceschange</code> events occ
     </ol>
    </div>
    <div class="algorithm" data-algorithm="run-animation-frames">
-    <p>When an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥③">XRSession</a></code> <var>session</var> receives updated <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑤">viewer</a> state for timestamp <var>now</var> from the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device①⑤">XR device</a>, it runs an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="xr-animation-frame">XR animation frame</dfn>, which MUST run the following steps regardless of if the <a data-link-type="dfn" href="#list-of-animation-frame-callbacks" id="ref-for-list-of-animation-frame-callbacks③">list of animation frame callbacks</a> is empty or not:</p>
+    <p>When an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥③">XRSession</a></code> <var>session</var> receives updated <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑤">viewer</a> state for timestamp <var>frameTime</var> from the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device①⑤">XR device</a>, it runs an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="xr-animation-frame">XR animation frame</dfn>, which MUST run the following steps regardless of if the <a data-link-type="dfn" href="#list-of-animation-frame-callbacks" id="ref-for-list-of-animation-frame-callbacks③">list of animation frame callbacks</a> is empty or not:</p>
     <ol>
      <li data-md>
-      <p>Let <var>frame</var> be a new <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①">XRFrame</a></code> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time">time</a> <var>now</var> and <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session">session</a></code> <var>session</var>.</p>
+      <p>Let <var>now</var> be the <a data-link-type="dfn" href="https://www.w3.org/TR/hr-time-2/#dfn-current-high-resolution-time" id="ref-for-dfn-current-high-resolution-time">current high resolution time</a>.</p>
+     <li data-md>
+      <p>Let <var>frame</var> be a new <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①">XRFrame</a></code> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time">time</a> <var>frameTime</var> and <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session">session</a></code> <var>session</var>.</p>
      <li data-md>
       <p>If <var>session</var>’s <a data-link-type="dfn" href="#pending-render-state" id="ref-for-pending-render-state⑦">pending render state</a> is not <code>null</code>, <a data-link-type="dfn" href="#apply-the-pending-render-state" id="ref-for-apply-the-pending-render-state">apply the pending render state</a>.</p>
      <li data-md>
@@ -4637,6 +4639,12 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <li><a href="#ref-for-dom-domhighrestimestamp">4.3. Animation Frames</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-dfn-current-high-resolution-time">
+   <a href="https://www.w3.org/TR/hr-time-2/#dfn-current-high-resolution-time">https://www.w3.org/TR/hr-time-2/#dfn-current-high-resolution-time</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dfn-current-high-resolution-time">4.3. Animation Frames</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-eventhandler">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler</a><b>Referenced in:</b>
    <ul>
@@ -5387,6 +5395,11 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
      <li><span class="dfn-paneled" id="term-for-dom-domhighrestimestamp" style="color:initial">DOMHighResTimeStamp</span>
     </ul>
    <li>
+    <a data-link-type="biblio">[hr-time-2]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-dfn-current-high-resolution-time" style="color:initial">current high resolution time</span>
+    </ul>
+   <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-eventhandler" style="color:initial">EventHandler</span>
@@ -5535,6 +5548,8 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <dd>Ian Clelland. <a href="https://www.w3.org/TR/feature-policy-1/">Feature Policy</a>. 16 April 2019. WD. URL: <a href="https://www.w3.org/TR/feature-policy-1/">https://www.w3.org/TR/feature-policy-1/</a>
    <dt id="biblio-geometry-1">[GEOMETRY-1]
    <dd>Simon Pieters; Chris Harrelson. <a href="https://www.w3.org/TR/geometry-1/">Geometry Interfaces Module Level 1</a>. 4 December 2018. CR. URL: <a href="https://www.w3.org/TR/geometry-1/">https://www.w3.org/TR/geometry-1/</a>
+   <dt id="biblio-hr-time-2">[HR-TIME-2]
+   <dd>Ilya Grigorik. <a href="https://www.w3.org/TR/hr-time-2/">High Resolution Time Level 2</a>. 21 November 2019. REC. URL: <a href="https://www.w3.org/TR/hr-time-2/">https://www.w3.org/TR/hr-time-2/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-infra">[INFRA]
