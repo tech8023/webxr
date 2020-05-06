@@ -1722,7 +1722,7 @@ XRLayer {#xrlayer-interface}
 
 <pre class="idl">
 [SecureContext, Exposed=Window]
-interface XRLayer {};
+interface XRLayer : EventTarget {};
 
 </pre>
 
