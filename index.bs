@@ -313,8 +313,8 @@ When this method is invoked, it MUST run the following steps:
   1. Run the following steps [=in parallel=]:
     1. [=ensures an immersive XR device is selected|Ensure an immersive XR device is selected=].
     1. If the [=XRSystem/immersive XR device=] is null, [=/resolve=] |promise| with <code>false</code> and abort these steps.
-    1. If the [=XRSystem/immersive XR device=]'s [=list of supported modes=] does not [=list/contain=] |mode|, [=/resolve=] |promise| with <code>false</code> and abort these steps.
-    1. [=/Resolve=] |promise| with <code>true</code>.
+    1. If the [=XRSystem/immersive XR device=]'s [=list of supported modes=] does not [=list/contain=] |mode|, [=queue a task=] to [=/resolve=] |promise| with <code>false</code> and abort these steps.
+    1. [=queue a task=] to [=/resolve=] |promise| with <code>true</code>.
   1. Return |promise|.
 
 </div>
@@ -711,8 +711,8 @@ When this method is invoked, the user agent MUST run the following steps:
   1. Let |promise| be [=a new Promise=] in the [=relevant realm=] of this {{XRSession}}.
   1. Run the following steps [=in parallel=]:
     1. [=Create a reference space=], |referenceSpace|, with the {{XRReferenceSpaceType}} |type|.
-    1. If |referenceSpace| is <code>null</code>, [=reject=] |promise| with a {{NotSupportedError}} and abort these steps.
-    1. [=/Resolve=] |promise| with |referenceSpace|.
+    1. If |referenceSpace| is <code>null</code>, [=queue a task=] to [=reject=] |promise| with a {{NotSupportedError}} and abort these steps.
+    1. [=Queue a task=] to [=/resolve=] |promise| with |referenceSpace|.
   1. Return |promise|.
 
 </div>
