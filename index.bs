@@ -928,7 +928,7 @@ When an {{XRSession}} |session| receives updated [=viewer=] state for timestamp 
 
 </div>
 
-The behavior of the {{Window}} interface's {{Window/requestAnimationFrame()}} method is not changed by the presence of any active {{XRSession}}, nor does calling {{requestAnimationFrame()}} on any {{XRSession}} interact with {{Window}}'s {{Window/requestAnimationFrame()}} in any way. An [=active immersive session=] MAY affect the [=rendering opportunity=] of a [=browsing context=] if it causes the page to be obscured.
+The behavior of the {{Window}} interface's {{Window/requestAnimationFrame()}} method is not changed by the presence of any active {{XRSession}}, nor does calling {{requestAnimationFrame()}} on any {{XRSession}} interact with {{Window}}'s {{Window/requestAnimationFrame()}} in any way. An [=active immersive session=] MAY affect the [=rendering opportunity=] of a [=browsing context=] if it causes the page to be obscured. If the 2D browser view is visible during an [=active immersive session=] (i.e., when the sesson is running on a tethered headset), the timing of callbacks run with {{Window}}'s {{Window/requestAnimationFrame()}} and {{Window/requestIdleCallback()}} MAY NOT coincide with that of the session's {{XRSession/requestAnimationFrame()}} and should not be relied upon by the user for rendering XR content.
 
 Note: User agents may wish to display a warning to the developer console if {{XRSession}}'s {{XRSession/requestAnimationFrame()}} is called during callbacks scheduled via {{Window}}'s {{Window/requestAnimationFrame()}}, as these callbacks are not guaranteed to occur if the [=active immersive session=] affects the [=rendering opportunity=] of the [=browsing context=], and may not have the correct timing even if they run.
 
