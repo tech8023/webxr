@@ -2203,6 +2203,10 @@ User intention {#user-intention}
 
 It is often necessary to be sure of <dfn>user intent</dfn> before exposing sensitive information or allowing actions with a significant effect on the user's experience. This intent may be communicated or observed in a number of ways.
 
+Note: A common way of determining user intent is by [=transient activation=] of a UI control, typically an "enter VR" button. Since activation is transient,
+the [=browsing context=] requesting an XR session must be an [=ancestor=] or a [=same origin-domain=] [=descendant=] of the context containing the UI control, and must recently
+have been the [=active document=] of the browsing context.
+
 ### User activation ### {#user-activation}
 [=Transient activation=] MAY serve as an indication of [=user intent=] in some scenarios.
 
