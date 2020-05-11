@@ -3833,13 +3833,14 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <section class="unstable">
     <h3 class="heading settled" data-level="13.7" id="contextisolation-security"><span class="secno">13.7. </span><span class="content">Context Isolation</span><a class="self-link" href="#contextisolation-security"></a></h3>
     <p>The trusted UI must be drawn by an independent rendering context whose state is isolated from any rendering contexts used by the page. (For example, any WebGL rendering contexts.) This is to prevent the page from corrupting the state of the trusted UI’s context, which may prevent it from properly rendering a tracked environment. It also prevents the possibility of the page being able to capture imagery from the trusted UI, which could lead to private information being leaked.</p>
-    <p>Also, to prevent CORS-related vulnerabilities each page will see a new instance of objects returned by the API, such as <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②②">XRSession</a></code>. Attributes such as the <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context⑤">context</a> set by one page must not be able to be read by another. Similarly, methods invoked on the API MUST NOT cause an observable state change on other pages. For example: No method will be exposed that enables a system-level orientation reset, as this could be called repeatedly by a malicious page to prevent other pages from tracking properly. The user agent MUST, however, respect system-level orientation resets triggered by a user gesture or system menu.</p>
+    <p>Also, to prevent CORS-related vulnerabilities each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context②">browsing context</a> will see a new instance of objects returned by the API, such as <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②②">XRSession</a></code>. Attributes such as the <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context⑤">context</a> set on an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②⑧">XRWebGLLayer</a></code> with one <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm③③">relevant realm</a> should not be able to be read through an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②⑨">XRWebGLLayer</a></code> with a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm③④">relevant realm</a> that does not have the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin">same origin</a>. Similarly, methods invoked on the API MUST NOT cause an observable state change on other <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context③">browsing contexts</a>. For example: No method will be exposed that enables a system-level orientation reset, as this could be called repeatedly by a malicious page to prevent other pages from tracking properly. The user agent MUST, however, respect system-level orientation resets triggered by a user gesture or system menu.</p>
+    <p class="note" role="note"><span>Note:</span> this doesn’t apply to state changes that are caused by one <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context④">browsing context</a> entering immersive mode, acquiring a lock on the device, and potentially firing <code class="idl"><a data-link-type="idl" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange②">devicechange</a></code> events on other <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑤">browsing contexts</a>.</p>
     <h3 class="heading settled" data-level="13.8" id="fingerprinting-security"><span class="secno">13.8. </span><span class="content">Fingerprinting</span><a class="self-link" href="#fingerprinting-security"></a></h3>
     <p>Given that the API describes hardware available to the user and its capabilities it will inevitably provide additional surface area for fingerprinting. While it’s impossible to completely avoid this, user agents should take steps to mitigate the issue. This spec limits reporting of available hardware to only a single device at a time, which prevents using the rare cases of multiple headsets being connected as a fingerprinting signal. Also, the devices that are reported have no string identifiers and expose very little information about the devices capabilities until an XRSession is created, which requires additional protections when <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information①②">sensitive information</a> will be exposed.</p>
    </section>
    <h2 class="heading settled" data-level="14" id="integrations"><span class="secno">14. </span><span class="content">Integrations</span><a class="self-link" href="#integrations"></a></h2>
    <h3 class="heading settled" data-level="14.1" id="feature-policy"><span class="secno">14.1. </span><span class="content">Feature Policy</span><a class="self-link" href="#feature-policy"></a></h3>
-   <p>This specification defines a <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> that controls whether any <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②③">XRSession</a></code> that requires the use of spatial tracking may be returned by <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession④">requestSession()</a></code>, and whether support for session modes that require spatial tracking may be indicated by either <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported⑦">isSessionSupported()</a></code> or <code class="idl"><a data-link-type="idl" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange②">devicechange</a></code> events on the <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr③">navigator.xr</a></code> object.</p>
+   <p>This specification defines a <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> that controls whether any <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②③">XRSession</a></code> that requires the use of spatial tracking may be returned by <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession④">requestSession()</a></code>, and whether support for session modes that require spatial tracking may be indicated by either <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported⑦">isSessionSupported()</a></code> or <code class="idl"><a data-link-type="idl" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange③">devicechange</a></code> events on the <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr③">navigator.xr</a></code> object.</p>
    <p>The feature identifier for this feature is <code>"xr-spatial-tracking"</code>.</p>
    <p>The <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#default-allowlist" id="ref-for-default-allowlist">default allowlist</a> for this feature is <code>["self"]</code>.</p>
    <p class="note" role="note"><span>Note:</span> If the document’s origin is not allowed to use the <code>"xr-spatial-tracking"</code> feature policy any <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session②⑨">immersive sessions</a> will be blocked, because all <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session③⓪">immersive sessions</a> require some use of spatial tracking. <a data-link-type="dfn" href="#inline-session" id="ref-for-inline-session⑤">Inline sessions</a> will still be allowed, but restricted to only using the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-viewer" id="ref-for-dom-xrreferencespacetype-viewer⑤">"viewer"</a></code> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③⑦">XRReferenceSpace</a></code>.</p>
@@ -4683,6 +4684,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <ul>
     <li><a href="#ref-for-browsing-context">4.3. Animation Frames</a>
     <li><a href="#ref-for-browsing-context①">13.2.4. Duration of consent</a>
+    <li><a href="#ref-for-browsing-context②">13.7. Context Isolation</a> <a href="#ref-for-browsing-context③">(2)</a> <a href="#ref-for-browsing-context④">(3)</a> <a href="#ref-for-browsing-context⑤">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-current">
@@ -4761,6 +4763,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <li><a href="#ref-for-concept-relevant-realm②①">10.1. XRInputSource</a> <a href="#ref-for-concept-relevant-realm②②">(2)</a> <a href="#ref-for-concept-relevant-realm②③">(3)</a> <a href="#ref-for-concept-relevant-realm②④">(4)</a> <a href="#ref-for-concept-relevant-realm②⑤">(5)</a> <a href="#ref-for-concept-relevant-realm②⑥">(6)</a>
     <li><a href="#ref-for-concept-relevant-realm②⑦">10.2. Transient input</a> <a href="#ref-for-concept-relevant-realm②⑧">(2)</a> <a href="#ref-for-concept-relevant-realm②⑨">(3)</a>
     <li><a href="#ref-for-concept-relevant-realm③⓪">11.2. XRWebGLLayer</a> <a href="#ref-for-concept-relevant-realm③①">(2)</a> <a href="#ref-for-concept-relevant-realm③②">(3)</a>
+    <li><a href="#ref-for-concept-relevant-realm③③">13.7. Context Isolation</a> <a href="#ref-for-concept-relevant-realm③④">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-rendering-opportunity">
@@ -4786,6 +4789,12 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <ul>
     <li><a href="#ref-for-responsible-document">13.1.2. Trustworthy documents and origins</a>
     <li><a href="#ref-for-responsible-document①">13.5.1. Immersiveness</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-same-origin">
+   <a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin">https://html.spec.whatwg.org/multipage/origin.html#same-origin</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-same-origin">13.7. Context Isolation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-same-origin-domain">
@@ -5470,6 +5479,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
      <li><span class="dfn-paneled" id="term-for-report-the-exception" style="color:initial">report the exception</span>
      <li><span class="dfn-paneled" id="term-for-dom-animationframeprovider-requestanimationframe" style="color:initial">requestAnimationFrame(callback)</span>
      <li><span class="dfn-paneled" id="term-for-responsible-document" style="color:initial">responsible</span>
+     <li><span class="dfn-paneled" id="term-for-same-origin" style="color:initial">same origin</span>
      <li><span class="dfn-paneled" id="term-for-same-origin-domain" style="color:initial">same origin-domain</span>
      <li><span class="dfn-paneled" id="term-for-transient-activation" style="color:initial">transient activation</span>
     </ul>
@@ -7479,6 +7489,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <li><a href="#ref-for-xrwebgllayer⑧">11.1. XRLayer</a>
     <li><a href="#ref-for-xrwebgllayer⑨">11.2. XRWebGLLayer</a> <a href="#ref-for-xrwebgllayer①⓪">(2)</a> <a href="#ref-for-xrwebgllayer①①">(3)</a> <a href="#ref-for-xrwebgllayer①②">(4)</a> <a href="#ref-for-xrwebgllayer①③">(5)</a> <a href="#ref-for-xrwebgllayer①④">(6)</a> <a href="#ref-for-xrwebgllayer①⑤">(7)</a> <a href="#ref-for-xrwebgllayer①⑥">(8)</a> <a href="#ref-for-xrwebgllayer①⑦">(9)</a> <a href="#ref-for-xrwebgllayer①⑧">(10)</a> <a href="#ref-for-xrwebgllayer①⑨">(11)</a> <a href="#ref-for-xrwebgllayer②⓪">(12)</a> <a href="#ref-for-xrwebgllayer②①">(13)</a> <a href="#ref-for-xrwebgllayer②②">(14)</a> <a href="#ref-for-xrwebgllayer②③">(15)</a> <a href="#ref-for-xrwebgllayer②④">(16)</a>
     <li><a href="#ref-for-xrwebgllayer②⑤">11.3. WebGL Context Compatibility</a> <a href="#ref-for-xrwebgllayer②⑥">(2)</a> <a href="#ref-for-xrwebgllayer②⑦">(3)</a>
+    <li><a href="#ref-for-xrwebgllayer②⑧">13.7. Context Isolation</a> <a href="#ref-for-xrwebgllayer②⑨">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrwebgllayer-context">
@@ -7736,7 +7747,8 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <b><a href="#eventdef-xrsystem-devicechange">#eventdef-xrsystem-devicechange</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-eventdef-xrsystem-devicechange">3.2. XRSystem</a> <a href="#ref-for-eventdef-xrsystem-devicechange①">(2)</a>
-    <li><a href="#ref-for-eventdef-xrsystem-devicechange②">14.1. Feature Policy</a>
+    <li><a href="#ref-for-eventdef-xrsystem-devicechange②">13.7. Context Isolation</a>
+    <li><a href="#ref-for-eventdef-xrsystem-devicechange③">14.1. Feature Policy</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="eventdef-xrsession-visibilitychange">
