@@ -2050,6 +2050,8 @@ async function onXRSessionStarted(xrSession) {
 Events {#events}
 ======
 
+The [=task source=] for all [=tasks queued|queue a task=] in this specification is the <dfn>XR task source</dfn>, unless otherwise specified.
+
 XRSessionEvent {#xrsessionevent-interface}
 --------------
 
