@@ -2228,9 +2228,11 @@ NOTE: These steps ensure that initial <code>inputsourceschange</code> events occ
      <li data-md>
       <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended①">ended</a> value is <code>true</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror②">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-baselayer" id="ref-for-dom-xrrenderstateinit-baselayer">baseLayer</a></code>'s was created with an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②⑨">XRSession</a></code> other than <var>session</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror③">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-baselayer" id="ref-for-dom-xrrenderstateinit-baselayer">baseLayer</a></code> was created with an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②⑨">XRSession</a></code> other than <var>session</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror③">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-inlineverticalfieldofview" id="ref-for-dom-xrrenderstateinit-inlineverticalfieldofview">inlineVerticalFieldOfView</a></code> is set and <var>session</var> is an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①③">immersive session</a>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror④">InvalidStateError</a></code> and abort these steps.</p>
+     <li data-md>
+      <p>If none of <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-depthnear" id="ref-for-dom-xrrenderstateinit-depthnear">depthNear</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-depthfar" id="ref-for-dom-xrrenderstateinit-depthfar">depthFar</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-inlineverticalfieldofview" id="ref-for-dom-xrrenderstateinit-inlineverticalfieldofview①">inlineVerticalFieldOfView</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-baselayer" id="ref-for-dom-xrrenderstateinit-baselayer①">baseLayer</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-layers" id="ref-for-dom-xrrenderstateinit-layers①">layers</a></code> are set, abort these steps.</p>
      <li data-md>
       <p>Run <a data-link-type="dfn" href="#update-the-pending-layers-state" id="ref-for-update-the-pending-layers-state">update the pending layers state</a> with <var>session</var> and <var>newState</var>.</p>
      <li data-md>
@@ -2238,13 +2240,13 @@ NOTE: These steps ensure that initial <code>inputsourceschange</code> events occ
      <li data-md>
       <p>If <var>session</var>’s <a data-link-type="dfn" href="#pending-render-state" id="ref-for-pending-render-state">pending render state</a> is <code>null</code>, set it to a copy of <var>activeState</var>.</p>
      <li data-md>
-      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-depthnear" id="ref-for-dom-xrrenderstateinit-depthnear">depthNear</a></code> value is set, set <var>session</var>’s <a data-link-type="dfn" href="#pending-render-state" id="ref-for-pending-render-state①">pending render state</a>'s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-depthnear" id="ref-for-dom-xrrenderstate-depthnear">depthNear</a></code> to <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-depthnear" id="ref-for-dom-xrrenderstateinit-depthnear①">depthNear</a></code>.</p>
+      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-depthnear" id="ref-for-dom-xrrenderstateinit-depthnear①">depthNear</a></code> value is set, set <var>session</var>’s <a data-link-type="dfn" href="#pending-render-state" id="ref-for-pending-render-state①">pending render state</a>'s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-depthnear" id="ref-for-dom-xrrenderstate-depthnear">depthNear</a></code> to <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-depthnear" id="ref-for-dom-xrrenderstateinit-depthnear②">depthNear</a></code>.</p>
      <li data-md>
-      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-depthfar" id="ref-for-dom-xrrenderstateinit-depthfar">depthFar</a></code> value is set, set <var>session</var>’s <a data-link-type="dfn" href="#pending-render-state" id="ref-for-pending-render-state②">pending render state</a>'s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-depthfar" id="ref-for-dom-xrrenderstate-depthfar">depthFar</a></code> to <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-depthfar" id="ref-for-dom-xrrenderstateinit-depthfar①">depthFar</a></code>.</p>
+      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-depthfar" id="ref-for-dom-xrrenderstateinit-depthfar①">depthFar</a></code> value is set, set <var>session</var>’s <a data-link-type="dfn" href="#pending-render-state" id="ref-for-pending-render-state②">pending render state</a>'s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-depthfar" id="ref-for-dom-xrrenderstate-depthfar">depthFar</a></code> to <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-depthfar" id="ref-for-dom-xrrenderstateinit-depthfar②">depthFar</a></code>.</p>
      <li data-md>
-      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-inlineverticalfieldofview" id="ref-for-dom-xrrenderstateinit-inlineverticalfieldofview①">inlineVerticalFieldOfView</a></code> is set, set <var>session</var>’s <a data-link-type="dfn" href="#pending-render-state" id="ref-for-pending-render-state③">pending render state</a>'s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-inlineverticalfieldofview" id="ref-for-dom-xrrenderstate-inlineverticalfieldofview">inlineVerticalFieldOfView</a></code> to <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-inlineverticalfieldofview" id="ref-for-dom-xrrenderstateinit-inlineverticalfieldofview②">inlineVerticalFieldOfView</a></code>.</p>
+      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-inlineverticalfieldofview" id="ref-for-dom-xrrenderstateinit-inlineverticalfieldofview②">inlineVerticalFieldOfView</a></code> is set, set <var>session</var>’s <a data-link-type="dfn" href="#pending-render-state" id="ref-for-pending-render-state③">pending render state</a>'s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-inlineverticalfieldofview" id="ref-for-dom-xrrenderstate-inlineverticalfieldofview">inlineVerticalFieldOfView</a></code> to <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-inlineverticalfieldofview" id="ref-for-dom-xrrenderstateinit-inlineverticalfieldofview③">inlineVerticalFieldOfView</a></code>.</p>
      <li data-md>
-      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-baselayer" id="ref-for-dom-xrrenderstateinit-baselayer①">baseLayer</a></code> is set, set <var>session</var>’s <a data-link-type="dfn" href="#pending-render-state" id="ref-for-pending-render-state④">pending render state</a>'s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-baselayer" id="ref-for-dom-xrrenderstate-baselayer">baseLayer</a></code> to <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-baselayer" id="ref-for-dom-xrrenderstateinit-baselayer②">baseLayer</a></code>.</p>
+      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-baselayer" id="ref-for-dom-xrrenderstateinit-baselayer②">baseLayer</a></code> is set, set <var>session</var>’s <a data-link-type="dfn" href="#pending-render-state" id="ref-for-pending-render-state④">pending render state</a>'s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-baselayer" id="ref-for-dom-xrrenderstate-baselayer">baseLayer</a></code> to <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-baselayer" id="ref-for-dom-xrrenderstateinit-baselayer③">baseLayer</a></code>.</p>
     </ol>
    </div>
    <div class="algorithm" data-algorithm="apply-pending-render-state">
@@ -6544,31 +6546,31 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   <aside class="dfn-panel" data-for="dom-xrrenderstateinit-depthnear">
    <b><a href="#dom-xrrenderstateinit-depthnear">#dom-xrrenderstateinit-depthnear</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrrenderstateinit-depthnear">4.1. XRSession</a> <a href="#ref-for-dom-xrrenderstateinit-depthnear①">(2)</a>
+    <li><a href="#ref-for-dom-xrrenderstateinit-depthnear">4.1. XRSession</a> <a href="#ref-for-dom-xrrenderstateinit-depthnear①">(2)</a> <a href="#ref-for-dom-xrrenderstateinit-depthnear②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrrenderstateinit-depthfar">
    <b><a href="#dom-xrrenderstateinit-depthfar">#dom-xrrenderstateinit-depthfar</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrrenderstateinit-depthfar">4.1. XRSession</a> <a href="#ref-for-dom-xrrenderstateinit-depthfar①">(2)</a>
+    <li><a href="#ref-for-dom-xrrenderstateinit-depthfar">4.1. XRSession</a> <a href="#ref-for-dom-xrrenderstateinit-depthfar①">(2)</a> <a href="#ref-for-dom-xrrenderstateinit-depthfar②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrrenderstateinit-inlineverticalfieldofview">
    <b><a href="#dom-xrrenderstateinit-inlineverticalfieldofview">#dom-xrrenderstateinit-inlineverticalfieldofview</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrrenderstateinit-inlineverticalfieldofview">4.1. XRSession</a> <a href="#ref-for-dom-xrrenderstateinit-inlineverticalfieldofview①">(2)</a> <a href="#ref-for-dom-xrrenderstateinit-inlineverticalfieldofview②">(3)</a>
+    <li><a href="#ref-for-dom-xrrenderstateinit-inlineverticalfieldofview">4.1. XRSession</a> <a href="#ref-for-dom-xrrenderstateinit-inlineverticalfieldofview①">(2)</a> <a href="#ref-for-dom-xrrenderstateinit-inlineverticalfieldofview②">(3)</a> <a href="#ref-for-dom-xrrenderstateinit-inlineverticalfieldofview③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrrenderstateinit-baselayer">
    <b><a href="#dom-xrrenderstateinit-baselayer">#dom-xrrenderstateinit-baselayer</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrrenderstateinit-baselayer">4.1. XRSession</a> <a href="#ref-for-dom-xrrenderstateinit-baselayer①">(2)</a> <a href="#ref-for-dom-xrrenderstateinit-baselayer②">(3)</a>
+    <li><a href="#ref-for-dom-xrrenderstateinit-baselayer">4.1. XRSession</a> <a href="#ref-for-dom-xrrenderstateinit-baselayer①">(2)</a> <a href="#ref-for-dom-xrrenderstateinit-baselayer②">(3)</a> <a href="#ref-for-dom-xrrenderstateinit-baselayer③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrrenderstateinit-layers">
    <b><a href="#dom-xrrenderstateinit-layers">#dom-xrrenderstateinit-layers</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrrenderstateinit-layers">4.1. XRSession</a>
+    <li><a href="#ref-for-dom-xrrenderstateinit-layers">4.1. XRSession</a> <a href="#ref-for-dom-xrrenderstateinit-layers①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrrenderstate">
