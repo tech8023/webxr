@@ -1542,7 +1542,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-05-11">11 May 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-05-12">12 May 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1873,9 +1873,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        <li data-md>
         <p>If the <a data-link-type="dfn" href="#xrsystem-immersive-xr-device" id="ref-for-xrsystem-immersive-xr-device①①">immersive XR device</a> is null, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve①">resolve</a> <var>promise</var> with <code>false</code> and abort these steps.</p>
        <li data-md>
-        <p>If the <a data-link-type="dfn" href="#xrsystem-immersive-xr-device" id="ref-for-xrsystem-immersive-xr-device①②">immersive XR device</a>'s <a data-link-type="dfn" href="#list-of-supported-modes" id="ref-for-list-of-supported-modes③">list of supported modes</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain④">contain</a> <var>mode</var>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve②">resolve</a> <var>promise</var> with <code>false</code> and abort these steps.</p>
+        <p>If the <a data-link-type="dfn" href="#xrsystem-immersive-xr-device" id="ref-for-xrsystem-immersive-xr-device①②">immersive XR device</a>'s <a data-link-type="dfn" href="#list-of-supported-modes" id="ref-for-list-of-supported-modes③">list of supported modes</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain④">contain</a> <var>mode</var>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②">queue a task</a> to <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve②">resolve</a> <var>promise</var> with <code>false</code> and abort these steps.</p>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve③">Resolve</a> <var>promise</var> with <code>true</code>.</p>
+        <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task③">queue a task</a> to <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve③">resolve</a> <var>promise</var> with <code>true</code>.</p>
       </ol>
      <li data-md>
       <p>Return <var>promise</var>.</p>
@@ -1931,7 +1931,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        <li data-md>
         <p>Set <var>device</var> to the result of <a data-link-type="dfn" href="#obtain-the-current-device" id="ref-for-obtain-the-current-device">obtaining the current device</a> for <var>mode</var>, <var>requiredFeatures</var>, and <var>optionalFeatures</var>.</p>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②">Queue a task</a> to perform the following steps:</p>
+        <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task④">Queue a task</a> to perform the following steps:</p>
         <ol>
          <li data-md>
           <p>If <var>device</var> is <code>null</code> or <var>device</var>’s <a data-link-type="dfn" href="#list-of-supported-modes" id="ref-for-list-of-supported-modes④">list of supported modes</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑤">contain</a> <var>mode</var>, run the following steps:</p>
@@ -1974,7 +1974,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
          <li data-md>
           <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve④">Resolve</a> <var>promise</var> with <var>session</var>.</p>
          <li data-md>
-          <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task③">Queue a task</a> to perform the following steps:
+          <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑤">Queue a task</a> to perform the following steps:
 NOTE: These steps ensure that initial <code>inputsourceschange</code> events occur after the initial session is resolved.</p>
           <ol>
            <li data-md>
@@ -2185,7 +2185,7 @@ NOTE: These steps ensure that initial <code>inputsourceschange</code> events occ
         <p>Putting the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device①⓪">XR device</a> in a state such that a different source may be able to initiate a session with the same device if <var>session</var> is an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①②">immersive session</a>.</p>
       </ul>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task④">Queue a task</a> that fires an <code class="idl"><a data-link-type="idl" href="#xrsessionevent" id="ref-for-xrsessionevent">XRSessionEvent</a></code> named <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-end" id="ref-for-eventdef-xrsession-end">end</a></code> on <var>session</var>.</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑥">Queue a task</a> that fires an <code class="idl"><a data-link-type="idl" href="#xrsessionevent" id="ref-for-xrsessionevent">XRSessionEvent</a></code> named <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-end" id="ref-for-eventdef-xrsession-end">end</a></code> on <var>session</var>.</p>
     </ol>
    </div>
    <div class="algorithm" data-algorithm="end-session">
@@ -2196,7 +2196,7 @@ NOTE: These steps ensure that initial <code>inputsourceschange</code> events occ
      <li data-md>
       <p><a data-link-type="dfn" href="#shut-down-the-session" id="ref-for-shut-down-the-session②">Shut down</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this">this</a>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑤">Queue a task</a> to perform the following steps:</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑦">Queue a task</a> to perform the following steps:</p>
       <ol>
        <li data-md>
         <p>Wait until any platform-specific steps related to shutting down the session have completed.</p>
@@ -2294,9 +2294,9 @@ NOTE: These steps ensure that initial <code>inputsourceschange</code> events occ
        <li data-md>
         <p><a data-link-type="dfn" href="#create-a-reference-space" id="ref-for-create-a-reference-space">Create a reference space</a>, <var>referenceSpace</var>, with the <code class="idl"><a data-link-type="idl" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype②">XRReferenceSpaceType</a></code> <var>type</var>.</p>
        <li data-md>
-        <p>If <var>referenceSpace</var> is <code>null</code>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑦">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror③">NotSupportedError</a></code> and abort these steps.</p>
+        <p>If <var>referenceSpace</var> is <code>null</code>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑧">queue a task</a> to <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑦">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror③">NotSupportedError</a></code> and abort these steps.</p>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑥">Resolve</a> <var>promise</var> with <var>referenceSpace</var>.</p>
+        <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑨">Queue a task</a> to <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑥">resolve</a> <var>promise</var> with <var>referenceSpace</var>.</p>
       </ol>
      <li data-md>
       <p>Return <var>promise</var>.</p>
@@ -2324,7 +2324,7 @@ NOTE: These steps ensure that initial <code>inputsourceschange</code> events occ
         <p>Add <var>inputSource</var> to <var>added</var>.</p>
       </ol>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑥">Queue a task</a> to perform the following steps:</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⓪">Queue a task</a> to perform the following steps:</p>
       <ol>
        <li data-md>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-extend" id="ref-for-list-extend">Extend</a> <var>session</var>’s <a data-link-type="dfn" href="#list-of-active-xr-input-sources" id="ref-for-list-of-active-xr-input-sources②">list of active XR input sources</a> with <var>added</var>.</p>
@@ -2349,7 +2349,7 @@ NOTE: These steps ensure that initial <code>inputsourceschange</code> events occ
         <p>Add <var>inputSource</var> to <var>removed</var>.</p>
       </ol>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑦">Queue a task</a> to perform the following steps:</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①①">Queue a task</a> to perform the following steps:</p>
       <ol>
        <li data-md>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove">Remove</a> each <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource③">XRInputSource</a></code> in <var>removed</var> from <var>session</var>’s <a data-link-type="dfn" href="#list-of-active-xr-input-sources" id="ref-for-list-of-active-xr-input-sources④">list of active XR input sources</a>.</p>
@@ -2380,7 +2380,7 @@ NOTE: These steps ensure that initial <code>inputsourceschange</code> events occ
         <p>Add <var>newInputSource</var> to <var>added</var>.</p>
       </ol>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑧">Queue a task</a> to perform the following steps:</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①②">Queue a task</a> to perform the following steps:</p>
       <ol>
        <li data-md>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove①">Remove</a> each <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource⑥">XRInputSource</a></code> in <var>removed</var> from <var>session</var>’s <a data-link-type="dfn" href="#list-of-active-xr-input-sources" id="ref-for-list-of-active-xr-input-sources⑥">list of active XR input sources</a>.</p>
@@ -3096,7 +3096,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②①">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⑨">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②①">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session⑥">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time④">time</a> being the time the action occurred.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑨">Queue a task</a> to <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event">fire an input source event</a> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-selectstart" id="ref-for-eventdef-xrsession-selectstart②">selectstart</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①③">Queue a task</a> to <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event">fire an input source event</a> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-selectstart" id="ref-for-eventdef-xrsession-selectstart②">selectstart</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
     </ol>
    </div>
    <div class="algorithm" data-algorithm="on-input-end">
@@ -3105,7 +3105,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②②">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②⓪">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②②">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session⑦">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑤">time</a> being the time the action occurred.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⓪">Queue a task</a> to perform the following steps:</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①④">Queue a task</a> to perform the following steps:</p>
       <ol>
        <li data-md>
         <p><a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event①">Fire an input source event</a> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-select" id="ref-for-eventdef-xrsession-select③">select</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
@@ -3121,7 +3121,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②③">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②①">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②③">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session⑧">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑥">time</a> being the time the action occurred.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①①">Queue a task</a> to <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event③">fire an input source event</a> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-squeezestart" id="ref-for-eventdef-xrsession-squeezestart②">squeezestart</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑤">Queue a task</a> to <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event③">fire an input source event</a> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-squeezestart" id="ref-for-eventdef-xrsession-squeezestart②">squeezestart</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
     </ol>
    </div>
    <div class="algorithm" data-algorithm="on-squeeze-end">
@@ -3130,7 +3130,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②④">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②②">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②④">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session⑨">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑦">time</a> being the time the action occurred.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①②">Queue a task</a> to perform the following steps:</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑥">Queue a task</a> to perform the following steps:</p>
       <ol>
        <li data-md>
         <p><a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event④">Fire an input source event</a> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-squeeze" id="ref-for-eventdef-xrsession-squeeze②">squeeze</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
@@ -3146,7 +3146,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②⑤">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②③">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②⑤">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session①⓪">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑧">time</a> being the time the action occurred.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①③">Queue a task</a> to <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event⑥">fire an input source event</a> an <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent">XRInputSourceEvent</a></code> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-selectend" id="ref-for-eventdef-xrsession-selectend③">selectend</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑦">Queue a task</a> to <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event⑥">fire an input source event</a> an <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent">XRInputSourceEvent</a></code> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-selectend" id="ref-for-eventdef-xrsession-selectend③">selectend</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
     </ol>
    </div>
    <div class="algorithm" data-algorithm="on-squeeze-cancelled">
@@ -3155,7 +3155,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②⑥">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②④">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②⑥">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session①①">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑨">time</a> being the time the action occurred.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①④">Queue a task</a> to <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event⑦">fire an input source event</a> an <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent①">XRInputSourceEvent</a></code> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-squeezeend" id="ref-for-eventdef-xrsession-squeezeend③">squeezeend</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑧">Queue a task</a> to <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event⑦">fire an input source event</a> an <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent①">XRInputSourceEvent</a></code> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-squeezeend" id="ref-for-eventdef-xrsession-squeezeend③">squeezeend</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
     </ol>
    </div>
    <h3 class="heading settled" data-level="10.2" id="transient-input"><span class="secno">10.2. </span><span class="content">Transient input</span><a class="self-link" href="#transient-input"></a></h3>
@@ -3167,7 +3167,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②⑦">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②⑤">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②⑦">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session①②">session</a></code> <var>session</var> for the time the action occurred.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑤">Queue a task</a> to perform the following steps:</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑨">Queue a task</a> to perform the following steps:</p>
       <ol>
        <li data-md>
         <p>Fire any <code>"pointerdown"</code> events produced by the <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source②⑤">XR input source</a>'s action, if necessary.</p>
@@ -3184,7 +3184,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②⑧">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②⑥">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②⑧">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session①③">session</a></code> <var>session</var> for the time the action occurred.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑥">Queue a task</a> to perform the following steps:</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②⓪">Queue a task</a> to perform the following steps:</p>
       <ol>
        <li data-md>
         <p>If the <a data-link-type="dfn" href="#transient-action" id="ref-for-transient-action⑤">transient action</a> is a <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action①③">primary action</a>, <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event⑨">fire an input source event</a> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-select" id="ref-for-eventdef-xrsession-select④">select</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
@@ -3205,7 +3205,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②⑨">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②⑦">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②⑨">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session①④">session</a></code> <var>session</var> for the time the action occurred.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑦">Queue a task</a> to perform the following steps:</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②①">Queue a task</a> to perform the following steps:</p>
       <ol>
        <li data-md>
         <p>If the <a data-link-type="dfn" href="#transient-action" id="ref-for-transient-action⑧">transient action</a> is a <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action①⑤">primary action</a>, <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event①①">fire an input source event</a> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-selectend" id="ref-for-eventdef-xrsession-selectend⑤">selectend</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
@@ -3517,7 +3517,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
        <dd> Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①②">XR compatible</a> boolean to <code>true</code> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑧">resolve</a> <var>promise</var>. 
        <dt> Otherwise 
        <dd>
-         <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑧">Queue a task</a> on the <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15" id="ref-for-5.15">WebGL task source</a> to perform the following steps: 
+         <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②②">Queue a task</a> on the <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15" id="ref-for-5.15">WebGL task source</a> to perform the following steps: 
         <ol>
          <li data-md>
           <p>Force <var>context</var> to be lost and <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#CONTEXT_LOST" id="ref-for-CONTEXT_LOST">handle the context loss</a> as described by the WebGL specification.</p>
@@ -3568,6 +3568,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
 </pre>
    </div>
    <h2 class="heading settled" data-level="12" id="events"><span class="secno">12. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h2>
+   <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source" id="ref-for-task-source">task source</a> for all <a data-link-type="dfn">queue a task</a> in this specification is the <dfn data-dfn-type="dfn" data-noexport id="xr-task-source">XR task source<a class="self-link" href="#xr-task-source"></a></dfn>, unless otherwise specified.</p>
    <h3 class="heading settled" data-level="12.1" id="xrsessionevent-interface"><span class="secno">12.1. </span><span class="content">XRSessionEvent</span><a class="self-link" href="#xrsessionevent-interface"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#xrsessionevent" id="ref-for-xrsessionevent①">XRSessionEvent</a></code>s are fired to indicate changes to the state of an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨⑧">XRSession</a></code>.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑦"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑥"><c- g>Exposed</c-></a>=<c- n>Window</c->]
@@ -4474,6 +4475,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li><a href="#xrspace">XRSpace</a><span>, in §6.1</span>
    <li><a href="#xrsystem">XRSystem</a><span>, in §3.2</span>
    <li><a href="#enumdef-xrtargetraymode">XRTargetRayMode</a><span>, in §10.1</span>
+   <li><a href="#xr-task-source">XR task source</a><span>, in §12</span>
    <li><a href="#xrview">XRView</a><span>, in §7.1</span>
    <li><a href="#xrviewerpose">XRViewerPose</a><span>, in §9.2</span>
    <li><a href="#xrviewport">XRViewport</a><span>, in §7.2</span>
@@ -4739,11 +4741,11 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   <aside class="dfn-panel" data-for="term-for-queue-a-task">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-queue-a-task">3.2. XRSystem</a> <a href="#ref-for-queue-a-task①">(2)</a> <a href="#ref-for-queue-a-task②">(3)</a> <a href="#ref-for-queue-a-task③">(4)</a>
-    <li><a href="#ref-for-queue-a-task④">4.1. XRSession</a> <a href="#ref-for-queue-a-task⑤">(2)</a> <a href="#ref-for-queue-a-task⑥">(3)</a> <a href="#ref-for-queue-a-task⑦">(4)</a> <a href="#ref-for-queue-a-task⑧">(5)</a>
-    <li><a href="#ref-for-queue-a-task⑨">10.1. XRInputSource</a> <a href="#ref-for-queue-a-task①⓪">(2)</a> <a href="#ref-for-queue-a-task①①">(3)</a> <a href="#ref-for-queue-a-task①②">(4)</a> <a href="#ref-for-queue-a-task①③">(5)</a> <a href="#ref-for-queue-a-task①④">(6)</a>
-    <li><a href="#ref-for-queue-a-task①⑤">10.2. Transient input</a> <a href="#ref-for-queue-a-task①⑥">(2)</a> <a href="#ref-for-queue-a-task①⑦">(3)</a>
-    <li><a href="#ref-for-queue-a-task①⑧">11.3. WebGL Context Compatibility</a>
+    <li><a href="#ref-for-queue-a-task">3.2. XRSystem</a> <a href="#ref-for-queue-a-task①">(2)</a> <a href="#ref-for-queue-a-task②">(3)</a> <a href="#ref-for-queue-a-task③">(4)</a> <a href="#ref-for-queue-a-task④">(5)</a> <a href="#ref-for-queue-a-task⑤">(6)</a>
+    <li><a href="#ref-for-queue-a-task⑥">4.1. XRSession</a> <a href="#ref-for-queue-a-task⑦">(2)</a> <a href="#ref-for-queue-a-task⑧">(3)</a> <a href="#ref-for-queue-a-task⑨">(4)</a> <a href="#ref-for-queue-a-task①⓪">(5)</a> <a href="#ref-for-queue-a-task①①">(6)</a> <a href="#ref-for-queue-a-task①②">(7)</a>
+    <li><a href="#ref-for-queue-a-task①③">10.1. XRInputSource</a> <a href="#ref-for-queue-a-task①④">(2)</a> <a href="#ref-for-queue-a-task①⑤">(3)</a> <a href="#ref-for-queue-a-task①⑥">(4)</a> <a href="#ref-for-queue-a-task①⑦">(5)</a> <a href="#ref-for-queue-a-task①⑧">(6)</a>
+    <li><a href="#ref-for-queue-a-task①⑨">10.2. Transient input</a> <a href="#ref-for-queue-a-task②⓪">(2)</a> <a href="#ref-for-queue-a-task②①">(3)</a>
+    <li><a href="#ref-for-queue-a-task②②">11.3. WebGL Context Compatibility</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-relevant-global">
@@ -4804,6 +4806,12 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain">https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-same-origin-domain">13.1.1. Active and focused document</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-task-source">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source">https://html.spec.whatwg.org/multipage/webappapis.html#task-source</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-task-source">12. Events</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-transient-activation">
@@ -5484,6 +5492,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
      <li><span class="dfn-paneled" id="term-for-responsible-document" style="color:initial">responsible</span>
      <li><span class="dfn-paneled" id="term-for-same-origin" style="color:initial">same origin</span>
      <li><span class="dfn-paneled" id="term-for-same-origin-domain" style="color:initial">same origin-domain</span>
+     <li><span class="dfn-paneled" id="term-for-task-source" style="color:initial">task source</span>
      <li><span class="dfn-paneled" id="term-for-transient-activation" style="color:initial">transient activation</span>
     </ul>
    <li>
