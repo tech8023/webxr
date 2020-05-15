@@ -2962,7 +2962,9 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑥">position</a></code> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new①④">new</a> <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑥">DOMPointReadOnly</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#current" id="ref-for-current①">current realm</a>.</p>
      <li data-md>
-      <p>If <var>position</var>’s <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w①">w</a></code> value is not 1.0, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror">TypeError</a></code>.</p>
+      <p>If <var>position</var>’s <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w①">w</a></code> value is not <code>1.0</code>, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror">TypeError</a></code> and abort these steps.</p>
+     <li data-md>
+      <p>If one or more of <var>position</var>’s or <var>orientation</var>’s values is <code>NaN</code> or another non-finite number such as <code>infinity</code>, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①">TypeError</a></code> and abort these steps.</p>
      <li data-md>
       <p>Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑦">position</a></code>’s <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-x" id="ref-for-dom-dompointreadonly-x">x</a></code> value to <var>position</var>’s x dictionary member, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-y" id="ref-for-dom-dompointreadonly-y①">y</a></code> value to <var>position</var>’s y dictionary member, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-z" id="ref-for-dom-dompointreadonly-z">z</a></code> value to <var>position</var>’s z dictionary member and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w②">w</a></code> value to <var>position</var>’s w dictionary member.</p>
      <li data-md>
@@ -5309,7 +5311,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <aside class="dfn-panel" data-for="term-for-exceptiondef-typeerror">
    <a href="https://heycam.github.io/webidl/#exceptiondef-typeerror">https://heycam.github.io/webidl/#exceptiondef-typeerror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-exceptiondef-typeerror">8.3. XRRigidTransform</a>
+    <li><a href="#ref-for-exceptiondef-typeerror">8.3. XRRigidTransform</a> <a href="#ref-for-exceptiondef-typeerror①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-a-new-promise">

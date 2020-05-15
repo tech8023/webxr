@@ -1426,7 +1426,8 @@ The <dfn constructor for="XRRigidTransform">XRRigidTransform(|position|, |orient
 
   1. Let |transform| be a [=new=] {{XRRigidTransform}} in the [=current realm=].
   1. Let |transform|'s {{XRRigidTransform/position}} be a [=new=] {{DOMPointReadOnly}} in the [=current realm=].
-  1. If |position|'s {{DOMPointReadOnly/w}} value is not 1.0, throw a {{TypeError}}.
+  1. If |position|'s {{DOMPointReadOnly/w}} value is not <code>1.0</code>, throw a {{TypeError}} and abort these steps.
+  1. If one or more of |position|'s or |orientation|'s values is <code>NaN</code> or another non-finite number such as <code>infinity</code>, throw a {{TypeError}} and abort these steps.
   1. Set |transform|'s {{XRRigidTransform/position}}’s {{DOMPointReadOnly/x}} value to |position|'s x dictionary member, {{DOMPointReadOnly/y}} value to |position|'s y dictionary member, {{DOMPointReadOnly/z}} value to |position|'s z dictionary member and {{DOMPointReadOnly/w}} value to |position|'s w dictionary member.
   1. Let |transform|'s {{XRRigidTransform/orientation}} be a [=new=] {{DOMPointReadOnly}} in the [=current realm=].
   1. Set |transform|'s {{XRRigidTransform/orientation}}’s {{DOMPointReadOnly/x}} value to |orientation|'s x dictionary member, {{DOMPointReadOnly/y}} value to |orientation|'s y dictionary member, {{DOMPointReadOnly/z}} value to |orientation|'s z dictionary member and {{DOMPointReadOnly/w}} value to |orientation|'s w dictionary member.
