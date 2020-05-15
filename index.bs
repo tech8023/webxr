@@ -79,12 +79,14 @@ spec:html; urlPrefix: https://html.spec.whatwg.org/multipage/
     type: dfn; text: current realm; url: webappapis.html#current
     type: dfn; text: same origin-domain; url: origin.html#same-origin-domain
     type: dfn; text: browsing context; url: browsers.html#browsing-context
+    type: dfn; text: associated document; url: window-object.html#concept-document-window
 spec: SecureContexts; urlPrefix: https://w3c.github.io/webappsec-secure-contexts/#
     type: dfn; text: secure context; url: secure-contexts
 spec: PointerEvents; urlPrefix: https://www.w3.org/TR/pointerevents/#
     type: dfn; text: primary pointer; url: dfn-primary-pointer
 spec: PageVisibility; urlPrefix: https://www.w3.org/TR/page-visibility-2/#
     type: dfn; text: visibilityState; url: visibilitystate-attribute
+    type: dfn; text: hidden; url: dom-visibilitystate-hidden
 
 spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
     type: method; text: IsDetachedBuffer; url: sec-isdetachedbuffer
@@ -2281,8 +2283,8 @@ When based on sensor data, {{XRPose}} and {{XRViewerPose}} will expose [=sensiti
 
 To determine if <dfn>poses may be reported</dfn> to an {{XRSession}} |session|, the user agent MUST run the following steps:
 
-  1. Let |document| be the document that owns |session|.
-  1. If the request does not originate from |document|, return <code>false</code>.
+  1. Let |document| be |session|'s [=relevant global object=]'s [=associated document=].
+  1. If |document| is [=hidden=] return <code>false</code>.
   1. If |session|'s {{XRSession/visibilityState}} in not {{XRVisibilityState/"visible"}}, return <code>false</code>.
   1. Determine if the pose data can be returned as follows:
     <dl class="switch">
@@ -2297,6 +2299,8 @@ To determine if <dfn>poses may be reported</dfn> to an {{XRSession}} |session|, 
     </dl>
 
 </div>
+
+Note: The requirement for document visibility is based on [[DEVICE-ORIENTATION]].
 
 Note: The method by which a user agent determines that poses do not expose fingerprintable data is left to the user agent's discretion.
 
