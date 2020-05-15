@@ -78,14 +78,15 @@ spec:html; urlPrefix: https://html.spec.whatwg.org/multipage/
     type: dfn; text: rendering opportunity; url: webappapis.html#rendering-opportunity
     type: dfn; text: current realm; url: webappapis.html#current
     type: dfn; text: same origin-domain; url: origin.html#same-origin-domain
-    type: dfn; text: active document; url: browsers.html#active-document
     type: dfn; text: browsing context; url: browsers.html#browsing-context
+    type: dfn; text: associated document; url: window-object.html#concept-document-window
 spec: SecureContexts; urlPrefix: https://w3c.github.io/webappsec-secure-contexts/#
     type: dfn; text: secure context; url: secure-contexts
 spec: PointerEvents; urlPrefix: https://www.w3.org/TR/pointerevents/#
     type: dfn; text: primary pointer; url: dfn-primary-pointer
 spec: PageVisibility; urlPrefix: https://www.w3.org/TR/page-visibility-2/#
     type: dfn; text: visibilityState; url: visibilitystate-attribute
+    type: dfn; text: hidden; url: dom-visibilitystate-hidden
 
 spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
     type: method; text: IsDetachedBuffer; url: sec-isdetachedbuffer
@@ -2202,36 +2203,14 @@ Sensitive Information {#sensitive-information-header}
 
 In the context of XR, <dfn>sensitive information</dfn> includes, but is not limited to, user-configurable data such as interpupillary distance (IPD) and sensor-based data such as {{XRPose}}s. All [=immersive sessions=] will expose some amount of sensitive data, due to the user's pose being necessary to render anything. However, in some cases, the same sensitive information will also be exposed via {{XRSessionMode/"inline"}} sessions.
 
-### Active and focused document ### {#active-and-focused-document}
-A document MUST be [=active and focused=] at the time that [=sensitive information=] is requested.
-
-<div class="algorithm" data-algorithm="document-is-active-and-focused">
-
-To determine if a given {{Document}} |document| is <dfn>active and focused</dfn> the user agent MUST run the following steps:
-
-  1. If the [=currently focused area=] does not belong to |document|, return <code>false</code>
-  1. If |document| is not of the [=same origin-domain=] as the [=active document=], return <code>false</code>
-  1. Return <code>true</code>
-
-</div>
-
-### Trustworthy documents and origins ### {#trustworthy-documents}
-In order to expose any [=sensitive information=] the requesting document MUST be considered [=trustworthy=].
-
-<div class="algorithm" data-algorithm="document-is-trustworthy">
-
-To determine if a given {{Document}} |document| is <dfn>trustworthy</dfn> the user agent MUST run the following steps:
-
-  1. If |document| is not a [=responsible=] document, return <code>false</code>
-  1. If |document| is not [=active and focused=], return <code>false</code>
-  1. Return <code>true</code>
-
-</div>
-
 User intention {#user-intention}
 --------------
 
 It is often necessary to be sure of <dfn>user intent</dfn> before exposing sensitive information or allowing actions with a significant effect on the user's experience. This intent may be communicated or observed in a number of ways.
+
+Note: A common way of determining user intent is by [=transient activation=] of a UI control, typically an "enter VR" button. Since activation is transient,
+the [=browsing context=] requesting an XR session must be an [=ancestor=] or a [=same origin-domain=] [=descendant=] of the context containing the UI control, and must recently
+have been the [=active document=] of the browsing context.
 
 ### User activation ### {#user-activation}
 [=Transient activation=] MAY serve as an indication of [=user intent=] in some scenarios.
@@ -2283,7 +2262,6 @@ Users must be in control of when immersive sessions are created because the crea
 To determine if an <dfn>immersive session request is allowed</dfn> for a given |global object| the user agent MUST run the following steps:
 
   1. If the request was not made while the |global object| has [=transient activation=] or when [=launching a web application=], return <code>false</code>
-  1. If the requesting document is not considered [=trustworthy=], return <code>false</code>
   1. If [=user intent=] to begin an [=immersive session=] is not well understood, either via [=explicit consent=] or [=implicit consent=], return <code>false</code>
   1. Return <code>true</code>
 
@@ -2308,9 +2286,8 @@ When based on sensor data, {{XRPose}} and {{XRViewerPose}} will expose [=sensiti
 
 To determine if <dfn>poses may be reported</dfn> to an {{XRSession}} |session|, the user agent MUST run the following steps:
 
-  1. Let |document| be the document that owns |session|.
-  1. If the request does not originate from |document|, return <code>false</code>.
-  1. If |document| is not [=active and focused=], return <code>false</code>.
+  1. Let |document| be |session|'s [=relevant global object=]'s [=associated document=].
+  1. If |document| is [=hidden=] return <code>false</code>.
   1. If |session|'s {{XRSession/visibilityState}} in not {{XRVisibilityState/"visible"}}, return <code>false</code>.
   1. Determine if the pose data can be returned as follows:
     <dl class="switch">
@@ -2325,6 +2302,8 @@ To determine if <dfn>poses may be reported</dfn> to an {{XRSession}} |session|, 
     </dl>
 
 </div>
+
+Note: The requirement for document visibility is based on [[DEVICE-ORIENTATION]].
 
 Note: The method by which a user agent determines that poses do not expose fingerprintable data is left to the user agent's discretion.
 

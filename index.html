@@ -1542,7 +1542,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-05-13">13 May 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-05-15">15 May 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1683,12 +1683,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li>
      <a href="#security"><span class="secno">13</span> <span class="content">Security, Privacy, and Comfort Considerations</span></a>
      <ol class="toc">
-      <li>
-       <a href="#sensitive-information-header"><span class="secno">13.1</span> <span class="content">Sensitive Information</span></a>
-       <ol class="toc">
-        <li><a href="#active-and-focused-document"><span class="secno">13.1.1</span> <span class="content">Active and focused document</span></a>
-        <li><a href="#trustworthy-documents"><span class="secno">13.1.2</span> <span class="content">Trustworthy documents and origins</span></a>
-       </ol>
+      <li><a href="#sensitive-information-header"><span class="secno">13.1</span> <span class="content">Sensitive Information</span></a>
       <li>
        <a href="#user-intention"><span class="secno">13.2</span> <span class="content">User intention</span></a>
        <ol class="toc">
@@ -1733,6 +1728,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
+      <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ol>
     <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
    </ol>
@@ -3669,66 +3665,41 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <p>The WebXR Device API provides powerful new features which bring with them several unique privacy, security, and comfort risks that user agents must take steps to mitigate.</p>
    <h3 class="heading settled" data-level="13.1" id="sensitive-information-header"><span class="secno">13.1. </span><span class="content">Sensitive Information</span><a class="self-link" href="#sensitive-information-header"></a></h3>
    <p>In the context of XR, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sensitive-information">sensitive information</dfn> includes, but is not limited to, user-configurable data such as interpupillary distance (IPD) and sensor-based data such as <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose①①">XRPose</a></code>s. All <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session②⑥">immersive sessions</a> will expose some amount of sensitive data, due to the user’s pose being necessary to render anything. However, in some cases, the same sensitive information will also be exposed via <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline①⑦">"inline"</a></code> sessions.</p>
-   <h4 class="heading settled" data-level="13.1.1" id="active-and-focused-document"><span class="secno">13.1.1. </span><span class="content">Active and focused document</span><a class="self-link" href="#active-and-focused-document"></a></h4>
-    A document MUST be <a data-link-type="dfn" href="#active-and-focused" id="ref-for-active-and-focused">active and focused</a> at the time that <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information②">sensitive information</a> is requested. 
-   <div class="algorithm" data-algorithm="document-is-active-and-focused">
-    <p>To determine if a given <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#document" id="ref-for-document①">Document</a></code> <var>document</var> is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="active-and-focused">active and focused</dfn> the user agent MUST run the following steps:</p>
-    <ol>
-     <li data-md>
-      <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context" id="ref-for-currently-focused-area-of-a-top-level-browsing-context">currently focused area</a> does not belong to <var>document</var>, return <code>false</code></p>
-     <li data-md>
-      <p>If <var>document</var> is not of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain">same origin-domain</a> as the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document">active document</a>, return <code>false</code></p>
-     <li data-md>
-      <p>Return <code>true</code></p>
-    </ol>
-   </div>
-   <h4 class="heading settled" data-level="13.1.2" id="trustworthy-documents"><span class="secno">13.1.2. </span><span class="content">Trustworthy documents and origins</span><a class="self-link" href="#trustworthy-documents"></a></h4>
-    In order to expose any <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information③">sensitive information</a> the requesting document MUST be considered <a data-link-type="dfn" href="#trustworthy" id="ref-for-trustworthy">trustworthy</a>. 
-   <div class="algorithm" data-algorithm="document-is-trustworthy">
-    <p>To determine if a given <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#document" id="ref-for-document②">Document</a></code> <var>document</var> is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="trustworthy">trustworthy</dfn> the user agent MUST run the following steps:</p>
-    <ol>
-     <li data-md>
-      <p>If <var>document</var> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document" id="ref-for-responsible-document">responsible</a> document, return <code>false</code></p>
-     <li data-md>
-      <p>If <var>document</var> is not <a data-link-type="dfn" href="#active-and-focused" id="ref-for-active-and-focused①">active and focused</a>, return <code>false</code></p>
-     <li data-md>
-      <p>Return <code>true</code></p>
-    </ol>
-   </div>
    <h3 class="heading settled" data-level="13.2" id="user-intention"><span class="secno">13.2. </span><span class="content">User intention</span><a class="self-link" href="#user-intention"></a></h3>
    <p>It is often necessary to be sure of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="user-intent">user intent</dfn> before exposing sensitive information or allowing actions with a significant effect on the user’s experience. This intent may be communicated or observed in a number of ways.</p>
+   <p class="note" role="note"><span>Note:</span> A common way of determining user intent is by <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation①">transient activation</a> of a UI control, typically an "enter VR" button. Since activation is transient,
+the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context②">browsing context</a> requesting an XR session must be an <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-tree-ancestor" id="ref-for-concept-tree-ancestor">ancestor</a> or a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain">same origin-domain</a> <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-tree-descendant" id="ref-for-concept-tree-descendant">descendant</a> of the context containing the UI control, and must recently
+have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document">active document</a> of the browsing context.</p>
    <h4 class="heading settled" data-level="13.2.1" id="user-activation"><span class="secno">13.2.1. </span><span class="content">User activation</span><a class="self-link" href="#user-activation"></a></h4>
-    <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation①">Transient activation</a> MAY serve as an indication of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑥">user intent</a> in some scenarios. 
+    <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation②">Transient activation</a> MAY serve as an indication of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑥">user intent</a> in some scenarios. 
    <h4 class="heading settled" data-level="13.2.2" id="application-launch"><span class="secno">13.2.2. </span><span class="content">Launching a web application</span><a class="self-link" href="#application-launch"></a></h4>
     In some environments a page may be presented as an application, installed with the express intent of running immersive content. In that case <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="launching-a-web-application">launching a web application</dfn> MAY also serve as an indication of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑦">user intent</a>. 
    <h4 class="heading settled" data-level="13.2.3" id="user-consent"><span class="secno">13.2.3. </span><span class="content">Implicit and Explicit consent</span><a class="self-link" href="#user-consent"></a></h4>
     A user agent MAY use <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="implicit-consent">implicit consent</dfn> based, for example, on the install status of a web application or frequency and recency of visits. Given the sensitivity of XR data, caution is strongly advised when relying on implicit signals. 
-   <p>It is often useful to get <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="explicit-consent">explicit consent</dfn> from the user before exposing <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information④">sensitive information</a>. When gathering explicit user consent, user agents present an explanation of what is being requested and provide users the option to decline. Requests for user consent can be presented in many visual forms based on the features being protected and user agent choice.</p>
+   <p>It is often useful to get <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="explicit-consent">explicit consent</dfn> from the user before exposing <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information②">sensitive information</a>. When gathering explicit user consent, user agents present an explanation of what is being requested and provide users the option to decline. Requests for user consent can be presented in many visual forms based on the features being protected and user agent choice.</p>
    <h4 class="heading settled" data-level="13.2.4" id="consent-duration"><span class="secno">13.2.4. </span><span class="content">Duration of consent</span><a class="self-link" href="#consent-duration"></a></h4>
-    It is recommended that once <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent②">explicit consent</a> is granted for a specific <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a> that this consent persist until the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context②">browsing context</a> has ended. User agents may choose to lengthen or shorten this consent duration based upon implicit or explicit signals of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑧">user intent</a>, but implementations are advised to exercise caution when deviating from this recommendation, particularly when relying on implicit signals. For example, it may be appropriate for a web application installed with the express intent of running immersive content to persist the user’s consent, but not for an installed web application where immersive content is a secondary feature. 
-   <p>Regardless of how long the user agent chooses to persist the user’s consent, <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑤">sensitive information</a> MUST only be exposed by an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①⑧">XRSession</a></code> which has not <a data-link-type="dfn" href="#ended" id="ref-for-ended④">ended</a>.</p>
+    It is recommended that once <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent②">explicit consent</a> is granted for a specific <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a> that this consent persist until the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context③">browsing context</a> has ended. User agents may choose to lengthen or shorten this consent duration based upon implicit or explicit signals of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑧">user intent</a>, but implementations are advised to exercise caution when deviating from this recommendation, particularly when relying on implicit signals. For example, it may be appropriate for a web application installed with the express intent of running immersive content to persist the user’s consent, but not for an installed web application where immersive content is a secondary feature. 
+   <p>Regardless of how long the user agent chooses to persist the user’s consent, <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information③">sensitive information</a> MUST only be exposed by an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①⑧">XRSession</a></code> which has not <a data-link-type="dfn" href="#ended" id="ref-for-ended④">ended</a>.</p>
    <h3 class="heading settled" data-level="13.3" id="mid-session-consent"><span class="secno">13.3. </span><span class="content">Mid-session consent</span><a class="self-link" href="#mid-session-consent"></a></h3>
    <p>There are multiple non-XR APIs which cause user agents to request <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent③">explicit consent</a> to use a feature. If the user agent will request the user’s consent while there is an <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session⑧">active immersive session</a>, the user agent MUST <a data-link-type="dfn" href="#shut-down-the-session" id="ref-for-shut-down-the-session③">shut down the session</a> prior to displaying the consent request to the user. If the user’s consent for the feature had been granted prior to the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session⑨">active immersive session</a> being created the session does not need to be terminated.</p>
    <p class="note" role="note"><span>Note:</span> This limitation is to ensure that there is behavioral parity between all user agents until consensus is reached about how user agents should manage mid-session <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent④">explicit consent</a>. It is not expected to be a long term requirement.</p>
    <h3 class="heading settled" data-level="13.4" id="data-adjustments-header"><span class="secno">13.4. </span><span class="content">Data adjustments</span><a class="self-link" href="#data-adjustments-header"></a></h3>
    <p>In some cases, security and privacy threats can be mitigated through <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="data-adjustment">data adjustment</dfn>s such as throttling, quantizing, rounding, limiting, or otherwise manipulating the data reported from the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⑤">XR device</a>. This may sometimes be necessary to avoid fingerprinting, even in situations when <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑨">user intent</a> has been established.  However, <a data-link-type="dfn" href="#data-adjustment" id="ref-for-data-adjustment">data adjustment</a> mitigations MUST only be used in situations which would not result in user discomfort.</p>
    <h4 class="heading settled" data-level="13.4.1" id="throttling-header"><span class="secno">13.4.1. </span><span class="content">Throttling</span><a class="self-link" href="#throttling-header"></a></h4>
-    <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="throttling">Throttling</dfn> is when <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑥">sensitive information</a> is reported at a lower frequency than otherwise possible. This mitigation has the potential to reduce a site’s ability to infer user intent, infer location, or perform user profiling. However, when not used appropriately throttling runs a significant risk of causing user discomfort. In addition, under many circumstances it may be inadequate to provide a complete mitigation. 
+    <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="throttling">Throttling</dfn> is when <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information④">sensitive information</a> is reported at a lower frequency than otherwise possible. This mitigation has the potential to reduce a site’s ability to infer user intent, infer location, or perform user profiling. However, when not used appropriately throttling runs a significant risk of causing user discomfort. In addition, under many circumstances it may be inadequate to provide a complete mitigation. 
    <h4 class="heading settled" data-level="13.4.2" id="rounding-and-friends"><span class="secno">13.4.2. </span><span class="content">Rounding, quantization, and fuzzing</span><a class="self-link" href="#rounding-and-friends"></a></h4>
     Rounding, quantization, and fuzzing are three categories of mitigations that modify the raw data that would otherwise be returned to the developer. <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="rounding">Rounding</dfn> decreases the precision of data by reducing the number of digits used to express it. <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="quantization">Quantization</dfn> constrains continuous data to instead report a discrete subset of values. Fuzzing is the introduction of slight, random errors into the the data. Collectively, these mitigations are useful to avoid fingerprinting, and are especially useful when doing so does not cause noticeable impact on user comfort. 
    <h4 class="heading settled" data-level="13.4.3" id="limiting-header"><span class="secno">13.4.3. </span><span class="content">Limiting</span><a class="self-link" href="#limiting-header"></a></h4>
     <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="limiting">Limiting</dfn> is when data is reported only when it is within a specific range. For example, it is possible to comfortably limit reporting positional pose data when a user has moved beyond a specific distance away from an approved location. Care should be taken to ensure that the user experience is not negatively affected when employing this mitigation. It is often desirable to avoid a 'hard stop' at the end of a range as this may cause disruptive user experiences. 
    <h3 class="heading settled" data-level="13.5" id="protected-functionality"><span class="secno">13.5. </span><span class="content">Protected functionality</span><a class="self-link" href="#protected-functionality"></a></h3>
-   <p>The <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑦">sensitive information</a> exposed by the API can be divided into categories that share threat profiles and necessary protections against those threats.</p>
+   <p>The <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑤">sensitive information</a> exposed by the API can be divided into categories that share threat profiles and necessary protections against those threats.</p>
    <h4 class="heading settled" data-level="13.5.1" id="protect-immersiveness"><span class="secno">13.5.1. </span><span class="content">Immersiveness</span><a class="self-link" href="#protect-immersiveness"></a></h4>
     Users must be in control of when immersive sessions are created because the creation causes invasive changes on a user’s machine. For example, starting an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session②⑦">immersive session</a> will engage the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⑥">XR device</a> sensors, take over access to the device’s display, and begin presentating immersive content which may terminate another application’s access to the XR hardware. It may also incur significant power or performance overhead on some systems or trigger the launching of a status tray or storefront. 
    <div class="algorithm" data-algorithm="immersive-session-allowed">
     <p>To determine if an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="immersive-session-request-is-allowed">immersive session request is allowed</dfn> for a given <var>global object</var> the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>If the request was not made while the <var>global object</var> has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation②">transient activation</a> or when <a data-link-type="dfn" href="#launching-a-web-application" id="ref-for-launching-a-web-application">launching a web application</a>, return <code>false</code></p>
-     <li data-md>
-      <p>If the requesting document is not considered <a data-link-type="dfn" href="#trustworthy" id="ref-for-trustworthy①">trustworthy</a>, return <code>false</code></p>
+      <p>If the request was not made while the <var>global object</var> has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation③">transient activation</a> or when <a data-link-type="dfn" href="#launching-a-web-application" id="ref-for-launching-a-web-application">launching a web application</a>, return <code>false</code></p>
      <li data-md>
       <p>If <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①⓪">user intent</a> to begin an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session②⑧">immersive session</a> is not well understood, either via <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑤">explicit consent</a> or <a data-link-type="dfn" href="#implicit-consent" id="ref-for-implicit-consent②">implicit consent</a>, return <code>false</code></p>
      <li data-md>
@@ -3740,24 +3711,22 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <p>To determine if an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="inline-session-request-is-allowed">inline session request is allowed</dfn> for a given <var>global object</var> the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>If the session request contained any <a data-link-type="dfn" href="#required-features" id="ref-for-required-features②">required features</a> or <a data-link-type="dfn" href="#optional-features" id="ref-for-optional-features①">optional features</a> and the request was not made while the <var>global object</var> has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation③">transient activation</a> or when <a data-link-type="dfn" href="#launching-a-web-application" id="ref-for-launching-a-web-application①">launching a web application</a>, return <code>false</code></p>
+      <p>If the session request contained any <a data-link-type="dfn" href="#required-features" id="ref-for-required-features②">required features</a> or <a data-link-type="dfn" href="#optional-features" id="ref-for-optional-features①">optional features</a> and the request was not made while the <var>global object</var> has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation④">transient activation</a> or when <a data-link-type="dfn" href="#launching-a-web-application" id="ref-for-launching-a-web-application①">launching a web application</a>, return <code>false</code></p>
      <li data-md>
-      <p>If the requesting document is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document" id="ref-for-responsible-document①">responsible</a>, return <code>false</code></p>
+      <p>If the requesting document is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document" id="ref-for-responsible-document">responsible</a>, return <code>false</code></p>
      <li data-md>
       <p>Return <code>true</code></p>
     </ol>
    </div>
    <h4 class="heading settled" data-level="13.5.2" id="protect-poses"><span class="secno">13.5.2. </span><span class="content">Poses</span><a class="self-link" href="#protect-poses"></a></h4>
-    When based on sensor data, <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose①②">XRPose</a></code> and <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose①⓪">XRViewerPose</a></code> will expose <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑧">sensitive information</a> that may be misused in a number of ways, including input sniffing, gaze tracking, or fingerprinting. 
+    When based on sensor data, <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose①②">XRPose</a></code> and <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose①⓪">XRViewerPose</a></code> will expose <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑥">sensitive information</a> that may be misused in a number of ways, including input sniffing, gaze tracking, or fingerprinting. 
    <div class="algorithm" data-algorithm="poses-allowed">
     <p>To determine if <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="poses-may-be-reported">poses may be reported</dfn> to an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①⑨">XRSession</a></code> <var>session</var>, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>document</var> be the document that owns <var>session</var>.</p>
+      <p>Let <var>document</var> be <var>session</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①">relevant global object</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/window-object.html#concept-document-window" id="ref-for-concept-document-window">associated document</a>.</p>
      <li data-md>
-      <p>If the request does not originate from <var>document</var>, return <code>false</code>.</p>
-     <li data-md>
-      <p>If <var>document</var> is not <a data-link-type="dfn" href="#active-and-focused" id="ref-for-active-and-focused②">active and focused</a>, return <code>false</code>.</p>
+      <p>If <var>document</var> is <a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate-hidden" id="ref-for-dom-visibilitystate-hidden">hidden</a> return <code>false</code>.</p>
      <li data-md>
       <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-visibilitystate" id="ref-for-dom-xrsession-visibilitystate①">visibilityState</a></code> in not <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-visible" id="ref-for-dom-xrvisibilitystate-visible②">"visible"</a></code>, return <code>false</code>.</p>
      <li data-md>
@@ -3774,12 +3743,13 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
       </dl>
     </ol>
    </div>
+   <p class="note" role="note"><span>Note:</span> The requirement for document visibility is based on <a data-link-type="biblio" href="#biblio-device-orientation">[DEVICE-ORIENTATION]</a>.</p>
    <p class="note" role="note"><span>Note:</span> The method by which a user agent determines that poses do not expose fingerprintable data is left to the user agent’s discretion.</p>
-   <p>The primary difference between <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose①①">XRViewerPose</a></code> and <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose①③">XRPose</a></code> is the inclusion of <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑦">XRView</a></code> information. When more than one view is present and the physical relationship between these views is configurable by the user, the relationship between these views is considered <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑨">sensitive information</a> as it can be used to fingerprint or profile the user.</p>
+   <p>The primary difference between <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose①①">XRViewerPose</a></code> and <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose①③">XRPose</a></code> is the inclusion of <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑦">XRView</a></code> information. When more than one view is present and the physical relationship between these views is configurable by the user, the relationship between these views is considered <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑦">sensitive information</a> as it can be used to fingerprint or profile the user.</p>
    <p>If the relationship between <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑧">XRView</a></code>s could uniquely identify the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⑦">XR device</a>, then the user agent MUST anonymize the <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑨">XRView</a></code> data to prevent fingerprinting. The method of anonymization is at the discretion of the user agent.</p>
    <p class="note" role="note"><span>Note:</span> Furthermore, if the relationship between <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②⓪">XRView</a></code>s is affected by a user-configured interpupillary distance (IPD), then it is strongly recommended that the user agent require <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑦">explicit consent</a> during session creation, prior to reporting any <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②①">XRView</a></code> data.</p>
    <h4 class="heading settled" data-level="13.5.3" id="protect-reference-spaces"><span class="secno">13.5.3. </span><span class="content">Reference spaces</span><a class="self-link" href="#protect-reference-spaces"></a></h4>
-    Depending on the reference spaces used, several different types of <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information①⓪">sensitive information</a> may be exposed to the application. 
+    Depending on the reference spaces used, several different types of <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑧">sensitive information</a> may be exposed to the application. 
    <ul>
     <li data-md>
      <p>On devices which support <a data-link-type="dfn" href="#6dof" id="ref-for-6dof⑦">6DoF</a> tracking, <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-local" id="ref-for-dom-xrreferencespacetype-local⑧">"local"</a></code> reference spaces may be used to perform gait analysis, allowing user profiling and fingerprinting.</p>
@@ -3790,7 +3760,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <li data-md>
      <p><code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded⑥">"unbounded"</a></code> reference spaces reveal the largest amount of spatial data and may result in user profiling and fingerprinting. For example, this data may enable determining user’s specific geographic location or to perform gait analysis.</p>
    </ul>
-   <p>As a result the various reference space types have restrictions placed on their creation to ensure the <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information①①">sensitive information</a> expose is handled safely:</p>
+   <p>As a result the various reference space types have restrictions placed on their creation to ensure the <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑨">sensitive information</a> expose is handled safely:</p>
    <p>Most reference spaces require that <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①②">user intent</a> to use the reference space is well understood, either via <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑧">explicit consent</a> or <a data-link-type="dfn" href="#implicit-consent" id="ref-for-implicit-consent④">implicit consent</a>. See the <a data-link-type="dfn" href="#feature-requirements" id="ref-for-feature-requirements">feature requirements</a> table for details.</p>
    <p>Any group of <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-local" id="ref-for-dom-xrreferencespacetype-local⑨">"local"</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-local-floor" id="ref-for-dom-xrreferencespacetype-local-floor⑨">"local-floor"</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor⑨">"bounded-floor"</a></code> reference spaces that are capable of being related to one another MUST share a common <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin①⑨">native origin</a>; This restriction only applies when the creation of <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded⑦">"unbounded"</a></code> reference spaces has been restricted.</p>
    <div class="algorithm" data-algorithm="poses-limited">
@@ -3831,7 +3801,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
       <p>Pausing the immersive session and showing some form of native system environment in which a prompt can be shown</p>
     </ul>
    </div>
-   <p>The ability to read input information (head pose, input pose, etc) poses a risk to the integrity of <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui⑥">trusted UI</a> as the page may use this information to snoop on the choices made by the user while interacting with the <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui⑦">trusted UI</a>, including guessing keyboard input. To prevent this risk the user agent MUST set the <a data-link-type="dfn" href="#xrsession-visibility-state" id="ref-for-xrsession-visibility-state⑧">visibility state</a> of all <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②⓪">XRSession</a></code>s to <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-hidden" id="ref-for-dom-xrvisibilitystate-hidden①">"hidden"</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-visible-blurred" id="ref-for-dom-xrvisibilitystate-visible-blurred①">"visible-blurred"</a></code> when the user is interacting with <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui⑧">trusted UI</a> (<a data-link-type="dfn" href="#trusted-immersive-ui" id="ref-for-trusted-immersive-ui②">immersive</a> or non-immersive) such as URL bars or system dialogs. Additionally, to prevent a malicious page from being able to monitor input on other pages the user agent MUST set the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②①">XRSession</a></code>'s <a data-link-type="dfn" href="#xrsession-visibility-state" id="ref-for-xrsession-visibility-state⑨">visibility state</a> to <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-hidden" id="ref-for-dom-xrvisibilitystate-hidden②">"hidden"</a></code> if the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context" id="ref-for-currently-focused-area-of-a-top-level-browsing-context①">currently focused area</a> does not belong to the document which created the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②②">XRSession</a></code>.</p>
+   <p>The ability to read input information (head pose, input pose, etc) poses a risk to the integrity of <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui⑥">trusted UI</a> as the page may use this information to snoop on the choices made by the user while interacting with the <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui⑦">trusted UI</a>, including guessing keyboard input. To prevent this risk the user agent MUST set the <a data-link-type="dfn" href="#xrsession-visibility-state" id="ref-for-xrsession-visibility-state⑧">visibility state</a> of all <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②⓪">XRSession</a></code>s to <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-hidden" id="ref-for-dom-xrvisibilitystate-hidden①">"hidden"</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-visible-blurred" id="ref-for-dom-xrvisibilitystate-visible-blurred①">"visible-blurred"</a></code> when the user is interacting with <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui⑧">trusted UI</a> (<a data-link-type="dfn" href="#trusted-immersive-ui" id="ref-for-trusted-immersive-ui②">immersive</a> or non-immersive) such as URL bars or system dialogs. Additionally, to prevent a malicious page from being able to monitor input on other pages the user agent MUST set the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②①">XRSession</a></code>'s <a data-link-type="dfn" href="#xrsession-visibility-state" id="ref-for-xrsession-visibility-state⑨">visibility state</a> to <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-hidden" id="ref-for-dom-xrvisibilitystate-hidden②">"hidden"</a></code> if the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context" id="ref-for-currently-focused-area-of-a-top-level-browsing-context">currently focused area</a> does not belong to the document which created the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②②">XRSession</a></code>.</p>
    <p>When choosing between using <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-hidden" id="ref-for-dom-xrvisibilitystate-hidden③">"hidden"</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-visible-blurred" id="ref-for-dom-xrvisibilitystate-visible-blurred②">"visible-blurred"</a></code> for a particular instance of <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui⑨">trusted UI</a>, the user agent MUST consider whether head pose information is a security risk. For example, <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui①⓪">trusted UI</a> involving text input, especially password inputs, can potentially leak the typed text through the user’s head pose as they type. The user agent SHOULD also stop exposing any eye tracking-related information in such cases.</p>
    <p>The user agent MUST use <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui①①">trusted UI</a> to show permissions prompts.</p>
    <p>If the virtual environment does not consistently track the user’s head motion with low latency and at a high frame rate the user may become disoriented or physically ill. Since it is impossible to force pages to produce consistently performant and correct content the user agent MUST provide a tracked, trusted environment and an <a data-link-type="dfn" href="#xr-compositor" id="ref-for-xr-compositor⑥">XR Compositor</a> which runs asynchronously from page content. The compositor is responsible for compositing the trusted and untrusted content. If content is not performant, does not submit frames, or terminates unexpectedly the user agent should be able to continue presenting a responsive, <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui①②">trusted UI</a>.</p>
@@ -3839,10 +3809,10 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <section class="unstable">
     <h3 class="heading settled" data-level="13.7" id="contextisolation-security"><span class="secno">13.7. </span><span class="content">Context Isolation</span><a class="self-link" href="#contextisolation-security"></a></h3>
     <p>The trusted UI must be drawn by an independent rendering context whose state is isolated from any rendering contexts used by the page. (For example, any WebGL rendering contexts.) This is to prevent the page from corrupting the state of the trusted UI’s context, which may prevent it from properly rendering a tracked environment. It also prevents the possibility of the page being able to capture imagery from the trusted UI, which could lead to private information being leaked.</p>
-    <p>Also, to prevent CORS-related vulnerabilities each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context③">browsing context</a> will see a new instance of objects returned by the API, such as <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②③">XRSession</a></code>. Attributes such as the <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context⑤">context</a> set on an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②⑧">XRWebGLLayer</a></code> with one <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm③③">relevant realm</a> should not be able to be read through an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②⑨">XRWebGLLayer</a></code> with a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm③④">relevant realm</a> that does not have the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin">same origin</a>. Similarly, methods invoked on the API MUST NOT cause an observable state change on other <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context④">browsing contexts</a>. For example: No method will be exposed that enables a system-level orientation reset, as this could be called repeatedly by a malicious page to prevent other pages from tracking properly. The user agent MUST, however, respect system-level orientation resets triggered by a user gesture or system menu.</p>
-    <p class="note" role="note"><span>Note:</span> this doesn’t apply to state changes that are caused by one <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑤">browsing context</a> entering immersive mode, acquiring a lock on the device, and potentially firing <code class="idl"><a data-link-type="idl" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange②">devicechange</a></code> events on other <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑥">browsing contexts</a>.</p>
+    <p>Also, to prevent CORS-related vulnerabilities each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context④">browsing context</a> will see a new instance of objects returned by the API, such as <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②③">XRSession</a></code>. Attributes such as the <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context⑤">context</a> set on an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②⑧">XRWebGLLayer</a></code> with one <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm③③">relevant realm</a> should not be able to be read through an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②⑨">XRWebGLLayer</a></code> with a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm③④">relevant realm</a> that does not have the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin">same origin</a>. Similarly, methods invoked on the API MUST NOT cause an observable state change on other <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑤">browsing contexts</a>. For example: No method will be exposed that enables a system-level orientation reset, as this could be called repeatedly by a malicious page to prevent other pages from tracking properly. The user agent MUST, however, respect system-level orientation resets triggered by a user gesture or system menu.</p>
+    <p class="note" role="note"><span>Note:</span> this doesn’t apply to state changes that are caused by one <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑥">browsing context</a> entering immersive mode, acquiring a lock on the device, and potentially firing <code class="idl"><a data-link-type="idl" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange②">devicechange</a></code> events on other <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑦">browsing contexts</a>.</p>
     <h3 class="heading settled" data-level="13.8" id="fingerprinting-security"><span class="secno">13.8. </span><span class="content">Fingerprinting</span><a class="self-link" href="#fingerprinting-security"></a></h3>
-    <p>Given that the API describes hardware available to the user and its capabilities it will inevitably provide additional surface area for fingerprinting. While it’s impossible to completely avoid this, user agents should take steps to mitigate the issue. This spec limits reporting of available hardware to only a single device at a time, which prevents using the rare cases of multiple headsets being connected as a fingerprinting signal. Also, the devices that are reported have no string identifiers and expose very little information about the devices capabilities until an XRSession is created, which requires additional protections when <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information①②">sensitive information</a> will be exposed.</p>
+    <p>Given that the API describes hardware available to the user and its capabilities it will inevitably provide additional surface area for fingerprinting. While it’s impossible to completely avoid this, user agents should take steps to mitigate the issue. This spec limits reporting of available hardware to only a single device at a time, which prevents using the rare cases of multiple headsets being connected as a fingerprinting signal. Also, the devices that are reported have no string identifiers and expose very little information about the devices capabilities until an XRSession is created, which requires additional protections when <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information①⓪">sensitive information</a> will be exposed.</p>
    </section>
    <h2 class="heading settled" data-level="14" id="integrations"><span class="secno">14. </span><span class="content">Integrations</span><a class="self-link" href="#integrations"></a></h2>
    <h3 class="heading settled" data-level="14.1" id="feature-policy"><span class="secno">14.1. </span><span class="content">Feature Policy</span><a class="self-link" href="#feature-policy"></a></h3>
@@ -4055,7 +4025,6 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li><a href="#3dof">3DoF</a><span>, in §1.1</span>
    <li><a href="#6dof">6DoF</a><span>, in §1.1</span>
    <li><a href="#xrframe-active">active</a><span>, in §5.1</span>
-   <li><a href="#active-and-focused">active and focused</a><span>, in §13.1.1</span>
    <li><a href="#active-immersive-session">active immersive session</a><span>, in §3.2</span>
    <li><a href="#active-render-state">active render state</a><span>, in §4.1</span>
    <li>
@@ -4397,7 +4366,6 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li><a href="#transient-input-sources">transient input sources</a><span>, in §10.2</span>
    <li><a href="#trusted-immersive-ui">trusted immersive UI</a><span>, in §13.6</span>
    <li><a href="#trusted-ui">Trusted UI</a><span>, in §13.6</span>
-   <li><a href="#trustworthy">trustworthy</a><span>, in §13.1.2</span>
    <li><a href="#xrreferencespace-type">type</a><span>, in §6.2</span>
    <li><a href="#dom-xrreferencespacetype-unbounded">"unbounded"</a><span>, in §6.2</span>
    <li><a href="#dom-xrreferencespacetype-unbounded">unbounded</a><span>, in §6.2</span>
@@ -4493,8 +4461,6 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <a href="https://dom.spec.whatwg.org/#document">https://dom.spec.whatwg.org/#document</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-document">4.1. XRSession</a>
-    <li><a href="#ref-for-document①">13.1.1. Active and focused document</a>
-    <li><a href="#ref-for-document②">13.1.2. Trustworthy documents and origins</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-event">
@@ -4525,6 +4491,12 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
     <li><a href="#ref-for-eventtarget③">11.1. XRLayer</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-tree-ancestor">
+   <a href="https://dom.spec.whatwg.org/#concept-tree-ancestor">https://dom.spec.whatwg.org/#concept-tree-ancestor</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-tree-ancestor">13.2. User intention</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-canceled-flag">
    <a href="https://dom.spec.whatwg.org/#canceled-flag">https://dom.spec.whatwg.org/#canceled-flag</a><b>Referenced in:</b>
    <ul>
@@ -4535,6 +4507,12 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <a href="https://dom.spec.whatwg.org/#context-object">https://dom.spec.whatwg.org/#context-object</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-context-object">3.2. XRSystem</a> <a href="#ref-for-context-object①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-tree-descendant">
+   <a href="https://dom.spec.whatwg.org/#concept-tree-descendant">https://dom.spec.whatwg.org/#concept-tree-descendant</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-tree-descendant">13.2. User intention</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-event-dispatch">
@@ -4683,15 +4661,22 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   <aside class="dfn-panel" data-for="term-for-active-document">
    <a href="https://html.spec.whatwg.org/multipage/browsers.html#active-document">https://html.spec.whatwg.org/multipage/browsers.html#active-document</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-active-document">13.1.1. Active and focused document</a>
+    <li><a href="#ref-for-active-document">13.2. User intention</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-document-window">
+   <a href="https://html.spec.whatwg.org/multipage/window-object.html#concept-document-window">https://html.spec.whatwg.org/multipage/window-object.html#concept-document-window</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-document-window">13.5.2. Poses</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-browsing-context">
    <a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#browsing-context</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-browsing-context">4.3. Animation Frames</a> <a href="#ref-for-browsing-context①">(2)</a>
-    <li><a href="#ref-for-browsing-context②">13.2.4. Duration of consent</a>
-    <li><a href="#ref-for-browsing-context③">13.7. Context Isolation</a> <a href="#ref-for-browsing-context④">(2)</a> <a href="#ref-for-browsing-context⑤">(3)</a> <a href="#ref-for-browsing-context⑥">(4)</a>
+    <li><a href="#ref-for-browsing-context②">13.2. User intention</a>
+    <li><a href="#ref-for-browsing-context③">13.2.4. Duration of consent</a>
+    <li><a href="#ref-for-browsing-context④">13.7. Context Isolation</a> <a href="#ref-for-browsing-context⑤">(2)</a> <a href="#ref-for-browsing-context⑥">(3)</a> <a href="#ref-for-browsing-context⑦">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-current">
@@ -4703,8 +4688,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   <aside class="dfn-panel" data-for="term-for-currently-focused-area-of-a-top-level-browsing-context">
    <a href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context">https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-currently-focused-area-of-a-top-level-browsing-context">13.1.1. Active and focused document</a>
-    <li><a href="#ref-for-currently-focused-area-of-a-top-level-browsing-context①">13.6. Trusted Environment</a>
+    <li><a href="#ref-for-currently-focused-area-of-a-top-level-browsing-context">13.6. Trusted Environment</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-event-handler-idl-attributes">
@@ -4754,6 +4738,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-relevant-global">3.2. XRSystem</a>
+    <li><a href="#ref-for-concept-relevant-global①">13.5.2. Poses</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-relevant-realm">
@@ -4794,8 +4779,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   <aside class="dfn-panel" data-for="term-for-responsible-document">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document">https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-responsible-document">13.1.2. Trustworthy documents and origins</a>
-    <li><a href="#ref-for-responsible-document①">13.5.1. Immersiveness</a>
+    <li><a href="#ref-for-responsible-document">13.5.1. Immersiveness</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-same-origin">
@@ -4807,7 +4791,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
   <aside class="dfn-panel" data-for="term-for-same-origin-domain">
    <a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain">https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-same-origin-domain">13.1.1. Active and focused document</a>
+    <li><a href="#ref-for-same-origin-domain">13.2. User intention</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-task-source">
@@ -4820,8 +4804,9 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <a href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation">https://html.spec.whatwg.org/multipage/interaction.html#transient-activation</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-transient-activation">1.2. Application flow</a>
-    <li><a href="#ref-for-transient-activation①">13.2.1. User activation</a>
-    <li><a href="#ref-for-transient-activation②">13.5.1. Immersiveness</a> <a href="#ref-for-transient-activation③">(2)</a>
+    <li><a href="#ref-for-transient-activation①">13.2. User intention</a>
+    <li><a href="#ref-for-transient-activation②">13.2.1. User activation</a>
+    <li><a href="#ref-for-transient-activation③">13.5.1. Immersiveness</a> <a href="#ref-for-transient-activation④">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-append">
@@ -4906,6 +4891,12 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <a href="https://w3c.github.io/orientation-sensor/#relativeorientationsensor">https://w3c.github.io/orientation-sensor/#relativeorientationsensor</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-relativeorientationsensor">1. Introduction</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-visibilitystate-hidden">
+   <a href="https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate-hidden">https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate-hidden</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-visibilitystate-hidden">13.5.2. Poses</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-visibilitystate-attribute">
@@ -5428,8 +5419,10 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
      <li><span class="dfn-paneled" id="term-for-event" style="color:initial">Event</span>
      <li><span class="dfn-paneled" id="term-for-dictdef-eventinit" style="color:initial">EventInit</span>
      <li><span class="dfn-paneled" id="term-for-eventtarget" style="color:initial">EventTarget</span>
+     <li><span class="dfn-paneled" id="term-for-concept-tree-ancestor" style="color:initial">ancestor</span>
      <li><span class="dfn-paneled" id="term-for-canceled-flag" style="color:initial">canceled flag</span>
      <li><span class="dfn-paneled" id="term-for-context-object" style="color:initial">context object</span>
+     <li><span class="dfn-paneled" id="term-for-concept-tree-descendant" style="color:initial">descendant</span>
      <li><span class="dfn-paneled" id="term-for-concept-event-dispatch" style="color:initial">dispatch</span>
      <li><span class="dfn-paneled" id="term-for-concept-event-fire" style="color:initial">fire an event</span>
      <li><span class="dfn-paneled" id="term-for-dom-event-type" style="color:initial">type</span>
@@ -5477,6 +5470,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
      <li><span class="dfn-paneled" id="term-for-navigator" style="color:initial">Navigator</span>
      <li><span class="dfn-paneled" id="term-for-window" style="color:initial">Window</span>
      <li><span class="dfn-paneled" id="term-for-active-document" style="color:initial">active document</span>
+     <li><span class="dfn-paneled" id="term-for-concept-document-window" style="color:initial">associated document</span>
      <li><span class="dfn-paneled" id="term-for-browsing-context" style="color:initial">browsing context</span>
      <li><span class="dfn-paneled" id="term-for-current" style="color:initial">current realm</span>
      <li><span class="dfn-paneled" id="term-for-currently-focused-area-of-a-top-level-browsing-context" style="color:initial">currently focused area</span>
@@ -5520,6 +5514,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <li>
     <a data-link-type="biblio">[pagevisibility]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="term-for-dom-visibilitystate-hidden" style="color:initial">hidden</span>
      <li><span class="dfn-paneled" id="term-for-visibilitystate-attribute" style="color:initial">visibilitystate</span>
     </ul>
    <li>
@@ -5640,6 +5635,11 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <dd>Dean Jackson; Jeff Gilbert. <a href="https://www.khronos.org/registry/webgl/specs/latest/2.0/">WebGL 2.0 Specification</a>. 12 August 2017. URL: <a href="https://www.khronos.org/registry/webgl/specs/latest/2.0/">https://www.khronos.org/registry/webgl/specs/latest/2.0/</a>
    <dt id="biblio-webidl">[WebIDL]
    <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
+  </dl>
+  <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
+  <dl>
+   <dt id="biblio-device-orientation">[DEVICE-ORIENTATION]
+   <dd>Rich Tibbett; et al. <a href="https://www.w3.org/TR/orientation-event/">DeviceOrientation Event Specification</a>. 16 April 2019. WD. URL: <a href="https://www.w3.org/TR/orientation-event/">https://www.w3.org/TR/orientation-event/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator"><c- g>Navigator</c-></a> {
@@ -7842,30 +7842,13 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
    <b><a href="#sensitive-information">#sensitive-information</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-sensitive-information">3.4. Feature Dependencies</a> <a href="#ref-for-sensitive-information①">(2)</a>
-    <li><a href="#ref-for-sensitive-information②">13.1.1. Active and focused document</a>
-    <li><a href="#ref-for-sensitive-information③">13.1.2. Trustworthy documents and origins</a>
-    <li><a href="#ref-for-sensitive-information④">13.2.3. Implicit and Explicit consent</a>
-    <li><a href="#ref-for-sensitive-information⑤">13.2.4. Duration of consent</a>
-    <li><a href="#ref-for-sensitive-information⑥">13.4.1. Throttling</a>
-    <li><a href="#ref-for-sensitive-information⑦">13.5. Protected functionality</a>
-    <li><a href="#ref-for-sensitive-information⑧">13.5.2. Poses</a> <a href="#ref-for-sensitive-information⑨">(2)</a>
-    <li><a href="#ref-for-sensitive-information①⓪">13.5.3. Reference spaces</a> <a href="#ref-for-sensitive-information①①">(2)</a>
-    <li><a href="#ref-for-sensitive-information①②">13.8. Fingerprinting</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="active-and-focused">
-   <b><a href="#active-and-focused">#active-and-focused</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-active-and-focused">13.1.1. Active and focused document</a>
-    <li><a href="#ref-for-active-and-focused①">13.1.2. Trustworthy documents and origins</a>
-    <li><a href="#ref-for-active-and-focused②">13.5.2. Poses</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="trustworthy">
-   <b><a href="#trustworthy">#trustworthy</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-trustworthy">13.1.2. Trustworthy documents and origins</a>
-    <li><a href="#ref-for-trustworthy①">13.5.1. Immersiveness</a>
+    <li><a href="#ref-for-sensitive-information②">13.2.3. Implicit and Explicit consent</a>
+    <li><a href="#ref-for-sensitive-information③">13.2.4. Duration of consent</a>
+    <li><a href="#ref-for-sensitive-information④">13.4.1. Throttling</a>
+    <li><a href="#ref-for-sensitive-information⑤">13.5. Protected functionality</a>
+    <li><a href="#ref-for-sensitive-information⑥">13.5.2. Poses</a> <a href="#ref-for-sensitive-information⑦">(2)</a>
+    <li><a href="#ref-for-sensitive-information⑧">13.5.3. Reference spaces</a> <a href="#ref-for-sensitive-information⑨">(2)</a>
+    <li><a href="#ref-for-sensitive-information①⓪">13.8. Fingerprinting</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="user-intent">
