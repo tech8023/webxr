@@ -21,19 +21,33 @@ The [WebXR Device API Specification][1] is the repository of the [Immersive Web 
 ## Specifications
 
 * [WebXR Device API Specification][1]: Main specification for JavaScript API for accessing VR and AR devices, including sensors and head-mounted displays.
-* [Legacy WebVR API Specification][2]: Legacy WebVR API 1.1 specification for JavaScript API for accessing VR displays. Development of the WebVR API has halted in favor of being replaced the WebXR Device API. Several browsers will continue to support this version of the API in the meantime.
-* [Gamepad API Specification][5]: Introduces a low-level JS API interface for accessing gamepad devices.
-* [Legacy Gamepad Extensions API Specification][6]: Extends the Gamepad API to enable access to more advanced device capabilities.
+* [Explainer][21]
+* [Input Explainer][21]
+* [Privacy & Security Explainer][21]
+* [Spatial Tracking Explainer][21]
 
+### Other specifications in the Immersive Web Working Group
+
+* [WebXR Gamepads Module][25]: For accessing the associated gamepad object for a WebXR Input Source
+* [WebXR AR Module][26]: For enabling AR capable Displays & Sessions
+* [Dom Overlays][27]: A mechanism for providing a simple DOM overlay on top of the graphics
+* [Hit Test][28]: Cast a ray onto real world geometry
+
+### Related Specifications
+
+* [Gamepad API Specification][5]: Introduces a low-level JS API interface for accessing gamepad devices.
+
+### Legacy
+* [Legacy WebVR API Specification][2]: Legacy WebVR API 1.1 specification for JavaScript API for accessing VR displays. Development of the WebVR API has halted in favor of being replaced the WebXR Device API. Several browsers will continue to support this version of the API in the meantime.
+* [Legacy Gamepad Extensions API Specification][6]: Extends the Gamepad API to enable access to more advanced device capabilities.
 
 ## Relevant Links
 
 * [Immersive Web Community Group][3]
 * [WebXR Device API Specification][1]
-* [Immersive Web Early Adopters Guide][16]
-* [Legacy WebVR API Specification][2]
+* [WebXR on MDN][16]
 * [Immersive Web Working Group Charter][4]
-
+* [WebXr Input Profiles][29]: WebXR Gamepad assets, source library, and schema to enable the correct display of XR input hardware in the virtual scene
 
 ## Communication
 
@@ -83,8 +97,16 @@ Per the [`LICENSE.md`](LICENSE.md) file:
 [13]: http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 [14]: https://www.w3.org/community/about/agreements/cla/
 [15]: https://www.w3.org/Consortium/Legal/2008/03-bsd-license.html
-[16]: https://immersive-web.github.io/webxr-reference/
+[16]: https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API
 [17]: https://w3.org/immersive-web
 [18]: https://immersive-web.github.io/homepage/code-of-conduct.html
 [19]: https://github.com/immersive-web/proposals
 [20]: https://lists.w3.org/Archives/Public/public-immersive-web/
+[21]:https://immersive-web.github.io/webxr/explainer.html
+[22]:https://immersive-web.github.io/webxr/input-explainer.html
+[23]:https://immersive-web.github.io/webxr/privacy-security-explainer.html
+[24]:https://immersive-web.github.io/webxr/spatial-tracking-explainer.html
+[25]:https://github.com/immersive-web/webxr-gamepads-module
+[26]:https://github.com/immersive-web/webxr-ar-module
+[27]:https://github.com/immersive-web/dom-overlays
+[28]:https://github.com/immersive-web/hit-test
