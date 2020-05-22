@@ -2287,8 +2287,6 @@ When based on sensor data, {{XRPose}} and {{XRViewerPose}} will expose [=sensiti
 
 To determine if <dfn>poses may be reported</dfn> to an {{XRSession}} |session|, the user agent MUST run the following steps:
 
-  1. Let |document| be |session|'s [=relevant global object=]'s [=associated document=].
-  1. If |document| is [=hidden=] return <code>false</code>.
   1. If |session|'s {{XRSession/visibilityState}} in not {{XRVisibilityState/"visible"}}, return <code>false</code>.
   1. Determine if the pose data can be returned as follows:
     <dl class="switch">
@@ -2302,11 +2300,10 @@ To determine if <dfn>poses may be reported</dfn> to an {{XRSession}} |session|, 
       <dd> Return <code>false</code>.
     </dl>
 
-</div>
-
-Note: The requirement for document visibility is based on [[DEVICE-ORIENTATION]].
 
 Note: The method by which a user agent determines that poses do not expose fingerprintable data is left to the user agent's discretion.
+
+</div>
 
 The primary difference between {{XRViewerPose}} and {{XRPose}} is the inclusion of {{XRView}} information. When more than one view is present and the physical relationship between these views is configurable by the user, the relationship between these views is considered [=sensitive information=] as it can be used to fingerprint or profile the user.
 
@@ -2337,9 +2334,13 @@ To determine if <dfn>poses must be limited</dfn> between two spaces, |space| and
 
   1. If either |space| or |baseSpace| are an {{XRBoundedReferenceSpace}} and the other space's [=native origin=]'s falls further outside the [=native bounds geometry=] than a reasonable distance determined by the user agent, return true.
   1. If either |space| or |baseSpace| are an {{XRReferenceSpace}} with a [=XRReferenceSpace/type=] of {{XRReferenceSpaceType/"local"}} or {{XRReferenceSpaceType/"local-floor"}} and the distance between the spaces' [=native origin=]'s is greater than a reasonable distance determined by the user agent, return <code>true</code>.
-  1. Return false.
+  1. Let |document| be |space|'s [=relevant global object=]'s [=associated document=].
+  1. If |document| is [=hidden=] return <code>true</code>.
+  1. Return <code>false</code>.
 
 </div>
+
+Note: The requirement for document visibility is based on [[DEVICE-ORIENTATION]].
 
 Note: Is is suggested that poses reported relative to a {{XRReferenceSpaceType/"local"}} or {{XRReferenceSpaceType/"local-floor"}} reference space be [=limiting|limited=] to a distance of 15 meters from the {{XRReferenceSpace}}'s [=native origin=].
 
