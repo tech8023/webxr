@@ -711,9 +711,11 @@ When this method is invoked, the user agent MUST run the following steps:
 
   1. Let |promise| be [=a new Promise=] in the [=relevant realm=] of this {{XRSession}}.
   1. Run the following steps [=in parallel=]:
-    1. [=Create a reference space=], |referenceSpace|, with the {{XRReferenceSpaceType}} |type|.
-    1. If |referenceSpace| is <code>null</code>, [=queue a task=] to [=reject=] |promise| with a {{NotSupportedError}} and abort these steps.
-    1. [=Queue a task=] to [=/resolve=] |promise| with |referenceSpace|.
+    1. If the result of running [=reference space is supported=] for |type| and |session| is <code>false</code>, [=queue a task=] to [=reject=] |promise| with a {{NotSupportedError}} and abort these steps.
+    1. Set up any platform resources required to track reference spaces of type |type|.
+    1. [=Queue a task=] to run the following steps:
+      1. [=Create a reference space=], |referenceSpace|, with |type| and |session|.
+      1. [=/Resolve=] |promise| with |referenceSpace|.
   1. Return |promise|.
 
 </div>
@@ -1167,21 +1169,18 @@ The <dfn attribute for="XRReferenceSpace">onreset</dfn> attribute is an [=Event 
 
 <div class="algorithm" data-algorithm="create-reference-space">
 
-When an {{XRReferenceSpace}} is requested with {{XRReferenceSpaceType}} |type|, the user agent MUST <dfn>create a reference space</dfn> by running the following steps:
+When an {{XRReferenceSpace}} is requested with {{XRReferenceSpaceType}} |type| for {{XRSession}} |session|, the user agent MUST <dfn>create a reference space</dfn> by running the following steps:
 
-  1. Let |session| be the {{XRSession}} object that requested creation of a reference space.
-  1. If the [=reference space is supported=] for |type| and |session|, run the following steps:
-    1. Initialize |referenceSpace| as follows:
-        <dl class="switch">
-          <dt> If |type| is {{bounded-floor}}
-          <dd> Let |referenceSpace| be a [=new=] {{XRBoundedReferenceSpace}} in the [=relevant realm=] of |session|.
-          <dt> Otherwise
-          <dd> Let |referenceSpace| be a [=new=] {{XRReferenceSpace}} in the [=relevant realm=] of |session|.
-        </dl>
-    1. Initialize |referenceSpace|'s [=XRReferenceSpace/type=] to |type|.
-    1. Initialize |referenceSpace|'s [=XRSpace/session=] to |session|.
-    1. Return |referenceSpace|
-  1. Return <code>null</code>.
+  1. Initialize |referenceSpace| as follows:
+      <dl class="switch">
+        <dt> If |type| is {{bounded-floor}}
+        <dd> Let |referenceSpace| be a [=new=] {{XRBoundedReferenceSpace}} in the [=relevant realm=] of |session|.
+        <dt> Otherwise
+        <dd> Let |referenceSpace| be a [=new=] {{XRReferenceSpace}} in the [=relevant realm=] of |session|.
+      </dl>
+  1. Initialize |referenceSpace|'s [=XRReferenceSpace/type=] to |type|.
+  1. Initialize |referenceSpace|'s [=XRSpace/session=] to |session|.
+  1. Return |referenceSpace|.
 
 </div>
 
