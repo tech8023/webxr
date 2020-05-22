@@ -2287,6 +2287,7 @@ When based on sensor data, {{XRPose}} and {{XRViewerPose}} will expose [=sensiti
 
 To determine if <dfn>poses may be reported</dfn> to an {{XRSession}} |session|, the user agent MUST run the following steps:
 
+  1. If |session|'s [=relevant global object=] is not the [=current global object=], return <code>false</code>.
   1. If |session|'s {{XRSession/visibilityState}} in not {{XRVisibilityState/"visible"}}, return <code>false</code>.
   1. Determine if the pose data can be returned as follows:
     <dl class="switch">
