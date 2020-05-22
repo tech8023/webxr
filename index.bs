@@ -1019,7 +1019,7 @@ When this method is invoked, the user agent MUST run the following steps:
   1. Let |session| be |frame|'s {{XRFrame/session}} object.
   1. If |frame|'s [=animationFrame=] boolean is <code>false</code>, throw an {{InvalidStateError}} and abort these steps.
   1. Let |pose| be a [=new=] {{XRViewerPose}} object in the [=relevant realm=] of |session|.
-  1. [=Populate the pose=] of |session|'s [=XRSession/viewer reference space=] in |referenceSpace| at the time represented by |frame| into |pose|.
+  1. [=Populate the pose=] of |session|'s [=XRSession/viewer reference space=] in |referenceSpace| at the time represented by |frame| into |pose|, with <code>force emulation</code> set to <code>true</code>.
   1. If |pose| is <code>null</code> return <code>null</code>.
   1. Let |xrviews| be an empty [=/list=].
   1. For each [=view=] |view| in the [=XRSession/viewer reference space/list of views=] on the[=XRSession/viewer reference space=] of {{XRFrame/session}}, perform the following steps:
@@ -1087,7 +1087,7 @@ The [=effective origin=] of an {{XRSpace}} can only be observed in the coordinat
 
 <div class="algorithm" data-algorithm="populate-the-pose">
 
-To <dfn>populate the pose</dfn> of an {{XRSpace}} |space| in an {{XRSpace}} |baseSpace| at the time represented by an {{XRFrame}} |frame| into an {{XRPose}} |pose|, the user agent MUST run the following steps:
+To <dfn>populate the pose</dfn> of an {{XRSpace}} |space| in an {{XRSpace}} |baseSpace| at the time represented by an {{XRFrame}} |frame| into an {{XRPose}} |pose|, with an optional |force emulation| flag, the user agent MUST run the following steps:
 
   1. If |frame|'s [=active=] boolean is <code>false</code>, throw an {{InvalidStateError}} and abort these steps.
   1. Let |session| be |frame|'s {{XRFrame/session}} object.
@@ -1108,12 +1108,12 @@ To <dfn>populate the pose</dfn> of an {{XRSpace}} |space| in an {{XRSpace}} |bas
         <dd> Set |transform|'s {{XRRigidTransform/position}} to the tracking system's best estimate of the position of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=]. This MAY include a computed offset such as a neck or arm model. If a position estimate is not available, the last known position MUST be used.
         <dd> Set |pose|'s {{XRPose/emulatedPosition}} to <code>true</code>.
 
-      <dt> Else if |space|'s pose relative to |baseSpace| has been determined in the past:
+      <dt> Else if |space|'s pose relative to |baseSpace| has been determined in the past and |force emulation| is <code>true</code>:
         <dd> Set |transform|'s {{XRRigidTransform/position}} to the last known position of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
         <dd> Set |transform|'s {{XRRigidTransform/orientation}} to the last known orientation of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
         <dd> Set |pose|'s {{XRPose/emulatedPosition}} boolean to <code>true</code>.
 
-      <dt> Else if |space|'s pose relative to |baseSpace| has never been determined:
+      <dt> Otherwise:
         <dd> Set |pose| to <code>null</code>.
     </dl>
 
