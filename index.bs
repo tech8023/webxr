@@ -1167,10 +1167,9 @@ The <dfn attribute for="XRReferenceSpace">onreset</dfn> attribute is an [=Event 
 
 <div class="algorithm" data-algorithm="create-reference-space">
 
-When an {{XRReferenceSpace}} is requested, the user agent MUST <dfn>create a reference space</dfn> by running the following steps:
+When an {{XRReferenceSpace}} is requested with {{XRReferenceSpaceType}} |type|, the user agent MUST <dfn>create a reference space</dfn> by running the following steps:
 
   1. Let |session| be the {{XRSession}} object that requested creation of a reference space.
-  1. Let |type| be set to the {{XRReferenceSpaceType}} passed to {{requestReferenceSpace()}}.
   1. If the [=reference space is supported=] for |type| and |session|, run the following steps:
     1. Initialize |referenceSpace| as follows:
         <dl class="switch">
