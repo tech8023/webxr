@@ -22,9 +22,9 @@ The [WebXR Device API Specification][1] is the repository of the [Immersive Web 
 
 * [WebXR Device API Specification][1]: Main specification for JavaScript API for accessing VR and AR devices, including sensors and head-mounted displays.
 * [Explainer][21]
-* [Input Explainer][21]
-* [Privacy & Security Explainer][21]
-* [Spatial Tracking Explainer][21]
+* [Input Explainer][22]
+* [Privacy & Security Explainer][23]
+* [Spatial Tracking Explainer][24]
 
 ### Other specifications in the Immersive Web Working Group
 
