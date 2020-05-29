@@ -715,6 +715,7 @@ When this method is invoked, the user agent MUST run the following steps:
   1. Run the following steps [=in parallel=]:
     1. If the result of running [=reference space is supported=] for |type| and |session| is <code>false</code>, [=queue a task=] to [=reject=] |promise| with a {{NotSupportedError}} and abort these steps.
     1. Set up any platform resources required to track reference spaces of type |type|.
+        <div class=note>User agents need not wait for tracking to be established for such reference spaces to resolve {{XRSession/requestReferenceSpace()}}. It is okay for {{XRFrame/getViewerPose()}} to return <code>null</code> when the session is initially attempting to establish tracking, and content can use this time to show a splash screen or something else. Note that if |type| is {{XRReferenceSpaceType/"bounded-floor"}}, and the bounds have not yet been established, user agents MAY set the bounds to a small initial area and use a {{reset}} event when bounds are established.</div>
     1. [=Queue a task=] to run the following steps:
       1. [=Create a reference space=], |referenceSpace|, with |type| and |session|.
       1. [=/Resolve=] |promise| with |referenceSpace|.
