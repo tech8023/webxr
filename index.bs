@@ -2109,7 +2109,7 @@ dictionary XRInputSourceEventInit : EventInit {
 
 The <dfn attribute for="XRInputSourceEvent">inputSource</dfn> attribute indicates the {{XRInputSource}} that generated this event.
 
-The <dfn attribute for="XRInputSourceEvent">frame</dfn> attribute is an {{XRFrame}} that corresponds with the time that the event took place. It may represent historical data. Any {{XRViewerPose}} queried from the {{XRInputSourceEvent/frame}} MUST have an empty {{XRViewerPose/views}} array.
+The <dfn attribute for="XRInputSourceEvent">frame</dfn> attribute is an {{XRFrame}} that corresponds with the time that the event took place. It may represent historical data. {{XRFrame/getViewerPose()}} MUST throw an exception when called on {{XRInputSourceEvent/frame}}.
 
 <div class="algorithm" data-algorithm="fire-input-source-event">
 
