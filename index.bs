@@ -713,9 +713,11 @@ When this method is invoked, the user agent MUST run the following steps:
 
   1. Let |promise| be [=a new Promise=] in the [=relevant realm=] of this {{XRSession}}.
   1. Run the following steps [=in parallel=]:
-    1. [=Create a reference space=], |referenceSpace|, with the {{XRReferenceSpaceType}} |type|.
-    1. If |referenceSpace| is <code>null</code>, [=queue a task=] to [=reject=] |promise| with a {{NotSupportedError}} and abort these steps.
-    1. [=Queue a task=] to [=/resolve=] |promise| with |referenceSpace|.
+    1. If the result of running [=reference space is supported=] for |type| and |session| is <code>false</code>, [=queue a task=] to [=reject=] |promise| with a {{NotSupportedError}} and abort these steps.
+    1. Set up any platform resources required to track reference spaces of type |type|.
+    1. [=Queue a task=] to run the following steps:
+      1. [=Create a reference space=], |referenceSpace|, with |type| and |session|.
+      1. [=/Resolve=] |promise| with |referenceSpace|.
   1. Return |promise|.
 
 </div>
@@ -759,6 +761,8 @@ When any previously added <dfn for="XRSession" lt="remove input source">[=XR inp
   1. [=Queue a task=] to perform the following steps:
     1. [=list/Remove=] each {{XRInputSource}} in |removed| from |session|'s [=list of active XR input sources=].
     1. Fire an {{XRInputSourcesChangeEvent}} named {{inputsourceschange!!event}} on |session| with {{XRInputSourcesChangeEvent/removed}} set to |removed|.
+
+Note: The user agent MAY fire this event when an input source temporarily loses both position and orientation tracking. It is recommended that this only be done for physical handheld controller input sources. It is not recommended that this event be fired when this happens for tracked hand input sources, because this will happen often, nor is it recommended when this happens for tracker object input sources, since this makes it harder for the application to maintain a notion of identity.
 
 </div>
 
@@ -1032,7 +1036,7 @@ When this method is invoked, the user agent MUST run the following steps:
   1. Let |session| be |frame|'s {{XRFrame/session}} object.
   1. If |frame|'s [=animationFrame=] boolean is <code>false</code>, throw an {{InvalidStateError}} and abort these steps.
   1. Let |pose| be a [=new=] {{XRViewerPose}} object in the [=relevant realm=] of |session|.
-  1. [=Populate the pose=] of |session|'s [=XRSession/viewer reference space=] in |referenceSpace| at the time represented by |frame| into |pose|.
+  1. [=Populate the pose=] of |session|'s [=XRSession/viewer reference space=] in |referenceSpace| at the time represented by |frame| into |pose|, with <code>force emulation</code> set to <code>true</code>.
   1. If |pose| is <code>null</code> return <code>null</code>.
   1. Let |xrviews| be an empty [=/list=].
   1. For each [=view=] |view| in the [=XRSession/viewer reference space/list of views=] on the[=XRSession/viewer reference space=] of {{XRFrame/session}}, perform the following steps:
@@ -1100,7 +1104,7 @@ The [=effective origin=] of an {{XRSpace}} can only be observed in the coordinat
 
 <div class="algorithm" data-algorithm="populate-the-pose">
 
-To <dfn>populate the pose</dfn> of an {{XRSpace}} |space| in an {{XRSpace}} |baseSpace| at the time represented by an {{XRFrame}} |frame| into an {{XRPose}} |pose|, the user agent MUST run the following steps:
+To <dfn>populate the pose</dfn> of an {{XRSpace}} |space| in an {{XRSpace}} |baseSpace| at the time represented by an {{XRFrame}} |frame| into an {{XRPose}} |pose|, with an optional |force emulation| flag, the user agent MUST run the following steps:
 
   1. If |frame|'s [=active=] boolean is <code>false</code>, throw an {{InvalidStateError}} and abort these steps.
   1. Let |session| be |frame|'s {{XRFrame/session}} object.
@@ -1121,12 +1125,12 @@ To <dfn>populate the pose</dfn> of an {{XRSpace}} |space| in an {{XRSpace}} |bas
         <dd> Set |transform|'s {{XRRigidTransform/position}} to the tracking system's best estimate of the position of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=]. This MAY include a computed offset such as a neck or arm model. If a position estimate is not available, the last known position MUST be used.
         <dd> Set |pose|'s {{XRPose/emulatedPosition}} to <code>true</code>.
 
-      <dt> Else if |space|'s pose relative to |baseSpace| has been determined in the past:
+      <dt> Else if |space|'s pose relative to |baseSpace| has been determined in the past and |force emulation| is <code>true</code>:
         <dd> Set |transform|'s {{XRRigidTransform/position}} to the last known position of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
         <dd> Set |transform|'s {{XRRigidTransform/orientation}} to the last known orientation of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
         <dd> Set |pose|'s {{XRPose/emulatedPosition}} boolean to <code>true</code>.
 
-      <dt> Else if |space|'s pose relative to |baseSpace| has never been determined:
+      <dt> Otherwise:
         <dd> Set |pose| to <code>null</code>.
     </dl>
 
@@ -1180,22 +1184,18 @@ The <dfn attribute for="XRReferenceSpace">onreset</dfn> attribute is an [=Event 
 
 <div class="algorithm" data-algorithm="create-reference-space">
 
-When an {{XRReferenceSpace}} is requested, the user agent MUST <dfn>create a reference space</dfn> by running the following steps:
+When an {{XRReferenceSpace}} is requested with {{XRReferenceSpaceType}} |type| for {{XRSession}} |session|, the user agent MUST <dfn>create a reference space</dfn> by running the following steps:
 
-  1. Let |session| be the {{XRSession}} object that requested creation of a reference space.
-  1. Let |type| be set to the {{XRReferenceSpaceType}} passed to {{requestReferenceSpace()}}.
-  1. If the [=reference space is supported=] for |type| and |session|, run the following steps:
-    1. Initialize |referenceSpace| as follows:
-        <dl class="switch">
-          <dt> If |type| is {{bounded-floor}}
-          <dd> Let |referenceSpace| be a [=new=] {{XRBoundedReferenceSpace}} in the [=relevant realm=] of |session|.
-          <dt> Otherwise
-          <dd> Let |referenceSpace| be a [=new=] {{XRReferenceSpace}} in the [=relevant realm=] of |session|.
-        </dl>
-    1. Initialize |referenceSpace|'s [=XRReferenceSpace/type=] to |type|.
-    1. Initialize |referenceSpace|'s [=XRSpace/session=] to |session|.
-    1. Return |referenceSpace|
-  1. Return <code>null</code>.
+  1. Initialize |referenceSpace| as follows:
+      <dl class="switch">
+        <dt> If |type| is {{bounded-floor}}
+        <dd> Let |referenceSpace| be a [=new=] {{XRBoundedReferenceSpace}} in the [=relevant realm=] of |session|.
+        <dt> Otherwise
+        <dd> Let |referenceSpace| be a [=new=] {{XRReferenceSpace}} in the [=relevant realm=] of |session|.
+      </dl>
+  1. Initialize |referenceSpace|'s [=XRReferenceSpace/type=] to |type|.
+  1. Initialize |referenceSpace|'s [=XRSpace/session=] to |session|.
+  1. Return |referenceSpace|.
 
 </div>
 
@@ -2300,8 +2300,7 @@ When based on sensor data, {{XRPose}} and {{XRViewerPose}} will expose [=sensiti
 
 To determine if <dfn>poses may be reported</dfn> to an {{XRSession}} |session|, the user agent MUST run the following steps:
 
-  1. Let |document| be |session|'s [=relevant global object=]'s [=associated document=].
-  1. If |document| is [=hidden=] return <code>false</code>.
+  1. If |session|'s [=relevant global object=] is not the [=current global object=], return <code>false</code>.
   1. If |session|'s {{XRSession/visibilityState}} in not {{XRVisibilityState/"visible"}}, return <code>false</code>.
   1. Determine if the pose data can be returned as follows:
     <dl class="switch">
@@ -2315,11 +2314,10 @@ To determine if <dfn>poses may be reported</dfn> to an {{XRSession}} |session|, 
       <dd> Return <code>false</code>.
     </dl>
 
-</div>
-
-Note: The requirement for document visibility is based on [[DEVICE-ORIENTATION]].
 
 Note: The method by which a user agent determines that poses do not expose fingerprintable data is left to the user agent's discretion.
+
+</div>
 
 The primary difference between {{XRViewerPose}} and {{XRPose}} is the inclusion of {{XRView}} information. When more than one view is present and the physical relationship between these views is configurable by the user, the relationship between these views is considered [=sensitive information=] as it can be used to fingerprint or profile the user.
 
@@ -2350,9 +2348,13 @@ To determine if <dfn>poses must be limited</dfn> between two spaces, |space| and
 
   1. If either |space| or |baseSpace| are an {{XRBoundedReferenceSpace}} and the other space's [=native origin=]'s falls further outside the [=native bounds geometry=] than a reasonable distance determined by the user agent, return true.
   1. If either |space| or |baseSpace| are an {{XRReferenceSpace}} with a [=XRReferenceSpace/type=] of {{XRReferenceSpaceType/"local"}} or {{XRReferenceSpaceType/"local-floor"}} and the distance between the spaces' [=native origin=]'s is greater than a reasonable distance determined by the user agent, return <code>true</code>.
-  1. Return false.
+  1. Let |document| be |space|'s [=relevant global object=]'s [=associated document=].
+  1. If |document| is [=hidden=] return <code>true</code>.
+  1. Return <code>false</code>.
 
 </div>
+
+Note: The requirement for document visibility is based on [[DEVICE-ORIENTATION]].
 
 Note: Is is suggested that poses reported relative to a {{XRReferenceSpaceType/"local"}} or {{XRReferenceSpaceType/"local-floor"}} reference space be [=limiting|limited=] to a distance of 15 meters from the {{XRReferenceSpace}}'s [=native origin=].
 
