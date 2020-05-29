@@ -2290,11 +2290,15 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel②">in parallel</a>:</p>
       <ol>
        <li data-md>
-        <p><a data-link-type="dfn" href="#create-a-reference-space" id="ref-for-create-a-reference-space">Create a reference space</a>, <var>referenceSpace</var>, with the <code class="idl"><a data-link-type="idl" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype②">XRReferenceSpaceType</a></code> <var>type</var>.</p>
+        <p>If the result of running <a data-link-type="dfn" href="#reference-space-is-supported" id="ref-for-reference-space-is-supported">reference space is supported</a> for <var>type</var> and <var>session</var> is <code>false</code>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑧">queue a task</a> to <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑦">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror③">NotSupportedError</a></code> and abort these steps.</p>
        <li data-md>
-        <p>If <var>referenceSpace</var> is <code>null</code>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑧">queue a task</a> to <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑦">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror③">NotSupportedError</a></code> and abort these steps.</p>
+        <p>Set up any platform resources required to track reference spaces of type <var>type</var>.</p>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑨">Queue a task</a> to <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑥">resolve</a> <var>promise</var> with <var>referenceSpace</var>.</p>
+        <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task⑨">Queue a task</a> to run the following steps:</p>
+       <li data-md>
+        <p><a data-link-type="dfn" href="#create-a-reference-space" id="ref-for-create-a-reference-space">Create a reference space</a>, <var>referenceSpace</var>, with <var>type</var> and <var>session</var>.</p>
+       <li data-md>
+        <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑥">Resolve</a> <var>promise</var> with <var>referenceSpace</var>.</p>
       </ol>
      <li data-md>
       <p>Return <var>promise</var>.</p>
@@ -2355,6 +2359,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
         <p>Fire an <code class="idl"><a data-link-type="idl" href="#xrinputsourceschangeevent" id="ref-for-xrinputsourceschangeevent②">XRInputSourcesChangeEvent</a></code> named <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-inputsourceschange" id="ref-for-eventdef-xrsession-inputsourceschange②">inputsourceschange</a></code> on <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrinputsourceschangeevent-removed" id="ref-for-dom-xrinputsourceschangeevent-removed">removed</a></code> set to <var>removed</var>.</p>
       </ol>
     </ol>
+    <p class="note" role="note"><span>Note:</span> The user agent MAY fire this event when an input source temporarily loses both position and orientation tracking. It is recommended that this only be done for physical handheld controller input sources. It is not recommended that this event be fired when this happens for tracked hand input sources, because this will happen often, nor is it recommended when this happens for tracker object input sources, since this makes it harder for the application to maintain a notion of identity.</p>
    </div>
    <div class="algorithm" data-algorithm="on-input-source-change">
     <p>When the <dfn class="dfn-paneled" data-dfn-for="XRSession" data-dfn-type="dfn" data-export data-lt="change input source" id="xrsession-change-input-source"><code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-handedness" id="ref-for-dom-xrinputsource-handedness">handedness</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode">targetRayMode</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-profiles" id="ref-for-dom-xrinputsource-profiles">profiles</a></code>, or presence of a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace">gripSpace</a></code> for any <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source⑧">XR input source</a>s change</dfn> for <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③⑨">XRSession</a></code> <var>session</var>, the user agent MUST run the following steps:</p>
@@ -2611,7 +2616,7 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
      <li data-md>
       <p>Let <var>pose</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑤">new</a> <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose②">XRViewerPose</a></code> object in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm⑨">relevant realm</a> of <var>session</var>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="#populate-the-pose" id="ref-for-populate-the-pose">Populate the pose</a> of <var>session</var>’s <a data-link-type="dfn" href="#xrsession-viewer-reference-space" id="ref-for-xrsession-viewer-reference-space①">viewer reference space</a> in <var>referenceSpace</var> at the time represented by <var>frame</var> into <var>pose</var>.</p>
+      <p><a data-link-type="dfn" href="#populate-the-pose" id="ref-for-populate-the-pose">Populate the pose</a> of <var>session</var>’s <a data-link-type="dfn" href="#xrsession-viewer-reference-space" id="ref-for-xrsession-viewer-reference-space①">viewer reference space</a> in <var>referenceSpace</var> at the time represented by <var>frame</var> into <var>pose</var>, with <code>force emulation</code> set to <code>true</code>.</p>
      <li data-md>
       <p>If <var>pose</var> is <code>null</code> return <code>null</code>.</p>
      <li data-md>
@@ -2680,7 +2685,7 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace⑥">XRSpace</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRSpace" data-dfn-type="dfn" data-noexport id="xrspace-native-origin">native origin</dfn> that is tracked by the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device①⑦">XR device</a>'s underlying tracking system, and an <dfn class="dfn-paneled" data-dfn-for="XRSpace" data-dfn-type="dfn" data-noexport id="xrspace-effective-origin">effective origin</dfn>, which is the basis of the <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace⑦">XRSpace</a></code>'s <dfn class="dfn-paneled" data-dfn-for="XRSpace" data-dfn-type="dfn" data-noexport id="xrspace-coordinate-system">coordinate system</dfn>. The transform from the effective space to the <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin">native origin</a>'s space is defined by an <dfn class="dfn-paneled" data-dfn-for="XRSpace" data-dfn-type="dfn" data-noexport id="xrspace-origin-offset">origin offset</dfn>, which is an <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform①">XRRigidTransform</a></code> initially set to an <a data-link-type="dfn" href="#identity-transform" id="ref-for-identity-transform①">identity transform</a>.</p>
    <p>The <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin">effective origin</a> of an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace⑧">XRSpace</a></code> can only be observed in the coordinate system of another <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace⑨">XRSpace</a></code> as an <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose③">XRPose</a></code>, returned by an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⑤">XRFrame</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrframe-getpose" id="ref-for-dom-xrframe-getpose①">getPose()</a></code> method. The spatial relationship between <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①⓪">XRSpace</a></code>s MAY change between <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⑥">XRFrame</a></code>s.</p>
    <div class="algorithm" data-algorithm="populate-the-pose">
-    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="populate-the-pose">populate the pose</dfn> of an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①①">XRSpace</a></code> <var>space</var> in an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①②">XRSpace</a></code> <var>baseSpace</var> at the time represented by an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⑦">XRFrame</a></code> <var>frame</var> into an <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose④">XRPose</a></code> <var>pose</var>, the user agent MUST run the following steps:</p>
+    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="populate-the-pose">populate the pose</dfn> of an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①①">XRSpace</a></code> <var>space</var> in an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①②">XRSpace</a></code> <var>baseSpace</var> at the time represented by an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⑦">XRFrame</a></code> <var>frame</var> into an <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose④">XRPose</a></code> <var>pose</var>, with an optional <var>force emulation</var> flag, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
       <p>If <var>frame</var>’s <a data-link-type="dfn" href="#xrframe-active" id="ref-for-xrframe-active②">active</a> boolean is <code>false</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑥">InvalidStateError</a></code> and abort these steps.</p>
@@ -2707,11 +2712,11 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
        <dd> Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation①">orientation</a></code> to the orientation of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin③">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system②">coordinate system</a>. 
        <dd> Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position①">position</a></code> to the tracking system’s best estimate of the position of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin④">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system③">coordinate system</a>. This MAY include a computed offset such as a neck or arm model. If a position estimate is not available, the last known position MUST be used. 
        <dd> Set <var>pose</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition①">emulatedPosition</a></code> to <code>true</code>. 
-       <dt> Else if <var>space</var>’s pose relative to <var>baseSpace</var> has been determined in the past: 
+       <dt> Else if <var>space</var>’s pose relative to <var>baseSpace</var> has been determined in the past and <var>force emulation</var> is <code>true</code>: 
        <dd> Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position②">position</a></code> to the last known position of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin⑤">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system④">coordinate system</a>. 
        <dd> Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation②">orientation</a></code> to the last known orientation of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin⑥">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system⑤">coordinate system</a>. 
        <dd> Set <var>pose</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition②">emulatedPosition</a></code> boolean to <code>true</code>. 
-       <dt> Else if <var>space</var>’s pose relative to <var>baseSpace</var> has never been determined: 
+       <dt> Otherwise: 
        <dd> Set <var>pose</var> to <code>null</code>. 
       </dl>
     </ol>
@@ -2735,8 +2740,8 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
   <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler①⓪"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrreferencespace-onreset" id="ref-for-dom-xrreferencespace-onreset"><c- g>onreset</c-></a>;
 };
 </pre>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⓪">XRReferenceSpace</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRReferenceSpace" data-dfn-type="dfn" data-noexport id="xrreferencespace-type">type</dfn>, which is an <code class="idl"><a data-link-type="idl" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype③">XRReferenceSpaceType</a></code>.</p>
-   <p>An <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①①">XRReferenceSpace</a></code> is most frequently obtained by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace①">requestReferenceSpace()</a></code>, which creates an instance of an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①②">XRReferenceSpace</a></code> (or an interface extending it) if the <code class="idl"><a data-link-type="idl" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype④">XRReferenceSpaceType</a></code> enum value passed into the call <a data-link-type="dfn" href="#reference-space-is-supported" id="ref-for-reference-space-is-supported">is supported</a>. The type indicates the tracking behavior that the reference space will exhibit:</p>
+   <p>Each <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⓪">XRReferenceSpace</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRReferenceSpace" data-dfn-type="dfn" data-noexport id="xrreferencespace-type">type</dfn>, which is an <code class="idl"><a data-link-type="idl" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype②">XRReferenceSpaceType</a></code>.</p>
+   <p>An <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①①">XRReferenceSpace</a></code> is most frequently obtained by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace①">requestReferenceSpace()</a></code>, which creates an instance of an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①②">XRReferenceSpace</a></code> (or an interface extending it) if the <code class="idl"><a data-link-type="idl" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype③">XRReferenceSpaceType</a></code> enum value passed into the call <a data-link-type="dfn" href="#reference-space-is-supported" id="ref-for-reference-space-is-supported①">is supported</a>. The type indicates the tracking behavior that the reference space will exhibit:</p>
    <ul>
     <li data-md>
      <p>Passing a type of <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceType" data-dfn-type="enum-value" data-export data-lt="&quot;viewer&quot;|viewer" id="dom-xrreferencespacetype-viewer"><code>viewer</code></dfn> creates an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①③">XRReferenceSpace</a></code> instance. It represents a tracking space with a <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin②">native origin</a> which tracks the position and orientation of the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑦">viewer</a>. Every <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑦③">XRSession</a></code> MUST support <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-viewer" id="ref-for-dom-xrreferencespacetype-viewer③">"viewer"</a></code> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①④">XRReferenceSpace</a></code>s.</p>
@@ -2753,32 +2758,22 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
    <p>Devices that support <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-local" id="ref-for-dom-xrreferencespacetype-local⑤">"local"</a></code> reference spaces MUST support <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-local-floor" id="ref-for-dom-xrreferencespacetype-local-floor④">"local-floor"</a></code> reference spaces, through emulation if necessary, and vice versa.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpace" data-dfn-type="attribute" data-export id="dom-xrreferencespace-onreset"><code>onreset</code></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes①⓪">Event handler IDL attribute</a> for the <code class="idl"><a data-link-type="idl" href="#eventdef-xrreferencespace-reset" id="ref-for-eventdef-xrreferencespace-reset">reset</a></code> event type.</p>
    <div class="algorithm" data-algorithm="create-reference-space">
-    <p>When an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑧">XRReferenceSpace</a></code> is requested, the user agent MUST <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="create-a-reference-space">create a reference space</dfn> by running the following steps:</p>
+    <p>When an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑧">XRReferenceSpace</a></code> is requested with <code class="idl"><a data-link-type="idl" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype④">XRReferenceSpaceType</a></code> <var>type</var> for <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑦④">XRSession</a></code> <var>session</var>, the user agent MUST <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="create-a-reference-space">create a reference space</dfn> by running the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>session</var> be the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑦④">XRSession</a></code> object that requested creation of a reference space.</p>
+      <p>Initialize <var>referenceSpace</var> as follows:</p>
+      <dl class="switch">
+       <dt> If <var>type</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor⑤">bounded-floor</a></code> 
+       <dd> Let <var>referenceSpace</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑧">new</a> <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace①">XRBoundedReferenceSpace</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①③">relevant realm</a> of <var>session</var>. 
+       <dt> Otherwise 
+       <dd> Let <var>referenceSpace</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑨">new</a> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑨">XRReferenceSpace</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①④">relevant realm</a> of <var>session</var>. 
+      </dl>
      <li data-md>
-      <p>Let <var>type</var> be set to the <code class="idl"><a data-link-type="idl" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype⑤">XRReferenceSpaceType</a></code> passed to <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace②">requestReferenceSpace()</a></code>.</p>
+      <p>Initialize <var>referenceSpace</var>’s <a data-link-type="dfn" href="#xrreferencespace-type" id="ref-for-xrreferencespace-type">type</a> to <var>type</var>.</p>
      <li data-md>
-      <p>If the <a data-link-type="dfn" href="#reference-space-is-supported" id="ref-for-reference-space-is-supported①">reference space is supported</a> for <var>type</var> and <var>session</var>, run the following steps:</p>
-      <ol>
-       <li data-md>
-        <p>Initialize <var>referenceSpace</var> as follows:</p>
-        <dl class="switch">
-         <dt> If <var>type</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor⑤">bounded-floor</a></code> 
-         <dd> Let <var>referenceSpace</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑧">new</a> <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace①">XRBoundedReferenceSpace</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①③">relevant realm</a> of <var>session</var>. 
-         <dt> Otherwise 
-         <dd> Let <var>referenceSpace</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑨">new</a> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑨">XRReferenceSpace</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①④">relevant realm</a> of <var>session</var>. 
-        </dl>
-       <li data-md>
-        <p>Initialize <var>referenceSpace</var>’s <a data-link-type="dfn" href="#xrreferencespace-type" id="ref-for-xrreferencespace-type">type</a> to <var>type</var>.</p>
-       <li data-md>
-        <p>Initialize <var>referenceSpace</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session②">session</a> to <var>session</var>.</p>
-       <li data-md>
-        <p>Return <var>referenceSpace</var></p>
-      </ol>
+      <p>Initialize <var>referenceSpace</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session②">session</a> to <var>session</var>.</p>
      <li data-md>
-      <p>Return <code>null</code>.</p>
+      <p>Return <var>referenceSpace</var>.</p>
     </ol>
    </div>
    <div class="algorithm" data-algorithm="reference-space-supported">
@@ -3738,9 +3733,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <p>To determine if <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="poses-may-be-reported">poses may be reported</dfn> to an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②⓪">XRSession</a></code> <var>session</var>, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>document</var> be <var>session</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①">relevant global object</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/window-object.html#concept-document-window" id="ref-for-concept-document-window">associated document</a>.</p>
-     <li data-md>
-      <p>If <var>document</var> is <a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate-hidden" id="ref-for-dom-visibilitystate-hidden">hidden</a> return <code>false</code>.</p>
+      <p>If <var>session</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①">relevant global object</a> is not the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#current-global-object" id="ref-for-current-global-object">current global object</a>, return <code>false</code>.</p>
      <li data-md>
       <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-visibilitystate" id="ref-for-dom-xrsession-visibilitystate①">visibilityState</a></code> in not <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-visible" id="ref-for-dom-xrvisibilitystate-visible②">"visible"</a></code>, return <code>false</code>.</p>
      <li data-md>
@@ -3756,9 +3749,8 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
        <dd> Return <code>false</code>. 
       </dl>
     </ol>
+    <p class="note" role="note"><span>Note:</span> The method by which a user agent determines that poses do not expose fingerprintable data is left to the user agent’s discretion.</p>
    </div>
-   <p class="note" role="note"><span>Note:</span> The requirement for document visibility is based on <a data-link-type="biblio" href="#biblio-device-orientation">[DEVICE-ORIENTATION]</a>.</p>
-   <p class="note" role="note"><span>Note:</span> The method by which a user agent determines that poses do not expose fingerprintable data is left to the user agent’s discretion.</p>
    <p>The primary difference between <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose①①">XRViewerPose</a></code> and <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose①③">XRPose</a></code> is the inclusion of <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑦">XRView</a></code> information. When more than one view is present and the physical relationship between these views is configurable by the user, the relationship between these views is considered <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑦">sensitive information</a> as it can be used to fingerprint or profile the user.</p>
    <p>If the relationship between <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑧">XRView</a></code>s could uniquely identify the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⑦">XR device</a>, then the user agent MUST anonymize the <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑨">XRView</a></code> data to prevent fingerprinting. The method of anonymization is at the discretion of the user agent.</p>
    <p class="note" role="note"><span>Note:</span> Furthermore, if the relationship between <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②⓪">XRView</a></code>s is affected by a user-configured interpupillary distance (IPD), then it is strongly recommended that the user agent require <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑦">explicit consent</a> during session creation, prior to reporting any <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②①">XRView</a></code> data.</p>
@@ -3785,9 +3777,14 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
      <li data-md>
       <p>If either <var>space</var> or <var>baseSpace</var> are an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③⑤">XRReferenceSpace</a></code> with a <a data-link-type="dfn" href="#xrreferencespace-type" id="ref-for-xrreferencespace-type①">type</a> of <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-local" id="ref-for-dom-xrreferencespacetype-local①⓪">"local"</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-local-floor" id="ref-for-dom-xrreferencespacetype-local-floor①⓪">"local-floor"</a></code> and the distance between the spaces' <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin②①">native origin</a>'s is greater than a reasonable distance determined by the user agent, return <code>true</code>.</p>
      <li data-md>
-      <p>Return false.</p>
+      <p>Let <var>document</var> be <var>space</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global②">relevant global object</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/window-object.html#concept-document-window" id="ref-for-concept-document-window">associated document</a>.</p>
+     <li data-md>
+      <p>If <var>document</var> is <a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate-hidden" id="ref-for-dom-visibilitystate-hidden">hidden</a> return <code>true</code>.</p>
+     <li data-md>
+      <p>Return <code>false</code>.</p>
     </ol>
    </div>
+   <p class="note" role="note"><span>Note:</span> The requirement for document visibility is based on <a data-link-type="biblio" href="#biblio-device-orientation">[DEVICE-ORIENTATION]</a>.</p>
    <p class="note" role="note"><span>Note:</span> Is is suggested that poses reported relative to a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-local" id="ref-for-dom-xrreferencespacetype-local①①">"local"</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-local-floor" id="ref-for-dom-xrreferencespacetype-local-floor①①">"local-floor"</a></code> reference space be <a data-link-type="dfn" href="#limiting" id="ref-for-limiting②">limited</a> to a distance of 15 meters from the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③⑥">XRReferenceSpace</a></code>'s <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin②②">native origin</a>.</p>
    <p class="note" role="note"><span>Note:</span> Is is suggested that poses reported relative to a <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace①④">XRBoundedReferenceSpace</a></code> be <a data-link-type="dfn" href="#limiting" id="ref-for-limiting③">limited</a> to a distance of 1 meter outside the <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace①⑤">XRBoundedReferenceSpace</a></code>'s <a data-link-type="dfn" href="#xrboundedreferencespace-native-bounds-geometry" id="ref-for-xrboundedreferencespace-native-bounds-geometry⑦">native bounds geometry</a>.</p>
    <h3 class="heading settled" data-level="13.6" id="trustedenvironment-security"><span class="secno">13.6. </span><span class="content">Trusted Environment</span><a class="self-link" href="#trustedenvironment-security"></a></h3>
@@ -4728,7 +4725,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <aside class="dfn-panel" data-for="term-for-concept-document-window">
    <a href="https://html.spec.whatwg.org/multipage/window-object.html#concept-document-window">https://html.spec.whatwg.org/multipage/window-object.html#concept-document-window</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-document-window">13.5.2. Poses</a>
+    <li><a href="#ref-for-concept-document-window">13.5.3. Reference spaces</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-browsing-context">
@@ -4738,6 +4735,12 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li><a href="#ref-for-browsing-context②">13.2. User intention</a>
     <li><a href="#ref-for-browsing-context③">13.2.4. Duration of consent</a>
     <li><a href="#ref-for-browsing-context④">13.7. Context Isolation</a> <a href="#ref-for-browsing-context⑤">(2)</a> <a href="#ref-for-browsing-context⑥">(3)</a> <a href="#ref-for-browsing-context⑦">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-current-global-object">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#current-global-object">https://html.spec.whatwg.org/multipage/webappapis.html#current-global-object</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-current-global-object">13.5.2. Poses</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-current">
@@ -4800,6 +4803,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <ul>
     <li><a href="#ref-for-concept-relevant-global">3.2. XRSystem</a>
     <li><a href="#ref-for-concept-relevant-global①">13.5.2. Poses</a>
+    <li><a href="#ref-for-concept-relevant-global②">13.5.3. Reference spaces</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-relevant-realm">
@@ -4957,7 +4961,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <aside class="dfn-panel" data-for="term-for-dom-visibilitystate-hidden">
    <a href="https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate-hidden">https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate-hidden</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-visibilitystate-hidden">13.5.2. Poses</a>
+    <li><a href="#ref-for-dom-visibilitystate-hidden">13.5.3. Reference spaces</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-visibilitystate-attribute">
@@ -5534,6 +5538,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
      <li><span class="dfn-paneled" id="term-for-active-document" style="color:initial">active document</span>
      <li><span class="dfn-paneled" id="term-for-concept-document-window" style="color:initial">associated document</span>
      <li><span class="dfn-paneled" id="term-for-browsing-context" style="color:initial">browsing context</span>
+     <li><span class="dfn-paneled" id="term-for-current-global-object" style="color:initial">current global object</span>
      <li><span class="dfn-paneled" id="term-for-current" style="color:initial">current realm</span>
      <li><span class="dfn-paneled" id="term-for-currently-focused-area-of-a-top-level-browsing-context" style="color:initial">currently focused area</span>
      <li><span class="dfn-paneled" id="term-for-event-handler-idl-attributes" style="color:initial">event handler idl attribute</span>
@@ -6444,7 +6449,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <b><a href="#dom-xrsession-requestreferencespace">#dom-xrsession-requestreferencespace</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrsession-requestreferencespace">4.1. XRSession</a>
-    <li><a href="#ref-for-dom-xrsession-requestreferencespace①">6.2. XRReferenceSpace</a> <a href="#ref-for-dom-xrsession-requestreferencespace②">(2)</a>
+    <li><a href="#ref-for-dom-xrsession-requestreferencespace①">6.2. XRReferenceSpace</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="list-of-active-xr-input-sources">
@@ -6925,8 +6930,8 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <b><a href="#enumdef-xrreferencespacetype">#enumdef-xrreferencespacetype</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-enumdef-xrreferencespacetype">3.4. Feature Dependencies</a>
-    <li><a href="#ref-for-enumdef-xrreferencespacetype①">4.1. XRSession</a> <a href="#ref-for-enumdef-xrreferencespacetype②">(2)</a>
-    <li><a href="#ref-for-enumdef-xrreferencespacetype③">6.2. XRReferenceSpace</a> <a href="#ref-for-enumdef-xrreferencespacetype④">(2)</a> <a href="#ref-for-enumdef-xrreferencespacetype⑤">(3)</a>
+    <li><a href="#ref-for-enumdef-xrreferencespacetype①">4.1. XRSession</a>
+    <li><a href="#ref-for-enumdef-xrreferencespacetype②">6.2. XRReferenceSpace</a> <a href="#ref-for-enumdef-xrreferencespacetype③">(2)</a> <a href="#ref-for-enumdef-xrreferencespacetype④">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrreferencespace">
@@ -7019,7 +7024,8 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <aside class="dfn-panel" data-for="reference-space-is-supported">
    <b><a href="#reference-space-is-supported">#reference-space-is-supported</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-reference-space-is-supported">6.2. XRReferenceSpace</a> <a href="#ref-for-reference-space-is-supported①">(2)</a>
+    <li><a href="#ref-for-reference-space-is-supported">4.1. XRSession</a>
+    <li><a href="#ref-for-reference-space-is-supported①">6.2. XRReferenceSpace</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrreferencespace-getoffsetreferencespace">
