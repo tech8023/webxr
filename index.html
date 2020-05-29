@@ -3603,7 +3603,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
 };
 </pre>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSourceEvent" data-dfn-type="attribute" data-export id="dom-xrinputsourceevent-inputsource"><code>inputSource</code></dfn> attribute indicates the <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource②①">XRInputSource</a></code> that generated this event.</p>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSourceEvent" data-dfn-type="attribute" data-export id="dom-xrinputsourceevent-frame"><code>frame</code></dfn> attribute is an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe③⓪">XRFrame</a></code> that corresponds with the time that the event took place. It may represent historical data. Any <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑨">XRViewerPose</a></code> queried from the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsourceevent-frame" id="ref-for-dom-xrinputsourceevent-frame①">frame</a></code> MUST have an empty <code class="idl"><a data-link-type="idl" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views②">views</a></code> array.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSourceEvent" data-dfn-type="attribute" data-export id="dom-xrinputsourceevent-frame"><code>frame</code></dfn> attribute is an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe③⓪">XRFrame</a></code> that corresponds with the time that the event took place. It may represent historical data. <code class="idl"><a data-link-type="idl" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose③">getViewerPose()</a></code> MUST throw an exception when called on <code class="idl"><a data-link-type="idl" href="#dom-xrinputsourceevent-frame" id="ref-for-dom-xrinputsourceevent-frame①">frame</a></code>.</p>
    <div class="algorithm" data-algorithm="fire-input-source-event">
     <p>When the user agent has to <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="fire-an-input-source-event">fire an input source event</dfn> with name <var>name</var>, <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe③①">XRFrame</a></code> <var>frame</var>, and <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource②②">XRInputSource</a></code> <var>source</var> it MUST run the following steps:</p>
     <ol>
@@ -3728,7 +3728,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     </ol>
    </div>
    <h4 class="heading settled" data-level="13.5.2" id="protect-poses"><span class="secno">13.5.2. </span><span class="content">Poses</span><a class="self-link" href="#protect-poses"></a></h4>
-    When based on sensor data, <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose①②">XRPose</a></code> and <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose①⓪">XRViewerPose</a></code> will expose <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑥">sensitive information</a> that may be misused in a number of ways, including input sniffing, gaze tracking, or fingerprinting. 
+    When based on sensor data, <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose①②">XRPose</a></code> and <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑨">XRViewerPose</a></code> will expose <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑥">sensitive information</a> that may be misused in a number of ways, including input sniffing, gaze tracking, or fingerprinting. 
    <div class="algorithm" data-algorithm="poses-allowed">
     <p>To determine if <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="poses-may-be-reported">poses may be reported</dfn> to an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②⓪">XRSession</a></code> <var>session</var>, the user agent MUST run the following steps:</p>
     <ol>
@@ -3751,7 +3751,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     </ol>
     <p class="note" role="note"><span>Note:</span> The method by which a user agent determines that poses do not expose fingerprintable data is left to the user agent’s discretion.</p>
    </div>
-   <p>The primary difference between <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose①①">XRViewerPose</a></code> and <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose①③">XRPose</a></code> is the inclusion of <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑦">XRView</a></code> information. When more than one view is present and the physical relationship between these views is configurable by the user, the relationship between these views is considered <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑦">sensitive information</a> as it can be used to fingerprint or profile the user.</p>
+   <p>The primary difference between <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose①⓪">XRViewerPose</a></code> and <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose①③">XRPose</a></code> is the inclusion of <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑦">XRView</a></code> information. When more than one view is present and the physical relationship between these views is configurable by the user, the relationship between these views is considered <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑦">sensitive information</a> as it can be used to fingerprint or profile the user.</p>
    <p>If the relationship between <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑧">XRView</a></code>s could uniquely identify the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⑦">XR device</a>, then the user agent MUST anonymize the <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑨">XRView</a></code> data to prevent fingerprinting. The method of anonymization is at the discretion of the user agent.</p>
    <p class="note" role="note"><span>Note:</span> Furthermore, if the relationship between <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②⓪">XRView</a></code>s is affected by a user-configured interpupillary distance (IPD), then it is strongly recommended that the user agent require <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑦">explicit consent</a> during session creation, prior to reporting any <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②①">XRView</a></code> data.</p>
    <h4 class="heading settled" data-level="13.5.3" id="protect-reference-spaces"><span class="secno">13.5.3. </span><span class="content">Reference spaces</span><a class="self-link" href="#protect-reference-spaces"></a></h4>
@@ -6830,6 +6830,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li><a href="#ref-for-dom-xrframe-getviewerpose">4.1. XRSession</a>
     <li><a href="#ref-for-dom-xrframe-getviewerpose①">5.1. XRFrame</a>
     <li><a href="#ref-for-dom-xrframe-getviewerpose②">7.1. XRView</a>
+    <li><a href="#ref-for-dom-xrframe-getviewerpose③">12.2. XRInputSourceEvent</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrframe-getpose">
@@ -7331,8 +7332,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li><a href="#ref-for-xrviewerpose">5.1. XRFrame</a> <a href="#ref-for-xrviewerpose①">(2)</a> <a href="#ref-for-xrviewerpose②">(3)</a> <a href="#ref-for-xrviewerpose③">(4)</a>
     <li><a href="#ref-for-xrviewerpose④">7.2. XRViewport</a>
     <li><a href="#ref-for-xrviewerpose⑤">9.2. XRViewerPose</a> <a href="#ref-for-xrviewerpose⑥">(2)</a> <a href="#ref-for-xrviewerpose⑦">(3)</a> <a href="#ref-for-xrviewerpose⑧">(4)</a>
-    <li><a href="#ref-for-xrviewerpose⑨">12.2. XRInputSourceEvent</a>
-    <li><a href="#ref-for-xrviewerpose①⓪">13.5.2. Poses</a> <a href="#ref-for-xrviewerpose①①">(2)</a>
+    <li><a href="#ref-for-xrviewerpose⑨">13.5.2. Poses</a> <a href="#ref-for-xrviewerpose①⓪">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrviewerpose-views">
@@ -7340,7 +7340,6 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <ul>
     <li><a href="#ref-for-dom-xrviewerpose-views">5.1. XRFrame</a>
     <li><a href="#ref-for-dom-xrviewerpose-views①">9.2. XRViewerPose</a>
-    <li><a href="#ref-for-dom-xrviewerpose-views②">12.2. XRInputSourceEvent</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xr-input-source">
