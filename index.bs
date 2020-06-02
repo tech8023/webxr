@@ -1227,7 +1227,7 @@ The <dfn method for="XRReferenceSpace">getOffsetReferenceSpace(|originOffset|)</
       <dt> Else
       <dd> Let |offsetSpace| be a [=new=] {{XRReferenceSpace}} in the [=relevant realm=] of |base|.
     </dl>
-  1. Set |offsetSpace|'s [=native origin=] to |base|'s [=native origin=].
+  1. Set |offsetSpace|'s [=XRReferenceSpace/type=] to |base|'s [=XRReferenceSpace/type=].
   1. Set |offsetSpace|'s [=origin offset=] to the result of [=multiply transforms|multiplying=] |base|'s [=origin offset=] by |originOffset| in the [=relevant realm=] of |base|.
   1. Return |offsetSpace|.
 
