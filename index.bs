@@ -2585,6 +2585,7 @@ Thank you to the following individuals for their contributions the WebXR Device 
   * <a href="mailto:ada.cannon@samsung.com">Ada Rose Cannon</a> (<a href="https://samsung.com">Samsung</a>)
   * <a href="mailto:mlamouri@google.com">Mounir Lamouri</a> (<a href="https://google.com">Google</a>)
   * <a href="mailto:stew@rtsmith.io">Stewart Smith</a> (<a href="https://moar.io">Moar Technologies Corp</a>)
+  * <a href="mailto:web3d@realism.com">Leonard Daly</a> (<a href="https://realism.com">Daly Realism</a>)
 
 And a special thanks to <a href="mailto:vladv@unity3d.com">Vladimir Vukicevic</a> (<a href="https://unity3d.com/">Unity</a>) for kick-starting this whole adventure!
 
