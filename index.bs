@@ -224,7 +224,7 @@ The user-agent MUST have a <dfn for="">default inline XR device</dfn>, which is 
 
 Note: The [=/default inline XR device=] exists purely as a convenience for developers, allowing them to use the same rendering and input logic for both inline and immersive content. The [=/default inline XR device=] does not expose any information not already available to the developer through other mechanisms on the page (such as pointer events for input), it only surfaces those values in an XR-centric format.
 
-The user-agent MUST have a <dfn for="">inline XR device</dfn>, which is an [=/XR device=] that MUST [=list/contains|contain=] {{XRSessionMode/"inline"}} in its [=list of supported modes=]. The [=/inline XR device=] MAY be the [=XRSystem/immersive XR device=] if the tracking it provides makes sense to expose to inline content or the [=/default inline XR device=] otherwise.
+The user-agent MUST have a <dfn for="">inline XR device</dfn>, which is an [=/XR device=] that MUST [=list/contains|contain=] {{XRSessionMode/"inline"}} in its [=list of supported modes=]. The [=/inline XR device=] MAY be the [=immersive XR device=] if the tracking it provides makes sense to expose to inline content or the [=/default inline XR device=] otherwise.
 
 Note: On phones, the [=/inline XR device=] may report pose information derived from the phone's internal sensors, such as the gyroscope and accelerometer. On desktops and laptops without similar sensors, the [=/inline XR device=] will not be able to report a pose, and as such should fall back to the [=/default inline XR device=]. In case the user agent is already running on an [=/XR device=], the [=/inline XR device=] will be the same device, and may support multiple [=view|views=]. User consent must be given before any tracking or input features beyond what the [=/default inline XR device=] exposes are provided.
 
@@ -262,7 +262,7 @@ An {{XRSystem}} object is the entry point to the API, used to query for XR featu
 
 An {{XRSystem}} object has a <dfn>list of immersive XR devices</dfn> (a [=/list=] of [=/XR device=]), which MUST be initially an empty [=/list=].
 
-An {{XRSystem}} object has an <dfn for="XRSystem">immersive XR device</dfn> (null or [=/XR device=]) which is initially null and represents the active [=/XR device=] from the [=list of immersive XR devices=].
+An {{XRSystem}} object has an <dfn>immersive XR device</dfn> (null or [=/XR device=]) which is initially null and represents the active [=/XR device=] from the [=list of immersive XR devices=].
 
 The user agent MUST be able to <dfn>enumerate immersive XR devices</dfn> attached to the system, at which time each available device is placed in the [=list of immersive XR devices=]. Subsequent algorithms requesting enumeration MUST reuse the cached [=list of immersive XR devices=]. Enumerating the devices [=should not initialize device tracking=]. After the first enumeration the user agent MUST begin monitoring device connection and disconnection, adding connected devices to the [=list of immersive XR devices=] and removing disconnected devices.
 
@@ -270,22 +270,22 @@ The user agent MUST be able to <dfn>enumerate immersive XR devices</dfn> attache
 
 Each time the [=list of immersive XR devices=] changes the user agent should <dfn>select an immersive XR device</dfn> by running the following steps:
 
-  1. Let |oldDevice| be the [=XRSystem/immersive XR device=].
-  1. If the [=list of immersive XR devices=] is an empty [=/list=], set the [=XRSystem/immersive XR device=] to <code>null</code>.
-  1. If the [=list of immersive XR devices=]'s [=list/size=] is one, set the [=XRSystem/immersive XR device=] to the [=list of immersive XR devices=][0].
-  1. Set the [=XRSystem/immersive XR device=] as follows:
+  1. Let |oldDevice| be the [=immersive XR device=].
+  1. If the [=list of immersive XR devices=] is an empty [=/list=], set the [=immersive XR device=] to <code>null</code>.
+  1. If the [=list of immersive XR devices=]'s [=list/size=] is one, set the [=immersive XR device=] to the [=list of immersive XR devices=][0].
+  1. Set the [=immersive XR device=] as follows:
     <dl class="switch">
       <dt> If there are any active {{XRSession}}s and the [=list of immersive XR devices=] [=list/contains=] |oldDevice|
-      <dd> Set the [=XRSystem/immersive XR device=] to |oldDevice|
+      <dd> Set the [=immersive XR device=] to |oldDevice|
       <dt> Otherwise
-      <dd> Set the [=XRSystem/immersive XR device=] to a device of the user agent's choosing
+      <dd> Set the [=immersive XR device=] to a device of the user agent's choosing
     </dl>
-  1. The user agent MAY update the [=/inline XR device=] to the [=XRSystem/immersive XR device=] if appropriate, or the [=/default inline XR device=] otherwise.
-  1. If this is the first time devices have been enumerated or |oldDevice| equals the [=XRSystem/immersive XR device=], abort these steps.
+  1. The user agent MAY update the [=/inline XR device=] to the [=immersive XR device=] if appropriate, or the [=/default inline XR device=] otherwise.
+  1. If this is the first time devices have been enumerated or |oldDevice| equals the [=immersive XR device=], abort these steps.
   1. [=Shut down the session|Shut down=] any active {{XRSession}}s.
   1. Set the [=XR compatible=] boolean of all {{WebGLRenderingContextBase}} instances to <code>false</code>.
   1. [=Queue a task=] to [=fire an event=] named {{devicechange!!event}} on the [=context object=]'s {{Window/navigator}}'s {{Navigator/xr}}.
-  1. [=Queue a task=] to fire appropriate <code>change</code> events on any {{XRPermissionStatus}} objects who are affected by the change in the [=XRSystem/immersive XR device=] or [=/inline XR device=].
+  1. [=Queue a task=] to fire appropriate <code>change</code> events on any {{XRPermissionStatus}} objects who are affected by the change in the [=immersive XR device=] or [=/inline XR device=].
 
 </div>
 
@@ -295,7 +295,7 @@ Note: The user agent is allowed to use any criteria it wishes to [=select an imm
 
 The user agent <dfn>ensures an immersive XR device is selected</dfn> by running the following steps:
 
-  1. If the [=context object=]'s {{Window/navigator}}'s {{Navigator/xr}}'s [=XRSystem/immersive XR device=] is not null, abort these steps.
+  1. If the [=context object=]'s {{Window/navigator}}'s {{Navigator/xr}}'s [=immersive XR device=] is not null, abort these steps.
   1. [=Enumerate immersive XR devices=].
   1. [=Select an immersive XR device=].
 
@@ -313,8 +313,8 @@ When this method is invoked, it MUST run the following steps:
   1. If the requesting document's origin is not allowed to use the "xr-spatial-tracking" [[#feature-policy|feature policy]], [=reject=] |promise| with a "{{SecurityError}}" {{DOMException}} and return it.
   1. Run the following steps [=in parallel=]:
     1. [=ensures an immersive XR device is selected|Ensure an immersive XR device is selected=].
-    1. If the [=XRSystem/immersive XR device=] is null, [=/resolve=] |promise| with <code>false</code> and abort these steps.
-    1. If the [=XRSystem/immersive XR device=]'s [=list of supported modes=] does not [=list/contain=] |mode|, [=queue a task=] to [=/resolve=] |promise| with <code>false</code> and abort these steps.
+    1. If the [=immersive XR device=] is null, [=/resolve=] |promise| with <code>false</code> and abort these steps.
+    1. If the [=immersive XR device=]'s [=list of supported modes=] does not [=list/contain=] |mode|, [=queue a task=] to [=/resolve=] |promise| with <code>false</code> and abort these steps.
     1. [=queue a task=] to [=/resolve=] |promise| with <code>true</code>.
   1. Return |promise|.
 
@@ -410,7 +410,7 @@ To <dfn>obtain the current device</dfn> for an {{XRSessionMode}} |mode|, |requir
         <dt>If |mode| is an [=immersive session=] mode:</dt>
         <dd>
             1. [=ensures an immersive XR device is selected|Ensure an immersive XR device is selected=].
-            1. Set |device| to the [=XRSystem/immersive XR device=].
+            1. Set |device| to the [=immersive XR device=].
         </dd>
         <dt>Else if |requiredFeatures| or |optionalFeatures| are not empty:</dt>
         <dd>Set |device| to the [=/inline XR device=].</dd>
@@ -443,12 +443,12 @@ enum XRSessionMode {
 </pre>
 
   - A session mode of <dfn enum-value for="XRSessionMode">inline</dfn> indicates that the session's output will be shown as an element in the HTML document. {{inline}} session content MUST be displayed in mono (i.e., with a single [=view=]). It MAY allow for [=viewer=] tracking. User agents MUST allow {{inline}} sessions to be created.
-  - A session mode of <dfn enum-value for="XRSessionMode">immersive-vr</dfn> indicates that the session's output will be given [=exclusive access=] to the [=XRSystem/immersive XR device=] display and that content <b>is not</b> intended to be integrated with the user's environment.
-  - The behavior of the <dfn enum-value for="XRSessionMode">immersive-ar</dfn> session mode is defined in the <a href="https://immersive-web.github.io/webxr-ar-module/">WebXR AR Module</a> and MUST NOT be added to the [=XRSystem/immersive XR device=]'s [=list of supported modes=] unless the UA implements that module.
+  - A session mode of <dfn enum-value for="XRSessionMode">immersive-vr</dfn> indicates that the session's output will be given [=exclusive access=] to the [=immersive XR device=] display and that content <b>is not</b> intended to be integrated with the user's environment.
+  - The behavior of the <dfn enum-value for="XRSessionMode">immersive-ar</dfn> session mode is defined in the <a href="https://immersive-web.github.io/webxr-ar-module/">WebXR AR Module</a> and MUST NOT be added to the [=immersive XR device=]'s [=list of supported modes=] unless the UA implements that module.
 
 In this document, the term <dfn>inline session</dfn> is synonymous with an {{inline}} session and the term <dfn>immersive session</dfn> refers to either an {{immersive-vr}} or {{immersive-ar}} session.
 
-[=Immersive sessions=] MUST provide some level of [=viewer=] tracking, and content MUST be shown at the proper scale relative to the user and/or the surrounding environment. Additionally, [=Immersive sessions=] MUST be given <dfn>exclusive access</dfn> to the [=XRSystem/immersive XR device=], meaning that while the [=immersive session=] is {{XRVisibilityState/"visible"}} the HTML document is not shown on the [=XRSystem/immersive XR device=]'s display, nor does content from any other source have exclusive access. [=Exclusive access=] does not prevent the user agent from overlaying its own UI, however this UI SHOULD be minimal.
+[=Immersive sessions=] MUST provide some level of [=viewer=] tracking, and content MUST be shown at the proper scale relative to the user and/or the surrounding environment. Additionally, [=Immersive sessions=] MUST be given <dfn>exclusive access</dfn> to the [=immersive XR device=], meaning that while the [=immersive session=] is {{XRVisibilityState/"visible"}} the HTML document is not shown on the [=immersive XR device=]'s display, nor does content from any other source have exclusive access. [=Exclusive access=] does not prevent the user agent from overlaying its own UI, however this UI SHOULD be minimal.
 
 Note: Future specifications or modules may expand the definition of [=immersive session=] include additional session modes.
 
@@ -456,7 +456,7 @@ Note: Examples of ways [=exclusive access=] may be presented include stereo cont
 
 Note: As an example of overlaid UI, the user-agent or operating system in an [=immersive session=] may show notifications over the rendered content.
 
-Note: While the HTML document is not shown on the [=XRSystem/immersive XR device=]'s display during an [=immersive session=], it may still be shown on a separate display, e.g. when the user is entering the [=immersive session=] from a 2d browser on their computer tethered to their  [=XRSystem/immersive XR device=].
+Note: While the HTML document is not shown on the [=immersive XR device=]'s display during an [=immersive session=], it may still be shown on a separate display, e.g. when the user is entering the [=immersive session=] from a 2d browser on their computer tethered to their  [=immersive XR device=].
 
 Feature Dependencies {#feature-dependencies}
 --------------------
@@ -1879,12 +1879,12 @@ The buffers attached to an [=opaque framebuffer=] MUST be cleared to the values 
 
 Note: Implementations may optimize away the required implicit clear operation of the [=opaque framebuffer=] as long as a guarantee can be made that the developer cannot gain access to buffer contents from another process. For instance, if the developer performs an explicit clear then the implicit clear is not needed.
 
-When an {{XRWebGLLayer}} is set as an [=immersive session=]'s {{XRRenderState/baseLayer}} the content of the [=opaque framebuffer=] is presented to the [=XRSystem/immersive XR device=] immediately after an [=XR animation frame=] completes, but only if at least one of the following has occurred since the previous [=XR animation frame=]:
+When an {{XRWebGLLayer}} is set as an [=immersive session=]'s {{XRRenderState/baseLayer}} the content of the [=opaque framebuffer=] is presented to the [=immersive XR device=] immediately after an [=XR animation frame=] completes, but only if at least one of the following has occurred since the previous [=XR animation frame=]:
 
   - The [=immersive session=]'s {{XRRenderState/baseLayer}} was changed.
   - {{clear}}, {{drawArrays}}, {{drawElements}}, or any other rendering operation which similarly affects the framebuffer's color values has been called while the [=opaque framebuffer=] is the currently bound framebuffer of the {{WebGLRenderingContext}} associated with the {{XRWebGLLayer}}.
 
-Before the [=opaque framebuffer=] is presented to the [=XRSystem/immersive XR device=] the user agent shall ensure that all rendering operations have been flushed to the [=opaque framebuffer=].
+Before the [=opaque framebuffer=] is presented to the [=immersive XR device=] the user agent shall ensure that all rendering operations have been flushed to the [=opaque framebuffer=].
 
 Each {{XRWebGLLayer}} has a <dfn for="XRWebGLLayer">target framebuffer</dfn>, which is the {{XRWebGLLayer/framebuffer}} if [=XRWebGLLayer/composition disabled=] is <code>false</code>, and the [=XRWebGLLayer/context=]'s default framebuffer otherwise.
 
@@ -1947,9 +1947,9 @@ The <dfn method for="XRWebGLLayer">getNativeFramebufferScaleFactor(|session|)</d
 WebGL Context Compatibility {#contextcompatibility}
 ---------------------------
 
-In order for a WebGL context to be used as a source for immersive XR imagery it must be created on a <dfn>compatible graphics adapter</dfn> for the [=XRSystem/immersive XR device=]. What is considered a [=compatible graphics adapter=] is platform dependent, but is understood to mean that the graphics adapter can supply imagery to the [=XRSystem/immersive XR device=] without undue latency. If a WebGL context was not already created on the [=compatible graphics adapter=], it typically must be re-created on the adapter in question before it can be used with an {{XRWebGLLayer}}.
+In order for a WebGL context to be used as a source for immersive XR imagery it must be created on a <dfn>compatible graphics adapter</dfn> for the [=immersive XR device=]. What is considered a [=compatible graphics adapter=] is platform dependent, but is understood to mean that the graphics adapter can supply imagery to the [=immersive XR device=] without undue latency. If a WebGL context was not already created on the [=compatible graphics adapter=], it typically must be re-created on the adapter in question before it can be used with an {{XRWebGLLayer}}.
 
-Note: On an XR platform with a single GPU, it can safely be assumed that the GPU is compatible with the [=XRSystem/immersive XR device=]s advertised by the platform, and thus any hardware accelerated WebGL contexts are compatible as well. On PCs with both an integrated and discrete GPU the discrete GPU is often considered the [=compatible graphics adapter=] since it generally a higher performance chip. On desktop PCs with multiple graphics adapters installed, the one with the [=XRSystem/immersive XR device=] physically connected to it is likely to be considered the [=compatible graphics adapter=].
+Note: On an XR platform with a single GPU, it can safely be assumed that the GPU is compatible with the [=immersive XR device=]s advertised by the platform, and thus any hardware accelerated WebGL contexts are compatible as well. On PCs with both an integrated and discrete GPU the discrete GPU is often considered the [=compatible graphics adapter=] since it generally a higher performance chip. On desktop PCs with multiple graphics adapters installed, the one with the [=immersive XR device=] physically connected to it is likely to be considered the [=compatible graphics adapter=].
 
 Note: {{XRSessionMode/"inline"}} sessions render using the same graphics adapter as canvases, and thus do not need {{WebGLContextAttributes/xrCompatible}} contexts.
 
@@ -1963,7 +1963,7 @@ partial interface mixin WebGLRenderingContextBase {
 };
 </pre>
 
-When a user agent implements this specification it MUST set a <dfn>XR compatible</dfn> boolean, initially set to <code>false</code>, on every {{WebGLRenderingContextBase}}. Once the [=XR compatible=] boolean is set to <code>true</code>, the context can be used with layers for any {{XRSession}} requested from the current [=XRSystem/immersive XR device=].
+When a user agent implements this specification it MUST set a <dfn>XR compatible</dfn> boolean, initially set to <code>false</code>, on every {{WebGLRenderingContextBase}}. Once the [=XR compatible=] boolean is set to <code>true</code>, the context can be used with layers for any {{XRSession}} requested from the current [=immersive XR device=].
 
 Note: This flag should only be set if you plan to start an XR session. On some systems this flag may turn on a high powered discrete GPU, for example, or proxy all commands to an on-device GPU. If you are in a situation where you may switch to XR later, consider calling {{WebGLRenderingContextBase/makeXRCompatible()}} when that decision is made.
 
@@ -1974,12 +1974,12 @@ The [=XR compatible=] boolean can be set either at context creation time or afte
 When the {{HTMLCanvasElement}}'s {{HTMLCanvasElement/getContext()}} method is invoked with a {{WebGLContextAttributes}} dictionary with {{xrCompatible}} set to <code>true</code>, run the following steps:
 
   1. [=ensures an immersive XR device is selected|Ensure an immersive XR device is selected=].
-  1. If the [=XRSystem/immersive XR device=] is <code>null</code>:
+  1. If the [=immersive XR device=] is <code>null</code>:
     1. [=Create the WebGL context=] as usual.
     1. Let |context| be the newly created WebGL context.
     1. Set |context|'s [=XR compatible=] boolean to false.
   1. Otherwise:
-    1. [=Create the WebGL context=] as usual, ensuring it is created on a [=compatible graphics adapter=] for the [=XRSystem/immersive XR device=].
+    1. [=Create the WebGL context=] as usual, ensuring it is created on a [=compatible graphics adapter=] for the [=immersive XR device=].
     1. Let |context| be the newly created WebGL context.
     1. Set |context|'s [=XR compatible=] boolean to true.
   1. Return |context|.
@@ -1987,7 +1987,7 @@ When the {{HTMLCanvasElement}}'s {{HTMLCanvasElement/getContext()}} method is in
 </div>
 
 <div class="example">
-The following code creates a WebGL context that is compatible with an [=XRSystem/immersive XR device=] and then uses it to create an {{XRWebGLLayer}}.
+The following code creates a WebGL context that is compatible with an [=immersive XR device=] and then uses it to create an {{XRWebGLLayer}}.
 
 <pre highlight="js">
 function onXRSessionStarted(xrSession) {
@@ -2004,7 +2004,7 @@ function onXRSessionStarted(xrSession) {
 To set the [=XR compatible=] boolean after the context has been created, the {{makeXRCompatible()}} method is used.
 
 <div class="algorithm" data-algorithm="make-xr-compatible">
-The <dfn method for="WebGLRenderingContextBase">makeXRCompatible()</dfn> method ensures the {{WebGLRenderingContextBase}} is running on a [=compatible graphics adapter=] for the [=XRSystem/immersive XR device=].
+The <dfn method for="WebGLRenderingContextBase">makeXRCompatible()</dfn> method ensures the {{WebGLRenderingContextBase}} is running on a [=compatible graphics adapter=] for the [=immersive XR device=].
 
 When this method is invoked, the user agent MUST run the following steps:
 
@@ -2015,17 +2015,17 @@ When this method is invoked, the user agent MUST run the following steps:
     <dl class="switch">
       <dt> If |context|'s [=WebGL context lost flag=] is set
       <dd> Set |context|'s [=XR compatible=] boolean to <code>false</code> and [=reject=] |promise| with an {{InvalidStateError}}.
-      <dt> If the [=XRSystem/immersive XR device=] is <code>null</code>
+      <dt> If the [=immersive XR device=] is <code>null</code>
       <dd> Set |context|'s [=XR compatible=] boolean to <code>false</code> and [=reject=] |promise| with an {{InvalidStateError}}.
       <dt> If |context|'s [=XR compatible=] boolean is <code>true</code>
       <dd> [=/Resolve=] |promise|.
-      <dt> If |context| was created on a [=compatible graphics adapter=] for the [=XRSystem/immersive XR device=]
+      <dt> If |context| was created on a [=compatible graphics adapter=] for the [=immersive XR device=]
       <dd> Set |context|'s [=XR compatible=] boolean to <code>true</code> and [=/resolve=] |promise|.
       <dt> Otherwise
       <dd> [=Queue a task=] on the [=/WebGL task source=] to perform the following steps:
               1. Force |context| to be lost and [=handle the context loss=] as described by the WebGL specification.
               1. If the [=canceled flag=] of the "webglcontextlost" event fired in the previous step was not set, [=reject=] |promise| with an {{AbortError}} and abort these steps.
-              1. [=Restore the context=] on a [=compatible graphics adapter=] for the [=XRSystem/immersive XR device=].
+              1. [=Restore the context=] on a [=compatible graphics adapter=] for the [=immersive XR device=].
               1. Set |context|'s [=XR compatible=] boolean to <code>true</code>.
               1. [=/Resolve=] |promise|.
     </dl>
@@ -2186,7 +2186,7 @@ Event Types {#event-types}
 
 The user agent MUST provide the following new events. Registration for and firing of the events must follow the usual behavior of DOM4 Events.
 
-The user agent MUST fire a <dfn event for="XRSystem">devicechange</dfn> event on the {{XRSystem}} object to indicate that the availability of [=XRSystem/immersive XR device=]s has been changed unless the document's origin is not allowed to use the "xr-spatial-tracking" [[#feature-policy|feature policy]]. The event MUST be of type {{Event}}.
+The user agent MUST fire a <dfn event for="XRSystem">devicechange</dfn> event on the {{XRSystem}} object to indicate that the availability of [=immersive XR device=]s has been changed unless the document's origin is not allowed to use the "xr-spatial-tracking" [[#feature-policy|feature policy]]. The event MUST be of type {{Event}}.
 
 A user agent MUST dispatch a <dfn event for="XRSession">visibilitychange</dfn> event on an {{XRSession}} each time the [=XRSession/visibility state=] of the {{XRSession}} has changed. The event MUST be of type {{XRSessionEvent}}.
 
