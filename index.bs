@@ -220,6 +220,10 @@ An [=/XR device=] has a <dfn>list of supported modes</dfn> (a [=/list=] of [=/st
 
 Each [=/XR device=] has a <dfn for="XR device">list of enabled features</dfn> for each {{XRSessionMode}} in its [=list of supported modes=], which is a [=/list=] of [=feature descriptors=] which MUST be initially an empty [=/list=].
 
+The user-agent has a <dfn>list of immersive XR devices</dfn> (a [=/list=] of [=/XR device=]), which MUST be initially an empty [=/list=]. 
+
+The user-agent has an <dfn>immersive XR device</dfn> (null or [=/XR device=]) which is initially null and represents the active [=/XR device=] from the [=list of immersive XR devices=]. This object MAY live on a separate thread and be updated asynchronously.
+
 The user-agent MUST have a <dfn for="">default inline XR device</dfn>, which is an [=/XR device=] that MUST [=list/contains|contain=] {{XRSessionMode/"inline"}} in its [=list of supported modes=]. The [=/default inline XR device=] MUST NOT report any pose information, and MUST NOT report [=XR input source=]s or events other than those created by pointer events.
 
 Note: The [=/default inline XR device=] exists purely as a convenience for developers, allowing them to use the same rendering and input logic for both inline and immersive content. The [=/default inline XR device=] does not expose any information not already available to the developer through other mechanisms on the page (such as pointer events for input), it only surfaces those values in an XR-centric format.
@@ -227,6 +231,9 @@ Note: The [=/default inline XR device=] exists purely as a convenience for devel
 The user-agent MUST have a <dfn for="">inline XR device</dfn>, which is an [=/XR device=] that MUST [=list/contains|contain=] {{XRSessionMode/"inline"}} in its [=list of supported modes=]. The [=/inline XR device=] MAY be the [=immersive XR device=] if the tracking it provides makes sense to expose to inline content or the [=/default inline XR device=] otherwise.
 
 Note: On phones, the [=/inline XR device=] may report pose information derived from the phone's internal sensors, such as the gyroscope and accelerometer. On desktops and laptops without similar sensors, the [=/inline XR device=] will not be able to report a pose, and as such should fall back to the [=/default inline XR device=]. In case the user agent is already running on an [=/XR device=], the [=/inline XR device=] will be the same device, and may support multiple [=view|views=]. User consent must be given before any tracking or input features beyond what the [=/default inline XR device=] exposes are provided.
+
+
+The current values of [=list of immersive XR devices=], [=/inline XR device=], and [=immersive XR device=] MAY live on a separate thread and be updated asynchronously. These objects SHOULD NOT be directly accessed in steps that are not running [=in parallel=].
 
 Initialization {#initialization}
 ==============
@@ -260,10 +267,6 @@ The user agent MUST create an {{XRSystem}} object when a {{Navigator}} object is
 
 An {{XRSystem}} object is the entry point to the API, used to query for XR features available to the user agent and initiate communication with XR hardware via the creation of {{XRSession}}s.
 
-An {{XRSystem}} object has a <dfn>list of immersive XR devices</dfn> (a [=/list=] of [=/XR device=]), which MUST be initially an empty [=/list=].
-
-An {{XRSystem}} object has an <dfn>immersive XR device</dfn> (null or [=/XR device=]) which is initially null and represents the active [=/XR device=] from the [=list of immersive XR devices=].
-
 The user agent MUST be able to <dfn>enumerate immersive XR devices</dfn> attached to the system, at which time each available device is placed in the [=list of immersive XR devices=]. Subsequent algorithms requesting enumeration MUST reuse the cached [=list of immersive XR devices=]. Enumerating the devices [=should not initialize device tracking=]. After the first enumeration the user agent MUST begin monitoring device connection and disconnection, adding connected devices to the [=list of immersive XR devices=] and removing disconnected devices.
 
 <div class="algorithm" data-algorithm="xr-device-selection">
@@ -283,9 +286,11 @@ Each time the [=list of immersive XR devices=] changes the user agent should <df
   1. The user agent MAY update the [=/inline XR device=] to the [=immersive XR device=] if appropriate, or the [=/default inline XR device=] otherwise.
   1. If this is the first time devices have been enumerated or |oldDevice| equals the [=immersive XR device=], abort these steps.
   1. [=Shut down the session|Shut down=] any active {{XRSession}}s.
-  1. Set the [=XR compatible=] boolean of all {{WebGLRenderingContextBase}} instances to <code>false</code>.
+  1. [=Queue a task=] to set the [=XR compatible=] boolean of all {{WebGLRenderingContextBase}} instances to <code>false</code>.
   1. [=Queue a task=] to [=fire an event=] named {{devicechange!!event}} on the [=context object=]'s {{Window/navigator}}'s {{Navigator/xr}}.
   1. [=Queue a task=] to fire appropriate <code>change</code> events on any {{XRPermissionStatus}} objects who are affected by the change in the [=immersive XR device=] or [=/inline XR device=].
+
+Note: These steps should always be run [=in parallel=].
 
 </div>
 
@@ -293,11 +298,14 @@ Note: The user agent is allowed to use any criteria it wishes to [=select an imm
 
 <div class="algorithm" data-algorithm="ensure-device-selected">
 
-The user agent <dfn>ensures an immersive XR device is selected</dfn> by running the following steps:
+The user agent can <dfn>ensure an immersive XR device is selected</dfn> by running the following steps:
 
-  1. If the [=context object=]'s {{Window/navigator}}'s {{Navigator/xr}}'s [=immersive XR device=] is not null, abort these steps.
+  1. If [=immersive XR device=] is not null, return [=immersive XR device=] and abort these steps.
   1. [=Enumerate immersive XR devices=].
   1. [=Select an immersive XR device=].
+  1. Return the [=immersive XR device=].
+
+Note: These steps should always be run [=in parallel=].
 
 </div>
 
@@ -312,9 +320,9 @@ When this method is invoked, it MUST run the following steps:
   1. If |mode| is {{XRSessionMode/"inline"}}, [=/resolve=] |promise| with <code>true</code> and return it.
   1. If the requesting document's origin is not allowed to use the "xr-spatial-tracking" [[#feature-policy|feature policy]], [=reject=] |promise| with a "{{SecurityError}}" {{DOMException}} and return it.
   1. Run the following steps [=in parallel=]:
-    1. [=ensures an immersive XR device is selected|Ensure an immersive XR device is selected=].
-    1. If the [=immersive XR device=] is null, [=/resolve=] |promise| with <code>false</code> and abort these steps.
-    1. If the [=immersive XR device=]'s [=list of supported modes=] does not [=list/contain=] |mode|, [=queue a task=] to [=/resolve=] |promise| with <code>false</code> and abort these steps.
+    1. Let |device| be the result of [=ensure an immersive XR device is selected|ensuring an immersive XR device is selected=].
+    1. If |device| is null, [=/resolve=] |promise| with <code>false</code> and abort these steps.
+    1. If |device|'s [=list of supported modes=] does not [=list/contain=] |mode|, [=queue a task=] to [=/resolve=] |promise| with <code>false</code> and abort these steps.
     1. [=queue a task=] to [=/resolve=] |promise| with <code>true</code>.
   1. Return |promise|.
 
@@ -408,16 +416,15 @@ To <dfn>obtain the current device</dfn> for an {{XRSessionMode}} |mode|, |requir
   1. Choose |device| as follows:
       <dl class="switch">
         <dt>If |mode| is an [=immersive session=] mode:</dt>
-        <dd>
-            1. [=ensures an immersive XR device is selected|Ensure an immersive XR device is selected=].
-            1. Set |device| to the [=immersive XR device=].
-        </dd>
+        <dd> Set |device| to the result of [=ensure an immersive XR device is selected|ensuring an immersive XR device is selected=].</dd>
         <dt>Else if |requiredFeatures| or |optionalFeatures| are not empty:</dt>
         <dd>Set |device| to the [=/inline XR device=].</dd>
         <dt>Otherwise</dt>
         <dd>Set |device| to the [=/default inline XR device=].</dd>
       </dl>
   1. Return |device|.
+
+Note: These steps should always be run [=in parallel=].
 
 </div>
 
@@ -1965,26 +1972,13 @@ partial interface mixin WebGLRenderingContextBase {
 
 When a user agent implements this specification it MUST set a <dfn>XR compatible</dfn> boolean, initially set to <code>false</code>, on every {{WebGLRenderingContextBase}}. Once the [=XR compatible=] boolean is set to <code>true</code>, the context can be used with layers for any {{XRSession}} requested from the current [=immersive XR device=].
 
-Note: This flag should only be set if you plan to start an XR session. On some systems this flag may turn on a high powered discrete GPU, for example, or proxy all commands to an on-device GPU. If you are in a situation where you may switch to XR later, consider calling {{WebGLRenderingContextBase/makeXRCompatible()}} when that decision is made.
+Note: This flag introduces slow synchronous behavior and is discouraged. Consider calling {{WebGLRenderingContextBase/makeXRCompatible()}} instead for an asynchronous solution.
 
 The [=XR compatible=] boolean can be set either at context creation time or after context creation, potentially incurring a context loss. To set the [=XR compatible=] boolean at context creation time, the {{xrCompatible}} context creation attribute must be set to <code>true</code> when requesting a WebGL context.
 
-<div class="algorithm" data-algorithm="create-with-compatible-xr-device">
+The {{WebGLContextAttributes/xrCompatible}} flag on {{WebGLContextAttributes}}, if <code>true</code>, affects context creation by requesting the user-agent [=create the WebGL context=] using a [=compatible graphics adapter=] for the [=immersive XR device=]. If the user agent succeeds in this, the created context's [=XR compatible=] boolean will be set to true. To obtain the [=immersive XR device=], [=ensure an immersive XR device is selected=] SHOULD be called.
 
-When the {{HTMLCanvasElement}}'s {{HTMLCanvasElement/getContext()}} method is invoked with a {{WebGLContextAttributes}} dictionary with {{xrCompatible}} set to <code>true</code>, run the following steps:
-
-  1. [=ensures an immersive XR device is selected|Ensure an immersive XR device is selected=].
-  1. If the [=immersive XR device=] is <code>null</code>:
-    1. [=Create the WebGL context=] as usual.
-    1. Let |context| be the newly created WebGL context.
-    1. Set |context|'s [=XR compatible=] boolean to false.
-  1. Otherwise:
-    1. [=Create the WebGL context=] as usual, ensuring it is created on a [=compatible graphics adapter=] for the [=immersive XR device=].
-    1. Let |context| be the newly created WebGL context.
-    1. Set |context|'s [=XR compatible=] boolean to true.
-  1. Return |context|.
-
-</div>
+Note: [=Ensure an immersive XR device is selected=] needs to be run [=in parallel=], which introduces slow synchronous behavior on the main thread. User-agents SHOULD print a warning to the console requesting that {{WebGLRenderingContextBase/makeXRCompatible()}} be used instead.
 
 <div class="example">
 The following code creates a WebGL context that is compatible with an [=immersive XR device=] and then uses it to create an {{XRWebGLLayer}}.
@@ -2003,6 +1997,8 @@ function onXRSessionStarted(xrSession) {
 
 To set the [=XR compatible=] boolean after the context has been created, the {{makeXRCompatible()}} method is used.
 
+Note: On some systems this flag may turn on a high powered discrete GPU, for example, or proxy all commands to an on-device GPU. If you are in a situation where you may or may not be using XR, it is suggested that you only call {{makeXRCompatible()}} when you intend to start an [=immersive session=].
+
 <div class="algorithm" data-algorithm="make-xr-compatible">
 The <dfn method for="WebGLRenderingContextBase">makeXRCompatible()</dfn> method ensures the {{WebGLRenderingContextBase}} is running on a [=compatible graphics adapter=] for the [=immersive XR device=].
 
@@ -2010,25 +2006,26 @@ When this method is invoked, the user agent MUST run the following steps:
 
   1. Let |promise| be [=a new Promise=] created in the [=Realm=] of this {{WebGLRenderingContextBase}}.
   1. Let |context| be [=this=].
-  1. [=ensures an immersive XR device is selected|Ensure an immersive XR device is selected=].
-  1. Set |context|'s [=XR compatible=] boolean as follows:
-    <dl class="switch">
-      <dt> If |context|'s [=WebGL context lost flag=] is set
-      <dd> Set |context|'s [=XR compatible=] boolean to <code>false</code> and [=reject=] |promise| with an {{InvalidStateError}}.
-      <dt> If the [=immersive XR device=] is <code>null</code>
-      <dd> Set |context|'s [=XR compatible=] boolean to <code>false</code> and [=reject=] |promise| with an {{InvalidStateError}}.
-      <dt> If |context|'s [=XR compatible=] boolean is <code>true</code>
-      <dd> [=/Resolve=] |promise|.
-      <dt> If |context| was created on a [=compatible graphics adapter=] for the [=immersive XR device=]
-      <dd> Set |context|'s [=XR compatible=] boolean to <code>true</code> and [=/resolve=] |promise|.
-      <dt> Otherwise
-      <dd> [=Queue a task=] on the [=/WebGL task source=] to perform the following steps:
-              1. Force |context| to be lost and [=handle the context loss=] as described by the WebGL specification.
-              1. If the [=canceled flag=] of the "webglcontextlost" event fired in the previous step was not set, [=reject=] |promise| with an {{AbortError}} and abort these steps.
-              1. [=Restore the context=] on a [=compatible graphics adapter=] for the [=immersive XR device=].
-              1. Set |context|'s [=XR compatible=] boolean to <code>true</code>.
-              1. [=/Resolve=] |promise|.
-    </dl>
+  1. Run the following steps [=in parallel=]:
+    1. Let |device| be the result of [=ensure an immersive XR device is selected|ensuring an immersive XR device is selected=].
+    1. Set |context|'s [=XR compatible=] boolean as follows:
+        <dl class="switch">
+          <dt> If |context|'s [=WebGL context lost flag=] is set
+          <dd> [=Queue a task=] to set |context|'s [=XR compatible=] boolean to <code>false</code> and [=reject=] |promise| with an {{InvalidStateError}}.
+          <dt> If |device| is <code>null</code>
+          <dd> [=Queue a task=] to set |context|'s [=XR compatible=] boolean to <code>false</code> and [=reject=] |promise| with an {{InvalidStateError}}.
+          <dt> If |context|'s [=XR compatible=] boolean is <code>true</code>
+          <dd> [=Queue a task=] to [=/resolve=] |promise|.
+          <dt> If |context| was created on a [=compatible graphics adapter=] for |device|.
+          <dd> [=Queue a task=] to set |context|'s [=XR compatible=] boolean to <code>true</code> and [=/resolve=] |promise|.
+          <dt> Otherwise
+          <dd> [=Queue a task=] on the [=/WebGL task source=] to perform the following steps:
+                  1. Force |context| to be lost and [=handle the context loss=] as described by the WebGL specification.
+                  1. If the [=canceled flag=] of the "webglcontextlost" event fired in the previous step was not set, [=reject=] |promise| with an {{AbortError}} and abort these steps.
+                  1. [=Restore the context=] on a [=compatible graphics adapter=] for |device|.
+                  1. Set |context|'s [=XR compatible=] boolean to <code>true</code>.
+                  1. [=/Resolve=] |promise|.
+        </dl>
   1. Return |promise|.
 
 </div>
