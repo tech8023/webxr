@@ -220,9 +220,9 @@ An [=/XR device=] has a <dfn>list of supported modes</dfn> (a [=/list=] of [=/st
 
 Each [=/XR device=] has a <dfn for="XR device">list of enabled features</dfn> for each {{XRSessionMode}} in its [=list of supported modes=], which is a [=/list=] of [=feature descriptors=] which MUST be initially an empty [=/list=].
 
-The user-agent has a <dfn>list of immersive XR devices</dfn> (a [=/list=] of [=/XR device=]), which MUST be initially an empty [=/list=]. 
+The user-agent has a <dfn for="">list of immersive XR devices</dfn> (a [=/list=] of [=/XR device=]), which MUST be initially an empty [=/list=]. 
 
-The user-agent has an <dfn>immersive XR device</dfn> (null or [=/XR device=]) which is initially null and represents the active [=/XR device=] from the [=list of immersive XR devices=]. This object MAY live on a separate thread and be updated asynchronously.
+The user-agent has an <dfn for="">immersive XR device</dfn> (null or [=/XR device=]) which is initially null and represents the active [=/XR device=] from the [=list of immersive XR devices=]. This object MAY live on a separate thread and be updated asynchronously.
 
 The user-agent MUST have a <dfn for="">default inline XR device</dfn>, which is an [=/XR device=] that MUST [=list/contains|contain=] {{XRSessionMode/"inline"}} in its [=list of supported modes=]. The [=/default inline XR device=] MUST NOT report any pose information, and MUST NOT report [=XR input source=]s or events other than those created by pointer events.
 
