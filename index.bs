@@ -96,6 +96,8 @@ spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
 spec: dom; urlPrefix: https://dom.spec.whatwg.org/#
     type:algorithm; text:fire an event; url: concept-event-fire
 
+spec: requestidlecallback; urlPrefix: https://w3c.github.io/requestidlecallback/#
+    type:method; text: requestIdleCallback(); for: Window; url:the-requestidlecallback-method
 </pre>
 
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -1106,7 +1108,7 @@ An {{XRSpace}} represents a virtual coordinate system with an origin that corres
 
 Each {{XRSpace}} has a <dfn for="XRSpace">session</dfn> which is set to the {{XRSession}} that created the {{XRSpace}}.
 
-Each {{XRSpace}} has a <dfn for="XRSpace">native origin</dfn> which is a position and orientation in space. The {{XRSpace}}'s [=XRSpace/native origin=] may be updated by the [=XRSession/XR device=]'s underlying tracking system, and different {{XRSpaces}} may define different semantics as to how their [=native origins=] are tracked and updated.
+Each {{XRSpace}} has a <dfn for="XRSpace">native origin</dfn> which is a position and orientation in space. The {{XRSpace}}'s [=XRSpace/native origin=] may be updated by the [=XRSession/XR device=]'s underlying tracking system, and different {{XRSpace}}s may define different semantics as to how their [=native origins=] are tracked and updated.
 
 Each {{XRSpace}} has an <dfn for="XRSpace">effective origin</dfn>, which is the basis of the {{XRSpace}}'s <dfn for="XRSpace">coordinate system</dfn>.
 
@@ -2069,7 +2071,7 @@ async function onXRSessionStarted(xrSession) {
 Events {#events}
 ======
 
-The [=task source=] for all [=tasks queued|queue a task=] in this specification is the <dfn>XR task source</dfn>, unless otherwise specified.
+The [=task source=] for all [=queue a task|tasks queued=] in this specification is the <dfn export>XR task source</dfn>, unless otherwise specified.
 
 XRSessionEvent {#xrsessionevent-interface}
 --------------
@@ -2350,7 +2352,6 @@ To determine if <dfn>poses must be limited</dfn> between two spaces, |space| and
 
   1. If either |space| or |baseSpace| are an {{XRBoundedReferenceSpace}} and the other space's [=native origin=]'s falls further outside the [=native bounds geometry=] than a reasonable distance determined by the user agent, return true.
   1. If either |space| or |baseSpace| are an {{XRReferenceSpace}} with a [=XRReferenceSpace/type=] of {{XRReferenceSpaceType/"local"}} or {{XRReferenceSpaceType/"local-floor"}} and the distance between the spaces' [=native origin=]'s is greater than a reasonable distance determined by the user agent, return <code>true</code>.
-  1. Let |document| be |space|'s [=relevant global object=]'s [=associated document=].
   1. Return <code>false</code>.
 
 </div>
