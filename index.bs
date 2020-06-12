@@ -1357,7 +1357,7 @@ Additional Views {#additional-views}
 
 While most devices will either have a single "mono" [=view=] or two "stereo" [=views=], it is possible for devices to have <dfn>additional views</dfn> which do not fall into these categories.
 
-<div class="example">For example, there can be a [=first-person observer view=] used for video capture, or "quad views" where there are two views per eye with differing resolution and fields of view. There can also be CAVE systems which have many, many views surrounding the user.</div>
+<div class="example">For example, there can be a [=first-person observer view=] used for video capture, or "quad views" where there are two views per eye with differing resolution and fields of view. There can also be CAVE systems which have many views surrounding the user.</div>
 
 While content should be written to assume that there may be any number of views, we expect a significant amount of content to make incorrect assumptions about the {{XRViewerPose/views}} array and thus break when presented with more than two views.
 
