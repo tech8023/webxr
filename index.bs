@@ -30,6 +30,8 @@ spec:permissions-1;
     type:dfn; text:powerful feature
 spec:webidl;
     type:dfn; text:new
+spec:webxr-ar-module-1;
+    type:dfn; text:first-person observer view
 </pre>
 
 <pre class="anchors">
@@ -1349,6 +1351,31 @@ To <dfn for="XRView">obtain the projection matrix</dfn> for a given {{XRView}} |
 
 </div>
 
+
+Additional Views {#additional-views}
+----------
+
+While most devices will either have a single "mono" [=view=] or two "stereo" [=views=], it is possible for devices to have <dfn>additional views</dfn> which do not fall into these categories.
+
+<div class="example">For example, there can be a [=first-person observer view=] used for video capture, or "quad views" where there are two views per eye with differing resolution and fields of view. There can also be CAVE systems which have many, many views surrounding the user.</div>
+
+While content should be written to assume that there may be any number of views, we expect a significant amount of content to make incorrect assumptions about the {{XRViewerPose/views}} array and thus break when presented with more than two views.
+
+Because user-agents may have the ability to use mechanisms like reprojection to render to these [=additional views=] in lieu of the content, it is desirable to be able to distinguish between content that plans on handling these [=additional views=] itself and content that is either oblivious to the existence of such [=additional views=] or does not wish to deal with them.
+
+To provide for this, user-agents MAY support an <dfn>additional-views</dfn>" [=feature descriptor=] as a hint. Content enabling this feature is expected to:
+
+ - Handle any nonzero number of [=views=] in the {{XRViewerPose/views}} array.
+ - Handle the existence of multiple [=views=] that have the same [=view/eye=].
+ - Handle the size of the {{XRViewerPose/views}} array changing from frame to frame (e.g. when video capture is enabled).
+
+When "[=additional-views=]" is enabled, the user-agent SHOULD surface any [=additional views=] the device supports to the {{XRSession}}, when necessary.
+
+For devices like CAVE systems where the user-agent cannot simply accept stereo views and reproject its way to the [=additional views=], the user-agent MAY choose surface all [=views=] unconditionally (hoping that the content is able to handle it), or it alternatively MAY choose to reject [=immersive sessions=] created without "[=additional-views=]" enabled.
+
+Note: We recommend content use {{XRSessionInit/optionalFeatures}} to enable "[=additional-views=]" to ensure maximum compatibility.
+
+{{XRSession}}s that are supporting [=additional views=] must ensure that their [=recommended WebGL framebuffer resolution=] is large enough to fit all [=views=] that may appear during a session. If [=additional views=] have lower underlying frame rates, the {{XRSession}} MAY choose to only surface them in the {{XRViewerPose/views}} array every other frame or at whatever rate it wishes
 
 XRViewport {#xrviewport-interface}
 ----------
