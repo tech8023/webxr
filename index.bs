@@ -96,6 +96,8 @@ spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
 spec: dom; urlPrefix: https://dom.spec.whatwg.org/#
     type:algorithm; text:fire an event; url: concept-event-fire
 
+spec: requestidlecallback; urlPrefix: https://w3c.github.io/requestidlecallback/#
+    type:method; text: requestIdleCallback(); for: Window; url:the-requestidlecallback-method
 </pre>
 
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
