@@ -1099,7 +1099,7 @@ An {{XRSpace}} represents a virtual coordinate system with an origin that corres
 
 Each {{XRSpace}} has a <dfn for="XRSpace">session</dfn> which is set to the {{XRSession}} that created the {{XRSpace}}.
 
-Each {{XRSpace}} has a <dfn for="XRSpace">native origin</dfn> which is a position and orientation in space. The {{XRSpace}}'s [=XRSpace/native origin=] may be updated by the [=XRSession/XR device=]'s underlying tracking system, and different {{XRSpaces}} may define different semantics as to how their [=native origins=] are tracked and updated.
+Each {{XRSpace}} has a <dfn for="XRSpace">native origin</dfn> which is a position and orientation in space. The {{XRSpace}}'s [=XRSpace/native origin=] may be updated by the [=XRSession/XR device=]'s underlying tracking system, and different {{XRSpace}}s may define different semantics as to how their [=native origins=] are tracked and updated.
 
 Each {{XRSpace}} has an <dfn for="XRSpace">effective origin</dfn>, which is the basis of the {{XRSpace}}'s <dfn for="XRSpace">coordinate system</dfn>.
 
