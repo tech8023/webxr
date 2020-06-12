@@ -1827,7 +1827,9 @@ The <dfn constructor for="XRWebGLLayer">XRWebGLLayer(|session|, |context|, |laye
       <dt> If |layer|'s [=XRWebGLLayer/composition disabled=] boolean is <code>false</code>:
       <dd>
         1. Initialize |layer|'s {{XRWebGLLayer/antialias}} to |layerInit|'s {{XRWebGLLayerInit/antialias}} value.
-        1. Let |framebufferSize| be the [=recommended WebGL framebuffer resolution=] multiplied by |layerInit|'s {{XRWebGLLayerInit/framebufferScaleFactor}}.
+        1. Let |scaleFactor| be |layerInit|'s {{XRWebGLLayerInit/framebufferScaleFactor}}.
+        1. The user-agent MAY choose to clamp or round |scaleFactor| as it sees fit here, for example if it wishes to fit the buffer dimensions into a power of two for performance reasons.
+        1. Let |framebufferSize| be the [=recommended WebGL framebuffer resolution=] multiplied by |scaleFactor|.
         1. Initialize |layer|'s {{XRWebGLLayer/framebuffer}} to a [=new=] {{WebGLFramebuffer}} in the [=relevant realm=] of |context|, which is an [=opaque framebuffer=] with the dimensions |framebufferSize| created with |context|, [=opaque framebuffer/session=] initialized to |session|, and |layerInit|'s {{XRWebGLLayerInit/depth}}, {{XRWebGLLayerInit/stencil}}, and {{XRWebGLLayerInit/alpha}} values.
         1. Allocate and initialize resources compatible with |session|'s [=XRSession/XR device=], including GPU accessible memory buffers, as required to support the compositing of |layer|.
         1. If |layer|’s resources were unable to be created for any reason, throw an {{OperationError}} and abort these steps.
