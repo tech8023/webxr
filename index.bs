@@ -1379,7 +1379,7 @@ For devices like CAVE systems where the user-agent is not able to accept stereo 
 If [=additional views=] have lower underlying frame rates, the {{XRSession}} MAY choose to either:
 
  - Lower the overall frame rate of the application while the [=additional views=] are active.
- - Surface them in the {{XRViewerPose/views}} array only for some of the frames.
+ - Surface [=additional views=] in the {{XRViewerPose/views}} array only for some of the frames.
 
 XRViewport {#xrviewport-interface}
 ----------
