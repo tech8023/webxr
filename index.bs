@@ -1369,7 +1369,7 @@ To provide for this, user-agents MAY support an "<dfn>additional-views</dfn>" [=
  - Handle the existence of multiple [=views=] that have the same [=view/eye=].
  - Handle the size of the {{XRViewerPose/views}} array changing from frame to frame. <span class=note>This can happen when video capture is enabled, for example</span>
 
-When "[=additional-views=]" is enabled, the user-agent SHOULD surface any [=additional views=] the device supports to the {{XRSession}}, when necessary.
+When "[=additional-views=]" is enabled, the user-agent MAY surface any [=additional views=] the device supports to the {{XRSession}}, when necessary.
 
 Note: We recommend content use {{XRSessionInit/optionalFeatures}} to enable "[=additional-views=]" to ensure maximum compatibility.
 
