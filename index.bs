@@ -1376,10 +1376,10 @@ Note: We recommend content use {{XRSessionInit/optionalFeatures}} to enable "[=a
 For devices like CAVE systems where the user-agent is not able to accept stereo views and reproject to simulate the [=additional views=], the user-agent MAY choose surface all [=views=] unconditionally, or it alternatively MAY choose to reject [=immersive sessions=] created without "[=additional-views=]" enabled.
 
 
-If [=additional views=] have lower underlying frame rates, the {{XRSession}} MAY choose to either:
+If [=additional views=] have lower underlying frame rates, the {{XRSession}} MAY choose to do one or more of the following:
 
  - Lower the overall frame rate of the application while the [=additional views=] are active.
- - Surface [=additional views=] in the {{XRViewerPose/views}} array only for some of the frames.
+ - Surface [=additional views=] in the {{XRViewerPose/views}} array only for some of the frames. Implementations doing this SHOULD NOT have frames where the "primary" (non-[=additional views|additional=]) views are not present.
 
 XRViewport {#xrviewport-interface}
 ----------
