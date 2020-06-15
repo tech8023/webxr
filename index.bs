@@ -1363,7 +1363,7 @@ While content should be written to assume that there may be any number of views,
 
 <span class=informative>Because user-agents may have the ability to use mechanisms like reprojection to render to these [=additional views=] in lieu of the content, it is desirable to be able to distinguish between content that plans on handling these [=additional views=] itself and content that is either oblivious to the existence of such [=additional views=] or does not wish to deal with them.</span>
 
-To provide for this, user-agents MAY support an "<dfn>additional-views</dfn>" [=feature descriptor=] as a hint. Content enabling this feature is expected to:
+To provide for this, user-agents that expose more than 2 views MUST support an "<dfn>additional-views</dfn>" [=feature descriptor=] as a hint. Content enabling this feature is expected to:
 
  - Handle any nonzero number of [=views=] in the {{XRViewerPose/views}} array.
  - Handle the existence of multiple [=views=] that have the same [=view/eye=].
