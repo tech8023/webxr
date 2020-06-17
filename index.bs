@@ -1378,7 +1378,7 @@ User agents that expose [=secondary views=] MUST support a "<dfn for="secondary 
  - Handle the existence of multiple [=views=] that have the same [=view/eye=].
  - Handle the size of the {{XRViewerPose/views}} array changing from frame to frame. <span class=note>This can happen when video capture is enabled, for example</span>
 
-When "[=secondary views/secondary-views=]" is enabled, the user-agent MAY surface any [=secondary views=] the device supports to the {{XRSession}}, when necessary. The user-agent MUST NOT use reprojection to reconstruct [=secondary views=] in such a case, and instead rely on whatever the content decides to render.
+When "[=secondary views/secondary-views=]" is enabled, the user agent MAY surface any [=secondary views=] the device supports to the {{XRSession}}. The user agent MUST NOT use reprojection to reconstruct [=secondary views=] in such a case, but instead rely on whatever the content decides to render.
 
 Note: We recommend content use {{XRSessionInit/optionalFeatures}} to enable "[=secondary views/secondary-views=]" to ensure maximum compatibility.
 
