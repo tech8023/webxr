@@ -1360,7 +1360,7 @@ A [=view=] is a <dfn>primary view</dfn> if rendering to it is necessary for the 
 A [=view=] is a <dfn>secondary view</dfn> if it is possible for content to choose to not render to it and still produce a working immersive experience. If content chooses to not render to these views, the user-agent MAY reconstruct them via reprojection.
 
 <div class="example">
-Examples of [=primary views=] include the main mono view for a handheld AR session, the main two stereo views for headworn AR/VR sessions, or all of the wall views for a CAVE session.
+Examples of [=primary views=] include the main mono view of a handheld AR session, the main two stereo views of headworn AR/VR sessions, or all of the wall views of a CAVE session.
 
 Examples of [=secondary views=] include the [=first-person observer view=] used for video capture, or "quad views" where there are two views per eye with differing resolution and fields of view.
 
