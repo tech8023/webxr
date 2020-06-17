@@ -1362,7 +1362,7 @@ A [=view=] is a <dfn>secondary view</dfn> if it is possible for content to choos
 <div class="example">
 Examples of [=primary views=] include the main mono view of a handheld AR session, the main two stereo views of headworn AR/VR sessions, or all of the wall views of a CAVE session.
 
-Examples of [=secondary views=] include the [=first-person observer view=] used for video capture, or "quad views" where there are two views per eye with differing resolution and fields of view.
+Examples of [=secondary views=] include the [=first-person observer view=] used for video capture, or "quad views" where there are two views per eye with differing resolutions or fields of view.
 
 </div>
 
