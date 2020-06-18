@@ -2905,7 +2905,7 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
      While content should be written to assume that there may be any number of views, we expect a significant amount of content to make incorrect assumptions about the <code class="idl"><a data-link-type="idl" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views①">views</a></code> array and thus break when presented with more than two views. 
     <p>Because user-agents may have the ability to use mechanisms like reprojection to render to these <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view①">secondary views</a> in lieu of the content, it is desirable to be able to distinguish between content that plans on handling these <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view②">secondary views</a> itself and content that is either oblivious to the existence of such <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view③">secondary views</a> or does not wish to deal with them.</p>
    </div>
-   <p>To provide for this, user-agents that expose <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view④">secondary views</a> MUST support an "<dfn class="dfn-paneled" data-dfn-for="secondary views" data-dfn-type="dfn" data-noexport id="secondary-views-secondary-views">secondary-views</dfn>" <a data-link-type="dfn" href="#feature-descriptor" id="ref-for-feature-descriptor⑧">feature descriptor</a> as a hint. Content enabling this feature is expected to:</p>
+   <p>To provide for this, user-agents that expose <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view④">secondary views</a> MUST support an "<dfn class="dfn-paneled" data-dfn-for="secondary view" data-dfn-type="dfn" data-noexport id="secondary-view-secondary-views">secondary-views</dfn>" <a data-link-type="dfn" href="#feature-descriptor" id="ref-for-feature-descriptor⑧">feature descriptor</a> as a hint. Content enabling this feature is expected to:</p>
    <ul>
     <li data-md>
      <p>Handle any nonzero number of <a data-link-type="dfn" href="#view" id="ref-for-view②②">views</a> in the <code class="idl"><a data-link-type="idl" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views②">views</a></code> array.</p>
@@ -2914,8 +2914,8 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
     <li data-md>
      <p>Handle the size of the <code class="idl"><a data-link-type="idl" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views③">views</a></code> array changing from frame to frame. <span class="note">This can happen when video capture is enabled, for example</span></p>
    </ul>
-   <p>When "<a data-link-type="dfn" href="#secondary-views-secondary-views" id="ref-for-secondary-views-secondary-views">secondary-views</a>" is enabled, the user-agent MAY surface any <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view⑤">secondary views</a> the device supports to the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑦⑦">XRSession</a></code>, when necessary. The user-agent MUST NOT use reprojection to reconstruct <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view⑥">secondary views</a> in such a case, and instead rely on whatever the content decides to render.</p>
-   <p class="note" role="note"><span>Note:</span> We recommend content use <code class="idl"><a data-link-type="idl" href="#dom-xrsessioninit-optionalfeatures" id="ref-for-dom-xrsessioninit-optionalfeatures⑤">optionalFeatures</a></code> to enable "<a data-link-type="dfn" href="#secondary-views-secondary-views" id="ref-for-secondary-views-secondary-views①">secondary-views</a>" to ensure maximum compatibility.</p>
+   <p>When "<a data-link-type="dfn" href="#secondary-view-secondary-views" id="ref-for-secondary-view-secondary-views">secondary-views</a>" is enabled, the user-agent MAY surface any <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view⑤">secondary views</a> the device supports to the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑦⑦">XRSession</a></code>, when necessary. The user-agent MUST NOT use reprojection to reconstruct <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view⑥">secondary views</a> in such a case, and instead rely on whatever the content decides to render.</p>
+   <p class="note" role="note"><span>Note:</span> We recommend content use <code class="idl"><a data-link-type="idl" href="#dom-xrsessioninit-optionalfeatures" id="ref-for-dom-xrsessioninit-optionalfeatures⑤">optionalFeatures</a></code> to enable "<a data-link-type="dfn" href="#secondary-view-secondary-views" id="ref-for-secondary-view-secondary-views①">secondary-views</a>" to ensure maximum compatibility.</p>
    <p>If <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view⑦">secondary views</a> have lower underlying frame rates, the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑦⑧">XRSession</a></code> MAY choose to do one or more of the following:</p>
    <ul>
     <li data-md>
@@ -4399,7 +4399,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <li><a href="#dom-xrtargetraymode-screen">"screen"</a><span>, in §10.1</span>
    <li><a href="#dom-xrtargetraymode-screen">screen</a><span>, in §10.1</span>
    <li><a href="#secondary-view">secondary view</a><span>, in §7.2</span>
-   <li><a href="#secondary-views-secondary-views">secondary-views</a><span>, in §7.2</span>
+   <li><a href="#secondary-view-secondary-views">secondary-views</a><span>, in §7.2</span>
    <li><a href="#eventdef-xrsession-select">select</a><span>, in §12.5</span>
    <li><a href="#select-an-immersive-xr-device">select an immersive XR device</a><span>, in §3.2</span>
    <li><a href="#eventdef-xrsession-selectend">selectend</a><span>, in §12.5</span>
@@ -7197,10 +7197,10 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li><a href="#ref-for-secondary-view">7.2. Primary and Secondary Views</a> <a href="#ref-for-secondary-view①">(2)</a> <a href="#ref-for-secondary-view②">(3)</a> <a href="#ref-for-secondary-view③">(4)</a> <a href="#ref-for-secondary-view④">(5)</a> <a href="#ref-for-secondary-view⑤">(6)</a> <a href="#ref-for-secondary-view⑥">(7)</a> <a href="#ref-for-secondary-view⑦">(8)</a> <a href="#ref-for-secondary-view⑧">(9)</a> <a href="#ref-for-secondary-view⑨">(10)</a> <a href="#ref-for-secondary-view①⓪">(11)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="secondary-views-secondary-views">
-   <b><a href="#secondary-views-secondary-views">#secondary-views-secondary-views</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="secondary-view-secondary-views">
+   <b><a href="#secondary-view-secondary-views">#secondary-view-secondary-views</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-secondary-views-secondary-views">7.2. Primary and Secondary Views</a> <a href="#ref-for-secondary-views-secondary-views①">(2)</a>
+    <li><a href="#ref-for-secondary-view-secondary-views">7.2. Primary and Secondary Views</a> <a href="#ref-for-secondary-view-secondary-views①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrviewport">
