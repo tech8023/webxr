@@ -940,13 +940,7 @@ NOTE: The <a href="https://immersive-web.github.io/layers">WebXR layers module</
 When an {{XRSession}} |session| receives updated [=viewer=] state for timestamp |frameTime| from the [=XRSession/XR device=], it runs an <dfn>XR animation frame</dfn>, which MUST run the following steps regardless of if the [=list of animation frame callbacks=] is empty or not:
 
   1. Let |now| be the [=current high resolution time=].
-  1. Initialize |frame| as follows:
-    <dl class="switch">
-      <dt>If |session| has previously run an [=XR animation frame=], the user agent MAY:</dt>
-      <dd>Let |frame| be the same {{XRFrame}} object created by the earlier [=XR animation frame=]</dd>
-      <dt>Otherwise:</dt>
-      <dd>Let |frame| be a [=new=] {{XRFrame}} with [=XRFrame/time=] |frameTime| and {{XRFrame/session}} |session| in the [=relevant realm=] of |session|.</dd>
-    </dl>
+  1. Let |frame| be a [=new=] {{XRFrame}} with [=XRFrame/time=] |frameTime| and {{XRFrame/session}} |session| in the [=relevant realm=] of |session|.
   1. If |session|'s [=pending render state=] is not <code>null</code>, [=apply the pending render state=].
   1. If [=check the layers state=] with |session|'s {{XRSession/renderState}} is <code>false</code>, abort these steps.
   1. If |session|'s  [=XRSession/mode=] is {{XRSessionMode/"inline"}} and |session|'s {{XRSession/renderState}}'s [=XRRenderState/output canvas=] is <code>null</code>, abort these steps.
@@ -1053,24 +1047,12 @@ When this method is invoked, the user agent MUST run the following steps:
   1. Let |frame| be [=this=].
   1. Let |session| be |frame|'s {{XRFrame/session}} object.
   1. If |frame|'s [=animationFrame=] boolean is <code>false</code>, throw an {{InvalidStateError}} and abort these steps.
-  1. Initialize |pose| as follows:
-    <dl class="switch">
-      <dt>If {{XRFrame/getViewerPose()}} was called on a previous {{XRFrame}} on the same {{XRFrame/session}} with the same |referenceSpace|, the user agent MAY:</dt>
-      <dd>Let |pose| be the same {{XRViewerPose}} object returned by the earlier call to {{XRFrame/getViewerPose()}}</dd>
-      <dt>Otherwise:</dt>
-      <dd>Let |pose| be a [=new=] {{XRViewerPose}} object in the [=relevant realm=] of |session|.</dd>
-    </dl>
+  1. Let |pose| be a [=new=] {{XRViewerPose}} object in the [=relevant realm=] of |session|.
   1. [=Populate the pose=] of |session|'s [=XRSession/viewer reference space=] in |referenceSpace| at the time represented by |frame| into |pose|, with <code>force emulation</code> set to <code>true</code>.
   1. If |pose| is <code>null</code> return <code>null</code>.
   1. Let |xrviews| be an empty [=/list=].
-  1. For each [=view=] |view| in the [=XRSession/viewer reference space/list of views=] on the [=XRSession/viewer reference space=] of {{XRFrame/session}}, perform the following steps:
-      1. Initialize |xrview| as follows:
-        <dl class="switch">
-          <dt>If an {{XRView}} object has been constructed for the same |view| on {{XRFrame/session}}, the user agent MAY:</dt>
-          <dd>Let |xrview| be the same {{XRView}} object.</dd>
-          <dt>Otherwise:</dt>
-          <dd>Let |xrview| be a [=new=] {{XRView}} object in the [=relevant realm=] of |session|.</dd>
-        </dl>
+  1. For each [=view=] |view| in the [=XRSession/viewer reference space/list of views=] on the[=XRSession/viewer reference space=] of {{XRFrame/session}}, perform the following steps:
+      1. Let |xrview| be a new {{XRView}} object in the [=relevant realm=] of |session|.
       1. Initialize |xrview|'s [=XRView/underlying view=] to |view|.
       1. Initialize |xrview|'s {{XRView/eye}} to |view|'s [=view/eye=].
       1. Initialize |xrview|'s [=XRView/frame=] to |frame|.
@@ -1089,13 +1071,7 @@ The <dfn method for="XRFrame">getPose(|space|, |baseSpace|)</dfn> method provide
 When this method is invoked, the user agent MUST run the following steps:
 
   1. Let |frame| be [=this=].
-  1. Initialize |pose| as follows:
-    <dl class="switch">
-      <dt>If [=XRFrame/animationFrame=] is <code>true</code> {{XRFrame/getPose()}} was called on a previous {{XRFrame}} with [=XRFrame/animationFrame=] <code>true</code> on the same {{XRFrame/session}} with the same |space| and |baseSpace|, the user agent MAY:</dt>
-      <dd>Let |pose| be the same {{XRPose}} object returned by the earlier call to {{XRFrame/getPose()}}</dd>
-      <dt>Otherwise:</dt>
-      <dd>Let |pose| be a [=new=] {{XRPose}} object in the [=relevant realm=] of |frame|.</dd>
-    </dl>
+  1. Let |pose| be a [=new=] {{XRPose}} object in the [=relevant realm=] of |frame|.
   1. [=Populate the pose=] of |space| in |baseSpace| at the time represented by |frame| into |pose|.
   1. Return |pose|.
 
@@ -1396,15 +1372,15 @@ While content should be written to assume that there may be any number of views,
 Because user-agents may have the ability to use mechanisms like reprojection to render to these [=secondary views=] in lieu of the content, it is desirable to be able to distinguish between content that plans on handling these [=secondary views=] itself and content that is either oblivious to the existence of such [=secondary views=] or does not wish to deal with them.
 </div>
 
-To provide for this, user-agents that expose [=secondary views=] MUST support an "<dfn for="secondary view">secondary-views</dfn>" [=feature descriptor=] as a hint. Content enabling this feature is expected to:
+To provide for this, user-agents that expose [=secondary views=] MUST support an "<dfn for="secondary views">secondary-views</dfn>" [=feature descriptor=] as a hint. Content enabling this feature is expected to:
 
  - Handle any nonzero number of [=views=] in the {{XRViewerPose/views}} array.
  - Handle the existence of multiple [=views=] that have the same [=view/eye=].
  - Handle the size of the {{XRViewerPose/views}} array changing from frame to frame. <span class=note>This can happen when video capture is enabled, for example</span>
 
-When "[=secondary view/secondary-views=]" is enabled, the user-agent MAY surface any [=secondary views=] the device supports to the {{XRSession}}, when necessary. The user-agent MUST NOT use reprojection to reconstruct [=secondary views=] in such a case, and instead rely on whatever the content decides to render.
+When "[=secondary views/secondary-views=]" is enabled, the user-agent MAY surface any [=secondary views=] the device supports to the {{XRSession}}, when necessary. The user-agent MUST NOT use reprojection to reconstruct [=secondary views=] in such a case, and instead rely on whatever the content decides to render.
 
-Note: We recommend content use {{XRSessionInit/optionalFeatures}} to enable "[=secondary view/secondary-views=]" to ensure maximum compatibility.
+Note: We recommend content use {{XRSessionInit/optionalFeatures}} to enable "[=secondary views/secondary-views=]" to ensure maximum compatibility.
 
 If [=secondary views=] have lower underlying frame rates, the {{XRSession}} MAY choose to do one or more of the following:
 
@@ -1983,13 +1959,7 @@ The <dfn method for="XRWebGLLayer">getViewport(|view|)</dfn> method, when invoke
   1. If |frame|'s {{XRFrame/session}} is not equal to |layer|'s [=XRWebGLLayer/session=], throw an {{InvalidStateError}} and abort these steps.
   1. If |frame|'s [=XRFrame/active=] boolean is <code>false</code>, throw an {{InvalidStateError}} and abort these steps.
   1. Let |glViewport| be the [=WebGL viewport=] from the [=list of viewports=] associated with |view|.
-  1. Initialize |viewport| as follows:
-    <dl class="switch">
-      <dt>If {{XRWebGLLayer/getViewport()}} was called previously with a |view| corresponding to the same underlying [=view=], the user agent MAY:</dt>
-      <dd>Let |viewport| be the same {{XRViewport}} object returned by the earlier call to {{XRWebGLLayer/getViewport()}}</dd>
-      <dt>Otherwise:</dt>
-      <dd>Let |viewport| be a [=new=] {{XRViewport}} in the [=relevant realm=] of |layer|'s [=XRWebGLLayer/session=].</dd>
-    </dl>
+  1. Let |viewport| be a [=new=] {{XRViewport}} in the [=relevant realm=] of |layer|'s [=XRWebGLLayer/session=].
   1. Initialize |viewport|'s {{XRViewport/x}} to |glViewport|'s <code>x</code> component.
   1. Initialize |viewport|'s {{XRViewport/y}} to |glViewport|'s <code>y</code> component.
   1. Initialize |viewport|'s {{XRViewport/width}} to |glViewport|'s <code>width</code>.
