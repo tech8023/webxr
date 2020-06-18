@@ -1355,14 +1355,14 @@ To <dfn for="XRView">obtain the projection matrix</dfn> for a given {{XRView}} |
 Primary and Secondary Views {#primary-and-secondary-views}
 ----------
 
-A [=view=] is a <dfn>primary view</dfn> if rendering to it is necessary for the immersive experience.
+A [=view=] is a <dfn>primary view</dfn> when rendering to it is necessary for an immersive experience.
 
-A [=view=] is a <dfn>secondary view</dfn> if it is possible for content to choose to not render to it and still produce a working immersive experience. If content chooses to not render to these views, the user-agent MAY reconstruct them via reprojection.
+A [=view=] is a <dfn>secondary view</dfn> when it is possible for content to choose to not render to it and still produce a working immersive experience. When content chooses to not render to these views, the user-agent MAY be able to reconstruct them via reprojection.
 
 <div class="example">
-Examples of [=primary views=] include the main mono view of a handheld AR session, the main two stereo views of headworn AR/VR sessions, or all of the wall views of a CAVE session.
+Examples of [=primary views=] include the main mono view for a handheld AR session, the main two stereo views for headworn AR/VR sessions, or all of the wall views for a CAVE session.
 
-Examples of [=secondary views=] include the [=first-person observer view=] used for video capture, or "quad views" where there are two views per eye with differing resolutions or fields of view.
+Examples of [=secondary views=] include the [=first-person observer view=] used for video capture, or "quad views" where there are two views per eye with differing resolution and fields of view.
 
 </div>
 
@@ -1372,13 +1372,13 @@ While content should be written to assume that there may be any number of views,
 Because user-agents may have the ability to use mechanisms like reprojection to render to these [=secondary views=] in lieu of the content, it is desirable to be able to distinguish between content that plans on handling these [=secondary views=] itself and content that is either oblivious to the existence of such [=secondary views=] or does not wish to deal with them.
 </div>
 
-User agents that expose [=secondary views=] MUST support a "<dfn for="secondary views">secondary-views</dfn>" [=feature descriptor=] as a hint. Content enabling this feature is expected to:
+To provide for this, user-agents that expose [=secondary views=] MUST support an "<dfn for="secondary views">secondary-views</dfn>" [=feature descriptor=] as a hint. Content enabling this feature is expected to:
 
  - Handle any nonzero number of [=views=] in the {{XRViewerPose/views}} array.
  - Handle the existence of multiple [=views=] that have the same [=view/eye=].
  - Handle the size of the {{XRViewerPose/views}} array changing from frame to frame. <span class=note>This can happen when video capture is enabled, for example</span>
 
-When "[=secondary views/secondary-views=]" is enabled, the user agent MAY surface any [=secondary views=] the device supports to the {{XRSession}}. The user agent MUST NOT use reprojection to reconstruct [=secondary views=] in such a case, but instead rely on whatever the content decides to render.
+When "[=secondary views/secondary-views=]" is enabled, the user-agent MAY surface any [=secondary views=] the device supports to the {{XRSession}}, when necessary. The user-agent MUST NOT use reprojection to reconstruct [=secondary views=] in such a case, and instead rely on whatever the content decides to render.
 
 Note: We recommend content use {{XRSessionInit/optionalFeatures}} to enable "[=secondary views/secondary-views=]" to ensure maximum compatibility.
 
@@ -1386,6 +1386,7 @@ If [=secondary views=] have lower underlying frame rates, the {{XRSession}} MAY 
 
  - Lower the overall frame rate of the application while the [=secondary views=] are active.
  - Surface [=secondary views=] in the {{XRViewerPose/views}} array only for some of the frames. Implementations doing this SHOULD NOT have frames where the [=primary views=] are not present.
+ - Silently discard rendered content for [=secondary views=] during some of the frames.
 
 XRViewport {#xrviewport-interface}
 ----------
