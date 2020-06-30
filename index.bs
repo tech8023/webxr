@@ -701,7 +701,9 @@ When requested, the {{XRSession}} |session| MUST <dfn>apply the pending render s
   1. Let |activeState| be |session|'s [=active render state=].
   1. Let |newState| be |session|'s [=pending render state=].
   1. Set |session|'s [=pending render state=] to <code>null</code>.
+  1. Let |oldLayer| be |activeState|'s {{XRRenderState/baseLayer}}.
   1. Set |activeState| to |newState|.
+  1. If |oldLayer| is not equal to |activeState|'s {{XRRenderState/baseLayer}}, [=update the viewports=] for |session|.
   1. If |activeState|'s {{XRRenderState/inlineVerticalFieldOfView}} is less than |session|'s [=minimum inline field of view=] set |activeState|'s {{XRRenderState/inlineVerticalFieldOfView}} to |session|'s [=minimum inline field of view=].
   1. If |activeState|'s {{XRRenderState/inlineVerticalFieldOfView}} is greater than |session|'s [=maximum inline field of view=] set |activeState|'s {{XRRenderState/inlineVerticalFieldOfView}} to |session|'s [=maximum inline field of view=].
   1. If |activeState|'s {{XRRenderState/depthNear}} is less than |session|'s [=minimum near clip plane=] set |activeState|'s {{XRRenderState/depthNear}} to |session|'s [=minimum near clip plane=].
@@ -947,6 +949,7 @@ When an {{XRSession}} |session| receives updated [=viewer=] state for timestamp 
   1. Let |frame| be |session|'s [=XRSession/animation frame=].
   1. Set |frame|'s [=XRFrame/time=] to |frameTime|.
   1. If |session|'s [=pending render state=] is not <code>null</code>, [=apply the pending render state=].
+  1. If the [=XRSession/list of views=] has changed since the last [=XR animation frame=], [=update the viewports=].
   1. If [=check the layers state=] with |session|'s {{XRSession/renderState}} is <code>false</code>, abort these steps.
   1. If |session|'s  [=XRSession/mode=] is {{XRSessionMode/"inline"}} and |session|'s {{XRSession/renderState}}'s [=XRRenderState/output canvas=] is <code>null</code>, abort these steps.
   1. Set  |session|'s [=list of currently running animation frame callbacks=] to be |session|'s [=list of animation frame callbacks=].
@@ -1358,6 +1361,23 @@ To <dfn for="XRView">obtain the projection matrix</dfn> for a given {{XRView}} |
 
 </div>
 
+<div class=algorithm data-algorithm="update-the-viewports">
+
+When the [=XRSession/list of views=] changes, one can <dfn>update the viewports</dfn> for an {{XRSession}} |session| by performing the following steps:
+
+  1. Let |layer| be the {{XRSession/renderState}}'s {{XRRenderState/baseLayer}}.
+  1. If |layer| is <code>null</code> abort these steps.
+  1. Set |layer|'s [=list of viewport objects=] to the empty [=/list=].
+  1. For each [=view=] |view| in [=XRSession/list of views=]:
+    1. Let |glViewport| be the [=WebGL viewport=] from the [=list of viewports=] associated with |view|.
+    1. Let |viewport| be a [=new=] {{XRViewport}} in the [=relevant realm=] of |session|.
+    1. Initialize |viewport|'s {{XRViewport/x}} to |glViewport|'s <code>x</code> component.
+    1. Initialize |viewport|'s {{XRViewport/y}} to |glViewport|'s <code>y</code> component.
+    1. Initialize |viewport|'s {{XRViewport/width}} to |glViewport|'s <code>width</code>.
+    1. Initialize |viewport|'s {{XRViewport/height}} to |glViewport|'s <code>height</code>.
+    1. [=list/Append=] |viewport| to |layer|'s [=list of viewport objects=].
+
+</div>
 
 Primary and Secondary Views {#primary-and-secondary-views}
 ----------
@@ -1954,7 +1974,9 @@ Depth values stored in the buffer are expected to be between <code>0.0</code> an
 
 Note: Making the scene's depth buffer available to the compositor allows some platforms to provide quality and comfort improvements such as improved reprojection.
 
-Each {{XRWebGLLayer}} MUST have a <dfn>list of viewports</dfn> which is a [=/list=] containing one [=WebGL viewport=] for each {{XRView}} the {{XRSession}} currently exposes. The viewports MUST have a {{XRViewport/width}} and {{XRViewport/height}} greater than <code>0</code> and MUST describe a rectangle that does not exceed the bounds of the [=target framebuffer=]. The viewports MUST NOT be overlapping. If [=XRWebGLLayer/composition disabled=] is <code>true</code>, the [=list of viewports=] MUST contain a single [=WebGL viewport=] that covers the [=XRWebGLLayer/context=]'s entire default framebuffer.
+Each {{XRWebGLLayer}} MUST have a <dfn>list of viewports</dfn> which is a [=/list=] containing one [=WebGL viewport=] for each [=view=] the {{XRSession}} may expose, including [=secondary views=] that are not currently active but may become active for the current session. The viewports MUST have a {{XRViewport/width}} and {{XRViewport/height}} greater than <code>0</code> and MUST describe a rectangle that does not exceed the bounds of the [=target framebuffer=]. The viewports MUST NOT be overlapping. If [=XRWebGLLayer/composition disabled=] is <code>true</code>, the [=list of viewports=] MUST contain a single [=WebGL viewport=] that covers the [=XRWebGLLayer/context=]'s entire default framebuffer.
+
+Each {{XRWebGLLayer}} MUST have a <dfn>list of viewport objects</dfn> which is a [=/list=] containing one {{XRViewport}} for each [=view=] the {{XRSession}} currently exposes.
 
 {{getViewport()}} queries the {{XRViewport}} the given {{XRView}} should use when rendering to the layer.
 
@@ -1967,18 +1989,7 @@ The <dfn method for="XRWebGLLayer">getViewport(|view|)</dfn> method, when invoke
   1. If |session| is not equal to |layer|'s [=XRWebGLLayer/session=], throw an {{InvalidStateError}} and abort these steps.
   1. If |frame|'s [=XRFrame/active=] boolean is <code>false</code>, throw an {{InvalidStateError}} and abort these steps.
   1. If |view|'s [=XRView/frame time=] is not equal to |frame|'s [=XRFrame/time=], throw an {{InvalidStateError}} and abort these steps.
-  1. Let |glViewport| be the [=WebGL viewport=] from the [=list of viewports=] associated with |view|.
-  1. Initialize |viewport| as follows:
-    <dl class="switch">
-      <dt>If a |view| with the same underlying [=view=] has been passed to a getViewport() call previously, and |glViewport| has not changed since then, the user agent MUST:</dt>
-      <dd>Let |viewport| be the same {{XRViewport}} object returned by the earlier call to {{XRWebGLLayer/getViewport()}}</dd>
-      <dt>Otherwise:</dt>
-      <dd>Let |viewport| be a [=new=] {{XRViewport}} in the [=relevant realm=] of |layer|'s [=XRWebGLLayer/session=].</dd>
-    </dl>
-  1. Initialize |viewport|'s {{XRViewport/x}} to |glViewport|'s <code>x</code> component.
-  1. Initialize |viewport|'s {{XRViewport/y}} to |glViewport|'s <code>y</code> component.
-  1. Initialize |viewport|'s {{XRViewport/width}} to |glViewport|'s <code>width</code>.
-  1. Initialize |viewport|'s {{XRViewport/height}} to |glViewport|'s <code>height</code>.
+  1. Let |viewport| be the {{XRViewport}} from the [=list of viewport objects=] associated with |view|.
   1. Return |viewport|.
 
 </div>
