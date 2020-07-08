@@ -43,6 +43,7 @@ spec: WebGL; urlPrefix: https://www.khronos.org/registry/webgl/specs/latest/1.0/
     type: interface; text: WebGLFramebuffer; url: WebGLFramebuffer
     type: interface; text: WebGLRenderingContext; url: WebGLRenderingContext
     type: interface; text: WebGLRenderingContextBase; url: WebGLRenderingContextBase
+    type: interface; text: WebGLObject; url: WebGLObject
     type: typedef; text: INVALID_OPERATION; url: WebGLRenderingContextBase
     type: typedef; text: INVALID_FRAMEBUFFER_OPERATION; url: WebGLRenderingContextBase
     type: typedef; text: FRAMEBUFFER_UNSUPPORTED; url: WebGLRenderingContextBase
@@ -55,6 +56,7 @@ spec: WebGL; urlPrefix: https://www.khronos.org/registry/webgl/specs/latest/1.0/
     type: method; text: getFramebufferAttachmentParameter;  url: 5.14.6
     type: method; text: deleteFramebuffer;  url: 5.14.6
     type: method; text: checkFramebufferStatus;  url: 5.14.6
+    type: attribute; text: statusMessage; for: WebGLContextEvent; url: 5.15.1
     type: dictionary; text: WebGLContextAttributes; url: #WebGLContextAttributes
     type: dfn; text: Create the WebGL context; url:#2.1
     type: dfn; text: default framebuffer; url:#2.2
@@ -65,6 +67,10 @@ spec: WebGL; urlPrefix: https://www.khronos.org/registry/webgl/specs/latest/1.0/
     type: dfn; text: actual context parameters; url: #actual-context-parameters
     type: dfn; text: create a drawing buffer; url: #create-a-drawing-buffer
     type: dfn; text: WebGL task source; url: #5.15
+    type: dfn; text: canvas; for: WebGLRenderingContext; url: context-canvas
+    type: dfn; text: webgl context lost flag; for: WebGLRenderingContext; url: webgl-context-lost-flag
+    type: dfn; text: Fire a WebGL context event; url: fire-a-webgl-context-event
+    type: dfn; text: invalidated; for: WebGLObject; url: #webgl-object-invalidated-flag
 spec: WebGL 2.0; urlPrefix: https://www.khronos.org/registry/webgl/specs/latest/2.0/
     type: interface; text: WebGL2RenderingContext; url: WebGL2RenderingContext
 spec: Orientation Sensor; urlPrefix: https://w3c.github.io/orientation-sensor/
@@ -2090,11 +2096,22 @@ When this method is invoked, the user agent MUST run the following steps:
           <dd> [=Queue a task=] to set |context|'s [=XR compatible=] boolean to <code>true</code> and [=/resolve=] |promise|.
           <dt> Otherwise
           <dd> [=Queue a task=] on the [=/WebGL task source=] to perform the following steps:
-                  1. Force |context| to be lost and [=handle the context loss=] as described by the WebGL specification.
-                  1. If the [=canceled flag=] of the "webglcontextlost" event fired in the previous step was not set, [=reject=] |promise| with an {{AbortError}} and abort these steps.
-                  1. [=Restore the context=] on a [=compatible graphics adapter=] for |device|.
-                  1. Set |context|'s [=XR compatible=] boolean to <code>true</code>.
-                  1. [=/Resolve=] |promise|.
+                  1. Force |context| to be lost.
+                  1. [=Handle the context loss=] as described by the WebGL specification:
+                      1. Let |canvas| be the |context|'s [=WebGLRenderingContext/canvas=].
+                      1. If |context|'s [=WebGLRenderingContext/webgl context lost flag=] is set, abort these steps.  
+                      1. Set |context|'s [=WebGLRenderingContext/webgl context lost flag=].
+                      1. Set the [=WebGLObject/invalidated=] flag of each {{WebGLObject}} instance created by |context|.
+                      1. Disable all extensions except "WEBGL_lose_context".
+                      1. [=Queue a task=] on the [=/WebGL task source=] to perform the following steps:
+                          1. [=Fire a WebGL context event=] |e| named "webglcontextlost" at |canvas|, with {{WebGLContextEvent/statusMessage}} set to "".
+                          1. If |e|'s [=canceled flag=] is not set, [=reject=] |promise| with an {{AbortError}} and abort these steps.
+                          1. Run the following steps [=in parallel=].
+                              1. Await a restorable drawing buffer on a [=compatible graphics adapter=] for |device|.
+                              1. [=Queue a task=] on the [=/WebGL task source=] to perform the following steps:
+                                  1. [=Restore the context=] on a [=compatible graphics adapter=] for |device|.
+                                  1. Set |context|'s [=XR compatible=] boolean to <code>true</code>.
+                                  1. [=/Resolve=] |promise|.
         </dl>
   1. Return |promise|.
 
