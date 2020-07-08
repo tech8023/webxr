@@ -43,6 +43,7 @@ spec: WebGL; urlPrefix: https://www.khronos.org/registry/webgl/specs/latest/1.0/
     type: interface; text: WebGLFramebuffer; url: WebGLFramebuffer
     type: interface; text: WebGLRenderingContext; url: WebGLRenderingContext
     type: interface; text: WebGLRenderingContextBase; url: WebGLRenderingContextBase
+    type: interface; text: WebGLObject; url: WebGLObject
     type: typedef; text: INVALID_OPERATION; url: WebGLRenderingContextBase
     type: typedef; text: INVALID_FRAMEBUFFER_OPERATION; url: WebGLRenderingContextBase
     type: typedef; text: FRAMEBUFFER_UNSUPPORTED; url: WebGLRenderingContextBase
@@ -55,6 +56,7 @@ spec: WebGL; urlPrefix: https://www.khronos.org/registry/webgl/specs/latest/1.0/
     type: method; text: getFramebufferAttachmentParameter;  url: 5.14.6
     type: method; text: deleteFramebuffer;  url: 5.14.6
     type: method; text: checkFramebufferStatus;  url: 5.14.6
+    type: attribute; text: statusMessage; for: WebGLContextEvent; url: 5.15.1
     type: dictionary; text: WebGLContextAttributes; url: #WebGLContextAttributes
     type: dfn; text: Create the WebGL context; url:#2.1
     type: dfn; text: default framebuffer; url:#2.2
@@ -65,6 +67,10 @@ spec: WebGL; urlPrefix: https://www.khronos.org/registry/webgl/specs/latest/1.0/
     type: dfn; text: actual context parameters; url: #actual-context-parameters
     type: dfn; text: create a drawing buffer; url: #create-a-drawing-buffer
     type: dfn; text: WebGL task source; url: #5.15
+    type: dfn; text: canvas; for: WebGLRenderingContext; url: context-canvas
+    type: dfn; text: webgl context lost flag; for: WebGLRenderingContext; url: webgl-context-lost-flag
+    type: dfn; text: Fire a WebGL context event; url: fire-a-webgl-context-event
+    type: dfn; text: invalidated; for: WebGLObject; url: #webgl-object-invalidated-flag
 spec: WebGL 2.0; urlPrefix: https://www.khronos.org/registry/webgl/specs/latest/2.0/
     type: interface; text: WebGL2RenderingContext; url: WebGL2RenderingContext
 spec: Orientation Sensor; urlPrefix: https://w3c.github.io/orientation-sensor/
@@ -819,7 +825,7 @@ Note: The {{XRSession}}'s [=visibility state=] does not affect or restrict mouse
 
 Each {{XRSession}} has a <dfn for="XRSession">viewer reference space</dfn>, which is an {{XRReferenceSpace}} of type {{XRReferenceSpaceType/"viewer"}} with an [=identity transform=] [=XRSpace/origin offset=].
 
-Each {{XRSession}} has a <dfn for="XRSession">list of views</dfn>, which is a [=/list=] of [=view=]s corresponding to the views provided by the [=XRSession/XR device=]. If the {{XRSession}}'s {{XRSession/renderState}}'s [=XRRenderState/composition disabled=] boolean is set to <code>true</code> the [=list of views=] MUST contain a single [=view=].
+Each {{XRSession}} has a <dfn for="XRSession">list of views</dfn>, which is a [=/list=] of [=view=]s corresponding to the views provided by the [=XRSession/XR device=]. If the {{XRSession}}'s {{XRSession/renderState}}'s [=XRRenderState/composition disabled=] boolean is set to <code>true</code> the [=list of views=] MUST contain a single [=view=]. The [=XRSession/list of views=] is immutable during the {{XRSession}} and MUST contain any [=views=] that may be surfaced during the session, including [=secondary views=] that may not initially be [=view/active=].
 
 The <dfn attribute for="XRSession">onend</dfn> attribute is an [=Event handler IDL attribute=] for the {{end}} event type.
 
@@ -949,19 +955,19 @@ When an {{XRSession}} |session| receives updated [=viewer=] state for timestamp 
   1. Let |frame| be |session|'s [=XRSession/animation frame=].
   1. Set |frame|'s [=XRFrame/time=] to |frameTime|.
   1. If |session|'s [=pending render state=] is not <code>null</code>, [=apply the pending render state=].
-  1. If the [=XRSession/list of views=] has changed since the last [=XR animation frame=], [=update the viewports=].
+  1. If the [=view/active] flag of any [=view=] in the [=XRSession/list of views=] has changed since the last [=XR animation frame=], [=update the viewports=].
   1. If [=check the layers state=] with |session|'s {{XRSession/renderState}} is <code>false</code>, abort these steps.
   1. If |session|'s  [=XRSession/mode=] is {{XRSessionMode/"inline"}} and |session|'s {{XRSession/renderState}}'s [=XRRenderState/output canvas=] is <code>null</code>, abort these steps.
   1. Set  |session|'s [=list of currently running animation frame callbacks=] to be |session|'s [=list of animation frame callbacks=].
   1. Set |session|'s [=list of animation frame callbacks=] to the empty list.
-  1. Set |frame|'s [=active=] boolean to <code>true</code>.
+  1. Set |frame|'s [=XRFrame/active=] boolean to <code>true</code>.
   1. [=XRFrame/Apply frame updates=] for |frame|.
   1. For each |entry| in |session|'s [=list of currently running animation frame callbacks=], in order:
     1. If the |entry|'s [=cancelled=] boolean is <code>true</code>, continue to the next entry.
     1. [=Invoke the Web IDL callback function=] for |entry|, passing |now| and |frame| as the  arguments
     1. If an exception is thrown, [=report the exception=].
   1. Set |session|'s [=list of currently running animation frame callbacks=] to the empty [=/list=].
-  1. Set |frame|'s [=active=] boolean to <code>false</code>.
+  1. Set |frame|'s [=XRFrame/active=] boolean to <code>false</code>.
 
 </div>
 
@@ -1058,7 +1064,7 @@ When this method is invoked, the user agent MUST run the following steps:
   1. [=Populate the pose=] of |session|'s [=XRSession/viewer reference space=] in |referenceSpace| at the time represented by |frame| into |pose|, with <code>force emulation</code> set to <code>true</code>.
   1. If |pose| is <code>null</code> return <code>null</code>.
   1. Let |xrviews| be an empty [=/list=].
-  1. For each [=view=] |view| in the [=XRSession/list of views=] on {{XRFrame/session}}, perform the following steps:
+  1. For each [=view/active=] [=view=] |view| in the [=XRSession/list of views=] on {{XRFrame/session}}, perform the following steps:
       1. Let |xrview| be a new {{XRView}} object in the [=relevant realm=] of |session|.
       1. Initialize |xrview|'s [=XRView/underlying view=] to |view|.
       1. Initialize |xrview|'s {{XRView/eye}} to |view|'s [=view/eye=].
@@ -1130,7 +1136,7 @@ The [=effective origin=] of an {{XRSpace}} can only be observed in the coordinat
 
 To <dfn>populate the pose</dfn> of an {{XRSpace}} |space| in an {{XRSpace}} |baseSpace| at the time represented by an {{XRFrame}} |frame| into an {{XRPose}} |pose|, with an optional |force emulation| flag, the user agent MUST run the following steps:
 
-  1. If |frame|'s [=active=] boolean is <code>false</code>, throw an {{InvalidStateError}} and abort these steps.
+  1. If |frame|'s [=XRFrame/active=] boolean is <code>false</code>, throw an {{InvalidStateError}} and abort these steps.
   1. Let |session| be |frame|'s {{XRFrame/session}} object.
   1. If |space|'s [=XRSpace/session=] does not equal |session|, throw an {{InvalidStateError}} and abort these steps.
   1. If |baseSpace|'s [=XRSpace/session=] does not equal |session|, throw an {{InvalidStateError}} and abort these steps.
@@ -1317,6 +1323,8 @@ A [=view=] has an associated <dfn for="view">projection matrix</dfn> which is a 
 
 A [=view=] has an associated <dfn for="view">eye</dfn> which is an {{XREye}} describing which eye this view is expected to be shown to. If the view does not have an intrinsically associated eye (the display is monoscopic, for example) this value MUST be set to {{XREye/"none"}}.
 
+A [=view=] has an <dfn for="view">active</dfn> flag that may change through the lifecycle of an {{XRSession}}. [=Primary views=] SHOULD always have the [=view/active=] flag set to <code>true</code>.
+
 Note: Many HMDs will request that content render two [=views=], one for the left eye and one for the right, while most magic window devices will only request one [=view=], but applications should never assume a specific view configuration. For example: A magic window device may request two views if it is capable of stereo output, but may revert to requesting a single view for performance reasons if the stereo output mode is turned off. Similarly, HMDs may request more than two views to facilitate a wide field of view or displays of different pixel density.
 
 <pre class="idl">
@@ -1363,12 +1371,12 @@ To <dfn for="XRView">obtain the projection matrix</dfn> for a given {{XRView}} |
 
 <div class=algorithm data-algorithm="update-the-viewports">
 
-When the [=XRSession/list of views=] changes, one can <dfn>update the viewports</dfn> for an {{XRSession}} |session| by performing the following steps:
+When the [=view/active=] flag of any [=view=] in the [=XRSession/list of views=] changes, one can <dfn>update the viewports</dfn> for an {{XRSession}} |session| by performing the following steps:
 
   1. Let |layer| be the {{XRSession/renderState}}'s {{XRRenderState/baseLayer}}.
   1. If |layer| is <code>null</code> abort these steps.
   1. Set |layer|'s [=list of viewport objects=] to the empty [=/list=].
-  1. For each [=view=] |view| in [=XRSession/list of views=]:
+  1. For each [=view/active=] [=view=] |view| in [=XRSession/list of views=]:
     1. Let |glViewport| be the [=WebGL viewport=] from the [=list of viewports=] associated with |view|.
     1. Let |viewport| be a [=new=] {{XRViewport}} in the [=relevant realm=] of |session|.
     1. Initialize |viewport|'s {{XRViewport/x}} to |glViewport|'s <code>x</code> component.
@@ -1974,9 +1982,9 @@ Depth values stored in the buffer are expected to be between <code>0.0</code> an
 
 Note: Making the scene's depth buffer available to the compositor allows some platforms to provide quality and comfort improvements such as improved reprojection.
 
-Each {{XRWebGLLayer}} MUST have a <dfn>list of viewports</dfn> which is a [=/list=] containing one [=WebGL viewport=] for each [=view=] the {{XRSession}} may expose, including [=secondary views=] that are not currently active but may become active for the current session. The viewports MUST have a {{XRViewport/width}} and {{XRViewport/height}} greater than <code>0</code> and MUST describe a rectangle that does not exceed the bounds of the [=target framebuffer=]. The viewports MUST NOT be overlapping. If [=XRWebGLLayer/composition disabled=] is <code>true</code>, the [=list of viewports=] MUST contain a single [=WebGL viewport=] that covers the [=XRWebGLLayer/context=]'s entire default framebuffer.
+Each {{XRWebGLLayer}} MUST have a <dfn>list of viewports</dfn> which is a [=/list=] containing one [=WebGL viewport=] for each [=view=] the {{XRSession}} may expose, including [=secondary views=] that are not currently [=view/active=] but may become [=view/active=] for the current session. The viewports MUST have a {{XRViewport/width}} and {{XRViewport/height}} greater than <code>0</code> and MUST describe a rectangle that does not exceed the bounds of the [=target framebuffer=]. The viewports MUST NOT be overlapping. If [=XRWebGLLayer/composition disabled=] is <code>true</code>, the [=list of viewports=] MUST contain a single [=WebGL viewport=] that covers the [=XRWebGLLayer/context=]'s entire default framebuffer.
 
-Each {{XRWebGLLayer}} MUST have a <dfn>list of viewport objects</dfn> which is a [=/list=] containing one {{XRViewport}} for each [=view=] the {{XRSession}} currently exposes.
+Each {{XRWebGLLayer}} MUST have a <dfn>list of viewport objects</dfn> which is a [=/list=] containing one {{XRViewport}} for each [=view/active=] [=view=] the {{XRSession}} currently exposes.
 
 {{getViewport()}} queries the {{XRViewport}} the given {{XRView}} should use when rendering to the layer.
 
@@ -2088,11 +2096,22 @@ When this method is invoked, the user agent MUST run the following steps:
           <dd> [=Queue a task=] to set |context|'s [=XR compatible=] boolean to <code>true</code> and [=/resolve=] |promise|.
           <dt> Otherwise
           <dd> [=Queue a task=] on the [=/WebGL task source=] to perform the following steps:
-                  1. Force |context| to be lost and [=handle the context loss=] as described by the WebGL specification.
-                  1. If the [=canceled flag=] of the "webglcontextlost" event fired in the previous step was not set, [=reject=] |promise| with an {{AbortError}} and abort these steps.
-                  1. [=Restore the context=] on a [=compatible graphics adapter=] for |device|.
-                  1. Set |context|'s [=XR compatible=] boolean to <code>true</code>.
-                  1. [=/Resolve=] |promise|.
+                  1. Force |context| to be lost.
+                  1. [=Handle the context loss=] as described by the WebGL specification:
+                      1. Let |canvas| be the |context|'s [=WebGLRenderingContext/canvas=].
+                      1. If |context|'s [=WebGLRenderingContext/webgl context lost flag=] is set, abort these steps.  
+                      1. Set |context|'s [=WebGLRenderingContext/webgl context lost flag=].
+                      1. Set the [=WebGLObject/invalidated=] flag of each {{WebGLObject}} instance created by |context|.
+                      1. Disable all extensions except "WEBGL_lose_context".
+                      1. [=Queue a task=] on the [=/WebGL task source=] to perform the following steps:
+                          1. [=Fire a WebGL context event=] |e| named "webglcontextlost" at |canvas|, with {{WebGLContextEvent/statusMessage}} set to "".
+                          1. If |e|'s [=canceled flag=] is not set, [=reject=] |promise| with an {{AbortError}} and abort these steps.
+                          1. Run the following steps [=in parallel=].
+                              1. Await a restorable drawing buffer on a [=compatible graphics adapter=] for |device|.
+                              1. [=Queue a task=] on the [=/WebGL task source=] to perform the following steps:
+                                  1. [=Restore the context=] on a [=compatible graphics adapter=] for |device|.
+                                  1. Set |context|'s [=XR compatible=] boolean to <code>true</code>.
+                                  1. [=/Resolve=] |promise|.
         </dl>
   1. Return |promise|.
 
@@ -2186,10 +2205,10 @@ The <dfn attribute for="XRInputSourceEvent">frame</dfn> attribute is an {{XRFram
 When the user agent has to <dfn>fire an input source event</dfn> with name |name|, {{XRFrame}} |frame|, and {{XRInputSource}} |source| it MUST run the following steps:
 
   1. Create an {{XRInputSourceEvent}} |event| with {{Event/type}} |name|, {{XRInputSourceEvent/frame}} |frame|, and {{XRInputSourceEvent/inputSource}} |source|.
-  1. Set |frame|'s [=active=] boolean to <code>true</code>.
+  1. Set |frame|'s [=XRFrame/active=] boolean to <code>true</code>.
   1. [=XRFrame/Apply frame updates=] for |frame|.
   1. [=Dispatch=] |event| on |frame|'s {{XRFrame/session}}
-  1. Set |frame|'s [=active=] boolean to <code>false</code>.
+  1. Set |frame|'s [=XRFrame/active=] boolean to <code>false</code>.
 
 </div>
 
