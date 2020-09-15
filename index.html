@@ -1598,7 +1598,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-08-28">28 August 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-09-14">14 September 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1910,10 +1910,12 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p>Set the <a data-link-type="dfn" href="#immersive-xr-device" id="ref-for-immersive-xr-device⑤">immersive XR device</a> as follows:</p>
       <dl class="switch">
-       <dt> If there are any active <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession④">XRSession</a></code>s and the <a data-link-type="dfn" href="#list-of-immersive-xr-devices" id="ref-for-list-of-immersive-xr-devices⑨">list of immersive XR devices</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contains</a> <var>oldDevice</var> 
-       <dd> Set the <a data-link-type="dfn" href="#immersive-xr-device" id="ref-for-immersive-xr-device⑥">immersive XR device</a> to <var>oldDevice</var> 
-       <dt> Otherwise 
-       <dd> Set the <a data-link-type="dfn" href="#immersive-xr-device" id="ref-for-immersive-xr-device⑦">immersive XR device</a> to a device of the user agent’s choosing 
+       <dt data-md>If there are any active <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession④">XRSession</a></code>s and the <a data-link-type="dfn" href="#list-of-immersive-xr-devices" id="ref-for-list-of-immersive-xr-devices⑨">list of immersive XR devices</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contains</a> <var>oldDevice</var>:
+       <dd data-md>
+        <p>Set the <a data-link-type="dfn" href="#immersive-xr-device" id="ref-for-immersive-xr-device⑥">immersive XR device</a> to <var>oldDevice</var>.</p>
+       <dt data-md>Otherwise:
+       <dd data-md>
+        <p>Set the <a data-link-type="dfn" href="#immersive-xr-device" id="ref-for-immersive-xr-device⑦">immersive XR device</a> to a device of the user agent’s choosing.</p>
       </dl>
      <li data-md>
       <p>The user agent MAY update the <a data-link-type="dfn" href="#inline-xr-device" id="ref-for-inline-xr-device⑤">inline XR device</a> to the <a data-link-type="dfn" href="#immersive-xr-device" id="ref-for-immersive-xr-device⑧">immersive XR device</a> if appropriate, or the <a data-link-type="dfn" href="#default-inline-xr-device" id="ref-for-default-inline-xr-device⑥">default inline XR device</a> otherwise.</p>
@@ -2047,8 +2049,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p>Check whether the session request is allowed as follows:</p>
       <dl class="switch">
-       <dt>If <var>immersive</var> is <code>true</code>
-       <dd>
+       <dt data-md>If <var>immersive</var> is <code>true</code>:
+       <dd data-md>
         <ol>
          <li data-md>
           <p>Check if an <a data-link-type="dfn" href="#immersive-session-request-is-allowed" id="ref-for-immersive-session-request-is-allowed">immersive session request is allowed</a> for the <var>global object</var>, and if not <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject①">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror①">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> and return <var>promise</var>.</p>
@@ -2057,8 +2059,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
          <li data-md>
           <p>Set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session①">pending immersive session</a> to <code>true</code>.</p>
         </ol>
-       <dt>Otherwise
-       <dd>Check if an <a data-link-type="dfn" href="#inline-session-request-is-allowed" id="ref-for-inline-session-request-is-allowed">inline session request is allowed</a> for the <var>global object</var>, and if not <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject③">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror②">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code> and return <var>promise</var>.
+       <dt data-md>Otherwise:
+       <dd data-md>
+        <p>Check if an <a data-link-type="dfn" href="#inline-session-request-is-allowed" id="ref-for-inline-session-request-is-allowed">inline session request is allowed</a> for the <var>global object</var>, and if not <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject③">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror②">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code> and return <var>promise</var>.</p>
       </dl>
      <li data-md>
       <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel④">in parallel</a>:</p>
@@ -2105,10 +2108,12 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
          <li data-md>
           <p>Potentially set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session①">active immersive session</a> as follows:</p>
           <dl class="switch">
-           <dt> If <var>immersive</var> is <code>true</code> 
-           <dd> Set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session②">active immersive session</a> to <var>session</var>, and set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session④">pending immersive session</a> to <code>false</code>. 
-           <dt> Otherwise 
-           <dd> Append <var>session</var> to the <a data-link-type="dfn" href="#list-of-inline-sessions" id="ref-for-list-of-inline-sessions">list of inline sessions</a>. 
+           <dt data-md>If <var>immersive</var> is <code>true</code>:
+           <dd data-md>
+            <p>Set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session②">active immersive session</a> to <var>session</var>, and set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session④">pending immersive session</a> to <code>false</code>.</p>
+           <dt data-md>Otherwise:
+           <dd data-md>
+            <p>Append <var>session</var> to the <a data-link-type="dfn" href="#list-of-inline-sessions" id="ref-for-list-of-inline-sessions">list of inline sessions</a>.</p>
           </dl>
          <li data-md>
           <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve④">Resolve</a> <var>promise</var> with <var>session</var>.</p>
@@ -2141,12 +2146,15 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p>Choose <var>device</var> as follows:</p>
       <dl class="switch">
-       <dt>If <var>mode</var> is an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①">immersive session</a> mode:
-       <dd> Set <var>device</var> to the result of <a data-link-type="dfn" href="#ensure-an-immersive-xr-device-is-selected" id="ref-for-ensure-an-immersive-xr-device-is-selected①">ensuring an immersive XR device is selected</a>.
-       <dt>Else if <var>requiredFeatures</var> or <var>optionalFeatures</var> are not empty:
-       <dd>Set <var>device</var> to the <a data-link-type="dfn" href="#inline-xr-device" id="ref-for-inline-xr-device⑦">inline XR device</a>.
-       <dt>Otherwise
-       <dd>Set <var>device</var> to the <a data-link-type="dfn" href="#default-inline-xr-device" id="ref-for-default-inline-xr-device⑦">default inline XR device</a>.
+       <dt data-md>If <var>mode</var> is an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①">immersive session</a> mode:
+       <dd data-md>
+        <p>Set <var>device</var> to the result of <a data-link-type="dfn" href="#ensure-an-immersive-xr-device-is-selected" id="ref-for-ensure-an-immersive-xr-device-is-selected①">ensuring an immersive XR device is selected</a>.</p>
+       <dt data-md>Else if <var>requiredFeatures</var> or <var>optionalFeatures</var> are not empty:
+       <dd data-md>
+        <p>Set <var>device</var> to the <a data-link-type="dfn" href="#inline-xr-device" id="ref-for-inline-xr-device⑦">inline XR device</a>.</p>
+       <dt data-md>Otherwise:
+       <dd data-md>
+        <p>Set <var>device</var> to the <a data-link-type="dfn" href="#default-inline-xr-device" id="ref-for-default-inline-xr-device⑦">default inline XR device</a>.</p>
       </dl>
      <li data-md>
       <p>Return <var>device</var>.</p>
@@ -2498,12 +2506,16 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        <li data-md>
         <p>Set <var>activeState</var>’s <a data-link-type="dfn" href="#xrrenderstate-composition-disabled" id="ref-for-xrrenderstate-composition-disabled">composition disabled</a> and <a data-link-type="dfn" href="#xrrenderstate-output-canvas" id="ref-for-xrrenderstate-output-canvas">output canvas</a> as follows:</p>
         <dl class="switch">
-         <dt> If <var>session</var>’s <a data-link-type="dfn" href="#xrsession-mode" id="ref-for-xrsession-mode①">mode</a> is <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline⑦">"inline"</a></code> and <var>baseLayer</var> is an instance of an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer">XRWebGLLayer</a></code> with <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled">composition disabled</a> set to <code>true</code> 
-         <dd> Set <var>activeState</var>’s <a data-link-type="dfn" href="#xrrenderstate-composition-disabled" id="ref-for-xrrenderstate-composition-disabled①">composition disabled</a> boolean to <code>true</code>. 
-         <dd> Set <var>activeState</var>’s <a data-link-type="dfn" href="#xrrenderstate-output-canvas" id="ref-for-xrrenderstate-output-canvas①">output canvas</a> to <var>baseLayer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context">context</a>'s <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContext" id="ref-for-WebGLRenderingContext">canvas</a></code>. 
-         <dt> Otherwise 
-         <dd> Set <var>activeState</var>’s <a data-link-type="dfn" href="#xrrenderstate-composition-disabled" id="ref-for-xrrenderstate-composition-disabled②">composition disabled</a> boolean to <code>false</code>. 
-         <dd> Set <var>activeState</var>’s <a data-link-type="dfn" href="#xrrenderstate-output-canvas" id="ref-for-xrrenderstate-output-canvas②">output canvas</a> to <code>null</code>. 
+         <dt data-md>If <var>session</var>’s <a data-link-type="dfn" href="#xrsession-mode" id="ref-for-xrsession-mode①">mode</a> is <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline⑦">"inline"</a></code> and <var>baseLayer</var> is an instance of an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer">XRWebGLLayer</a></code> with <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled">composition disabled</a> set to <code>true</code>:
+         <dd data-md>
+          <p>Set <var>activeState</var>’s <a data-link-type="dfn" href="#xrrenderstate-composition-disabled" id="ref-for-xrrenderstate-composition-disabled①">composition disabled</a> boolean to <code>true</code>.</p>
+         <dd data-md>
+          <p>Set <var>activeState</var>’s <a data-link-type="dfn" href="#xrrenderstate-output-canvas" id="ref-for-xrrenderstate-output-canvas①">output canvas</a> to <var>baseLayer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context">context</a>'s <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContext" id="ref-for-WebGLRenderingContext">canvas</a></code>.</p>
+         <dt data-md>Otherwise:
+         <dd data-md>
+          <p>Set <var>activeState</var>’s <a data-link-type="dfn" href="#xrrenderstate-composition-disabled" id="ref-for-xrrenderstate-composition-disabled②">composition disabled</a> boolean to <code>false</code>.</p>
+         <dd data-md>
+          <p>Set <var>activeState</var>’s <a data-link-type="dfn" href="#xrrenderstate-output-canvas" id="ref-for-xrrenderstate-output-canvas②">output canvas</a> to <code>null</code>.</p>
         </dl>
       </ol>
     </ol>
@@ -2811,7 +2823,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <p>When an <code class="idl"><a data-link-type="idl" href="#xrrenderstate" id="ref-for-xrrenderstate⑧">XRRenderState</a></code> object is created for an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥⓪">XRSession</a></code> <var>session</var>, the user agent MUST <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="initialize-the-render-state">initialize the render state</dfn> by running the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>state</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new③">new</a> <code class="idl"><a data-link-type="idl" href="#xrrenderstate" id="ref-for-xrrenderstate⑨">XRRenderState</a></code> object in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm⑦">relevant realm</a> of <var>session</var> .</p>
+      <p>Let <var>state</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new③">new</a> <code class="idl"><a data-link-type="idl" href="#xrrenderstate" id="ref-for-xrrenderstate⑨">XRRenderState</a></code> object in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm⑦">relevant realm</a> of <var>session</var>.</p>
      <li data-md>
       <p>Initialize <var>state</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-depthnear" id="ref-for-dom-xrrenderstate-depthnear④">depthNear</a></code> to <code>0.1</code>.</p>
      <li data-md>
@@ -2819,10 +2831,12 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p>Initialize <var>state</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-inlineverticalfieldofview" id="ref-for-dom-xrrenderstate-inlineverticalfieldofview⑥">inlineVerticalFieldOfView</a></code> as follows:</p>
       <dl class="switch">
-       <dt> If <var>session</var> is an <a data-link-type="dfn" href="#inline-session" id="ref-for-inline-session③">inline session</a> 
-       <dd> Initialize <var>state</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-inlineverticalfieldofview" id="ref-for-dom-xrrenderstate-inlineverticalfieldofview⑦">inlineVerticalFieldOfView</a></code> to <code>PI * 0.5</code>. 
-       <dt> Else 
-       <dd> Initialize <var>state</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-inlineverticalfieldofview" id="ref-for-dom-xrrenderstate-inlineverticalfieldofview⑧">inlineVerticalFieldOfView</a></code> to <code>null</code>. 
+       <dt data-md>If <var>session</var> is an <a data-link-type="dfn" href="#inline-session" id="ref-for-inline-session③">inline session</a>:
+       <dd data-md>
+        <p>Initialize <var>state</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-inlineverticalfieldofview" id="ref-for-dom-xrrenderstate-inlineverticalfieldofview⑦">inlineVerticalFieldOfView</a></code> to <code>PI * 0.5</code>.</p>
+       <dt data-md>Otherwise:
+       <dd data-md>
+        <p>Initialize <var>state</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-inlineverticalfieldofview" id="ref-for-dom-xrrenderstate-inlineverticalfieldofview⑧">inlineVerticalFieldOfView</a></code> to <code>null</code>.</p>
       </dl>
      <li data-md>
       <p>Initialize <var>state</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-baselayer" id="ref-for-dom-xrrenderstate-baselayer⑤">baseLayer</a></code> to <code>null</code>.</p>
@@ -3211,20 +3225,30 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
      <li data-md>
       <p>Query the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①②">XR device</a>'s tracking system for <var>space</var>’s pose relative to <var>baseSpace</var> at the <var>frame</var>’s <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time④">time</a>, then perform the following steps:</p>
       <dl class="switch">
-       <dt> If <var>limit</var> is <code>false</code> and the tracking system provides a <a data-link-type="dfn" href="#6dof" id="ref-for-6dof②">6DoF</a> pose whose position is actively tracked or statically known for <var>space</var>’s pose relative to <var>baseSpace</var>: 
-       <dd> Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation">orientation</a></code> to the orientation of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin②">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system">coordinate system</a>. 
-       <dd> Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position">position</a></code> to the position of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin③">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system①">coordinate system</a>. 
-       <dd> Set <var>pose</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition">emulatedPosition</a></code> to <code>false</code>. 
-       <dt> Else if <var>limit</var> is <code>false</code> and the tracking system provides a <a data-link-type="dfn" href="#3dof" id="ref-for-3dof②">3DoF</a> pose or a <a data-link-type="dfn" href="#6dof" id="ref-for-6dof③">6DoF</a> pose whose position is neither actively tracked nor statically known for <var>space</var>’s pose relative to <var>baseSpace</var>: 
-       <dd> Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation①">orientation</a></code> to the orientation of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin④">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system②">coordinate system</a>. 
-       <dd> Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position①">position</a></code> to the tracking system’s best estimate of the position of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin⑤">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system③">coordinate system</a>. This MAY include a computed offset such as a neck or arm model. If a position estimate is not available, the last known position MUST be used. 
-       <dd> Set <var>pose</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition①">emulatedPosition</a></code> to <code>true</code>. 
-       <dt> Else if <var>space</var>’s pose relative to <var>baseSpace</var> has been determined in the past and <var>force emulation</var> is <code>true</code>: 
-       <dd> Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position②">position</a></code> to the last known position of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin⑥">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system④">coordinate system</a>. 
-       <dd> Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation②">orientation</a></code> to the last known orientation of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin⑦">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system⑤">coordinate system</a>. 
-       <dd> Set <var>pose</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition②">emulatedPosition</a></code> boolean to <code>true</code>. 
-       <dt> Otherwise: 
-       <dd> Set <var>pose</var> to <code>null</code>. 
+       <dt data-md>If <var>limit</var> is <code>false</code> and the tracking system provides a <a data-link-type="dfn" href="#6dof" id="ref-for-6dof②">6DoF</a> pose whose position is actively tracked or statically known for <var>space</var>’s pose relative to <var>baseSpace</var>:
+       <dd data-md>
+        <p>Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation">orientation</a></code> to the orientation of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin②">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system">coordinate system</a>.</p>
+       <dd data-md>
+        <p>Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position">position</a></code> to the position of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin③">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system①">coordinate system</a>.</p>
+       <dd data-md>
+        <p>Set <var>pose</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition">emulatedPosition</a></code> to <code>false</code>.</p>
+       <dt data-md>Else if <var>limit</var> is <code>false</code> and the tracking system provides a <a data-link-type="dfn" href="#3dof" id="ref-for-3dof②">3DoF</a> pose or a <a data-link-type="dfn" href="#6dof" id="ref-for-6dof③">6DoF</a> pose whose position is neither actively tracked nor statically known for <var>space</var>’s pose relative to <var>baseSpace</var>:
+       <dd data-md>
+        <p>Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation①">orientation</a></code> to the orientation of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin④">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system②">coordinate system</a>.</p>
+       <dd data-md>
+        <p>Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position①">position</a></code> to the tracking system’s best estimate of the position of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin⑤">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system③">coordinate system</a>. This MAY include a computed offset such as a neck or arm model. If a position estimate is not available, the last known position MUST be used.</p>
+       <dd data-md>
+        <p>Set <var>pose</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition①">emulatedPosition</a></code> to <code>true</code>.</p>
+       <dt data-md>Else if <var>space</var>’s pose relative to <var>baseSpace</var> has been determined in the past and <var>force emulation</var> is <code>true</code>:
+       <dd data-md>
+        <p>Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position②">position</a></code> to the last known position of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin⑥">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system④">coordinate system</a>.</p>
+       <dd data-md>
+        <p>Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation②">orientation</a></code> to the last known orientation of <var>space</var>’s <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin⑦">effective origin</a> in <var>baseSpace</var>’s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system⑤">coordinate system</a>.</p>
+       <dd data-md>
+        <p>Set <var>pose</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition②">emulatedPosition</a></code> boolean to <code>true</code>.</p>
+       <dt data-md>Otherwise:
+       <dd data-md>
+        <p>Set <var>pose</var> to <code>null</code>.</p>
       </dl>
     </ol>
     <p class="note" role="note"><span>Note:</span> The <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose⑤">XRPose</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition③">emulatedPosition</a></code> boolean does not indicate whether <var>baseSpace</var>’s position is emulated or not, only whether evaluating <var>space</var>’s position relative to <var>baseSpace</var> relies on emulation. For example, a controller with <a data-link-type="dfn" href="#3dof" id="ref-for-3dof③">3DoF</a> tracking would report poses with an <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition④">emulatedPosition</a></code> of <code>true</code> when its <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-targetrayspace" id="ref-for-dom-xrinputsource-targetrayspace">targetRaySpace</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace①">gripSpace</a></code> are queried against an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑤">XRReferenceSpace</a></code>, but would report an <code class="idl"><a data-link-type="idl" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition⑤">emulatedPosition</a></code> of <code>false</code> if the pose of the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-targetrayspace" id="ref-for-dom-xrinputsource-targetrayspace①">targetRaySpace</a></code> was queried in <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace②">gripSpace</a></code>, because the relationship between those two spaces should be known exactly.</p>
@@ -3302,10 +3326,12 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
      <li data-md>
       <p>Initialize <var>referenceSpace</var> as follows:</p>
       <dl class="switch">
-       <dt> If <var>type</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor⑥">bounded-floor</a></code> 
-       <dd> Let <var>referenceSpace</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑦">new</a> <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace①">XRBoundedReferenceSpace</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①②">relevant realm</a> of <var>session</var>. 
-       <dt> Otherwise 
-       <dd> Let <var>referenceSpace</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑧">new</a> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑨">XRReferenceSpace</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①③">relevant realm</a> of <var>session</var>. 
+       <dt data-md>If <var>type</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor⑥">bounded-floor</a></code>:
+       <dd data-md>
+        <p>Let <var>referenceSpace</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑦">new</a> <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace①">XRBoundedReferenceSpace</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①②">relevant realm</a> of <var>session</var>.</p>
+       <dt data-md>Otherwise:
+       <dd data-md>
+        <p>Let <var>referenceSpace</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑧">new</a> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑨">XRReferenceSpace</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①③">relevant realm</a> of <var>session</var>.</p>
       </dl>
      <li data-md>
       <p>Initialize <var>referenceSpace</var>’s <a data-link-type="dfn" href="#xrreferencespace-type" id="ref-for-xrreferencespace-type">type</a> to <var>type</var>.</p>
@@ -3358,10 +3384,12 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
      <li data-md>
       <p>Initialize <var>offsetSpace</var> as follows:</p>
       <dl class="switch">
-       <dt> If <var>base</var> is an instance of <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace②">XRBoundedReferenceSpace</a></code> 
-       <dd> Let <var>offsetSpace</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑨">new</a> <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace③">XRBoundedReferenceSpace</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①④">relevant realm</a> of <var>base</var>, and set <var>offsetSpace</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry②">boundsGeometry</a></code> to <var>base</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry③">boundsGeometry</a></code>, with each point multiplied by the <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-inverse" id="ref-for-dom-xrrigidtransform-inverse">inverse</a></code> of <var>originOffset</var>. 
-       <dt> Else 
-       <dd> Let <var>offsetSpace</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new①⓪">new</a> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②①">XRReferenceSpace</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①⑤">relevant realm</a> of <var>base</var>. 
+       <dt data-md>If <var>base</var> is an instance of <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace②">XRBoundedReferenceSpace</a></code>:
+       <dd data-md>
+        <p>Let <var>offsetSpace</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑨">new</a> <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace③">XRBoundedReferenceSpace</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①④">relevant realm</a> of <var>base</var>, and set <var>offsetSpace</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry②">boundsGeometry</a></code> to <var>base</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry③">boundsGeometry</a></code>, with each point multiplied by the <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-inverse" id="ref-for-dom-xrrigidtransform-inverse">inverse</a></code> of <var>originOffset</var>.</p>
+       <dt data-md>Otherwise:
+       <dd data-md>
+        <p>Let <var>offsetSpace</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new①⓪">new</a> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②①">XRReferenceSpace</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①⑤">relevant realm</a> of <var>base</var>.</p>
       </dl>
      <li data-md>
       <p>Set <var>offsetSpace</var>’s <a data-link-type="dfn" href="#xrreferencespace-type" id="ref-for-xrreferencespace-type①">type</a> to <var>base</var>’s <a data-link-type="dfn" href="#xrreferencespace-type" id="ref-for-xrreferencespace-type②">type</a>.</p>
@@ -4580,23 +4608,27 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-ignoredepthvalues" id="ref-for-dom-xrwebgllayer-ignoredepthvalues①">ignoreDepthValues</a></code> as follows:</p>
       <dl class="switch">
-       <dt> If <var>layerInit</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-ignoredepthvalues" id="ref-for-dom-xrwebgllayerinit-ignoredepthvalues">ignoreDepthValues</a></code> value is <code>false</code> and the <a data-link-type="dfn" href="#xr-compositor" id="ref-for-xr-compositor②">XR Compositor</a> will make use of depth values 
-       <dd> Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-ignoredepthvalues" id="ref-for-dom-xrwebgllayer-ignoredepthvalues②">ignoreDepthValues</a></code> to <code>false</code> 
-       <dt> Otherwise 
-       <dd> Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-ignoredepthvalues" id="ref-for-dom-xrwebgllayer-ignoredepthvalues③">ignoreDepthValues</a></code> to <code>true</code> 
+       <dt data-md>If <var>layerInit</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-ignoredepthvalues" id="ref-for-dom-xrwebgllayerinit-ignoredepthvalues">ignoreDepthValues</a></code> value is <code>false</code> and the <a data-link-type="dfn" href="#xr-compositor" id="ref-for-xr-compositor②">XR Compositor</a> will make use of depth values:
+       <dd data-md>
+        <p>Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-ignoredepthvalues" id="ref-for-dom-xrwebgllayer-ignoredepthvalues②">ignoreDepthValues</a></code> to <code>false</code>.</p>
+       <dt data-md>Otherwise:
+       <dd data-md>
+        <p>Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-ignoredepthvalues" id="ref-for-dom-xrwebgllayer-ignoredepthvalues③">ignoreDepthValues</a></code> to <code>true</code>.</p>
       </dl>
      <li data-md>
       <p>Initialize <var>layer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled①">composition disabled</a> boolean as follows:</p>
       <dl class="switch">
-       <dt> If <var>session</var> is an <a data-link-type="dfn" href="#inline-session" id="ref-for-inline-session④">inline session</a> 
-       <dd> Initialize <var>layer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled②">composition disabled</a> to <code>true</code> 
-       <dt> Otherwise 
-       <dd> Initialize <var>layer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled③">composition disabled</a> boolean to <code>false</code> 
+       <dt data-md>If <var>session</var> is an <a data-link-type="dfn" href="#inline-session" id="ref-for-inline-session④">inline session</a>:
+       <dd data-md>
+        <p>Initialize <var>layer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled②">composition disabled</a> to <code>true</code>.</p>
+       <dt data-md>Otherwise:
+       <dd data-md>
+        <p>Initialize <var>layer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled③">composition disabled</a> boolean to <code>false</code>.</p>
       </dl>
      <li data-md>
       <dl class="switch">
-       <dt> If <var>layer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled④">composition disabled</a> boolean is <code>false</code>: 
-       <dd>
+       <dt data-md>If <var>layer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled④">composition disabled</a> boolean is <code>false</code>:
+       <dd data-md>
         <ol>
          <li data-md>
           <p>Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-antialias" id="ref-for-dom-xrwebgllayer-antialias①">antialias</a></code> to <var>layerInit</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-antialias" id="ref-for-dom-xrwebgllayerinit-antialias">antialias</a></code> value.</p>
@@ -4613,8 +4645,8 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
          <li data-md>
           <p>If <var>layer</var>’s resources were unable to be created for any reason, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#operationerror" id="ref-for-operationerror">OperationError</a></code> and abort these steps.</p>
         </ol>
-       <dt> Otherwise 
-       <dd>
+       <dt data-md>Otherwise:
+       <dd data-md>
         <ol>
          <li data-md>
           <p>Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-antialias" id="ref-for-dom-xrwebgllayer-antialias②">antialias</a></code> to <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-context" id="ref-for-dom-xrwebgllayer-context">context</a></code>'s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#actual-context-parameters" id="ref-for-actual-context-parameters">actual context parameters</a> <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLContextAttributes" id="ref-for-WebGLContextAttributes">antialias</a></code> value.</p>
@@ -4899,17 +4931,21 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
        <li data-md>
         <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑦">XR compatible</a> boolean as follows:</p>
         <dl class="switch">
-         <dt> If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set 
-         <dd> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②⑤">Queue a task</a> to set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑧">XR compatible</a> boolean to <code>false</code> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑧">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑥">InvalidStateError</a></code>. 
-         <dt> If <var>device</var> is <code>null</code> 
-         <dd> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②⑥">Queue a task</a> to set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑨">XR compatible</a> boolean to <code>false</code> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑨">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑦">InvalidStateError</a></code>. 
-         <dt> If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①⓪">XR compatible</a> boolean is <code>true</code> 
-         <dd> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②⑦">Queue a task</a> to <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑦">resolve</a> <var>promise</var>. 
-         <dt> If <var>context</var> was created on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑥">compatible graphics adapter</a> for <var>device</var>. 
-         <dd> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②⑧">Queue a task</a> to set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①①">XR compatible</a> boolean to <code>true</code> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑧">resolve</a> <var>promise</var>. 
-         <dt> Otherwise 
-         <dd>
-           <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②⑨">Queue a task</a> on the <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15" id="ref-for-5.15">WebGL task source</a> to perform the following steps: 
+         <dt data-md>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set:
+         <dd data-md>
+          <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②⑤">Queue a task</a> to set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑧">XR compatible</a> boolean to <code>false</code> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑧">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑥">InvalidStateError</a></code>.</p>
+         <dt data-md>If <var>device</var> is <code>null</code>:
+         <dd data-md>
+          <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②⑥">Queue a task</a> to set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑨">XR compatible</a> boolean to <code>false</code> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject⑨">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑦">InvalidStateError</a></code>.</p>
+         <dt data-md>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①⓪">XR compatible</a> boolean is <code>true</code>:
+         <dd data-md>
+          <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②⑦">Queue a task</a> to <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑦">resolve</a> <var>promise</var>.</p>
+         <dt data-md>If <var>context</var> was created on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑥">compatible graphics adapter</a> for <var>device</var>:
+         <dd data-md>
+          <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②⑧">Queue a task</a> to set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①①">XR compatible</a> boolean to <code>true</code> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#resolve" id="ref-for-resolve⑧">resolve</a> <var>promise</var>.</p>
+         <dt data-md>Otherwise:
+         <dd data-md>
+          <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②⑨">Queue a task</a> on the <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15" id="ref-for-5.15">WebGL task source</a> to perform the following steps:</p>
           <ol>
            <li data-md>
             <p>Force <var>context</var> to be lost.</p>
@@ -5528,14 +5564,18 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
      <li data-md>
       <p>Determine if the pose data can be returned as follows:</p>
       <dl class="switch">
-       <dt> If the pose data is known by the user agent to not expose fingerprintable sensor data 
-       <dd> Return <code>true</code>. 
-       <dt> If <a data-link-type="dfn" href="#data-adjustment" id="ref-for-data-adjustment①">data adjustments</a> will be applied to the underlying sensor data to prevent fingerprinting or profiling 
-       <dd> Return <code>true</code>. 
-       <dt> If <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①①">user intent</a> is well understood, either via <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑥">explicit consent</a> or <a data-link-type="dfn" href="#implicit-consent" id="ref-for-implicit-consent③">implicit consent</a> 
-       <dd> Return <code>true</code>. 
-       <dt> Otherwise 
-       <dd> Return <code>false</code>. 
+       <dt data-md>If the pose data is known by the user agent to not expose fingerprintable sensor data
+       <dd data-md>
+        <p>Return <code>true</code>.</p>
+       <dt data-md>If <a data-link-type="dfn" href="#data-adjustment" id="ref-for-data-adjustment①">data adjustments</a> will be applied to the underlying sensor data to prevent fingerprinting or profiling
+       <dd data-md>
+        <p>Return <code>true</code>.</p>
+       <dt data-md>If <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①①">user intent</a> is well understood, either via <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑥">explicit consent</a> or <a data-link-type="dfn" href="#implicit-consent" id="ref-for-implicit-consent③">implicit consent</a>
+       <dd data-md>
+        <p>Return <code>true</code>.</p>
+       <dt data-md>Otherwise
+       <dd data-md>
+        <p>Return <code>false</code>.</p>
       </dl>
     </ol>
     <p class="note" role="note"><span>Note:</span> The method by which a user agent determines that poses do not expose fingerprintable data is left to the user agent’s discretion.</p>
