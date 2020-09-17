@@ -964,7 +964,7 @@ NOTE: The <a href="https://immersive-web.github.io/layers">WebXR layers module</
 <div class="algorithm" data-algorithm="should-be-rendered">
 To determine if a frame <dfn>should be rendered</dfn> for {{XRSession}} |session|, the user agent MUST run the following steps:
   1. If [=check the layers state=] with |session|'s {{XRSession/renderState}} is <code>false</code>, return <code>false</code>.
-  1. If |session|'s  [=XRSession/mode=] is {{XRSessionMode/"inline"}} and |session|'s {{XRSession/renderState}}'s [=XRRenderState/output canvas=] is <code>null</code>, return <code>false</code>.
+  1. If |session|'s [=XRSession/mode=] is {{XRSessionMode/"inline"}} and |session|'s {{XRSession/renderState}}'s [=XRRenderState/output canvas=] is <code>null</code>, return <code>false</code>.
   1. return <code>true</code>.
 
 </div>
