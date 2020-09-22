@@ -979,6 +979,7 @@ When an {{XRSession}} |session| receives updated [=viewer=] state for timestamp 
     1. Let |now| be the [=current high resolution time=].
     1. Let |frame| be |session|'s [=XRSession/animation frame=].
     1. Set |frame|'s [=XRFrame/time=] to |frameTime|.
+    1. For each |view| in [=XRSession/list of views=], set |view|'s [=view/viewport modifiable=] flag to true.
     1. If the [=view/active=] flag of any [=view=] in the [=XRSession/list of views=] has changed since the last [=XR animation frame=], [=update the viewports=].
     1. If the frame [=should be rendered=] for |session|:
         1. Set |session|'s [=list of currently running animation frame callbacks=] to be |session|'s [=list of animation frame callbacks=].
@@ -1356,6 +1357,14 @@ A [=view=] has an <dfn for="view">active</dfn> flag that may change through the 
 
 Note: Many HMDs will request that content render two [=views=], one for the left eye and one for the right, while most magic window devices will only request one [=view=], but applications should never assume a specific view configuration. For example: A magic window device may request two views if it is capable of stereo output, but may revert to requesting a single view for performance reasons if the stereo output mode is turned off. Similarly, HMDs may request more than two views to facilitate a wide field of view or displays of different pixel density.
 
+A [=view=] has an internal <dfn for="view">viewport modifiable</dfn> flag that indicates if the viewport scale can be changed by a {{XRView/requestViewportScale()}} call at this point in the session. It is set to `true` at the start of an animation frame, and set to `false` when {{XRWebGLLayer/getViewport()}} is called.
+
+A [=view=] has an internal <dfn for="view">viewport scale</dfn> value that represents the current viewport scale for this view. It is initially set to 1.0, and can be modified by the {{XRView/requestViewportScale()}} method if the system supports dynamic viewport scaling.
+
+A [=view=] has an internal <dfn for="view">minimum viewport scale</dfn> value that represents the smallest supported dynamic viewport scale for this view. On a system that does not support dynamic viewport scaling, it equals 1.0. It must be a value greater than zero and less than or equal to 1.0, and does not change for the duration of a session. The minimum value MUST be large enough to ensure that the resulting viewport has nonzero width and height after scaling.
+
+Note: Dynamic viewport scaling allows applications to render to a subset of the full-sized viewport using a scale factor that can be changed every animation frame. For correct rendering, it's essential that the XR system and application agree on the active viewport. An application can call {{XRView/requestViewportScale()}} for an {{XRView}} multiple times within a single animation frame, but the requested scale does not take effect until the application calls {{XRWebGLLayer/getViewport()}} for that view. The `getViewport` call applies the change to the current anmimation frame and locks in the view's new scaled viewport for the remainder of this animation frame, and any additional calls to `requestViewportScale` in the same animation frame have no effect. The scaled viewport continues to be used for this view for future animation frames, but can be modified by calling `requestViewportScale` followed by `getViewport` on a future frame. Optionally, the system can provide a suggested value through the {{XRView/recommendedViewportScale}} attribute based on internal performance heuristics and target framerates.
+
 <pre class="idl">
 enum XREye {
   "none",
@@ -1367,6 +1376,9 @@ enum XREye {
   readonly attribute XREye eye;
   readonly attribute Float32Array projectionMatrix;
   [SameObject] readonly attribute XRRigidTransform transform;
+  readonly attribute double? recommendedViewportScale;
+
+  undefined requestViewportScale(double scale);
 };
 </pre>
 
@@ -1375,6 +1387,8 @@ The <dfn attribute for="XRView">eye</dfn> attribute describes is the [=view/eye=
 The <dfn attribute for="XRView">projectionMatrix</dfn> attribute is the [=view/projection matrix=] of the underlying [=view=]. It is <b>strongly recommended</b> that applications use this matrix without modification or decomposition. Failure to use the provided projection matrices when rendering may cause the presented frame to be distorted or badly aligned, resulting in varying degrees of user discomfort. This attribute MUST be computed by [=XRView/obtain the projection matrix|obtaining the projection matrix=] for the {{XRView}}.
 
 The <dfn attribute for="XRView">transform</dfn> attribute is the {{XRRigidTransform}} of the viewpoint. It represents the position and orientation of the viewpoint in the {{XRReferenceSpace}} provided in {{XRFrame/getViewerPose()}}.
+
+The optional <dfn attribute for="XRView">recommendedViewportScale</dfn> attribute contains a UA-recommended viewport scale value that the application can use for a {{XRView/requestViewportScale()}} call to configure dynamic viewport scaling. It is `null` if the system does not implement a heuristic or method for determining a recommended scale. If not null, the value MUST be a numeric value between the [=view/minimum viewport scale=] and 1.0.
 
 Each {{XRView}} has an associated <dfn for="XRView">session</dfn> which is the {{XRSession}} that produced it.
 
@@ -1386,6 +1400,18 @@ Each {{XRView}} has an associated <dfn for="XRView">internal projection matrix</
 
 Note: The {{XRView/transform}} can be used to position camera objects in many rendering libraries. If a more traditional view matrix is needed by the application one can be retrieved by calling `view.transform.inverse.matrix`.
 
+<div class="algorithm" data-algorithm="request-viewport-scale">
+
+The <dfn method for="XRView">requestViewportScale(|scale|)</dfn> method requests that the user agent should set the [=viewport scale=] for this viewport to the requested value.
+
+When this method is invoked on a [=view=] |view|, the user agent MUST run the following steps:
+
+  1. If the [=view/viewport modifiable=] flag is `false` abort these steps.
+  1. If |scale| is greater than 1.0, set |scale| to 1.0.
+  1. If |scale| is smaller than |view|'s [=view/minimum viewport scale=], set it to the [=view/minimum viewport scale=].
+  1. Set the |view|'s [=view/viewport scale=] value to |scale|.
+
+</div>
 
 <div class=algorithm data-algorithm="obtain-xrview-projection">
 
@@ -1400,19 +1426,36 @@ To <dfn for="XRView">obtain the projection matrix</dfn> for a given {{XRView}} |
 
 <div class=algorithm data-algorithm="update-the-viewports">
 
-When the [=view/active=] flag of any [=view=] in the [=XRSession/list of views=] changes, one can <dfn>update the viewports</dfn> for an {{XRSession}} |session| by performing the following steps:
+When the [=view/active=] flag or [=view/viewport scale=] value of any [=view=] in the [=XRSession/list of views=] changes, one can <dfn>update the viewports</dfn> for an {{XRSession}} |session| by performing the following steps:
 
   1. Let |layer| be the {{XRSession/renderState}}'s {{XRRenderState/baseLayer}}.
   1. If |layer| is `null` abort these steps.
   1. Set |layer|'s [=list of viewport objects=] to the empty [=/list=].
   1. For each [=view/active=] [=view=] |view| in [=XRSession/list of views=]:
-    1. Let |glViewport| be the [=WebGL viewport=] from the [=list of viewports=] associated with |view|.
+    1. Let |glViewport| be the [=WebGL viewport=] result of [=obtain a scaled viewport|obtaining a scaled viewport=] from the [=list of full-sized viewports=] associated with |view|
     1. Let |viewport| be a [=new=] {{XRViewport}} in the [=relevant realm=] of |session|.
     1. Initialize |viewport|'s {{XRViewport/x}} to |glViewport|'s `x` component.
     1. Initialize |viewport|'s {{XRViewport/y}} to |glViewport|'s `y` component.
     1. Initialize |viewport|'s {{XRViewport/width}} to |glViewport|'s `width`.
     1. Initialize |viewport|'s {{XRViewport/height}} to |glViewport|'s `height`.
     1. [=list/Append=] |viewport| to |layer|'s [=list of viewport objects=].
+
+</div>
+
+<div class=algorithm data-algorithm="obtain-scaled-viewport">
+
+To <dfn for="XRView">obtain a scaled viewport</dfn> for a given {{XRView}} |view|
+
+    1. Let |glFullSizedViewport| be the [=WebGL viewport=] from the [=list of full-sized viewports=] associated with |view|.
+    1. Let |scale| be the |view|'s current [=view/viewport scale=].
+    1. Set |glViewport|'s `width` to an integer value less than or equal to |glFullSizedViewport|'s `width` multiplied by |scale|.
+    1. Set |glViewport|'s `height` to an integer value less than or equal to |glFullSizedViewport|'s `width` multiplied by |scale|.
+    1. Let |unusedFraction| be one minus |scale|.
+    1. Set |glViewport|'s `x` component to an integer value between |glFullSizedViewport|'s `x` component (inclusive) and |glFullSizedViewport|'s `x` component plus |unusedFraction| times |glFullSizedViewport|'s `width` (inclusive).
+    1. Set |glViewport|'s `y` component to a integer value between |glFullSizedViewport|'s `y` component (inclusive) and |glFullSizedViewport|'s `y` component plus |unusedFraction| times |glFullSizedViewport|'s `height` (inclusive).
+    1. Return |glViewport|.
+
+Note: The specific integer value calculation is intentionally left to the UA's discretion. The straightforward method of rounding down the width/height and using the `x` and `y` offsets as-is is valid, but the UA MAY also choose a slightly adjusted value within the specified constraints, for example to align the viewport to a pixel grid for efficiency. The scaled viewport MUST be completely contained within the full-sized viewport, but MAY be placed at any location within the full-sized viewport at the UA's discretion. The size and position calculation MUST be deterministic and return a consistent result for identical input values within a session.
 
 </div>
 
@@ -2017,7 +2060,7 @@ Depth values stored in the buffer are expected to be between `0.0` and `1.0`, wi
 
 Note: Making the scene's depth buffer available to the compositor allows some platforms to provide quality and comfort improvements such as improved reprojection.
 
-Each {{XRWebGLLayer}} MUST have a <dfn>list of viewports</dfn> which is a [=/list=] containing one [=WebGL viewport=] for each [=view=] the {{XRSession}} may expose, including [=secondary views=] that are not currently [=view/active=] but may become [=view/active=] for the current session. The viewports MUST have a {{XRViewport/width}} and {{XRViewport/height}} greater than `0` and MUST describe a rectangle that does not exceed the bounds of the [=target framebuffer=]. The viewports MUST NOT be overlapping. If [=XRWebGLLayer/composition disabled=] is `true`, the [=list of viewports=] MUST contain a single [=WebGL viewport=] that covers the [=XRWebGLLayer/context=]'s entire default framebuffer.
+Each {{XRWebGLLayer}} MUST have a <dfn>list of full-sized viewports</dfn> which is a [=/list=] containing one [=WebGL viewport=] for each [=view=] the {{XRSession}} may expose, including [=secondary views=] that are not currently [=view/active=] but may become [=view/active=] for the current session. The viewports MUST have a {{XRViewport/width}} and {{XRViewport/height}} greater than `0` and MUST describe a rectangle that does not exceed the bounds of the [=target framebuffer=]. The viewports MUST NOT be overlapping. If [=XRWebGLLayer/composition disabled=] is `true`, the [=list of full-sized viewports=] MUST contain a single [=WebGL viewport=] that covers the [=XRWebGLLayer/context=]'s entire default framebuffer.
 
 Each {{XRWebGLLayer}} MUST have a <dfn>list of viewport objects</dfn> which is a [=/list=] containing one {{XRViewport}} for each [=view/active=] [=view=] the {{XRSession}} currently exposes.
 
@@ -2032,6 +2075,8 @@ The <dfn method for="XRWebGLLayer">getViewport(|view|)</dfn> method, when invoke
   1. If |session| is not equal to |layer|'s [=XRWebGLLayer/session=], throw an {{InvalidStateError}} and abort these steps.
   1. If |frame|'s [=XRFrame/active=] boolean is `false`, throw an {{InvalidStateError}} and abort these steps.
   1. If |view|'s [=XRView/frame time=] is not equal to |frame|'s [=XRFrame/time=], throw an {{InvalidStateError}} and abort these steps.
+  1. If |view|'s [=view/viewport scale=] was changed, [=update the viewports=] for |session|.
+  1. Set the |view|'s [=view/viewport modifiable=] flag to false.
   1. Let |viewport| be the {{XRViewport}} from the [=list of viewport objects=] associated with |view|.
   1. Return |viewport|.
 
