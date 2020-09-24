@@ -1380,7 +1380,7 @@ enum XREye {
   [SameObject] readonly attribute XRRigidTransform transform;
   readonly attribute double? recommendedViewportScale;
 
-  void requestViewportScale(double? scale);
+  undefined requestViewportScale(double? scale);
 };
 </pre>
 
