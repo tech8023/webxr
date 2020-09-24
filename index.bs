@@ -1406,11 +1406,12 @@ Note: The {{XRView/transform}} can be used to position camera objects in many re
 
 The <dfn method for="XRView">requestViewportScale(|scale|)</dfn> method requests that the user agent should set the [=view/requested viewport scale=] for this viewport to the requested value.
 
-When this method is invoked on an {{XRView}} |view|, the user agent MUST run the following steps:
+When this method is invoked on an {{XRView}} |xrview|, the user agent MUST run the following steps:
 
   1. If |scale| is null or undefined, abort these steps.
   1. If |scale| is greater than 1.0, set |scale| to 1.0.
-  1. If |scale| is smaller than |view|'s [=view/minimum viewport scale=], set it to the [=view/minimum viewport scale=].
+  1. Let |view| be |xrview|'s [=XRView/underlying view=].
+  1. If |scale| is smaller than |view|'s [=view/minimum viewport scale=], set |scale| to |view|'s [=view/minimum viewport scale=].
   1. Set the |view|'s [=view/requested viewport scale=] value to |scale|.
 
 Note: The method ignores null or undefined scale values so that applications can safely use `view.requestViewportScale(view.recommendedViewportScale)` even on systems that don't provide a recommended scale.
