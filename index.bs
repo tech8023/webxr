@@ -1380,7 +1380,7 @@ enum XREye {
   [SameObject] readonly attribute XRRigidTransform transform;
   readonly attribute double? recommendedViewportScale;
 
-  undefined requestViewportScale(double? scale);
+  void requestViewportScale(double? scale);
 };
 </pre>
 
@@ -1406,7 +1406,7 @@ Note: The {{XRView/transform}} can be used to position camera objects in many re
 
 The <dfn method for="XRView">requestViewportScale(|scale|)</dfn> method requests that the user agent should set the [=view/requested viewport scale=] for this viewport to the requested value.
 
-When this method is invoked on a [=view=] |view|, the user agent MUST run the following steps:
+When this method is invoked on an {{XRView}} |view|, the user agent MUST run the following steps:
 
   1. If |scale| is null or undefined, abort these steps.
   1. If |scale| is greater than 1.0, set |scale| to 1.0.
