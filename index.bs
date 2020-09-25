@@ -1935,7 +1935,7 @@ The <dfn constructor for="XRWebGLLayer">XRWebGLLayer(|session|, |context|, |laye
         1. Initialize |layer|'s {{XRWebGLLayer/antialias}} to |layerInit|'s {{XRWebGLLayerInit/antialias}} value.
         1. Let |scaleFactor| be |layerInit|'s {{XRWebGLLayerInit/framebufferScaleFactor}}.
         1. The user-agent MAY choose to clamp or round |scaleFactor| as it sees fit here, for example if it wishes to fit the buffer dimensions into a power of two for performance reasons.
-        1. Let |framebufferSize| be the [=recommended WebGL framebuffer resolution=] multiplied by |scaleFactor|.
+        1. Let |framebufferSize| be the [=recommended WebGL framebuffer resolution=] with width and height separately multiplied by |scaleFactor|.
         1. Initialize |layer|'s {{XRWebGLLayer/framebuffer}} to a [=new=] {{WebGLFramebuffer}} in the [=relevant realm=] of |context|, which is an [=opaque framebuffer=] with the dimensions |framebufferSize| created with |context|, [=opaque framebuffer/session=] initialized to |session|, and |layerInit|'s {{XRWebGLLayerInit/depth}}, {{XRWebGLLayerInit/stencil}}, and {{XRWebGLLayerInit/alpha}} values.
         1. Allocate and initialize resources compatible with |session|'s [=XRSession/XR device=], including GPU accessible memory buffers, as required to support the compositing of |layer|.
         1. If |layer|’s resources were unable to be created for any reason, throw an {{OperationError}} and abort these steps.
@@ -2048,9 +2048,9 @@ The [=native WebGL framebuffer resolution=] for an {{XRSession}} |session| is de
 
 </div>
 
-Additionally, the {{XRSession}} MUST identify a <dfn>recommended WebGL framebuffer resolution</dfn>, which represents a best estimate of the WebGL framebuffer resolution large enough to contain all of the session's {{XRView}}s that provides an average application a good balance between performance and quality. It MAY be smaller than, larger than, or equal to the [=native WebGL framebuffer resolution=]. New [=opaque framebuffer=] will be created with this resolution, scaled by any {{XRWebGLLayerInit}}'s {{XRWebGLLayerInit/framebufferScaleFactor}} provided.
+Additionally, the {{XRSession}} MUST identify a <dfn>recommended WebGL framebuffer resolution</dfn>, which represents a best estimate of the WebGL framebuffer resolution large enough to contain all of the session's {{XRView}}s that provides an average application a good balance between performance and quality. It MAY be smaller than, larger than, or equal to the [=native WebGL framebuffer resolution=]. New [=opaque framebuffer=] will be created with this resolution, with width and height each scaled by any {{XRWebGLLayerInit}}'s {{XRWebGLLayerInit/framebufferScaleFactor}} provided.
 
-Note: The user agent is free to use and method of its choosing to estimate the [=recommended WebGL framebuffer resolution=]. If there are platform-specific methods for querying a recommended size it is recommended that they be used, but not required.
+Note: The user agent is free to use and method of its choosing to estimate the [=recommended WebGL framebuffer resolution=]. If there are platform-specific methods for querying a recommended size it is recommended that they be used, but not required. The scale factors used by {{XRWebGLLayerInit/framebufferScaleFactor}} and {{XRWebGLLayer/getNativeFramebufferScaleFactor}} apply to width and height separately, so a scale factor of two results in four times the overall pixel count. If the platform exposes an area-based render scale that's based on pixel count, the user agent needs to take the square root of that to convert it to a WebXR scale factor.
 
 <div class="algorithm" data-algorithm="get-native-framebuffer-scale-factor">
 
@@ -2058,7 +2058,7 @@ The <dfn method for="XRWebGLLayer">getNativeFramebufferScaleFactor(|session|)</d
 
   1. Let |session| be [=this=].
   1. If |session|'s [=ended=] value is `true`, return `0.0` and abort these steps.
-  1. Return the value that the |session|'s [=recommended WebGL framebuffer resolution=] must be multiplied by to yield the |session|'s [=native WebGL framebuffer resolution=].
+  1. Return the value that the |session|'s [=recommended WebGL framebuffer resolution=] width and height must each be multiplied by to yield the |session|'s [=native WebGL framebuffer resolution=].
 
 </div>
 
