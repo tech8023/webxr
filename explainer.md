@@ -28,6 +28,7 @@ The [WebXR Device API](https://immersive-web.github.io/webxr/) provides access t
 - [Advanced functionality](#advanced-functionality)
   - [Feature dependencies](#feature-dependencies)
   - [Controlling rendering quality](#controlling-rendering-quality)
+  - [Dynamic viewport scaling](#dynamic-viewport-scaling)
   - [Controlling depth precision](#controlling-depth-precision)
   - [Preventing the compositor from using the depth buffer](#preventing-the-compositor-from-using-the-depth-buffer)
   - [Changing the Field of View for inline sessions](#changing-the-field-of-view-for-inline-sessions)
@@ -555,6 +556,46 @@ function setupNativeScaleWebGLLayer() {
 ```
 
 This technique should be used carefully, since the native resolution on some headsets may be higher than the system is capable of rendering at a stable framerate without use of additional techniques such as foveated rendering. Also note that the UA's scale clamping is allowed to prevent the allocation of native resolution framebuffers if it deems it necessary to maintain acceptable performance.
+
+Framebuffer scaling is typically configured once per session, but can be changed during a session by creating a new `XRWebGLLayer` and updating the render state to apply that on the next frame:
+
+```js
+function rescaleWebGLLayer(scale) {
+    let glLayer = new XRWebGLLayer(xrSession, gl, { framebufferScaleFactor: scale });
+    xrSession.updateRenderState({ baseLayer: glLayer });
+  });
+```
+
+Rescaling the framebuffer may involve reallocating render buffers and should only be done rarely, for example when transitioning from a game mode to a text-heavy menu mode or similar. See [Dynamic viewport scaling](#dynamic-viewport-scaling) for an alternative if your application needs more frequent adjustments.
+
+### Dynamic viewport scaling
+
+Dynamic viewport scaling allows applications to only use a subset of the available framebuffer. This is intended for fine-grained performance tuning where the desired render resolution changes frequently, and can be adjusted on a frame-by-frame basis. A typical use case would be rendering scenes with highly variable complexity, for example where the user may move their viewpoint to closely examine a model with a complex shader. (If an application wanted to keep this constant for a session, it should use `framebufferScaleFactor` instead, see [Controlling rendering quality](#controlling-rendering-quality).)
+
+This is an opt-in feature for applications, it is activated by calling `requestViewportScale(scale)` on an `XRView`, followed by a call to `getViewport()` which applies the change and returns the updated viewport:
+
+```js
+for (let view of pose.views) {
+  view.requestViewportScale(scale);
+  let viewport = glLayer.getViewport(view);
+  gl.viewport(viewport.x, viewport.y, viewport.width, viewport.height);
+  drawScene(view);
+}
+```
+
+NOTE: Dynamic viewport scaling is a recent addition to WebXR, and implementations may not provide the API yet. For compatibility, consider adding a `if (view.requestViewportScale)` check to ensure that the API exists.
+
+The feature may not be available on all systems since it depends on driver support. If it is unsupported, the system will ignore the requested scale and continue using the full-sized viewport. If necessary, the application can compare the sizes returned by `getViewport()` across animation frames to confirm if the feature is active, for example if it would want to use an alternate performance tuning method such as reducing scene complexity as a fallback.
+
+For consistency, the `getViewport()` result for any given view is always fixed for the duration of an animation frame. If `requestViewportScale()` is used before the first `getViewport()` call, the change applies immediately for the current animation frame. Otherwise, the change is deferred until `getViewport()` is called again in a future animation frame.
+
+User agents can optionally provide a `recommendedViewportScale` attribute on an `XRView` with a suggested value based on internal performance heuristics. This attribute is null if the user agent doesn't provide a recommendation. A `requestViewportScale(null)` call has no effect, so applications could use the following code to apply the heuristic only if it exists:
+
+```js
+  view.requestViewportScale(view.recommendedViewportScale);
+```
+
+Alternatively, applications could modify the recommended scale, i.e. clamping it to a minimum scale to avoid text becoming unreadable, or use their own heuristic based on data such as current visible scene complexity and recent framerate average.
 
 ### Controlling depth precision
 
