@@ -1198,7 +1198,7 @@ Possible extra rowspan handling
 	ul.index ul,
 	ul.index dl { font-size: smaller; }
 	@media not print {
-		ul.index li span {
+		ul.index li span:not(.dfn-paneled) {
 			white-space: nowrap;
 			color: transparent; }
 		ul.index li a:hover + span,
@@ -1608,7 +1608,7 @@ figcaption:not(.no-marker)::before {
 .dfn-panel:not(.on) { display: none; }
 .dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
 .dfn-panel > b { display: block; }
-.dfn-panel a { color: black; }
+.dfn-panel a { color: var(--dfnpanel-text); }
 .dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
 .dfn-panel > b + b { margin-top: 0.25em; }
 .dfn-panel ul { padding: 0; }
@@ -3910,7 +3910,6 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
    <p>A <a data-link-type="dfn" href="#view" id="ref-for-view②⓪">view</a> has an internal <dfn class="dfn-paneled" data-dfn-for="view" data-dfn-type="dfn" data-noexport id="view-viewport-modifiable">viewport modifiable</dfn> flag that indicates if the viewport scale can be changed by a <code class="idl"><a data-link-type="idl" href="#dom-xrview-requestviewportscale" id="ref-for-dom-xrview-requestviewportscale">requestViewportScale()</a></code> call at this point in the session. It is set to <code>true</code> at the start of an animation frame, and set to <code>false</code> when <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-getviewport" id="ref-for-dom-xrwebgllayer-getviewport">getViewport()</a></code> is called.</p>
    <p>A <a data-link-type="dfn" href="#view" id="ref-for-view②①">view</a> has an internal <dfn class="dfn-paneled" data-dfn-for="view" data-dfn-type="dfn" data-noexport id="view-requested-viewport-scale">requested viewport scale</dfn> value that represents the requested viewport scale for this view. It is initially set to 1.0, and can be modified by the <code class="idl"><a data-link-type="idl" href="#dom-xrview-requestviewportscale" id="ref-for-dom-xrview-requestviewportscale①">requestViewportScale()</a></code> method if the system supports dynamic viewport scaling.</p>
    <p>A <a data-link-type="dfn" href="#view" id="ref-for-view②②">view</a> has an internal <dfn class="dfn-paneled" data-dfn-for="view" data-dfn-type="dfn" data-noexport id="view-current-viewport-scale">current viewport scale</dfn> value that represents the current viewport scale for this view as used internally by the system. It is initially set to 1.0. It is updated to match the <a data-link-type="dfn" href="#view-requested-viewport-scale" id="ref-for-view-requested-viewport-scale">requested viewport scale</a> when the viewport change is successfully applied by a <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-getviewport" id="ref-for-dom-xrwebgllayer-getviewport①">getViewport()</a></code> call.</p>
-   <p>A <a data-link-type="dfn" href="#view" id="ref-for-view②③">view</a> has an internal <dfn class="dfn-paneled" data-dfn-for="view" data-dfn-type="dfn" data-noexport id="view-minimum-viewport-scale">minimum viewport scale</dfn> value that represents the smallest supported dynamic viewport scale for this view. On a system that does not support dynamic viewport scaling, it equals 1.0. It must be a value greater than zero and less than or equal to 1.0, and does not change for the duration of a session. The minimum value MUST be large enough to ensure that the resulting viewport has nonzero width and height after scaling.</p>
    <p class="note" role="note"><span>Note:</span> Dynamic viewport scaling allows applications to render to a subset of the full-sized viewport using a scale factor that can be changed every animation frame. This is intended to be efficiently modifiable on a per-frame basis without reallocation. For correct rendering, it’s essential that the XR system and application agree on the active viewport. An application can call <code class="idl"><a data-link-type="idl" href="#dom-xrview-requestviewportscale" id="ref-for-dom-xrview-requestviewportscale②">requestViewportScale()</a></code> for an <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview③">XRView</a></code> multiple times within a single animation frame, but the requested scale does not take effect until the application calls <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-getviewport" id="ref-for-dom-xrwebgllayer-getviewport②">getViewport()</a></code> for that view. The first <code>getViewport</code> call in an animation frame applies the change (taking effect immediately for the current animation frame), locks in the view’s current scaled viewport for the remainder of this animation frame, and sets the scale as the new default for future animation frames. Optionally, the system can provide a suggested value through the <code class="idl"><a data-link-type="idl" href="#dom-xrview-recommendedviewportscale" id="ref-for-dom-xrview-recommendedviewportscale">recommendedViewportScale</a></code> attribute based on internal performance heuristics and target framerates.</p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
@@ -3959,7 +3958,7 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
      </div>
     </div>
    </div>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-eye"><code>eye</code></dfn> attribute describes is the <a data-link-type="dfn" href="#view-eye" id="ref-for-view-eye①">eye</a> of the underlying <a data-link-type="dfn" href="#view" id="ref-for-view②④">view</a>. This attribute’s primary purpose is to ensure that pre-rendered stereo content can present the correct portion of the content to the correct eye.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-eye"><code>eye</code></dfn> attribute describes is the <a data-link-type="dfn" href="#view-eye" id="ref-for-view-eye①">eye</a> of the underlying <a data-link-type="dfn" href="#view" id="ref-for-view②③">view</a>. This attribute’s primary purpose is to ensure that pre-rendered stereo content can present the correct portion of the content to the correct eye.</p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
@@ -3976,7 +3975,7 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
      </div>
     </div>
    </div>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-projectionmatrix"><code>projectionMatrix</code></dfn> attribute is the <a data-link-type="dfn" href="#view-projection-matrix" id="ref-for-view-projection-matrix①">projection matrix</a> of the underlying <a data-link-type="dfn" href="#view" id="ref-for-view②⑤">view</a>. It is <b>strongly recommended</b> that applications use this matrix without modification or decomposition. Failure to use the provided projection matrices when rendering may cause the presented frame to be distorted or badly aligned, resulting in varying degrees of user discomfort. This attribute MUST be computed by <a data-link-type="dfn" href="#xrview-obtain-the-projection-matrix" id="ref-for-xrview-obtain-the-projection-matrix">obtaining the projection matrix</a> for the <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview④">XRView</a></code>.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-projectionmatrix"><code>projectionMatrix</code></dfn> attribute is the <a data-link-type="dfn" href="#view-projection-matrix" id="ref-for-view-projection-matrix①">projection matrix</a> of the underlying <a data-link-type="dfn" href="#view" id="ref-for-view②④">view</a>. It is <b>strongly recommended</b> that applications use this matrix without modification or decomposition. Failure to use the provided projection matrices when rendering may cause the presented frame to be distorted or badly aligned, resulting in varying degrees of user discomfort. This attribute MUST be computed by <a data-link-type="dfn" href="#xrview-obtain-the-projection-matrix" id="ref-for-xrview-obtain-the-projection-matrix">obtaining the projection matrix</a> for the <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview④">XRView</a></code>.</p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
@@ -3994,10 +3993,10 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
     </div>
    </div>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-transform"><code>transform</code></dfn> attribute is the <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑤">XRRigidTransform</a></code> of the viewpoint. It represents the position and orientation of the viewpoint in the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②⑤">XRReferenceSpace</a></code> provided in <code class="idl"><a data-link-type="idl" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose③">getViewerPose()</a></code>.</p>
-   <p>The optional <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-recommendedviewportscale"><code>recommendedViewportScale</code></dfn> attribute contains a UA-recommended viewport scale value that the application can use for a <code class="idl"><a data-link-type="idl" href="#dom-xrview-requestviewportscale" id="ref-for-dom-xrview-requestviewportscale④">requestViewportScale()</a></code> call to configure dynamic viewport scaling. It is <code>null</code> if the system does not implement a heuristic or method for determining a recommended scale. If not null, the value MUST be a numeric value between the <a data-link-type="dfn" href="#view-minimum-viewport-scale" id="ref-for-view-minimum-viewport-scale">minimum viewport scale</a> and 1.0.</p>
+   <p>The optional <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-recommendedviewportscale"><code>recommendedViewportScale</code></dfn> attribute contains a UA-recommended viewport scale value that the application can use for a <code class="idl"><a data-link-type="idl" href="#dom-xrview-requestviewportscale" id="ref-for-dom-xrview-requestviewportscale④">requestViewportScale()</a></code> call to configure dynamic viewport scaling. It is <code>null</code> if the system does not implement a heuristic or method for determining a recommended scale. If not null, the value MUST be a numeric value greater than 0.0 and less than or equal to 1.0.</p>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑤">XRView</a></code> has an associated <dfn class="dfn-paneled" data-dfn-for="XRView" data-dfn-type="dfn" data-noexport id="xrview-session">session</dfn> which is the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑧③">XRSession</a></code> that produced it.</p>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑥">XRView</a></code> has an associated <dfn class="dfn-paneled" data-dfn-for="XRView" data-dfn-type="dfn" data-noexport id="xrview-frame-time">frame time</dfn> which is the <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑤">time</a> of the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⑧">XRFrame</a></code> that produced it.</p>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑦">XRView</a></code> has an associated <dfn class="dfn-paneled" data-dfn-for="XRView" data-dfn-type="dfn" data-noexport id="xrview-underlying-view">underlying view</dfn> which is the underlying <a data-link-type="dfn" href="#view" id="ref-for-view②⑥">view</a> that it represents.</p>
+   <p>Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑦">XRView</a></code> has an associated <dfn class="dfn-paneled" data-dfn-for="XRView" data-dfn-type="dfn" data-noexport id="xrview-underlying-view">underlying view</dfn> which is the underlying <a data-link-type="dfn" href="#view" id="ref-for-view②⑤">view</a> that it represents.</p>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑧">XRView</a></code> has an associated <dfn class="dfn-paneled" data-dfn-for="XRView" data-dfn-type="dfn" data-noexport id="xrview-internal-projection-matrix">internal projection matrix</dfn> which stores the <a data-link-type="dfn" href="#view-projection-matrix" id="ref-for-view-projection-matrix②">projection matrix</a> of its <a data-link-type="dfn" href="#xrview-underlying-view" id="ref-for-xrview-underlying-view①">underlying view</a>. It is initially <code>null</code>.</p>
    <p class="note" role="note"><span>Note:</span> The <code class="idl"><a data-link-type="idl" href="#dom-xrview-transform" id="ref-for-dom-xrview-transform②">transform</a></code> can be used to position camera objects in many rendering libraries. If a more traditional view matrix is needed by the application one can be retrieved by calling <code>view.transform.inverse.matrix</code>.</p>
    <div class="algorithm" data-algorithm="request-viewport-scale">
@@ -4007,11 +4006,11 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
      <li data-md>
       <p>If <var>scale</var> is null or undefined, abort these steps.</p>
      <li data-md>
+      <p>If <var>scale</var> is less than or equal to 0.0, abort these steps.</p>
+     <li data-md>
       <p>If <var>scale</var> is greater than 1.0, set <var>scale</var> to 1.0.</p>
      <li data-md>
       <p>Let <var>view</var> be <var>xrview</var>’s <a data-link-type="dfn" href="#xrview-underlying-view" id="ref-for-xrview-underlying-view②">underlying view</a>.</p>
-     <li data-md>
-      <p>If <var>scale</var> is smaller than <var>view</var>’s <a data-link-type="dfn" href="#view-minimum-viewport-scale" id="ref-for-view-minimum-viewport-scale①">minimum viewport scale</a>, set <var>scale</var> to <var>view</var>’s <a data-link-type="dfn" href="#view-minimum-viewport-scale" id="ref-for-view-minimum-viewport-scale②">minimum viewport scale</a>.</p>
      <li data-md>
       <p>Set the <var>view</var>’s <a data-link-type="dfn" href="#view-requested-viewport-scale" id="ref-for-view-requested-viewport-scale②">requested viewport scale</a> value to <var>scale</var>.</p>
     </ol>
@@ -4033,7 +4032,7 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
     </ol>
    </div>
    <div class="algorithm" data-algorithm="update-the-viewports">
-    <p>When the <a data-link-type="dfn" href="#view-active" id="ref-for-view-active④">active</a> flag of any <a data-link-type="dfn" href="#view" id="ref-for-view②⑦">view</a> in the <a data-link-type="dfn" href="#xrsession-list-of-views" id="ref-for-xrsession-list-of-views⑤">list of views</a> changes, one can <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="update-the-viewports">update the viewports</dfn> for an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑧④">XRSession</a></code> <var>session</var> by performing the following steps:</p>
+    <p>When the <a data-link-type="dfn" href="#view-active" id="ref-for-view-active④">active</a> flag of any <a data-link-type="dfn" href="#view" id="ref-for-view②⑥">view</a> in the <a data-link-type="dfn" href="#xrsession-list-of-views" id="ref-for-xrsession-list-of-views⑤">list of views</a> changes, one can <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="update-the-viewports">update the viewports</dfn> for an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑧④">XRSession</a></code> <var>session</var> by performing the following steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>layer</var> be the <code class="idl"><a data-link-type="idl" href="#dom-xrsession-renderstate" id="ref-for-dom-xrsession-renderstate⑤">renderState</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-baselayer" id="ref-for-dom-xrrenderstate-baselayer⑦">baseLayer</a></code>.</p>
@@ -4042,7 +4041,7 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
      <li data-md>
       <p>Set <var>layer</var>’s <a data-link-type="dfn" href="#list-of-viewport-objects" id="ref-for-list-of-viewport-objects">list of viewport objects</a> to the empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⑦">list</a>.</p>
      <li data-md>
-      <p>For each <a data-link-type="dfn" href="#view-active" id="ref-for-view-active⑤">active</a> <a data-link-type="dfn" href="#view" id="ref-for-view②⑧">view</a> <var>view</var> in <a data-link-type="dfn" href="#xrsession-list-of-views" id="ref-for-xrsession-list-of-views⑥">list of views</a>:</p>
+      <p>For each <a data-link-type="dfn" href="#view-active" id="ref-for-view-active⑤">active</a> <a data-link-type="dfn" href="#view" id="ref-for-view②⑦">view</a> <var>view</var> in <a data-link-type="dfn" href="#xrsession-list-of-views" id="ref-for-xrsession-list-of-views⑥">list of views</a>:</p>
       <ol>
        <li data-md>
         <p>Let <var>viewport</var> be the <code class="idl"><a data-link-type="idl" href="#xrviewport" id="ref-for-xrviewport">XRViewport</a></code> result of <a data-link-type="dfn" href="#xrview-obtain-a-scaled-viewport" id="ref-for-xrview-obtain-a-scaled-viewport">obtaining a scaled viewport</a> from the <a data-link-type="dfn" href="#list-of-full-sized-viewports" id="ref-for-list-of-full-sized-viewports">list of full-sized viewports</a> associated with <var>view</var> for <var>session</var>.</p>
@@ -4059,15 +4058,21 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
      <li data-md>
       <p>Let <var>scale</var> be the <var>view</var>’s <a data-link-type="dfn" href="#view-current-viewport-scale" id="ref-for-view-current-viewport-scale">current viewport scale</a>.</p>
      <li data-md>
+      <p>The user-agent MAY choose to clamp <var>scale</var> to apply a minimum viewport scale factor.</p>
+     <li data-md>
+      <p>Let <var>glViewport</var> be a new <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4" id="ref-for-5.14.4①">WebGL viewport</a>.</p>
+     <li data-md>
       <p>Set <var>glViewport</var>’s <code>width</code> to an integer value less than or equal to <var>glFullSizedViewport</var>’s <code>width</code> multiplied by <var>scale</var>.</p>
+     <li data-md>
+      <p>If <var>glViewport</var>’s <code>width</code> is less than 1, set it to 1.</p>
      <li data-md>
       <p>Set <var>glViewport</var>’s <code>height</code> to an integer value less than or equal to <var>glFullSizedViewport</var>’s <code>height</code> multiplied by <var>scale</var>.</p>
      <li data-md>
-      <p>Let <var>unusedFraction</var> be one minus <var>scale</var>.</p>
+      <p>If <var>glViewport</var>’s <code>height</code> is less than 1, set it to 1.</p>
      <li data-md>
-      <p>Set <var>glViewport</var>’s <code>x</code> component to an integer value between <var>glFullSizedViewport</var>’s <code>x</code> component (inclusive) and <var>glFullSizedViewport</var>’s <code>x</code> component plus <var>unusedFraction</var> times <var>glFullSizedViewport</var>’s <code>width</code> (inclusive).</p>
+      <p>Set <var>glViewport</var>’s <code>x</code> component to an integer value between <var>glFullSizedViewport</var>’s <code>x</code> component (inclusive) and <var>glFullSizedViewport</var>’s <code>x</code> component plus <var>glFullSizedViewport</var>’s <code>width</code> minus <var>glViewport</var>’s <code>width</code> (inclusive).</p>
      <li data-md>
-      <p>Set <var>glViewport</var>’s <code>y</code> component to a integer value between <var>glFullSizedViewport</var>’s <code>y</code> component (inclusive) and <var>glFullSizedViewport</var>’s <code>y</code> component plus <var>unusedFraction</var> times <var>glFullSizedViewport</var>’s <code>height</code> (inclusive).</p>
+      <p>Set <var>glViewport</var>’s <code>y</code> component to a integer value between <var>glFullSizedViewport</var>’s <code>y</code> component (inclusive) and <var>glFullSizedViewport</var>’s <code>y</code> component plus <var>glFullSizedViewport</var>’s <code>height</code> minus <var>glViewport</var>’s <code>height</code> (inclusive).</p>
      <li data-md>
       <p>Let <var>viewport</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new①②">new</a> <code class="idl"><a data-link-type="idl" href="#xrviewport" id="ref-for-xrviewport①">XRViewport</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①⑧">relevant realm</a> of <var>session</var>.</p>
      <li data-md>
@@ -4081,11 +4086,11 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
      <li data-md>
       <p>Return <var>viewport</var>.</p>
     </ol>
-    <p class="note" role="note"><span>Note:</span> The specific integer value calculation is intentionally left to the UA’s discretion. The straightforward method of rounding down the width/height and using the <code>x</code> and <code>y</code> offsets as-is is valid, but the UA MAY also choose a slightly adjusted value within the specified constraints, for example to align the viewport to a pixel grid for efficiency. The scaled viewport MUST be completely contained within the full-sized viewport, but MAY be placed at any location within the full-sized viewport at the UA’s discretion. The size and position calculation MUST be deterministic and return a consistent result for identical input values within a session.</p>
+    <p class="note" role="note"><span>Note:</span> The specific integer value calculation is intentionally left to the UA’s discretion. The straightforward method of rounding down the width/height and using the <code>x</code> and <code>y</code> offsets as-is is valid, but the UA MAY also choose a slightly adjusted value within the specified constraints, for example to align the viewport to a power-of-two pixel grid for efficiency. The scaled viewport MUST be completely contained within the full-sized viewport, but MAY be placed at any location within the full-sized viewport at the UA’s discretion. The size and position calculation MUST be deterministic and return a consistent result for identical input values within a session.</p>
    </div>
    <h3 class="heading settled" data-level="7.2" id="primary-and-secondary-views"><span class="secno">7.2. </span><span class="content">Primary and Secondary Views</span><a class="self-link" href="#primary-and-secondary-views"></a></h3>
-   <p>A <a data-link-type="dfn" href="#view" id="ref-for-view②⑨">view</a> is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-view">primary view</dfn> when rendering to it is necessary for an immersive experience. <a data-link-type="dfn" href="#primary-view" id="ref-for-primary-view①">Primary views</a> MUST be <a data-link-type="dfn" href="#view-active" id="ref-for-view-active⑥">active</a> for the entire duration of the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑧⑥">XRSession</a></code>.</p>
-   <p>A <a data-link-type="dfn" href="#view" id="ref-for-view③⓪">view</a> is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="secondary-view">secondary view</dfn> when it is possible for content to choose to not render to it and still produce a working immersive experience. When content chooses to not render to these views, the user-agent MAY be able to reconstruct them via reprojection. Secondary views MUST NOT be <a data-link-type="dfn" href="#view-active" id="ref-for-view-active⑦">active</a> unless the "<a data-link-type="dfn" href="#secondary-view-secondary-views" id="ref-for-secondary-view-secondary-views">secondary-views</a>" feature is enabled.</p>
+   <p>A <a data-link-type="dfn" href="#view" id="ref-for-view②⑧">view</a> is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-view">primary view</dfn> when rendering to it is necessary for an immersive experience. <a data-link-type="dfn" href="#primary-view" id="ref-for-primary-view①">Primary views</a> MUST be <a data-link-type="dfn" href="#view-active" id="ref-for-view-active⑥">active</a> for the entire duration of the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑧⑥">XRSession</a></code>.</p>
+   <p>A <a data-link-type="dfn" href="#view" id="ref-for-view②⑨">view</a> is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="secondary-view">secondary view</dfn> when it is possible for content to choose to not render to it and still produce a working immersive experience. When content chooses to not render to these views, the user-agent MAY be able to reconstruct them via reprojection. Secondary views MUST NOT be <a data-link-type="dfn" href="#view-active" id="ref-for-view-active⑦">active</a> unless the "<a data-link-type="dfn" href="#secondary-view-secondary-views" id="ref-for-secondary-view-secondary-views">secondary-views</a>" feature is enabled.</p>
    <div class="example" id="example-47222166">
     <a class="self-link" href="#example-47222166"></a> Examples of <a data-link-type="dfn" href="#primary-view" id="ref-for-primary-view②">primary views</a> include the main mono view for a handheld AR session, the main two stereo views for headworn AR/VR sessions, or all of the wall views for a CAVE session. 
     <p>Examples of <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view①">secondary views</a> include the <a data-link-type="dfn" href="https://immersive-web.github.io/webxr-ar-module/#first-person-observer-view" id="ref-for-first-person-observer-view">first-person observer view</a> used for video capture, or "quad views" where there are two views per eye with differing resolution and fields of view.</p>
@@ -4097,9 +4102,9 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
    <p>To provide for this, user-agents that expose <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view⑤">secondary views</a> MUST support an "<dfn class="dfn-paneled" data-dfn-for="secondary view" data-dfn-type="dfn" data-noexport id="secondary-view-secondary-views">secondary-views</dfn>" <a data-link-type="dfn" href="#feature-descriptor" id="ref-for-feature-descriptor⑧">feature descriptor</a> as a hint. Content enabling this feature is expected to:</p>
    <ul>
     <li data-md>
-     <p>Handle any nonzero number of <a data-link-type="dfn" href="#view" id="ref-for-view③①">views</a> in the <code class="idl"><a data-link-type="idl" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views②">views</a></code> array.</p>
+     <p>Handle any nonzero number of <a data-link-type="dfn" href="#view" id="ref-for-view③⓪">views</a> in the <code class="idl"><a data-link-type="idl" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views②">views</a></code> array.</p>
     <li data-md>
-     <p>Handle the existence of multiple <a data-link-type="dfn" href="#view" id="ref-for-view③②">views</a> that have the same <a data-link-type="dfn" href="#view-eye" id="ref-for-view-eye②">eye</a>.</p>
+     <p>Handle the existence of multiple <a data-link-type="dfn" href="#view" id="ref-for-view③①">views</a> that have the same <a data-link-type="dfn" href="#view-eye" id="ref-for-view-eye②">eye</a>.</p>
     <li data-md>
      <p>Handle the size of the <code class="idl"><a data-link-type="idl" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views③">views</a></code> array changing from frame to frame. <span class="note">This can happen when video capture is enabled, for example</span></p>
    </ul>
@@ -4198,10 +4203,10 @@ async <c- a>function</c-> startXRSession<c- p>()</c-> <c- p>{</c->
    <p>The exact interpretation of the viewport values depends on the conventions of the graphics API the viewport is associated with:</p>
    <ul>
     <li data-md>
-     <p>When used with an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer⑤">XRWebGLLayer</a></code> the <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-x" id="ref-for-dom-xrviewport-x②">x</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-y" id="ref-for-dom-xrviewport-y②">y</a></code> attributes specify the lower left corner of the viewport rectangle, in pixels, with the viewport rectangle extending <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-width" id="ref-for-dom-xrviewport-width②">width</a></code> pixels to the right of <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-x" id="ref-for-dom-xrviewport-x③">x</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-height" id="ref-for-dom-xrviewport-height②">height</a></code> pixels above <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-y" id="ref-for-dom-xrviewport-y③">y</a></code>. The values can be passed to the <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4" id="ref-for-5.14.4①">WebGL viewport</a> function directly.</p>
+     <p>When used with an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer⑤">XRWebGLLayer</a></code> the <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-x" id="ref-for-dom-xrviewport-x②">x</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-y" id="ref-for-dom-xrviewport-y②">y</a></code> attributes specify the lower left corner of the viewport rectangle, in pixels, with the viewport rectangle extending <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-width" id="ref-for-dom-xrviewport-width②">width</a></code> pixels to the right of <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-x" id="ref-for-dom-xrviewport-x③">x</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-height" id="ref-for-dom-xrviewport-height②">height</a></code> pixels above <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-y" id="ref-for-dom-xrviewport-y③">y</a></code>. The values can be passed to the <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4" id="ref-for-5.14.4②">WebGL viewport</a> function directly.</p>
    </ul>
    <div class="example" id="example-e7d71510">
-    <a class="self-link" href="#example-e7d71510"></a> The following code loops through all of the <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①②">XRView</a></code>s of an <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose④">XRViewerPose</a></code>, queries an <code class="idl"><a data-link-type="idl" href="#xrviewport" id="ref-for-xrviewport③">XRViewport</a></code> from an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer⑥">XRWebGLLayer</a></code> for each, and uses them to set the appropriate <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4" id="ref-for-5.14.4②">WebGL viewport</a>s for rendering. 
+    <a class="self-link" href="#example-e7d71510"></a> The following code loops through all of the <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①②">XRView</a></code>s of an <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose④">XRViewerPose</a></code>, queries an <code class="idl"><a data-link-type="idl" href="#xrviewport" id="ref-for-xrviewport③">XRViewport</a></code> from an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer⑥">XRWebGLLayer</a></code> for each, and uses them to set the appropriate <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4" id="ref-for-5.14.4③">WebGL viewport</a>s for rendering. 
 <pre class="highlight">xrSession<c- p>.</c->requestAnimationFrame<c- p>((</c->time<c- p>,</c-> xrFrame<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
   <c- kr>const</c-> viewer <c- o>=</c-> xrFrame<c- p>.</c->getViewerPose<c- p>(</c->xrReferenceSpace<c- p>);</c->
 
@@ -4497,7 +4502,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      </div>
     </div>
    </div>
-   <p>An <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑤">XRViewerPose</a></code> is an <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose⑧">XRPose</a></code> describing the state of a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="viewer">viewer</dfn> of the XR scene as tracked by the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device②④">XR device</a>. A <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑧">viewer</a> may represent a tracked piece of hardware, the observed position of a users head relative to the hardware, or some other means of computing a series of viewpoints into the XR scene. <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑥">XRViewerPose</a></code>s can only be queried relative to an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②⑥">XRReferenceSpace</a></code>. It provides, in addition to the <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose⑨">XRPose</a></code> values, an array of <a data-link-type="dfn" href="#view" id="ref-for-view③③">view</a>s which include rigid transforms to indicate the viewpoint and projection matrices. These values should be used by the application when rendering a frame of an XR scene.</p>
+   <p>An <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑤">XRViewerPose</a></code> is an <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose⑧">XRPose</a></code> describing the state of a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="viewer">viewer</dfn> of the XR scene as tracked by the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device②④">XR device</a>. A <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑧">viewer</a> may represent a tracked piece of hardware, the observed position of a users head relative to the hardware, or some other means of computing a series of viewpoints into the XR scene. <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑥">XRViewerPose</a></code>s can only be queried relative to an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②⑥">XRReferenceSpace</a></code>. It provides, in addition to the <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose⑨">XRPose</a></code> values, an array of <a data-link-type="dfn" href="#view" id="ref-for-view③②">view</a>s which include rigid transforms to indicate the viewpoint and projection matrices. These values should be used by the application when rendering a frame of an XR scene.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①②"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrviewerpose"><code><c- g>XRViewerPose</c-></code></dfn> : <a data-link-type="idl-name" href="#xrpose" id="ref-for-xrpose①⓪"><c- n>XRPose</c-></a> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject⑨"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-frozen-array" id="ref-for-idl-frozen-array①"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="#xrview" id="ref-for-xrview①③"><c- n>XRView</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<XRView>" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views⑤"><c- g>views</c-></a>;
 };
@@ -4518,7 +4523,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      </div>
     </div>
    </div>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRViewerPose" data-dfn-type="attribute" data-export id="dom-xrviewerpose-views"><code>views</code></dfn> array is a sequence of <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①④">XRView</a></code>s describing the viewpoints of the XR scene, relative to the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②⑦">XRReferenceSpace</a></code> the <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑦">XRViewerPose</a></code> was queried with. Every <a data-link-type="dfn" href="#view" id="ref-for-view③④">view</a> of the XR scene in the array must be rendered in order to display correctly on the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device②⑤">XR device</a>. Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑤">XRView</a></code> includes rigid transforms to indicate the viewpoint and projection matrices, and can be used to query <code class="idl"><a data-link-type="idl" href="#xrviewport" id="ref-for-xrviewport④">XRViewport</a></code>s from layers when needed.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRViewerPose" data-dfn-type="attribute" data-export id="dom-xrviewerpose-views"><code>views</code></dfn> array is a sequence of <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①④">XRView</a></code>s describing the viewpoints of the XR scene, relative to the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②⑦">XRReferenceSpace</a></code> the <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑦">XRViewerPose</a></code> was queried with. Every <a data-link-type="dfn" href="#view" id="ref-for-view③③">view</a> of the XR scene in the array must be rendered in order to display correctly on the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device②⑤">XR device</a>. Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑤">XRView</a></code> includes rigid transforms to indicate the viewpoint and projection matrices, and can be used to query <code class="idl"><a data-link-type="idl" href="#xrviewport" id="ref-for-xrviewport④">XRViewport</a></code>s from layers when needed.</p>
    <p class="note" role="note"><span>Note:</span> The <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑧">XRViewerPose</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-transform" id="ref-for-dom-xrpose-transform④">transform</a></code> can be used to position graphical representations of the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑨">viewer</a> for spectator views of the scene or multi-user interaction.</p>
    <h2 class="heading settled" data-level="10" id="input"><span class="secno">10. </span><span class="content">Input</span><a class="self-link" href="#input"></a></h2>
    <h3 class="heading settled" data-level="10.1" id="xrinputsource-interface"><span class="secno">10.1. </span><span class="content">XRInputSource</span><a class="self-link" href="#xrinputsource-interface"></a></h3>
@@ -5258,8 +5263,8 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRWebGLLayer" data-dfn-type="attribute" data-export id="dom-xrwebgllayer-ignoredepthvalues"><code>ignoreDepthValues</code></dfn> attribute, if <code>true</code>, indicates the <a data-link-type="dfn" href="#xr-compositor" id="ref-for-xr-compositor④">XR Compositor</a> MUST NOT make use of values in the depth buffer attachment when rendering. When the attribute is <code>false</code> it indicates that the content of the depth buffer attachment will be used by the <a data-link-type="dfn" href="#xr-compositor" id="ref-for-xr-compositor⑤">XR Compositor</a> and is expected to be representative of the scene rendered into the layer.</p>
    <p>Depth values stored in the buffer are expected to be between <code>0.0</code> and <code>1.0</code>, with <code>0.0</code> representing the distance of <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-depthnear" id="ref-for-dom-xrrenderstate-depthnear⑧">depthNear</a></code> and <code>1.0</code> representing the distance of <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-depthfar" id="ref-for-dom-xrrenderstate-depthfar⑧">depthFar</a></code>, with intermediate values interpolated linearly. This is the default behavior of WebGL. (See documentation for the <a href="https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glDepthRangef.xml">depthRange function</a> for additional details.))</p>
    <p class="note" role="note"><span>Note:</span> Making the scene’s depth buffer available to the compositor allows some platforms to provide quality and comfort improvements such as improved reprojection.</p>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②③">XRWebGLLayer</a></code> MUST have a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="list-of-full-sized-viewports">list of full-sized viewports</dfn> which is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②①">list</a> containing one <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4" id="ref-for-5.14.4③">WebGL viewport</a> for each <a data-link-type="dfn" href="#view" id="ref-for-view③⑤">view</a> the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑥">XRSession</a></code> may expose, including <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view①②">secondary views</a> that are not currently <a data-link-type="dfn" href="#view-active" id="ref-for-view-active⑧">active</a> but may become <a data-link-type="dfn" href="#view-active" id="ref-for-view-active⑨">active</a> for the current session. The viewports MUST have a <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-width" id="ref-for-dom-xrviewport-width③">width</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-height" id="ref-for-dom-xrviewport-height③">height</a></code> greater than <code>0</code> and MUST describe a rectangle that does not exceed the bounds of the <a data-link-type="dfn" href="#xrwebgllayer-target-framebuffer" id="ref-for-xrwebgllayer-target-framebuffer②">target framebuffer</a>. The viewports MUST NOT be overlapping. If <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled⑧">composition disabled</a> is <code>true</code>, the <a data-link-type="dfn" href="#list-of-full-sized-viewports" id="ref-for-list-of-full-sized-viewports②">list of full-sized viewports</a> MUST contain a single <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4" id="ref-for-5.14.4④">WebGL viewport</a> that covers the <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context④">context</a>'s entire default framebuffer.</p>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②④">XRWebGLLayer</a></code> MUST have a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="list-of-viewport-objects">list of viewport objects</dfn> which is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②②">list</a> containing one <code class="idl"><a data-link-type="idl" href="#xrviewport" id="ref-for-xrviewport⑥">XRViewport</a></code> for each <a data-link-type="dfn" href="#view-active" id="ref-for-view-active①⓪">active</a> <a data-link-type="dfn" href="#view" id="ref-for-view③⑥">view</a> the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑦">XRSession</a></code> currently exposes.</p>
+   <p>Each <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②③">XRWebGLLayer</a></code> MUST have a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="list-of-full-sized-viewports">list of full-sized viewports</dfn> which is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②①">list</a> containing one <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4" id="ref-for-5.14.4④">WebGL viewport</a> for each <a data-link-type="dfn" href="#view" id="ref-for-view③④">view</a> the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑥">XRSession</a></code> may expose, including <a data-link-type="dfn" href="#secondary-view" id="ref-for-secondary-view①②">secondary views</a> that are not currently <a data-link-type="dfn" href="#view-active" id="ref-for-view-active⑧">active</a> but may become <a data-link-type="dfn" href="#view-active" id="ref-for-view-active⑨">active</a> for the current session. The viewports MUST have a <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-width" id="ref-for-dom-xrviewport-width③">width</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrviewport-height" id="ref-for-dom-xrviewport-height③">height</a></code> greater than <code>0</code> and MUST describe a rectangle that does not exceed the bounds of the <a data-link-type="dfn" href="#xrwebgllayer-target-framebuffer" id="ref-for-xrwebgllayer-target-framebuffer②">target framebuffer</a>. The viewports MUST NOT be overlapping. If <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled⑧">composition disabled</a> is <code>true</code>, the <a data-link-type="dfn" href="#list-of-full-sized-viewports" id="ref-for-list-of-full-sized-viewports②">list of full-sized viewports</a> MUST contain a single <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4" id="ref-for-5.14.4⑤">WebGL viewport</a> that covers the <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context④">context</a>'s entire default framebuffer.</p>
+   <p>Each <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②④">XRWebGLLayer</a></code> MUST have a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="list-of-viewport-objects">list of viewport objects</dfn> which is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②②">list</a> containing one <code class="idl"><a data-link-type="idl" href="#xrviewport" id="ref-for-xrviewport⑥">XRViewport</a></code> for each <a data-link-type="dfn" href="#view-active" id="ref-for-view-active①⓪">active</a> <a data-link-type="dfn" href="#view" id="ref-for-view③⑤">view</a> the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪⑦">XRSession</a></code> currently exposes.</p>
    <p><code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-getviewport" id="ref-for-dom-xrwebgllayer-getviewport④">getViewport()</a></code> queries the <code class="idl"><a data-link-type="idl" href="#xrviewport" id="ref-for-xrviewport⑦">XRViewport</a></code> the given <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑦">XRView</a></code> should use when rendering to the layer.</p>
    <div class="algorithm" data-algorithm="get-viewport">
     <div class="mdn-anno wrapped">
@@ -6701,7 +6706,6 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <li><a href="#maximum-inline-field-of-view">maximum inline field of view</a><span>, in §4.1</span>
    <li><a href="#minimum-inline-field-of-view">minimum inline field of view</a><span>, in §4.1</span>
    <li><a href="#minimum-near-clip-plane">minimum near clip plane</a><span>, in §4.1</span>
-   <li><a href="#view-minimum-viewport-scale">minimum viewport scale</a><span>, in §7.1</span>
    <li>
     mode
     <ul>
@@ -7674,9 +7678,9 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <aside class="dfn-panel" data-for="term-for-5.14.4">
    <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4">https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-5.14.4">7.1. XRView</a>
-    <li><a href="#ref-for-5.14.4①">7.3. XRViewport</a> <a href="#ref-for-5.14.4②">(2)</a>
-    <li><a href="#ref-for-5.14.4③">11.2. XRWebGLLayer</a> <a href="#ref-for-5.14.4④">(2)</a>
+    <li><a href="#ref-for-5.14.4">7.1. XRView</a> <a href="#ref-for-5.14.4①">(2)</a>
+    <li><a href="#ref-for-5.14.4②">7.3. XRViewport</a> <a href="#ref-for-5.14.4③">(2)</a>
+    <li><a href="#ref-for-5.14.4④">11.2. XRWebGLLayer</a> <a href="#ref-for-5.14.4⑤">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-aborterror">
@@ -7984,220 +7988,220 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <li>
     <a data-link-type="biblio">[DOM]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-document" style="color:initial">Document</span>
-     <li><span class="dfn-paneled" id="term-for-event" style="color:initial">Event</span>
-     <li><span class="dfn-paneled" id="term-for-dictdef-eventinit" style="color:initial">EventInit</span>
-     <li><span class="dfn-paneled" id="term-for-eventtarget" style="color:initial">EventTarget</span>
-     <li><span class="dfn-paneled" id="term-for-concept-tree-ancestor" style="color:initial">ancestor</span>
-     <li><span class="dfn-paneled" id="term-for-canceled-flag" style="color:initial">canceled flag</span>
-     <li><span class="dfn-paneled" id="term-for-context-object" style="color:initial">context object</span>
-     <li><span class="dfn-paneled" id="term-for-concept-tree-descendant" style="color:initial">descendant</span>
-     <li><span class="dfn-paneled" id="term-for-concept-event-dispatch" style="color:initial">dispatch</span>
-     <li><span class="dfn-paneled" id="term-for-concept-event-fire" style="color:initial">fire an event</span>
-     <li><span class="dfn-paneled" id="term-for-dom-event-type" style="color:initial">type</span>
+     <li><span class="dfn-paneled" id="term-for-document">Document</span>
+     <li><span class="dfn-paneled" id="term-for-event">Event</span>
+     <li><span class="dfn-paneled" id="term-for-dictdef-eventinit">EventInit</span>
+     <li><span class="dfn-paneled" id="term-for-eventtarget">EventTarget</span>
+     <li><span class="dfn-paneled" id="term-for-concept-tree-ancestor">ancestor</span>
+     <li><span class="dfn-paneled" id="term-for-canceled-flag">canceled flag</span>
+     <li><span class="dfn-paneled" id="term-for-context-object">context object</span>
+     <li><span class="dfn-paneled" id="term-for-concept-tree-descendant">descendant</span>
+     <li><span class="dfn-paneled" id="term-for-concept-event-dispatch">dispatch</span>
+     <li><span class="dfn-paneled" id="term-for-concept-event-fire">fire an event</span>
+     <li><span class="dfn-paneled" id="term-for-dom-event-type">type</span>
     </ul>
    <li>
     <a data-link-type="biblio">[ECMASCRIPT]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-sec-returnifabrupt-shorthands" style="color:initial">?</span>
-     <li><span class="dfn-paneled" id="term-for-sec-isdetachedbuffer" style="color:initial">IsDetachedBuffer</span>
-     <li><span class="dfn-paneled" id="term-for-sec-tostring" style="color:initial">ToString</span>
-     <li><span class="dfn-paneled" id="term-for-realm" style="color:initial">realm</span>
+     <li><span class="dfn-paneled" id="term-for-sec-returnifabrupt-shorthands">?</span>
+     <li><span class="dfn-paneled" id="term-for-sec-isdetachedbuffer">IsDetachedBuffer</span>
+     <li><span class="dfn-paneled" id="term-for-sec-tostring">ToString</span>
+     <li><span class="dfn-paneled" id="term-for-realm">realm</span>
     </ul>
    <li>
     <a data-link-type="biblio">[geometry-1]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-dommatrix" style="color:initial">DOMMatrix</span>
-     <li><span class="dfn-paneled" id="term-for-dictdef-dompointinit" style="color:initial">DOMPointInit</span>
-     <li><span class="dfn-paneled" id="term-for-dompointreadonly" style="color:initial">DOMPointReadOnly</span>
-     <li><span class="dfn-paneled" id="term-for-dom-dompointreadonly-w" style="color:initial">w</span>
-     <li><span class="dfn-paneled" id="term-for-dom-dompointreadonly-x" style="color:initial">x</span>
-     <li><span class="dfn-paneled" id="term-for-dom-dompointreadonly-y" style="color:initial">y</span>
-     <li><span class="dfn-paneled" id="term-for-dom-dompointreadonly-z" style="color:initial">z</span>
+     <li><span class="dfn-paneled" id="term-for-dommatrix">DOMMatrix</span>
+     <li><span class="dfn-paneled" id="term-for-dictdef-dompointinit">DOMPointInit</span>
+     <li><span class="dfn-paneled" id="term-for-dompointreadonly">DOMPointReadOnly</span>
+     <li><span class="dfn-paneled" id="term-for-dom-dompointreadonly-w">w</span>
+     <li><span class="dfn-paneled" id="term-for-dom-dompointreadonly-x">x</span>
+     <li><span class="dfn-paneled" id="term-for-dom-dompointreadonly-y">y</span>
+     <li><span class="dfn-paneled" id="term-for-dom-dompointreadonly-z">z</span>
     </ul>
    <li>
     <a data-link-type="biblio">[high resolution time]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-dom-domhighrestimestamp" style="color:initial">DOMHighResTimeStamp</span>
+     <li><span class="dfn-paneled" id="term-for-dom-domhighrestimestamp">DOMHighResTimeStamp</span>
     </ul>
    <li>
     <a data-link-type="biblio">[hr-time-2]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-dfn-current-high-resolution-time" style="color:initial">current high resolution time</span>
+     <li><span class="dfn-paneled" id="term-for-dfn-current-high-resolution-time">current high resolution time</span>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-eventhandler" style="color:initial">EventHandler</span>
-     <li><span class="dfn-paneled" id="term-for-htmlcanvaselement" style="color:initial">HTMLCanvasElement</span>
-     <li><span class="dfn-paneled" id="term-for-navigator" style="color:initial">Navigator</span>
-     <li><span class="dfn-paneled" id="term-for-window" style="color:initial">Window</span>
-     <li><span class="dfn-paneled" id="term-for-active-document" style="color:initial">active document</span>
-     <li><span class="dfn-paneled" id="term-for-browsing-context" style="color:initial">browsing context</span>
-     <li><span class="dfn-paneled" id="term-for-current-global-object" style="color:initial">current global object</span>
-     <li><span class="dfn-paneled" id="term-for-current" style="color:initial">current realm</span>
-     <li><span class="dfn-paneled" id="term-for-currently-focused-area-of-a-top-level-browsing-context" style="color:initial">currently focused area</span>
-     <li><span class="dfn-paneled" id="term-for-event-handler-idl-attributes" style="color:initial">event handler idl attribute</span>
-     <li><span class="dfn-paneled" id="term-for-in-parallel" style="color:initial">in parallel</span>
-     <li><span class="dfn-paneled" id="term-for-dom-navigator" style="color:initial">navigator</span>
-     <li><span class="dfn-paneled" id="term-for-concept-origin" style="color:initial">origin</span>
-     <li><span class="dfn-paneled" id="term-for-concept-document-permissions-policy" style="color:initial">permissions policy</span>
-     <li><span class="dfn-paneled" id="term-for-queue-a-task" style="color:initial">queue a task</span>
-     <li><span class="dfn-paneled" id="term-for-concept-relevant-global" style="color:initial">relevant global object</span>
-     <li><span class="dfn-paneled" id="term-for-concept-relevant-realm" style="color:initial">relevant realm</span>
-     <li><span class="dfn-paneled" id="term-for-rendering-opportunity" style="color:initial">rendering opportunity</span>
-     <li><span class="dfn-paneled" id="term-for-report-the-exception" style="color:initial">report the exception</span>
-     <li><span class="dfn-paneled" id="term-for-dom-animationframeprovider-requestanimationframe" style="color:initial">requestAnimationFrame(callback)</span>
-     <li><span class="dfn-paneled" id="term-for-responsible-document" style="color:initial">responsible</span>
-     <li><span class="dfn-paneled" id="term-for-same-origin" style="color:initial">same origin</span>
-     <li><span class="dfn-paneled" id="term-for-same-origin-domain" style="color:initial">same origin-domain</span>
-     <li><span class="dfn-paneled" id="term-for-task-source" style="color:initial">task source</span>
-     <li><span class="dfn-paneled" id="term-for-transient-activation" style="color:initial">transient activation</span>
+     <li><span class="dfn-paneled" id="term-for-eventhandler">EventHandler</span>
+     <li><span class="dfn-paneled" id="term-for-htmlcanvaselement">HTMLCanvasElement</span>
+     <li><span class="dfn-paneled" id="term-for-navigator">Navigator</span>
+     <li><span class="dfn-paneled" id="term-for-window">Window</span>
+     <li><span class="dfn-paneled" id="term-for-active-document">active document</span>
+     <li><span class="dfn-paneled" id="term-for-browsing-context">browsing context</span>
+     <li><span class="dfn-paneled" id="term-for-current-global-object">current global object</span>
+     <li><span class="dfn-paneled" id="term-for-current">current realm</span>
+     <li><span class="dfn-paneled" id="term-for-currently-focused-area-of-a-top-level-browsing-context">currently focused area</span>
+     <li><span class="dfn-paneled" id="term-for-event-handler-idl-attributes">event handler idl attribute</span>
+     <li><span class="dfn-paneled" id="term-for-in-parallel">in parallel</span>
+     <li><span class="dfn-paneled" id="term-for-dom-navigator">navigator</span>
+     <li><span class="dfn-paneled" id="term-for-concept-origin">origin</span>
+     <li><span class="dfn-paneled" id="term-for-concept-document-permissions-policy">permissions policy</span>
+     <li><span class="dfn-paneled" id="term-for-queue-a-task">queue a task</span>
+     <li><span class="dfn-paneled" id="term-for-concept-relevant-global">relevant global object</span>
+     <li><span class="dfn-paneled" id="term-for-concept-relevant-realm">relevant realm</span>
+     <li><span class="dfn-paneled" id="term-for-rendering-opportunity">rendering opportunity</span>
+     <li><span class="dfn-paneled" id="term-for-report-the-exception">report the exception</span>
+     <li><span class="dfn-paneled" id="term-for-dom-animationframeprovider-requestanimationframe">requestAnimationFrame(callback)</span>
+     <li><span class="dfn-paneled" id="term-for-responsible-document">responsible</span>
+     <li><span class="dfn-paneled" id="term-for-same-origin">same origin</span>
+     <li><span class="dfn-paneled" id="term-for-same-origin-domain">same origin-domain</span>
+     <li><span class="dfn-paneled" id="term-for-task-source">task source</span>
+     <li><span class="dfn-paneled" id="term-for-transient-activation">transient activation</span>
     </ul>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-list-append" style="color:initial">append</span>
-     <li><span class="dfn-paneled" id="term-for-list-contain" style="color:initial">contain</span>
-     <li><span class="dfn-paneled" id="term-for-iteration-continue" style="color:initial">continue</span>
-     <li><span class="dfn-paneled" id="term-for-list-extend" style="color:initial">extend</span>
-     <li><span class="dfn-paneled" id="term-for-list-is-empty" style="color:initial">is empty</span>
-     <li><span class="dfn-paneled" id="term-for-list" style="color:initial">list</span>
-     <li><span class="dfn-paneled" id="term-for-list-remove" style="color:initial">remove</span>
-     <li><span class="dfn-paneled" id="term-for-list-size" style="color:initial">size</span>
-     <li><span class="dfn-paneled" id="term-for-string" style="color:initial">string</span>
-     <li><span class="dfn-paneled" id="term-for-tuple" style="color:initial">tuple</span>
+     <li><span class="dfn-paneled" id="term-for-list-append">append</span>
+     <li><span class="dfn-paneled" id="term-for-list-contain">contain</span>
+     <li><span class="dfn-paneled" id="term-for-iteration-continue">continue</span>
+     <li><span class="dfn-paneled" id="term-for-list-extend">extend</span>
+     <li><span class="dfn-paneled" id="term-for-list-is-empty">is empty</span>
+     <li><span class="dfn-paneled" id="term-for-list">list</span>
+     <li><span class="dfn-paneled" id="term-for-list-remove">remove</span>
+     <li><span class="dfn-paneled" id="term-for-list-size">size</span>
+     <li><span class="dfn-paneled" id="term-for-string">string</span>
+     <li><span class="dfn-paneled" id="term-for-tuple">tuple</span>
     </ul>
    <li>
     <a data-link-type="biblio">[orientation sensor]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-absoluteorientationsensor" style="color:initial">AbsoluteOrientationSensor</span>
-     <li><span class="dfn-paneled" id="term-for-relativeorientationsensor" style="color:initial">RelativeOrientationSensor</span>
+     <li><span class="dfn-paneled" id="term-for-absoluteorientationsensor">AbsoluteOrientationSensor</span>
+     <li><span class="dfn-paneled" id="term-for-relativeorientationsensor">RelativeOrientationSensor</span>
     </ul>
    <li>
     <a data-link-type="biblio">[pagevisibility]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-visibilitystate-attribute" style="color:initial">visibilitystate</span>
+     <li><span class="dfn-paneled" id="term-for-visibilitystate-attribute">visibilitystate</span>
     </ul>
    <li>
     <a data-link-type="biblio">[permissions]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-dom-permissionstate-denied" style="color:initial">"denied"</span>
-     <li><span class="dfn-paneled" id="term-for-dom-permissionstate-granted" style="color:initial">"granted"</span>
-     <li><span class="dfn-paneled" id="term-for-dom-permissionstate-prompt" style="color:initial">"prompt"</span>
-     <li><span class="dfn-paneled" id="term-for-dictdef-permissiondescriptor" style="color:initial">PermissionDescriptor</span>
-     <li><span class="dfn-paneled" id="term-for-permissionstatus" style="color:initial">PermissionStatus</span>
-     <li><span class="dfn-paneled" id="term-for-dom-permissiondescriptor-name" style="color:initial">name</span>
-     <li><span class="dfn-paneled" id="term-for-permission-descriptor-type" style="color:initial">permission descriptor type</span>
-     <li><span class="dfn-paneled" id="term-for-permission-query-algorithm" style="color:initial">permission query algorithm</span>
-     <li><span class="dfn-paneled" id="term-for-permission-result-type" style="color:initial">permission result type</span>
-     <li><span class="dfn-paneled" id="term-for-permission-state" style="color:initial">permission state</span>
-     <li><span class="dfn-paneled" id="term-for-powerful-feature" style="color:initial">powerful feature</span>
-     <li><span class="dfn-paneled" id="term-for-dom-permissionstatus-state" style="color:initial">state</span>
+     <li><span class="dfn-paneled" id="term-for-dom-permissionstate-denied">"denied"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-permissionstate-granted">"granted"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-permissionstate-prompt">"prompt"</span>
+     <li><span class="dfn-paneled" id="term-for-dictdef-permissiondescriptor">PermissionDescriptor</span>
+     <li><span class="dfn-paneled" id="term-for-permissionstatus">PermissionStatus</span>
+     <li><span class="dfn-paneled" id="term-for-dom-permissiondescriptor-name">name</span>
+     <li><span class="dfn-paneled" id="term-for-permission-descriptor-type">permission descriptor type</span>
+     <li><span class="dfn-paneled" id="term-for-permission-query-algorithm">permission query algorithm</span>
+     <li><span class="dfn-paneled" id="term-for-permission-result-type">permission result type</span>
+     <li><span class="dfn-paneled" id="term-for-permission-state">permission state</span>
+     <li><span class="dfn-paneled" id="term-for-powerful-feature">powerful feature</span>
+     <li><span class="dfn-paneled" id="term-for-dom-permissionstatus-state">state</span>
     </ul>
    <li>
     <a data-link-type="biblio">[permissions-policy-1]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-default-allowlist" style="color:initial">default allowlist</span>
-     <li><span class="dfn-paneled" id="term-for-policy-controlled-feature" style="color:initial">policy-controlled feature</span>
+     <li><span class="dfn-paneled" id="term-for-default-allowlist">default allowlist</span>
+     <li><span class="dfn-paneled" id="term-for-policy-controlled-feature">policy-controlled feature</span>
     </ul>
    <li>
     <a data-link-type="biblio">[PERMISSIONS-REQUEST]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-permission-request-algorithm" style="color:initial">permission request algorithm</span>
+     <li><span class="dfn-paneled" id="term-for-permission-request-algorithm">permission request algorithm</span>
     </ul>
    <li>
     <a data-link-type="biblio">[pointerevents]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-dfn-primary-pointer" style="color:initial">primary pointer</span>
+     <li><span class="dfn-paneled" id="term-for-dfn-primary-pointer">primary pointer</span>
     </ul>
    <li>
     <a data-link-type="biblio">[requestidlecallback]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-the-requestidlecallback-method" style="color:initial">requestIdleCallback()</span>
+     <li><span class="dfn-paneled" id="term-for-the-requestidlecallback-method">requestIdleCallback()</span>
     </ul>
    <li>
     <a data-link-type="biblio">[webgl 2.0]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-WebGL2RenderingContext" style="color:initial">WebGL2RenderingContext</span>
+     <li><span class="dfn-paneled" id="term-for-WebGL2RenderingContext">WebGL2RenderingContext</span>
     </ul>
    <li>
     <a data-link-type="biblio">[WEBGL-2]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContextBase" style="color:initial">FRAMEBUFFER_UNSUPPORTED</span>
-     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContextBase①" style="color:initial">INVALID_FRAMEBUFFER_OPERATION</span>
-     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContextBase②" style="color:initial">INVALID_OPERATION</span>
-     <li><span class="dfn-paneled" id="term-for-WebGLContextAttributes" style="color:initial">WebGLContextAttributes</span>
-     <li><span class="dfn-paneled" id="term-for-WebGLFramebuffer" style="color:initial">WebGLFramebuffer</span>
-     <li><span class="dfn-paneled" id="term-for-WebGLObject" style="color:initial">WebGLObject</span>
-     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContext" style="color:initial">WebGLRenderingContext</span>
-     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContextBase③" style="color:initial">WebGLRenderingContextBase</span>
-     <li><span class="dfn-paneled" id="term-for-actual-context-parameters" style="color:initial">actual context parameters</span>
-     <li><span class="dfn-paneled" id="term-for-context-canvas" style="color:initial">canvas</span>
-     <li><span class="dfn-paneled" id="term-for-5.14.6" style="color:initial">checkFramebufferStatus</span>
-     <li><span class="dfn-paneled" id="term-for-5.14.11" style="color:initial">clear</span>
-     <li><span class="dfn-paneled" id="term-for-create-a-drawing-buffer" style="color:initial">create a drawing buffer</span>
-     <li><span class="dfn-paneled" id="term-for-2.1" style="color:initial">create the webgl context</span>
-     <li><span class="dfn-paneled" id="term-for-2.2" style="color:initial">default framebuffer</span>
-     <li><span class="dfn-paneled" id="term-for-5.14.6①" style="color:initial">deleteFramebuffer</span>
-     <li><span class="dfn-paneled" id="term-for-5.14.11①" style="color:initial">drawArrays</span>
-     <li><span class="dfn-paneled" id="term-for-5.14.11②" style="color:initial">drawElements</span>
-     <li><span class="dfn-paneled" id="term-for-fire-a-webgl-context-event" style="color:initial">fire a webgl context event</span>
-     <li><span class="dfn-paneled" id="term-for-5.14.6②" style="color:initial">framebufferRenderbuffer</span>
-     <li><span class="dfn-paneled" id="term-for-5.14.6③" style="color:initial">framebufferTexture2D</span>
-     <li><span class="dfn-paneled" id="term-for-5.14.6④" style="color:initial">getFramebufferAttachmentParameter</span>
-     <li><span class="dfn-paneled" id="term-for-CONTEXT_LOST" style="color:initial">handle the context loss</span>
-     <li><span class="dfn-paneled" id="term-for-webgl-object-invalidated-flag" style="color:initial">invalidated</span>
-     <li><span class="dfn-paneled" id="term-for-restore-the-drawing-buffer" style="color:initial">restore the context</span>
-     <li><span class="dfn-paneled" id="term-for-5.15.1" style="color:initial">statusMessage</span>
-     <li><span class="dfn-paneled" id="term-for-5.14.10" style="color:initial">uniformMatrix4fv</span>
-     <li><span class="dfn-paneled" id="term-for-webgl-context-lost-flag" style="color:initial">webgl context lost flag <small>(for WebGLRenderingContext)</small></span>
-     <li><span class="dfn-paneled" id="term-for-5.15" style="color:initial">webgl task source</span>
-     <li><span class="dfn-paneled" id="term-for-5.14.4" style="color:initial">webgl viewport</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContextBase">FRAMEBUFFER_UNSUPPORTED</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContextBase①">INVALID_FRAMEBUFFER_OPERATION</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContextBase②">INVALID_OPERATION</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLContextAttributes">WebGLContextAttributes</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLFramebuffer">WebGLFramebuffer</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLObject">WebGLObject</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContext">WebGLRenderingContext</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContextBase③">WebGLRenderingContextBase</span>
+     <li><span class="dfn-paneled" id="term-for-actual-context-parameters">actual context parameters</span>
+     <li><span class="dfn-paneled" id="term-for-context-canvas">canvas</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.6">checkFramebufferStatus</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.11">clear</span>
+     <li><span class="dfn-paneled" id="term-for-create-a-drawing-buffer">create a drawing buffer</span>
+     <li><span class="dfn-paneled" id="term-for-2.1">create the webgl context</span>
+     <li><span class="dfn-paneled" id="term-for-2.2">default framebuffer</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.6①">deleteFramebuffer</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.11①">drawArrays</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.11②">drawElements</span>
+     <li><span class="dfn-paneled" id="term-for-fire-a-webgl-context-event">fire a webgl context event</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.6②">framebufferRenderbuffer</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.6③">framebufferTexture2D</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.6④">getFramebufferAttachmentParameter</span>
+     <li><span class="dfn-paneled" id="term-for-CONTEXT_LOST">handle the context loss</span>
+     <li><span class="dfn-paneled" id="term-for-webgl-object-invalidated-flag">invalidated</span>
+     <li><span class="dfn-paneled" id="term-for-restore-the-drawing-buffer">restore the context</span>
+     <li><span class="dfn-paneled" id="term-for-5.15.1">statusMessage</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.10">uniformMatrix4fv</span>
+     <li><span class="dfn-paneled" id="term-for-webgl-context-lost-flag">webgl context lost flag <small>(for WebGLRenderingContext)</small></span>
+     <li><span class="dfn-paneled" id="term-for-5.15">webgl task source</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.4">webgl viewport</span>
     </ul>
    <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-aborterror" style="color:initial">AbortError</span>
-     <li><span class="dfn-paneled" id="term-for-idl-DOMException" style="color:initial">DOMException</span>
-     <li><span class="dfn-paneled" id="term-for-idl-DOMString" style="color:initial">DOMString</span>
-     <li><span class="dfn-paneled" id="term-for-Exposed" style="color:initial">Exposed</span>
-     <li><span class="dfn-paneled" id="term-for-idl-Float32Array" style="color:initial">Float32Array</span>
-     <li><span class="dfn-paneled" id="term-for-idl-frozen-array" style="color:initial">FrozenArray</span>
-     <li><span class="dfn-paneled" id="term-for-invalidstateerror" style="color:initial">InvalidStateError</span>
-     <li><span class="dfn-paneled" id="term-for-NewObject" style="color:initial">NewObject</span>
-     <li><span class="dfn-paneled" id="term-for-notsupportederror" style="color:initial">NotSupportedError</span>
-     <li><span class="dfn-paneled" id="term-for-operationerror" style="color:initial">OperationError</span>
-     <li><span class="dfn-paneled" id="term-for-idl-promise" style="color:initial">Promise</span>
-     <li><span class="dfn-paneled" id="term-for-SameObject" style="color:initial">SameObject</span>
-     <li><span class="dfn-paneled" id="term-for-SecureContext" style="color:initial">SecureContext</span>
-     <li><span class="dfn-paneled" id="term-for-securityerror" style="color:initial">SecurityError</span>
-     <li><span class="dfn-paneled" id="term-for-exceptiondef-typeerror" style="color:initial">TypeError</span>
-     <li><span class="dfn-paneled" id="term-for-a-new-promise" style="color:initial">a new promise</span>
-     <li><span class="dfn-paneled" id="term-for-idl-any" style="color:initial">any</span>
-     <li><span class="dfn-paneled" id="term-for-idl-boolean" style="color:initial">boolean</span>
-     <li><span class="dfn-paneled" id="term-for-idl-double" style="color:initial">double</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-frozen-array-type" style="color:initial">frozen array type</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-indexed-property-getter" style="color:initial">indexed property getter</span>
-     <li><span class="dfn-paneled" id="term-for-invoke-a-callback-function" style="color:initial">invoke the web idl callback function</span>
-     <li><span class="dfn-paneled" id="term-for-idl-long" style="color:initial">long</span>
-     <li><span class="dfn-paneled" id="term-for-new" style="color:initial">new</span>
-     <li><span class="dfn-paneled" id="term-for-reject" style="color:initial">reject</span>
-     <li><span class="dfn-paneled" id="term-for-resolve" style="color:initial">resolve</span>
-     <li><span class="dfn-paneled" id="term-for-idl-sequence" style="color:initial">sequence</span>
-     <li><span class="dfn-paneled" id="term-for-this" style="color:initial">this</span>
-     <li><span class="dfn-paneled" id="term-for-idl-undefined" style="color:initial">undefined</span>
-     <li><span class="dfn-paneled" id="term-for-idl-unsigned-long" style="color:initial">unsigned long</span>
+     <li><span class="dfn-paneled" id="term-for-aborterror">AbortError</span>
+     <li><span class="dfn-paneled" id="term-for-idl-DOMException">DOMException</span>
+     <li><span class="dfn-paneled" id="term-for-idl-DOMString">DOMString</span>
+     <li><span class="dfn-paneled" id="term-for-Exposed">Exposed</span>
+     <li><span class="dfn-paneled" id="term-for-idl-Float32Array">Float32Array</span>
+     <li><span class="dfn-paneled" id="term-for-idl-frozen-array">FrozenArray</span>
+     <li><span class="dfn-paneled" id="term-for-invalidstateerror">InvalidStateError</span>
+     <li><span class="dfn-paneled" id="term-for-NewObject">NewObject</span>
+     <li><span class="dfn-paneled" id="term-for-notsupportederror">NotSupportedError</span>
+     <li><span class="dfn-paneled" id="term-for-operationerror">OperationError</span>
+     <li><span class="dfn-paneled" id="term-for-idl-promise">Promise</span>
+     <li><span class="dfn-paneled" id="term-for-SameObject">SameObject</span>
+     <li><span class="dfn-paneled" id="term-for-SecureContext">SecureContext</span>
+     <li><span class="dfn-paneled" id="term-for-securityerror">SecurityError</span>
+     <li><span class="dfn-paneled" id="term-for-exceptiondef-typeerror">TypeError</span>
+     <li><span class="dfn-paneled" id="term-for-a-new-promise">a new promise</span>
+     <li><span class="dfn-paneled" id="term-for-idl-any">any</span>
+     <li><span class="dfn-paneled" id="term-for-idl-boolean">boolean</span>
+     <li><span class="dfn-paneled" id="term-for-idl-double">double</span>
+     <li><span class="dfn-paneled" id="term-for-dfn-frozen-array-type">frozen array type</span>
+     <li><span class="dfn-paneled" id="term-for-dfn-indexed-property-getter">indexed property getter</span>
+     <li><span class="dfn-paneled" id="term-for-invoke-a-callback-function">invoke the web idl callback function</span>
+     <li><span class="dfn-paneled" id="term-for-idl-long">long</span>
+     <li><span class="dfn-paneled" id="term-for-new">new</span>
+     <li><span class="dfn-paneled" id="term-for-reject">reject</span>
+     <li><span class="dfn-paneled" id="term-for-resolve">resolve</span>
+     <li><span class="dfn-paneled" id="term-for-idl-sequence">sequence</span>
+     <li><span class="dfn-paneled" id="term-for-this">this</span>
+     <li><span class="dfn-paneled" id="term-for-idl-undefined">undefined</span>
+     <li><span class="dfn-paneled" id="term-for-idl-unsigned-long">unsigned long</span>
     </ul>
    <li>
     <a data-link-type="biblio">[webxr-ar-module-1]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-first-person-observer-view" style="color:initial">first-person observer view</span>
+     <li><span class="dfn-paneled" id="term-for-first-person-observer-view">first-person observer view</span>
     </ul>
    <li>
     <a data-link-type="biblio">[webxr-layers-1]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-dom-xrrenderstate-layers" style="color:initial">layers</span>
+     <li><span class="dfn-paneled" id="term-for-dom-xrrenderstate-layers">layers</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -9635,10 +9639,10 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li><a href="#ref-for-view②">4.1. XRSession</a> <a href="#ref-for-view③">(2)</a> <a href="#ref-for-view④">(3)</a>
     <li><a href="#ref-for-view⑤">4.3. Animation Frames</a>
     <li><a href="#ref-for-view⑥">5.1. XRFrame</a>
-    <li><a href="#ref-for-view⑦">7.1. XRView</a> <a href="#ref-for-view⑧">(2)</a> <a href="#ref-for-view⑨">(3)</a> <a href="#ref-for-view①⓪">(4)</a> <a href="#ref-for-view①①">(5)</a> <a href="#ref-for-view①②">(6)</a> <a href="#ref-for-view①③">(7)</a> <a href="#ref-for-view①④">(8)</a> <a href="#ref-for-view①⑤">(9)</a> <a href="#ref-for-view①⑥">(10)</a> <a href="#ref-for-view①⑦">(11)</a> <a href="#ref-for-view①⑧">(12)</a> <a href="#ref-for-view①⑨">(13)</a> <a href="#ref-for-view②⓪">(14)</a> <a href="#ref-for-view②①">(15)</a> <a href="#ref-for-view②②">(16)</a> <a href="#ref-for-view②③">(17)</a> <a href="#ref-for-view②④">(18)</a> <a href="#ref-for-view②⑤">(19)</a> <a href="#ref-for-view②⑥">(20)</a> <a href="#ref-for-view②⑦">(21)</a> <a href="#ref-for-view②⑧">(22)</a>
-    <li><a href="#ref-for-view②⑨">7.2. Primary and Secondary Views</a> <a href="#ref-for-view③⓪">(2)</a> <a href="#ref-for-view③①">(3)</a> <a href="#ref-for-view③②">(4)</a>
-    <li><a href="#ref-for-view③③">9.2. XRViewerPose</a> <a href="#ref-for-view③④">(2)</a>
-    <li><a href="#ref-for-view③⑤">11.2. XRWebGLLayer</a> <a href="#ref-for-view③⑥">(2)</a>
+    <li><a href="#ref-for-view⑦">7.1. XRView</a> <a href="#ref-for-view⑧">(2)</a> <a href="#ref-for-view⑨">(3)</a> <a href="#ref-for-view①⓪">(4)</a> <a href="#ref-for-view①①">(5)</a> <a href="#ref-for-view①②">(6)</a> <a href="#ref-for-view①③">(7)</a> <a href="#ref-for-view①④">(8)</a> <a href="#ref-for-view①⑤">(9)</a> <a href="#ref-for-view①⑥">(10)</a> <a href="#ref-for-view①⑦">(11)</a> <a href="#ref-for-view①⑧">(12)</a> <a href="#ref-for-view①⑨">(13)</a> <a href="#ref-for-view②⓪">(14)</a> <a href="#ref-for-view②①">(15)</a> <a href="#ref-for-view②②">(16)</a> <a href="#ref-for-view②③">(17)</a> <a href="#ref-for-view②④">(18)</a> <a href="#ref-for-view②⑤">(19)</a> <a href="#ref-for-view②⑥">(20)</a> <a href="#ref-for-view②⑦">(21)</a>
+    <li><a href="#ref-for-view②⑧">7.2. Primary and Secondary Views</a> <a href="#ref-for-view②⑨">(2)</a> <a href="#ref-for-view③⓪">(3)</a> <a href="#ref-for-view③①">(4)</a>
+    <li><a href="#ref-for-view③②">9.2. XRViewerPose</a> <a href="#ref-for-view③③">(2)</a>
+    <li><a href="#ref-for-view③④">11.2. XRWebGLLayer</a> <a href="#ref-for-view③⑤">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="view-offset">
@@ -9691,12 +9695,6 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <ul>
     <li><a href="#ref-for-view-current-viewport-scale">7.1. XRView</a>
     <li><a href="#ref-for-view-current-viewport-scale①">11.2. XRWebGLLayer</a> <a href="#ref-for-view-current-viewport-scale②">(2)</a> <a href="#ref-for-view-current-viewport-scale③">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="view-minimum-viewport-scale">
-   <b><a href="#view-minimum-viewport-scale">#view-minimum-viewport-scale</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-view-minimum-viewport-scale">7.1. XRView</a> <a href="#ref-for-view-minimum-viewport-scale①">(2)</a> <a href="#ref-for-view-minimum-viewport-scale②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-xreye">
