@@ -32,19 +32,19 @@ The [WebXR Device API Specification][1] is the repository of the [Immersive Web 
 * [WebXR AR Module][26]: For enabling AR capable Displays & Sessions
 * [Dom Overlays][27]: A mechanism for providing a simple DOM overlay on top of the graphics
 * [Hit Test][28]: Cast a ray onto real world geometry
-* [Layers](https://github.com/immersive-web/layers)
-* [WebXR Hands Input](https://github.com/immersive-web/webxr-hands-input)
+* [Layers][30]
+* [WebXR Hands Input][31]
 
 ### Immersive Web Community Group Specifications
 
-* [Anchors](https://github.com/immersive-web/anchors)
-* [Computer Vision](https://github.com/immersive-web/computer-vision)
-* [Geo Alignment](https://github.com/immersive-web/geo-alignment)
-* [Lighting Estimation](https://github.com/immersive-web/lighting-estimation)
-* [Navigation](https://github.com/immersive-web/navigation)
-* [Performance Improvements](https://github.com/immersive-web/performance-improvements)
-* [Real World Geometry](https://github.com/immersive-web/real-world-geometry)
-* [Spatial Favicons](https://github.com/immersive-web/spatial-favicons)
+* [Anchors][32]
+* [Computer Vision][33]
+* [Geo Alignment][34]
+* [Lighting Estimation][35]
+* [Navigation][36]
+* [Performance Improvements][37]
+* [Real World Geometry][38]
+* [Spatial Favicons][39]
 
 ### Related Specifications
 
@@ -124,3 +124,13 @@ Per the [`LICENSE.md`](LICENSE.md) file:
 [27]:https://github.com/immersive-web/dom-overlays
 [28]:https://github.com/immersive-web/hit-test
 [29]:https://github.com/immersive-web/webxr-input-profiles
+[30]:https://github.com/immersive-web/layers
+[31]:https://github.com/immersive-web/webxr-hands-input
+[32]:https://github.com/immersive-web/anchors
+[33]:https://github.com/immersive-web/computer-vision
+[34]:https://github.com/immersive-web/geo-alignment
+[35]:https://github.com/immersive-web/lighting-estimation
+[36]:https://github.com/immersive-web/navigation
+[37]:https://github.com/immersive-web/performance-improvements
+[38]:https://github.com/immersive-web/real-world-geometry
+[39]:https://github.com/immersive-web/spatial-favicons
