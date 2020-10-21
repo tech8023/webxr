@@ -32,8 +32,8 @@ The [WebXR Device API Specification][1] is the repository of the [Immersive Web 
 * [WebXR AR Module][26]: For enabling AR capable Displays & Sessions
 * [Dom Overlays][27]: A mechanism for providing a simple DOM overlay on top of the graphics
 * [Hit Test][28]: Cast a ray onto real world geometry
-* [Layers][30]
-* [WebXR Hands Input][31]
+* [Layers][30]: Exposes WebGL and media layers for WebXR
+* [WebXR Hands Input][31]: Adds hand input support in WebXR
 
 ### Immersive Web Community Group Specifications
 
