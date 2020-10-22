@@ -45,6 +45,8 @@ The [WebXR Device API Specification][1] is the repository of the [Immersive Web 
 * [Performance Improvements][37]
 * [Real World Geometry][38]
 * [Spatial Favicons][39]
+* [Depth Sensing][40]
+* [WebXR WebGPU Binding][41]
 
 ### Related Specifications
 
@@ -134,3 +136,5 @@ Per the [`LICENSE.md`](LICENSE.md) file:
 [37]:https://github.com/immersive-web/performance-improvements
 [38]:https://github.com/immersive-web/real-world-geometry
 [39]:https://github.com/immersive-web/spatial-favicons
+[40]:https://github.com/immersive-web/depth-sensing
+[41]:https://github.com/immersive-web/WebXR-WebGPU-Binding
