@@ -597,7 +597,7 @@ Fingerprinting considerations of {{XRSystem/isSessionSupported()}} {#issessionsu
 ----------------------------------
 Because {{XRSystem/isSessionSupported()}} can be called without user activation it may be used as a fingerprinting vector despite the limited amount of information it reports.
 
-<dfn enum-value for="PermissionName">"xr-session-supported"</dfn> [=powerful feature=] gates access to the {{XRSystem/isSessionSupported()}} API in cases where there are fingerprinting concerns.
+<dfn enum-value for="PermissionName">"xr-session-supported"</dfn> [=powerful feature=] gates access to the {{XRSystem/isSessionSupported()}} API.
 
 The {{PermissionName/"xr-session-supported"}}’s permission-related algorithms and types are defined as follows:
 
