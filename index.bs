@@ -396,6 +396,7 @@ dictionary XRSessionSupportedPermissionDescriptor: PermissionDescriptor {
 
 {{PermissionDescriptor/name}} for {{XRPermissionDescriptor}} is {{PermissionName/"xr-session-supported"}}.
 
+</dd></dl>
 
 {{PermissionName/"xr-session-supported"}} may be granted automatically for some systems based on the criteria below.
 
