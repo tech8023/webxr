@@ -347,7 +347,7 @@ When this method is invoked, it MUST run the following steps:
         1. Let |device| be the result of [=ensure an immersive XR device is selected|ensuring an immersive XR device is selected=].
         1. If |device| is null, [=/resolve=] |promise| with `false` and abort these steps.
         1. If |device|'s [=list of supported modes=] does not [=list/contain=] |mode|, [=queue a task=] to [=/resolve=] |promise| with `false` and abort these steps.
-        1. [=request permission to use=] the [=powerful feature=] {{PermissionName/"xr-session-supported"}} with {{XRSessionSupportedPermissionDescriptor}} with {{XRSessionSupportedPermissionDescriptor/mode}} equal to |mode|. If it returns {{PermissionState/"denied"}} [=queue a task=] to [=/resolve=] |promise| with `false` and abort these steps.
+        1. [=request permission to use=] the [=powerful feature=] {{PermissionName/"xr-session-supported"}} with {{XRSessionSupportedPermissionDescriptor}} with {{XRSessionSupportedPermissionDescriptor/mode}} equal to |mode|. If it returns {{PermissionState/"denied"}} [=queue a task=] to [=/resolve=] |promise| with `false` and abort these steps. <span class=note>See [[#issessionsupported-fingerprinting|Fingerprinting considerations]] for more information.
         1. [=queue a task=] to [=/resolve=] |promise| with `true`.
 
     </dl>
@@ -593,7 +593,7 @@ Note: {{XRReferenceSpaceType/"local"}} is always included in the [=requested fea
 Note: For example, several VR devices support either configuring a safe boundary for the user to move around within or skipping boundary configuration and operating in a mode where the user is expected to stand in place. Such a device can be considered to be [=capable of supporting=] {{"bounded-floor"}} {{XRReferenceSpace}}s even if they are currently not configured with safety boundaries, because it's expected that the user could configure the device appropriately if the experience required it. This is to allow user agents to avoid fully initializing the [=XRSession/XR device=] or waiting for the user's environment to be recognized prior to [=resolve the requested features|resolving the requested features=] if desired. If, however, the user agent knows that the boundary state at the time the session is requested without additional initialization it may choose to reject the {{"bounded-floor"}} feature if the safety boundary not already configured.
 
 
-Fingerprinting considerations of `isSessionSupported()` {#issessionsupported-fingerprinting}
+Fingerprinting considerations of {{XRSystem/isSessionSupported()}} {#issessionsupported-fingerprinting}
 ----------------------------------
 Because {{XRSystem/isSessionSupported()}} can be called without user activation it may be used as a fingerprinting vector despite the limited amount of information it reports.
 
