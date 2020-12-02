@@ -616,7 +616,7 @@ dictionary XRSessionSupportedPermissionDescriptor: PermissionDescriptor {
 
 </dd></dl>
 
-### Automatic granting of {{PermissionName/"xr-session-supported"}} ### {#automatic-granting-xr-session-supported}
+### Considerations for when to automatically grant {{PermissionName/"xr-session-supported"}} ### {#automatic-granting-xr-session-supported}
 
 <section class="non-normative">
 
