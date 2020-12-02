@@ -595,7 +595,7 @@ Note: For example, several VR devices support either configuring a safe boundary
 
 Fingerprinting considerations of {{XRSystem/isSessionSupported()}} {#issessionsupported-fingerprinting}
 ----------------------------------
-Because {{XRSystem/isSessionSupported()}} can be called without user activation it may be used as a fingerprinting vector despite the limited amount of information it reports.
+Because {{XRSystem/isSessionSupported()}} can be called without user activation it may be used as a fingerprinting vector.
 
 <dfn enum-value for="PermissionName">"xr-session-supported"</dfn> [=powerful feature=] gates access to the {{XRSystem/isSessionSupported()}} API.
 
