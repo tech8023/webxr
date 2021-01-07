@@ -50,19 +50,19 @@
   .tg th {
     border-style: solid;
     border-width: 1px;
-    background: #90b8de;
+    background: var(--def-bg);
     color: #fff;
     font-family: sans-serif;
     font-weight: bold;
-    border-color: grey;
+    border-color: var(--def-border);
   }
   .tg td {
     padding: 4px 5px;
-    background-color: rgb(221, 238, 255);
+    background-color: var(--def-bg);
     font-family: monospace;
     border-style: solid;
     border-width: 1px;
-    border-color: grey;
+    border-color: var(--def-border);
     overflow: hidden;
     word-break: normal;
   }
@@ -694,7 +694,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-12-02">2 December 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-01-07">7 January 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -719,7 +719,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2020 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2021 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -769,11 +769,6 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li><a href="#xrsystem-interface"><span class="secno">3.2</span> <span class="content">XRSystem</span></a>
       <li><a href="#xrsessionmode-enum"><span class="secno">3.3</span> <span class="content">XRSessionMode</span></a>
       <li><a href="#feature-dependencies"><span class="secno">3.4</span> <span class="content">Feature Dependencies</span></a>
-      <li>
-       <a href="#issessionsupported-fingerprinting"><span class="secno">3.5</span> <span class="content">Fingerprinting considerations of <code class="idl"><span>isSessionSupported()</span></code></span></a>
-       <ol class="toc">
-        <li><a href="#automatic-granting-xr-session-supported"><span class="secno">3.5.1</span> <span class="content">Considerations for when to automatically grant <code class="idl"><span>"xr-session-supported"</span></code></span></a>
-       </ol>
      </ol>
     <li>
      <a href="#session"><span class="secno">4</span> <span class="content">Session</span></a>
@@ -868,6 +863,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li><a href="#trustedenvironment-security"><span class="secno">13.6</span> <span class="content">Trusted Environment</span></a>
       <li><a href="#contextisolation-security"><span class="secno">13.7</span> <span class="content">Context Isolation</span></a>
       <li><a href="#fingerprinting-security"><span class="secno">13.8</span> <span class="content">Fingerprinting</span></a>
+      <li>
+       <a href="#issessionsupported-fingerprinting"><span class="secno">13.9</span> <span class="content">Fingerprinting considerations of <code class="idl"><span>isSessionSupported()</span></code></span></a>
+       <ol class="toc">
+        <li><a href="#automatic-granting-xr-session-supported"><span class="secno">13.9.1</span> <span class="content">Considerations for when to automatically grant <code class="idl"><span>"xr-session-supported"</span></code></span></a>
+       </ol>
      </ol>
     <li>
      <a href="#integrations"><span class="secno">14</span> <span class="content">Integrations</span></a>
@@ -952,7 +952,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/xr" title="The read-only xr property provided by the Navigator or WorkerNavigator interface returns an XR object which can be used to access the WebXR Device API.">Navigator/xr</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/xr" title="The read-only xr property provided by the Navigator or WorkerNavigator interface returns an XRSystem object which can be used to access the WebXR Device API.">Navigator/xr</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>79+</span></span>
@@ -1027,7 +1027,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task">Queue a task</a> to set the <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible">XR compatible</a> boolean of all <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase">WebGLRenderingContextBase</a></code> instances to <code>false</code>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">fire an event</a> named <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange">devicechange</a></code> on the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object" id="ref-for-context-object">context object</a>'s <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator" id="ref-for-dom-navigator">navigator</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr①">xr</a></code>.</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">fire an event</a> named <code class="idl"><a class="idl-code" data-link-type="event">devicechange</a></code> on the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object" id="ref-for-context-object">context object</a>'s <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator" id="ref-for-dom-navigator">navigator</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr①">xr</a></code>.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②">Queue a task</a> to fire appropriate <code>change</code> events on any <code class="idl"><a data-link-type="idl" href="#xrpermissionstatus" id="ref-for-xrpermissionstatus">XRPermissionStatus</a></code> objects who are affected by the change in the <a data-link-type="dfn" href="#immersive-xr-device" id="ref-for-immersive-xr-device①⓪">immersive XR device</a> or <a data-link-type="dfn" href="#inline-xr-device" id="ref-for-inline-xr-device⑥">inline XR device</a>.</p>
     </ol>
@@ -1064,7 +1064,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      </div>
     </div>
    </div>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSystem" data-dfn-type="attribute" data-export id="dom-xrsystem-ondevicechange"><code>ondevicechange</code></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes">Event handler IDL attribute</a> for the <code class="idl"><a data-link-type="idl" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange①">devicechange</a></code> event type.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSystem" data-dfn-type="attribute" data-export id="dom-xrsystem-ondevicechange"><code>ondevicechange</code></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes">Event handler IDL attribute</a> for the <code class="idl"><a data-link-type="idl">devicechange</a></code> event type.</p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
@@ -1383,40 +1383,6 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p class="note" role="note"><span>Note:</span> <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-local" id="ref-for-dom-xrreferencespacetype-local②">"local"</a></code> is always included in the <a data-link-type="dfn" href="#requested-features" id="ref-for-requested-features①">requested features</a> of <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①①">immersive sessions</a> as a <a data-link-type="dfn" href="#default-features" id="ref-for-default-features">default feature</a>, and as such <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①②">immersive sessions</a> always need to obtain <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①">explicit consent</a> or <a data-link-type="dfn" href="#implicit-consent" id="ref-for-implicit-consent①">implicit consent</a>.</p>
    <p><a data-link-type="dfn" href="#requested-features" id="ref-for-requested-features②">Requested features</a> can only be enabled for a session if the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device③">XR device</a> is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="capable-of-supporting">capable of supporting</dfn> the feature, which means that the feature is known to be supported by the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device④">XR device</a> in some configurations, even if the current configuration has not yet been verified as supporting the feature. The user agent MAY apply more rigorous constraints if desired in order to yield a more consistent user experience.</p>
    <p class="note" role="note"><span>Note:</span> For example, several VR devices support either configuring a safe boundary for the user to move around within or skipping boundary configuration and operating in a mode where the user is expected to stand in place. Such a device can be considered to be <a data-link-type="dfn" href="#capable-of-supporting" id="ref-for-capable-of-supporting">capable of supporting</a> <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor①">"bounded-floor"</a></code> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace">XRReferenceSpace</a></code>s even if they are currently not configured with safety boundaries, because it’s expected that the user could configure the device appropriately if the experience required it. This is to allow user agents to avoid fully initializing the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device⑤">XR device</a> or waiting for the user’s environment to be recognized prior to <a data-link-type="dfn" href="#resolve-the-requested-features" id="ref-for-resolve-the-requested-features">resolving the requested features</a> if desired. If, however, the user agent knows that the boundary state at the time the session is requested without additional initialization it may choose to reject the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor②">"bounded-floor"</a></code> feature if the safety boundary not already configured.</p>
-   <h3 class="heading settled" data-level="3.5" id="issessionsupported-fingerprinting"><span class="secno">3.5. </span><span class="content">Fingerprinting considerations of <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported⑥">isSessionSupported()</a></code></span><a class="self-link" href="#issessionsupported-fingerprinting"></a></h3>
-    Because <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported⑦">isSessionSupported()</a></code> can be called without user activation it may be used as a fingerprinting vector. 
-   <p><dfn class="dfn-paneled idl-code" data-dfn-for="PermissionName" data-dfn-type="enum-value" data-export id="dom-permissionname-xr-session-supported"><code>"xr-session-supported"</code></dfn> <a data-link-type="dfn" href="https://w3c.github.io/permissions/#powerful-feature" id="ref-for-powerful-feature①">powerful feature</a> gates access to the <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported⑧">isSessionSupported()</a></code> API.</p>
-   <p>The <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported①">"xr-session-supported"</a></code>’s permission-related algorithms and types are defined as follows:</p>
-   <dl>
-    <dt><a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-descriptor-type" id="ref-for-permission-descriptor-type">permission descriptor type</a>
-    <dd>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-xrsessionsupportedpermissiondescriptor"><code><c- g>XRSessionSupportedPermissionDescriptor</c-></code></dfn>: <a data-link-type="idl-name" href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor" id="ref-for-dictdef-permissiondescriptor"><c- n>PermissionDescriptor</c-></a> {
-  <a data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode⑦"><c- n>XRSessionMode</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="XRSessionSupportedPermissionDescriptor" data-dfn-type="dict-member" data-export data-type="XRSessionMode " id="dom-xrsessionsupportedpermissiondescriptor-mode"><code><c- g>mode</c-></code></dfn>;
-};
-</pre>
-     <p><code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissiondescriptor-name" id="ref-for-dom-permissiondescriptor-name">name</a></code> for <code class="idl"><a data-link-type="idl" href="#dictdef-xrpermissiondescriptor" id="ref-for-dictdef-xrpermissiondescriptor①">XRPermissionDescriptor</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported②">"xr-session-supported"</a></code>.</p>
-   </dl>
-   <h4 class="heading settled" data-level="3.5.1" id="automatic-granting-xr-session-supported"><span class="secno">3.5.1. </span><span class="content">Considerations for when to automatically grant <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported③">"xr-session-supported"</a></code></span><a class="self-link" href="#automatic-granting-xr-session-supported"></a></h4>
-   <section class="non-normative">
-    <p>There is often tension between privacy and personalization on the Web. This section provides guidance on where that tradeoff can be circumscribed, and when the user agent can describe the browser’s WebXR capabilities to a site via <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported⑨">isSessionSupported()</a></code> without any privacy reduction.</p>
-    <p><code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported④">"xr-session-supported"</a></code> may be granted automatically for some systems based on the criteria below. This can provide a better user experience and mitigate permissions fatigue.</p>
-    <p>A set of user agents is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="indistinguishable-by-user-agent-string">indistinguishable by user-agent string</dfn> if they all report the same <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator-useragent" id="ref-for-dom-navigator-useragent">userAgent</a></code> and <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator-appversion" id="ref-for-dom-navigator-appversion">appVersion</a></code>. Such classes are typically identified by the browser version and platform/device being run on, but cannot be distinguished by the status of any connected external device. We can use the concept of user agents that are <a data-link-type="dfn" href="#indistinguishable-by-user-agent-string" id="ref-for-indistinguishable-by-user-agent-string①">indistinguishable by user-agent string</a> to properly assess fingerprinting risk.</p>
-    <p>Some user agents <a data-link-type="dfn" href="#indistinguishable-by-user-agent-string" id="ref-for-indistinguishable-by-user-agent-string②">indistinguishable by user-agent string</a> will <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="never-support">never support</dfn> sessions of a given <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode⑧">XRSessionMode</a></code>. <span class="note">For example: User agents running on a model of phone that is known to not meet requirements for mobile AR support.</span> In these cases there is little fingerprinting risk in <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①⓪">isSessionSupported()</a></code> always reporting the <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode⑨">XRSessionMode</a></code> is not supported because every such device will consistently report the same value and it’s assumed that device type and model can be inferred in other ways, such as through <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator-useragent" id="ref-for-dom-navigator-useragent①">userAgent</a></code>. Thus, on such systems, the user-agent should automatically deny <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported⑤">"xr-session-supported"</a></code> for the relevant <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①⓪">XRSessionMode</a></code>.</p>
-    <p>Other user agents will <a data-link-type="dfn" href="#indistinguishable-by-user-agent-string" id="ref-for-indistinguishable-by-user-agent-string③">indistinguishable by user-agent string</a> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="usually-support">usually support</dfn> sessions of a given <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①①">XRSessionMode</a></code>. <span class="note">For example: User agents known to support WebXR that run exclusively within VR headsets are likely to support <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr④">"immersive-vr"</a></code> sessions unless specifically blocked by the user.</span> In these cases reporting that the <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①②">XRSessionMode</a></code> is not supported, while accurate, would offer more uniquely identifying information about the user. As such reporting that the <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①③">XRSessionMode</a></code> is always available and allowing <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession③">requestSession()</a></code> to fail is more privacy-preserving while likely not being a source of confusion for the user. On such systems, the user-agent should automatically grant <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported⑥">"xr-session-supported"</a></code> for the relevant <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①④">XRSessionMode</a></code>.</p>
-    <p>User agents <a data-link-type="dfn" href="#indistinguishable-by-user-agent-string" id="ref-for-indistinguishable-by-user-agent-string④">indistinguishable by user-agent string</a> for which availability of XR capabilities is highly variable, such as desktop systems which support XR peripherals, present the highest fingerprinting risk. User agents on such devices should not automatically grant <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported⑦">"xr-session-supported"</a></code> in a way that allows the <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①①">isSessionSupported()</a></code> API to provide additional fingerprinting bits.</p>
-    <div class="note" role="note">
-      Note: Some acceptable approaches to handle such cases are as follows: 
-     <ul>
-      <li data-md>
-       <p>Always judging <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent②">explicit consent</a> for <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported⑧">"xr-session-supported"</a></code> (with a potentially cached permissions prompt or similar) when <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①②">isSessionSupported()</a></code> is called.</p>
-      <li data-md>
-       <p>Automatically granting <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported⑨">"xr-session-supported"</a></code> but having <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①③">isSessionSupported()</a></code> always report <code>true</code> even on platforms which do not consistently have XR capabilities available, regardless of whether or not the appropriate hardware or software is present. This comes at the cost of user ergonomics, as it will cause pages to advertise XR content to users that cannot view it.</p>
-      <li data-md>
-       <p>Have <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①④">isSessionSupported()</a></code> request <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent③">explicit consent</a> for <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported①⓪">"xr-session-supported"</a></code> when the appropriate hardware is present, and when such hardware is _not_ present, return <code>false</code> after an appropriately random length of time. In such an implementation content must not be able to distinguish between cases where the user agent was not connected to XR hardware and cases where the user agent was connected to XR hardware but the user declined to provide <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent④">explicit consent</a>.</p>
-     </ul>
-    </div>
-    <p>Whatever the technique chosen, it should not reveal additional knowledge about connected XR hardware without <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑤">explicit consent</a>.</p>
-   </section>
    <h2 class="heading settled" data-level="4" id="session"><span class="secno">4. </span><span class="content">Session</span><a class="self-link" href="#session"></a></h2>
    <h3 class="heading settled" data-level="4.1" id="xrsession-interface"><span class="secno">4.1. </span><span class="content">XRSession</span><a class="self-link" href="#xrsession-interface"></a></h3>
    <div class="mdn-anno wrapped after">
@@ -1435,7 +1401,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      </div>
     </div>
    </div>
-   <p>Any interaction with XR hardware is done via an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑧">XRSession</a></code> object, which can only be retrieved by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession④">requestSession()</a></code> on the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑨">XRSystem</a></code> object. Once a session has been successfully acquired, it can be used to <code class="idl"><a data-link-type="idl" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose">poll the viewer pose</a></code>, query information about the user’s environment, and present imagery to the user.</p>
+   <p>Any interaction with XR hardware is done via an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑧">XRSession</a></code> object, which can only be retrieved by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession③">requestSession()</a></code> on the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑨">XRSystem</a></code> object. Once a session has been successfully acquired, it can be used to <code class="idl"><a data-link-type="idl" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose">poll the viewer pose</a></code>, query information about the user’s environment, and present imagery to the user.</p>
    <p>The user agent, when possible, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="should-not-initialize-device-tracking">SHOULD NOT initialize device tracking</dfn> or rendering capabilities until an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑨">XRSession</a></code> has been acquired. This is to prevent unwanted side effects of engaging the XR systems when they’re not actively being used, such as increased battery usage or related utility applications from appearing when first navigating to a page that only wants to test for the presence of XR hardware in order to advertise XR features. Not all XR platforms offer ways to detect the hardware’s presence without initializing tracking, however, so this is only a strong recommendation.</p>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-xrvisibilitystate"><code><c- g>XRVisibilityState</c-></code></dfn> {
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrvisibilitystate-visible" id="ref-for-dom-xrvisibilitystate-visible①"><c- s>"visible"</c-></a>,
@@ -1470,7 +1436,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑨"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onvisibilitychange" id="ref-for-dom-xrsession-onvisibilitychange"><c- g>onvisibilitychange</c-></a>;
 };
 </pre>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②⓪">XRSession</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRSession" data-dfn-type="dfn" data-noexport id="xrsession-mode">mode</dfn>, which is one of the values of <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①⑤">XRSessionMode</a></code>.</p>
+   <p>Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②⓪">XRSession</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRSession" data-dfn-type="dfn" data-noexport id="xrsession-mode">mode</dfn>, which is one of the values of <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode⑦">XRSessionMode</a></code>.</p>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②①">XRSession</a></code> has an <dfn class="dfn-paneled" data-dfn-for="XRSession" data-dfn-type="dfn" data-noexport id="xrsession-animation-frame">animation frame</dfn>, which is an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe">XRFrame</a></code> initialized with <a data-link-type="dfn" href="#xrframe-active" id="ref-for-xrframe-active">active</a> set to <code>false</code>, <a data-link-type="dfn" href="#xrframe-animationframe" id="ref-for-xrframe-animationframe">animationFrame</a> set to <code>true</code>, and <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session">session</a></code> set to the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②②">XRSession</a></code>.</p>
    <div class="algorithm" data-algorithm="initialize-session">
     <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="initialize-the-session">initialize the session</dfn>, given <var>session</var>, <var>mode</var>, and <var>device</var>, the user agent MUST run the following steps:</p>
@@ -4597,7 +4563,7 @@ async <c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c
      </div>
     </div>
    </div>
-   <p>The user agent MUST fire a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSystem" data-dfn-type="event" data-export id="eventdef-xrsystem-devicechange"><code>devicechange</code></dfn> event on the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem①⓪">XRSystem</a></code> object to indicate that the availability of <a data-link-type="dfn" href="#immersive-xr-device" id="ref-for-immersive-xr-device③②">immersive XR device</a>s has been changed unless the document’s origin is not allowed to use the "xr-spatial-tracking" <a href="#permissions-policy">permissions policy</a>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#event" id="ref-for-event④">Event</a></code>.</p>
+   <p>The user agent MUST fire a <dfn class="idl-code" data-dfn-for="XRSystem" data-dfn-type="event" data-export id="eventdef-xrsystem-devicechange"><code>devicechange</code><a class="self-link" href="#eventdef-xrsystem-devicechange"></a></dfn> event on the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem①⓪">XRSystem</a></code> object to indicate that the availability of <a data-link-type="dfn" href="#immersive-xr-device" id="ref-for-immersive-xr-device③②">immersive XR device</a>s has been changed unless the document’s origin is not allowed to use the "xr-spatial-tracking" <a href="#permissions-policy">permissions policy</a>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#event" id="ref-for-event④">Event</a></code>.</p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
@@ -4738,13 +4704,13 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     In some environments a page may be presented as an application, installed with the express intent of running immersive content. In that case <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="launching-a-web-application">launching a web application</dfn> MAY also serve as an indication of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑧">user intent</a>. 
    <h4 class="heading settled" data-level="13.2.3" id="user-consent"><span class="secno">13.2.3. </span><span class="content">Implicit and Explicit consent</span><a class="self-link" href="#user-consent"></a></h4>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="implicit-consent">Implicit consent</dfn> is when the user agent makes a judgement on the consent of a user without explicitly asking for it, for example, based on the install status of a web application or frequency and recency of visits. Given the sensitivity of XR data, caution is strongly advised when relying on implicit signals.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="explicit-consent">Explicit consent</dfn> is when the user agent makes a judgement on the consent of a user based on having explicitly asked for it. When gathering <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑥">explicit consent</a>, user agents present an explanation of what is being requested and provide users the option to decline. Requests for user consent can be presented in many visual forms based on the features being protected and user agent choice. Install status of a web application MAY count as a signal of <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑦">explicit consent</a> provided some form of <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑧">explicit consent</a> is requested at install time.</p>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="explicit-consent">Explicit consent</dfn> is when the user agent makes a judgement on the consent of a user based on having explicitly asked for it. When gathering <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent②">explicit consent</a>, user agents present an explanation of what is being requested and provide users the option to decline. Requests for user consent can be presented in many visual forms based on the features being protected and user agent choice. Install status of a web application MAY count as a signal of <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent③">explicit consent</a> provided some form of <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent④">explicit consent</a> is requested at install time.</p>
    <h4 class="heading settled" data-level="13.2.4" id="consent-duration"><span class="secno">13.2.4. </span><span class="content">Duration of consent</span><a class="self-link" href="#consent-duration"></a></h4>
-    It is recommended that once <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑨">explicit consent</a> is granted for a specific <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a> that this consent persist until the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context③">browsing context</a> has ended. User agents may choose to lengthen or shorten this consent duration based upon implicit or explicit signals of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑨">user intent</a>, but implementations are advised to exercise caution when deviating from this recommendation, particularly when relying on implicit signals. For example, it may be appropriate for a web application installed with the express intent of running immersive content to persist the user’s consent, but not for an installed web application where immersive content is a secondary feature. 
+    It is recommended that once <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑤">explicit consent</a> is granted for a specific <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a> that this consent persist until the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context③">browsing context</a> has ended. User agents may choose to lengthen or shorten this consent duration based upon implicit or explicit signals of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑨">user intent</a>, but implementations are advised to exercise caution when deviating from this recommendation, particularly when relying on implicit signals. For example, it may be appropriate for a web application installed with the express intent of running immersive content to persist the user’s consent, but not for an installed web application where immersive content is a secondary feature. 
    <p>Regardless of how long the user agent chooses to persist the user’s consent, <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information②">sensitive information</a> MUST only be exposed by an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①③②">XRSession</a></code> which has not <a data-link-type="dfn" href="#ended" id="ref-for-ended④">ended</a>.</p>
    <h3 class="heading settled" data-level="13.3" id="mid-session-consent"><span class="secno">13.3. </span><span class="content">Mid-session consent</span><a class="self-link" href="#mid-session-consent"></a></h3>
-   <p>There are multiple non-XR APIs which cause user agents to request <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①⓪">explicit consent</a> to use a feature. If the user agent will request the user’s consent while there is an <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session⑧">active immersive session</a>, the user agent MUST <a data-link-type="dfn" href="#shut-down-the-session" id="ref-for-shut-down-the-session③">shut down the session</a> prior to displaying the consent request to the user. If the user’s consent for the feature had been granted prior to the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session⑨">active immersive session</a> being created the session does not need to be terminated.</p>
-   <p class="note" role="note"><span>Note:</span> This limitation is to ensure that there is behavioral parity between all user agents until consensus is reached about how user agents should manage mid-session <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①①">explicit consent</a>. It is not expected to be a long term requirement.</p>
+   <p>There are multiple non-XR APIs which cause user agents to request <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑥">explicit consent</a> to use a feature. If the user agent will request the user’s consent while there is an <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session⑧">active immersive session</a>, the user agent MUST <a data-link-type="dfn" href="#shut-down-the-session" id="ref-for-shut-down-the-session③">shut down the session</a> prior to displaying the consent request to the user. If the user’s consent for the feature had been granted prior to the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session⑨">active immersive session</a> being created the session does not need to be terminated.</p>
+   <p class="note" role="note"><span>Note:</span> This limitation is to ensure that there is behavioral parity between all user agents until consensus is reached about how user agents should manage mid-session <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑦">explicit consent</a>. It is not expected to be a long term requirement.</p>
    <h3 class="heading settled" data-level="13.4" id="data-adjustments-header"><span class="secno">13.4. </span><span class="content">Data adjustments</span><a class="self-link" href="#data-adjustments-header"></a></h3>
    <p>In some cases, security and privacy threats can be mitigated through <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="data-adjustment">data adjustment</dfn>s such as throttling, quantizing, rounding, limiting, or otherwise manipulating the data reported from the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⑤">XR device</a>. This may sometimes be necessary to avoid fingerprinting, even in situations when <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①⓪">user intent</a> has been established.  However, <a data-link-type="dfn" href="#data-adjustment" id="ref-for-data-adjustment">data adjustment</a> mitigations MUST only be used in situations which would not result in user discomfort.</p>
    <h4 class="heading settled" data-level="13.4.1" id="throttling-header"><span class="secno">13.4.1. </span><span class="content">Throttling</span><a class="self-link" href="#throttling-header"></a></h4>
@@ -4763,7 +4729,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
      <li data-md>
       <p>If the request was not made while the <var>global object</var> has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation③">transient activation</a> or when <a data-link-type="dfn" href="#launching-a-web-application" id="ref-for-launching-a-web-application">launching a web application</a>, return <code>false</code></p>
      <li data-md>
-      <p>If <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①①">user intent</a> to begin an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session③②">immersive session</a> is not well understood, either via <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①②">explicit consent</a> or <a data-link-type="dfn" href="#implicit-consent" id="ref-for-implicit-consent②">implicit consent</a>, return <code>false</code></p>
+      <p>If <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①①">user intent</a> to begin an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session③②">immersive session</a> is not well understood, either via <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑧">explicit consent</a> or <a data-link-type="dfn" href="#implicit-consent" id="ref-for-implicit-consent②">implicit consent</a>, return <code>false</code></p>
      <li data-md>
       <p>Return <code>true</code></p>
     </ol>
@@ -4798,7 +4764,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
        <dt data-md>If <a data-link-type="dfn" href="#data-adjustment" id="ref-for-data-adjustment①">data adjustments</a> will be applied to the underlying sensor data to prevent fingerprinting or profiling
        <dd data-md>
         <p>Return <code>true</code>.</p>
-       <dt data-md>If <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①②">user intent</a> is well understood, either via <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①③">explicit consent</a> or <a data-link-type="dfn" href="#implicit-consent" id="ref-for-implicit-consent③">implicit consent</a>
+       <dt data-md>If <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①②">user intent</a> is well understood, either via <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑨">explicit consent</a> or <a data-link-type="dfn" href="#implicit-consent" id="ref-for-implicit-consent③">implicit consent</a>
        <dd data-md>
         <p>Return <code>true</code>.</p>
        <dt data-md>Otherwise
@@ -4810,7 +4776,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    </div>
    <p>The primary difference between <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose①⓪">XRViewerPose</a></code> and <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose①③">XRPose</a></code> is the inclusion of <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②⓪">XRView</a></code> information. When more than one view is present and the physical relationship between these views is configurable by the user, the relationship between these views is considered <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑥">sensitive information</a> as it can be used to fingerprint or profile the user.</p>
    <p>If the relationship between <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②①">XRView</a></code>s could uniquely identify the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⑦">XR device</a>, then the user agent MUST anonymize the <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②②">XRView</a></code> data to prevent fingerprinting. The method of anonymization is at the discretion of the user agent.</p>
-   <p class="note" role="note"><span>Note:</span> Furthermore, if the relationship between <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②③">XRView</a></code>s is affected by a user-configured interpupillary distance (IPD), then it is strongly recommended that the user agent require <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①④">explicit consent</a> during session creation, prior to reporting any <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②④">XRView</a></code> data.</p>
+   <p class="note" role="note"><span>Note:</span> Furthermore, if the relationship between <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②③">XRView</a></code>s is affected by a user-configured interpupillary distance (IPD), then it is strongly recommended that the user agent require <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①⓪">explicit consent</a> during session creation, prior to reporting any <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview②④">XRView</a></code> data.</p>
    <h4 class="heading settled" data-level="13.5.3" id="protect-reference-spaces"><span class="secno">13.5.3. </span><span class="content">Reference spaces</span><a class="self-link" href="#protect-reference-spaces"></a></h4>
     Depending on the reference spaces used, several different types of <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑦">sensitive information</a> may be exposed to the application. 
    <ul>
@@ -4824,7 +4790,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
      <p><code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded⑥">"unbounded"</a></code> reference spaces reveal the largest amount of spatial data and may result in user profiling and fingerprinting. For example, this data may enable determining user’s specific geographic location or to perform gait analysis.</p>
    </ul>
    <p>As a result the various reference space types have restrictions placed on their creation to ensure the <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑧">sensitive information</a> expose is handled safely:</p>
-   <p>Most reference spaces require that <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①③">user intent</a> to use the reference space is well understood, either via <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①⑤">explicit consent</a> or <a data-link-type="dfn" href="#implicit-consent" id="ref-for-implicit-consent④">implicit consent</a>. See the <a data-link-type="dfn" href="#feature-requirements" id="ref-for-feature-requirements">feature requirements</a> table for details.</p>
+   <p>Most reference spaces require that <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent①③">user intent</a> to use the reference space is well understood, either via <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①①">explicit consent</a> or <a data-link-type="dfn" href="#implicit-consent" id="ref-for-implicit-consent④">implicit consent</a>. See the <a data-link-type="dfn" href="#feature-requirements" id="ref-for-feature-requirements">feature requirements</a> table for details.</p>
    <p>Any group of <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-local" id="ref-for-dom-xrreferencespacetype-local⑨">"local"</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-local-floor" id="ref-for-dom-xrreferencespacetype-local-floor⑨">"local-floor"</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor①⓪">"bounded-floor"</a></code> reference spaces that are capable of being related to one another MUST share a common <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin②⓪">native origin</a>; This restriction only applies when the creation of <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded⑦">"unbounded"</a></code> reference spaces has been restricted.</p>
    <div class="algorithm" data-algorithm="poses-limited">
     <p>To determine if <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="poses-must-be-limited">poses must be limited</dfn> between two spaces, <var>space</var> and <var>baseSpace</var>, the user agent MUST run the following steps:</p>
@@ -4870,13 +4836,45 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <p>The user agent MUST use <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui①①">trusted UI</a> to show permissions prompts.</p>
    <p>If the virtual environment does not consistently track the user’s head motion with low latency and at a high frame rate the user may become disoriented or physically ill. Since it is impossible to force pages to produce consistently performant and correct content the user agent MUST provide a tracked, trusted environment and an <a data-link-type="dfn" href="#xr-compositor" id="ref-for-xr-compositor⑥">XR Compositor</a> which runs asynchronously from page content. The compositor is responsible for compositing the trusted and untrusted content. If content is not performant, does not submit frames, or terminates unexpectedly the user agent should be able to continue presenting a responsive, <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui①②">trusted UI</a>.</p>
    <p>Additionally, page content has the ability to make users uncomfortable in ways not related to performance. Badly applied tracking, strobing colors, and content intended to offend, frighten, or intimidate are examples of content which may cause the user to want to quickly exit the XR experience. Removing the XR device in these cases may not always be a fast or practical option. To accommodate this the user agent MUST provide users with an action, such as pressing a reserved hardware button or performing a gesture, that escapes out of WebXR content and displays the user agent’s <a data-link-type="dfn" href="#trusted-ui" id="ref-for-trusted-ui①③">trusted UI</a>.</p>
-   <section class="unstable">
-    <h3 class="heading settled" data-level="13.7" id="contextisolation-security"><span class="secno">13.7. </span><span class="content">Context Isolation</span><a class="self-link" href="#contextisolation-security"></a></h3>
-    <p>The trusted UI must be drawn by an independent rendering context whose state is isolated from any rendering contexts used by the page. (For example, any WebGL rendering contexts.) This is to prevent the page from corrupting the state of the trusted UI’s context, which may prevent it from properly rendering a tracked environment. It also prevents the possibility of the page being able to capture imagery from the trusted UI, which could lead to private information being leaked.</p>
-    <p>Also, to prevent CORS-related vulnerabilities each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context④">browsing context</a> will see a new instance of objects returned by the API, such as <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①③⑦">XRSession</a></code>. Attributes such as the <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context⑤">context</a> set on an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②⑨">XRWebGLLayer</a></code> with one <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm③②">relevant realm</a> should not be able to be read through an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer③⓪">XRWebGLLayer</a></code> with a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm③③">relevant realm</a> that does not have the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin">same origin</a>. Similarly, methods invoked on the API MUST NOT cause an observable state change on other <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑤">browsing contexts</a>. For example: No method will be exposed that enables a system-level orientation reset, as this could be called repeatedly by a malicious page to prevent other pages from tracking properly. The user agent MUST, however, respect system-level orientation resets triggered by a user gesture or system menu.</p>
-    <p class="note" role="note"><span>Note:</span> this doesn’t apply to state changes that are caused by one <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑥">browsing context</a> entering immersive mode, acquiring a lock on the device, and potentially firing <code class="idl"><a data-link-type="idl" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange②">devicechange</a></code> events on other <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑦">browsing contexts</a>.</p>
-    <h3 class="heading settled" data-level="13.8" id="fingerprinting-security"><span class="secno">13.8. </span><span class="content">Fingerprinting</span><a class="self-link" href="#fingerprinting-security"></a></h3>
-    <p>Given that the API describes hardware available to the user and its capabilities it will inevitably provide additional surface area for fingerprinting. While it’s impossible to completely avoid this, user agents should take steps to mitigate the issue. This spec limits reporting of available hardware to only a single device at a time, which prevents using the rare cases of multiple headsets being connected as a fingerprinting signal. Also, the devices that are reported have no string identifiers and expose very little information about the devices capabilities until an XRSession is created, which requires additional protections when <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑨">sensitive information</a> will be exposed.</p>
+   <h3 class="heading settled" data-level="13.7" id="contextisolation-security"><span class="secno">13.7. </span><span class="content">Context Isolation</span><a class="self-link" href="#contextisolation-security"></a></h3>
+   <p>The trusted UI must be drawn by an independent rendering context whose state is isolated from any rendering contexts used by the page. (For example, any WebGL rendering contexts.) This is to prevent the page from corrupting the state of the trusted UI’s context, which may prevent it from properly rendering a tracked environment. It also prevents the possibility of the page being able to capture imagery from the trusted UI, which could lead to private information being leaked.</p>
+   <p>Also, to prevent CORS-related vulnerabilities each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context④">browsing context</a> will see a new instance of objects returned by the API, such as <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①③⑦">XRSession</a></code>. Attributes such as the <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context⑤">context</a> set on an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②⑨">XRWebGLLayer</a></code> with one <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm③②">relevant realm</a> should not be able to be read through an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer③⓪">XRWebGLLayer</a></code> with a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm③③">relevant realm</a> that does not have the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin">same origin</a>. Similarly, methods invoked on the API MUST NOT cause an observable state change on other <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑤">browsing contexts</a>. For example: No method will be exposed that enables a system-level orientation reset, as this could be called repeatedly by a malicious page to prevent other pages from tracking properly. The user agent MUST, however, respect system-level orientation resets triggered by a user gesture or system menu.</p>
+   <p class="note" role="note"><span>Note:</span> this doesn’t apply to state changes that are caused by one <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑥">browsing context</a> entering immersive mode, acquiring a lock on the device, and potentially firing <code class="idl"><a data-link-type="idl">devicechange</a></code> events on other <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context⑦">browsing contexts</a>.</p>
+   <h3 class="heading settled" data-level="13.8" id="fingerprinting-security"><span class="secno">13.8. </span><span class="content">Fingerprinting</span><a class="self-link" href="#fingerprinting-security"></a></h3>
+   <p>Given that the API describes hardware available to the user and its capabilities it will inevitably provide additional surface area for fingerprinting. While it’s impossible to completely avoid this, user agents should take steps to mitigate the issue. This spec limits reporting of available hardware to only a single device at a time, which prevents using the rare cases of multiple headsets being connected as a fingerprinting signal. Also, the devices that are reported have no string identifiers and expose very little information about the devices capabilities until an XRSession is created, which requires additional protections when <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑨">sensitive information</a> will be exposed.</p>
+   <h3 class="heading settled" data-level="13.9" id="issessionsupported-fingerprinting"><span class="secno">13.9. </span><span class="content">Fingerprinting considerations of <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported⑥">isSessionSupported()</a></code></span><a class="self-link" href="#issessionsupported-fingerprinting"></a></h3>
+    Because <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported⑦">isSessionSupported()</a></code> can be called without user activation it may be used as a fingerprinting vector. 
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="PermissionName" data-dfn-type="enum-value" data-export id="dom-permissionname-xr-session-supported"><code>"xr-session-supported"</code></dfn> <a data-link-type="dfn" href="https://w3c.github.io/permissions/#powerful-feature" id="ref-for-powerful-feature①">powerful feature</a> gates access to the <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported⑧">isSessionSupported()</a></code> API.</p>
+   <p>The <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported①">"xr-session-supported"</a></code>’s permission-related algorithms and types are defined as follows:</p>
+   <dl>
+    <dt><a data-link-type="dfn" href="https://w3c.github.io/permissions/#permission-descriptor-type" id="ref-for-permission-descriptor-type">permission descriptor type</a>
+    <dd>
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-xrsessionsupportedpermissiondescriptor"><code><c- g>XRSessionSupportedPermissionDescriptor</c-></code></dfn>: <a data-link-type="idl-name" href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor" id="ref-for-dictdef-permissiondescriptor"><c- n>PermissionDescriptor</c-></a> {
+  <a data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode⑧"><c- n>XRSessionMode</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="XRSessionSupportedPermissionDescriptor" data-dfn-type="dict-member" data-export data-type="XRSessionMode " id="dom-xrsessionsupportedpermissiondescriptor-mode"><code><c- g>mode</c-></code></dfn>;
+};
+</pre>
+     <p><code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissiondescriptor-name" id="ref-for-dom-permissiondescriptor-name">name</a></code> for <code class="idl"><a data-link-type="idl" href="#dictdef-xrpermissiondescriptor" id="ref-for-dictdef-xrpermissiondescriptor①">XRPermissionDescriptor</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported②">"xr-session-supported"</a></code>.</p>
+   </dl>
+   <h4 class="heading settled" data-level="13.9.1" id="automatic-granting-xr-session-supported"><span class="secno">13.9.1. </span><span class="content">Considerations for when to automatically grant <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported③">"xr-session-supported"</a></code></span><a class="self-link" href="#automatic-granting-xr-session-supported"></a></h4>
+   <section class="non-normative">
+    <p>There is often tension between privacy and personalization on the Web. This section provides guidance on where that tradeoff can be circumscribed, and when the user agent can describe the browser’s WebXR capabilities to a site via <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported⑨">isSessionSupported()</a></code> without any privacy reduction.</p>
+    <p><code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported④">"xr-session-supported"</a></code> may be granted automatically for some systems based on the criteria below. This can provide a better user experience and mitigate permissions fatigue.</p>
+    <p>A set of user agents is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="indistinguishable-by-user-agent-string">indistinguishable by user-agent string</dfn> if they all report the same <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator-useragent" id="ref-for-dom-navigator-useragent">userAgent</a></code> and <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator-appversion" id="ref-for-dom-navigator-appversion">appVersion</a></code>. Such classes are typically identified by the browser version and platform/device being run on, but cannot be distinguished by the status of any connected external device. We can use the concept of user agents that are <a data-link-type="dfn" href="#indistinguishable-by-user-agent-string" id="ref-for-indistinguishable-by-user-agent-string①">indistinguishable by user-agent string</a> to properly assess fingerprinting risk.</p>
+    <p>Some user agents <a data-link-type="dfn" href="#indistinguishable-by-user-agent-string" id="ref-for-indistinguishable-by-user-agent-string②">indistinguishable by user-agent string</a> will <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="never-support">never support</dfn> sessions of a given <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode⑨">XRSessionMode</a></code>. <span class="note">For example: User agents running on a model of phone that is known to not meet requirements for mobile AR support.</span> In these cases there is little fingerprinting risk in <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①⓪">isSessionSupported()</a></code> always reporting the <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①⓪">XRSessionMode</a></code> is not supported because every such device will consistently report the same value and it’s assumed that device type and model can be inferred in other ways, such as through <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator-useragent" id="ref-for-dom-navigator-useragent①">userAgent</a></code>. Thus, on such systems, the user-agent should automatically deny <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported⑤">"xr-session-supported"</a></code> for the relevant <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①①">XRSessionMode</a></code>.</p>
+    <p>Other user agents will <a data-link-type="dfn" href="#indistinguishable-by-user-agent-string" id="ref-for-indistinguishable-by-user-agent-string③">indistinguishable by user-agent string</a> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="usually-support">usually support</dfn> sessions of a given <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①②">XRSessionMode</a></code>. <span class="note">For example: User agents known to support WebXR that run exclusively within VR headsets are likely to support <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr④">"immersive-vr"</a></code> sessions unless specifically blocked by the user.</span> In these cases reporting that the <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①③">XRSessionMode</a></code> is not supported, while accurate, would offer more uniquely identifying information about the user. As such reporting that the <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①④">XRSessionMode</a></code> is always available and allowing <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession④">requestSession()</a></code> to fail is more privacy-preserving while likely not being a source of confusion for the user. On such systems, the user-agent should automatically grant <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported⑥">"xr-session-supported"</a></code> for the relevant <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①⑤">XRSessionMode</a></code>.</p>
+    <p>User agents <a data-link-type="dfn" href="#indistinguishable-by-user-agent-string" id="ref-for-indistinguishable-by-user-agent-string④">indistinguishable by user-agent string</a> for which availability of XR capabilities is highly variable, such as desktop systems which support XR peripherals, present the highest fingerprinting risk. User agents on such devices should not automatically grant <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported⑦">"xr-session-supported"</a></code> in a way that allows the <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①①">isSessionSupported()</a></code> API to provide additional fingerprinting bits.</p>
+    <div class="note" role="note">
+      Note: Some acceptable approaches to handle such cases are as follows: 
+     <ul>
+      <li data-md>
+       <p>Always judging <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①②">explicit consent</a> for <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported⑧">"xr-session-supported"</a></code> (with a potentially cached permissions prompt or similar) when <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①②">isSessionSupported()</a></code> is called.</p>
+      <li data-md>
+       <p>Automatically granting <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported⑨">"xr-session-supported"</a></code> but having <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①③">isSessionSupported()</a></code> always report <code>true</code> even on platforms which do not consistently have XR capabilities available, regardless of whether or not the appropriate hardware or software is present. This comes at the cost of user ergonomics, as it will cause pages to advertise XR content to users that cannot view it.</p>
+      <li data-md>
+       <p>Have <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①④">isSessionSupported()</a></code> request <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①③">explicit consent</a> for <code class="idl"><a data-link-type="idl" href="#dom-permissionname-xr-session-supported" id="ref-for-dom-permissionname-xr-session-supported①⓪">"xr-session-supported"</a></code> when the appropriate hardware is present, and when such hardware is _not_ present, return <code>false</code> after an appropriately random length of time. In such an implementation content must not be able to distinguish between cases where the user agent was not connected to XR hardware and cases where the user agent was connected to XR hardware but the user declined to provide <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①④">explicit consent</a>.</p>
+     </ul>
+    </div>
+    <p>Whatever the technique chosen, it should not reveal additional knowledge about connected XR hardware without <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent①⑤">explicit consent</a>.</p>
    </section>
    <h2 class="heading settled" data-level="14" id="integrations"><span class="secno">14. </span><span class="content">Integrations</span><a class="self-link" href="#integrations"></a></h2>
    <h3 class="heading settled" data-level="14.1" id="permissions-policy"><span class="secno">14.1. </span><span class="content">Permissions Policy</span><a class="self-link" href="#permissions-policy"></a></h3>
@@ -4896,7 +4894,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
      </div>
     </div>
    </div>
-   <p>This specification defines a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> that controls whether any <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①③⑧">XRSession</a></code> that requires the use of spatial tracking may be returned by <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession⑤">requestSession()</a></code>, and whether support for session modes that require spatial tracking may be indicated by either <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①⑤">isSessionSupported()</a></code> or <code class="idl"><a data-link-type="idl" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange③">devicechange</a></code> events on the <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr②">navigator.xr</a></code> object.</p>
+   <p>This specification defines a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> that controls whether any <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①③⑧">XRSession</a></code> that requires the use of spatial tracking may be returned by <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession⑤">requestSession()</a></code>, and whether support for session modes that require spatial tracking may be indicated by either <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①⑤">isSessionSupported()</a></code> or <code class="idl"><a data-link-type="idl">devicechange</a></code> events on the <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr②">navigator.xr</a></code> object.</p>
    <p>The feature identifier for this feature is <code>"xr-spatial-tracking"</code>.</p>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#default-allowlist" id="ref-for-default-allowlist">default allowlist</a> for this feature is <code>["self"]</code>.</p>
    <p class="note" role="note"><span>Note:</span> If the document’s origin is not allowed to use the <code>"xr-spatial-tracking"</code> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-permissions-policy" id="ref-for-concept-document-permissions-policy①">permissions policy</a> any <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session③③">immersive sessions</a> will be blocked, because all <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session③④">immersive sessions</a> require some use of spatial tracking. <a data-link-type="dfn" href="#inline-session" id="ref-for-inline-session⑤">Inline sessions</a> will still be allowed, but restricted to only using the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-viewer" id="ref-for-dom-xrreferencespacetype-viewer⑤">"viewer"</a></code> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③⑦">XRReferenceSpace</a></code>.</p>
@@ -5191,7 +5189,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li data-md>
      <p><a href="mailto:cwilso@google.com">Chris Wilson</a> (<a href="https://google.com/">Google</a>)</p>
     <li data-md>
-     <p><a href="mailto:alan@metavrse.com">Alan Smithson</a> (<a href="https://MetaVRse.com">MetaVRse</a>)</p>
+     <p><a href="mailto:alanvartavrse.com">Alan Smithson</a> (<a href="https://MetaVRse.com">MetaVRse</a>)</p>
     <li data-md>
      <p><a href="mailto:jmarinacci@mozilla.com">Josh Marinacci</a> (<a href="https://mozilla.org/">Mozilla</a>)</p>
     <li data-md>
@@ -5387,7 +5385,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <li><a href="#immersive-xr-device">immersive XR device</a><span>, in §2.1</span>
    <li><a href="#implicit-consent">Implicit consent</a><span>, in §13.2.3</span>
    <li><a href="#xrinputsourcearray-indexed-property-getter">indexed property getter</a><span>, in §10.3</span>
-   <li><a href="#indistinguishable-by-user-agent-string">indistinguishable by user-agent string</a><span>, in §3.5.1</span>
+   <li><a href="#indistinguishable-by-user-agent-string">indistinguishable by user-agent string</a><span>, in §13.9.1</span>
    <li><a href="#initialize-the-render-state">initialize the render state</a><span>, in §4.2</span>
    <li><a href="#initialize-the-session">initialize the session</a><span>, in §4.1</span>
    <li><a href="#dom-xrsessionmode-inline">"inline"</a><span>, in §3.3</span>
@@ -5455,13 +5453,13 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <ul>
      <li><a href="#xrsession-mode">dfn for XRSession</a><span>, in §4.1</span>
      <li><a href="#dom-xrpermissiondescriptor-mode">dict-member for XRPermissionDescriptor</a><span>, in §14.2</span>
-     <li><a href="#dom-xrsessionsupportedpermissiondescriptor-mode">dict-member for XRSessionSupportedPermissionDescriptor</a><span>, in §3.5</span>
+     <li><a href="#dom-xrsessionsupportedpermissiondescriptor-mode">dict-member for XRSessionSupportedPermissionDescriptor</a><span>, in §13.9</span>
     </ul>
    <li><a href="#multiply-transforms">multiply transforms</a><span>, in §8.3</span>
    <li><a href="#xrboundedreferencespace-native-bounds-geometry">native bounds geometry</a><span>, in §6.3</span>
    <li><a href="#xrspace-native-origin">native origin</a><span>, in §6.1</span>
    <li><a href="#native-webgl-framebuffer-resolution">native WebGL framebuffer resolution</a><span>, in §11.2</span>
-   <li><a href="#never-support">never support</a><span>, in §3.5.1</span>
+   <li><a href="#never-support">never support</a><span>, in §13.9.1</span>
    <li>
     "none"
     <ul>
@@ -5609,7 +5607,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <li><a href="#update-the-pending-layers-state">update the pending layers state</a><span>, in §4.1</span>
    <li><a href="#update-the-viewports">update the viewports</a><span>, in §7.1</span>
    <li><a href="#user-intent">User intent</a><span>, in §13.2</span>
-   <li><a href="#usually-support">usually support</a><span>, in §3.5.1</span>
+   <li><a href="#usually-support">usually support</a><span>, in §13.9.1</span>
    <li><a href="#view">view</a><span>, in §7.1</span>
    <li><a href="#dom-xrreferencespacetype-viewer">"viewer"</a><span>, in §6.2</span>
    <li>
@@ -5678,8 +5676,8 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <li><a href="#dom-xrsessionevent-xrsessionevent">XRSessionEvent(type, eventInitDict)</a><span>, in §12.1</span>
    <li><a href="#dictdef-xrsessioninit">XRSessionInit</a><span>, in §3.4</span>
    <li><a href="#enumdef-xrsessionmode">XRSessionMode</a><span>, in §3.3</span>
-   <li><a href="#dom-permissionname-xr-session-supported">"xr-session-supported"</a><span>, in §3.5</span>
-   <li><a href="#dictdef-xrsessionsupportedpermissiondescriptor">XRSessionSupportedPermissionDescriptor</a><span>, in §3.5</span>
+   <li><a href="#dom-permissionname-xr-session-supported">"xr-session-supported"</a><span>, in §13.9</span>
+   <li><a href="#dictdef-xrsessionsupportedpermissiondescriptor">XRSessionSupportedPermissionDescriptor</a><span>, in §13.9</span>
    <li><a href="#xrspace">XRSpace</a><span>, in §6.1</span>
    <li><a href="#xrsystem">XRSystem</a><span>, in §3.2</span>
    <li><a href="#enumdef-xrtargetraymode">XRTargetRayMode</a><span>, in §10.1</span>
@@ -5892,7 +5890,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <aside class="dfn-panel" data-for="term-for-dom-navigator-appversion">
    <a href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator-appversion">https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator-appversion</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-navigator-appversion">3.5.1. Considerations for when to automatically grant "xr-session-supported"</a>
+    <li><a href="#ref-for-dom-navigator-appversion">13.9.1. Considerations for when to automatically grant "xr-session-supported"</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-browsing-context">
@@ -6047,7 +6045,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <aside class="dfn-panel" data-for="term-for-dom-navigator-useragent">
    <a href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator-useragent">https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator-useragent</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-navigator-useragent">3.5.1. Considerations for when to automatically grant "xr-session-supported"</a> <a href="#ref-for-dom-navigator-useragent①">(2)</a>
+    <li><a href="#ref-for-dom-navigator-useragent">13.9.1. Considerations for when to automatically grant "xr-session-supported"</a> <a href="#ref-for-dom-navigator-useragent①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-append">
@@ -6164,7 +6162,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <aside class="dfn-panel" data-for="term-for-dictdef-permissiondescriptor">
    <a href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor">https://w3c.github.io/permissions/#dictdef-permissiondescriptor</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-permissiondescriptor">3.5. Fingerprinting considerations of isSessionSupported()</a>
+    <li><a href="#ref-for-dictdef-permissiondescriptor">13.9. Fingerprinting considerations of isSessionSupported()</a>
     <li><a href="#ref-for-dictdef-permissiondescriptor①">14.2. Permissions API Integration</a>
    </ul>
   </aside>
@@ -6177,14 +6175,14 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <aside class="dfn-panel" data-for="term-for-dom-permissiondescriptor-name">
    <a href="https://w3c.github.io/permissions/#dom-permissiondescriptor-name">https://w3c.github.io/permissions/#dom-permissiondescriptor-name</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-permissiondescriptor-name">3.5. Fingerprinting considerations of isSessionSupported()</a>
+    <li><a href="#ref-for-dom-permissiondescriptor-name">13.9. Fingerprinting considerations of isSessionSupported()</a>
     <li><a href="#ref-for-dom-permissiondescriptor-name①">14.2. Permissions API Integration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-permission-descriptor-type">
    <a href="https://w3c.github.io/permissions/#permission-descriptor-type">https://w3c.github.io/permissions/#permission-descriptor-type</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-permission-descriptor-type">3.5. Fingerprinting considerations of isSessionSupported()</a>
+    <li><a href="#ref-for-permission-descriptor-type">13.9. Fingerprinting considerations of isSessionSupported()</a>
     <li><a href="#ref-for-permission-descriptor-type①">14.2. Permissions API Integration</a>
    </ul>
   </aside>
@@ -6210,7 +6208,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <a href="https://w3c.github.io/permissions/#powerful-feature">https://w3c.github.io/permissions/#powerful-feature</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-powerful-feature">3.2. XRSystem</a>
-    <li><a href="#ref-for-powerful-feature①">3.5. Fingerprinting considerations of isSessionSupported()</a>
+    <li><a href="#ref-for-powerful-feature①">13.9. Fingerprinting considerations of isSessionSupported()</a>
     <li><a href="#ref-for-powerful-feature②">14.2. Permissions API Integration</a>
    </ul>
   </aside>
@@ -7045,10 +7043,6 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-any"><c- b>any</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="sequence<any> " href="#dom-xrsessioninit-optionalfeatures"><c- g>optionalFeatures</c-></a>;
 };
 
-<c- b>dictionary</c-> <a href="#dictdef-xrsessionsupportedpermissiondescriptor"><code><c- g>XRSessionSupportedPermissionDescriptor</c-></code></a>: <a data-link-type="idl-name" href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor"><c- n>PermissionDescriptor</c-></a> {
-  <a data-link-type="idl-name" href="#enumdef-xrsessionmode"><c- n>XRSessionMode</c-></a> <a data-type="XRSessionMode " href="#dom-xrsessionsupportedpermissiondescriptor-mode"><code><c- g>mode</c-></code></a>;
-};
-
 <c- b>enum</c-> <a href="#enumdef-xrvisibilitystate"><code><c- g>XRVisibilityState</c-></code></a> {
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrvisibilitystate-visible"><c- s>"visible"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrvisibilitystate-visible-blurred"><c- s>"visible-blurred"</c-></a>,
@@ -7291,6 +7285,10 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <a data-link-type="idl-name" href="#xrrigidtransform"><c- n>XRRigidTransform</c-></a>? <a data-default="null" data-type="XRRigidTransform? " href="#dom-xrreferencespaceeventinit-transform"><code><c- g>transform</c-></code></a> = <c- b>null</c->;
 };
 
+<c- b>dictionary</c-> <a href="#dictdef-xrsessionsupportedpermissiondescriptor"><code><c- g>XRSessionSupportedPermissionDescriptor</c-></code></a>: <a data-link-type="idl-name" href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor"><c- n>PermissionDescriptor</c-></a> {
+  <a data-link-type="idl-name" href="#enumdef-xrsessionmode"><c- n>XRSessionMode</c-></a> <a data-type="XRSessionMode " href="#dom-xrsessionsupportedpermissiondescriptor-mode"><code><c- g>mode</c-></code></a>;
+};
+
 <c- b>dictionary</c-> <a href="#dictdef-xrpermissiondescriptor"><code><c- g>XRPermissionDescriptor</c-></code></a>: <a data-link-type="idl-name" href="https://w3c.github.io/permissions/#dictdef-permissiondescriptor"><c- n>PermissionDescriptor</c-></a> {
   <a data-link-type="idl-name" href="#enumdef-xrsessionmode"><c- n>XRSessionMode</c-></a> <a data-type="XRSessionMode " href="#dom-xrpermissiondescriptor-mode"><code><c- g>mode</c-></code></a>;
   <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-any"><c- b>any</c-></a>> <a data-type="sequence<any> " href="#dom-xrpermissiondescriptor-requiredfeatures"><code><c- g>requiredFeatures</c-></code></a>;
@@ -7431,8 +7429,8 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <ul>
     <li><a href="#ref-for-dom-xrsystem-issessionsupported">1.2. Application flow</a>
     <li><a href="#ref-for-dom-xrsystem-issessionsupported①">3.2. XRSystem</a> <a href="#ref-for-dom-xrsystem-issessionsupported②">(2)</a> <a href="#ref-for-dom-xrsystem-issessionsupported③">(3)</a> <a href="#ref-for-dom-xrsystem-issessionsupported④">(4)</a> <a href="#ref-for-dom-xrsystem-issessionsupported⑤">(5)</a>
-    <li><a href="#ref-for-dom-xrsystem-issessionsupported⑥">3.5. Fingerprinting considerations of isSessionSupported()</a> <a href="#ref-for-dom-xrsystem-issessionsupported⑦">(2)</a> <a href="#ref-for-dom-xrsystem-issessionsupported⑧">(3)</a>
-    <li><a href="#ref-for-dom-xrsystem-issessionsupported⑨">3.5.1. Considerations for when to automatically grant "xr-session-supported"</a> <a href="#ref-for-dom-xrsystem-issessionsupported①⓪">(2)</a> <a href="#ref-for-dom-xrsystem-issessionsupported①①">(3)</a> <a href="#ref-for-dom-xrsystem-issessionsupported①②">(4)</a> <a href="#ref-for-dom-xrsystem-issessionsupported①③">(5)</a> <a href="#ref-for-dom-xrsystem-issessionsupported①④">(6)</a>
+    <li><a href="#ref-for-dom-xrsystem-issessionsupported⑥">13.9. Fingerprinting considerations of isSessionSupported()</a> <a href="#ref-for-dom-xrsystem-issessionsupported⑦">(2)</a> <a href="#ref-for-dom-xrsystem-issessionsupported⑧">(3)</a>
+    <li><a href="#ref-for-dom-xrsystem-issessionsupported⑨">13.9.1. Considerations for when to automatically grant "xr-session-supported"</a> <a href="#ref-for-dom-xrsystem-issessionsupported①⓪">(2)</a> <a href="#ref-for-dom-xrsystem-issessionsupported①①">(3)</a> <a href="#ref-for-dom-xrsystem-issessionsupported①②">(4)</a> <a href="#ref-for-dom-xrsystem-issessionsupported①③">(5)</a> <a href="#ref-for-dom-xrsystem-issessionsupported①④">(6)</a>
     <li><a href="#ref-for-dom-xrsystem-issessionsupported①⑤">14.1. Permissions Policy</a>
    </ul>
   </aside>
@@ -7464,8 +7462,8 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li><a href="#ref-for-dom-xrsystem-requestsession">1.2. Application flow</a>
     <li><a href="#ref-for-dom-xrsystem-requestsession①">3.2. XRSystem</a>
     <li><a href="#ref-for-dom-xrsystem-requestsession②">3.4. Feature Dependencies</a>
-    <li><a href="#ref-for-dom-xrsystem-requestsession③">3.5.1. Considerations for when to automatically grant "xr-session-supported"</a>
-    <li><a href="#ref-for-dom-xrsystem-requestsession④">4.1. XRSession</a>
+    <li><a href="#ref-for-dom-xrsystem-requestsession③">4.1. XRSession</a>
+    <li><a href="#ref-for-dom-xrsystem-requestsession④">13.9.1. Considerations for when to automatically grant "xr-session-supported"</a>
     <li><a href="#ref-for-dom-xrsystem-requestsession⑤">14.1. Permissions Policy</a>
    </ul>
   </aside>
@@ -7483,9 +7481,9 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li><a href="#ref-for-enumdef-xrsessionmode②">3.2. XRSystem</a> <a href="#ref-for-enumdef-xrsessionmode③">(2)</a> <a href="#ref-for-enumdef-xrsessionmode④">(3)</a>
     <li><a href="#ref-for-enumdef-xrsessionmode⑤">3.3. XRSessionMode</a>
     <li><a href="#ref-for-enumdef-xrsessionmode⑥">3.4. Feature Dependencies</a>
-    <li><a href="#ref-for-enumdef-xrsessionmode⑦">3.5. Fingerprinting considerations of isSessionSupported()</a>
-    <li><a href="#ref-for-enumdef-xrsessionmode⑧">3.5.1. Considerations for when to automatically grant "xr-session-supported"</a> <a href="#ref-for-enumdef-xrsessionmode⑨">(2)</a> <a href="#ref-for-enumdef-xrsessionmode①⓪">(3)</a> <a href="#ref-for-enumdef-xrsessionmode①①">(4)</a> <a href="#ref-for-enumdef-xrsessionmode①②">(5)</a> <a href="#ref-for-enumdef-xrsessionmode①③">(6)</a> <a href="#ref-for-enumdef-xrsessionmode①④">(7)</a>
-    <li><a href="#ref-for-enumdef-xrsessionmode①⑤">4.1. XRSession</a>
+    <li><a href="#ref-for-enumdef-xrsessionmode⑦">4.1. XRSession</a>
+    <li><a href="#ref-for-enumdef-xrsessionmode⑧">13.9. Fingerprinting considerations of isSessionSupported()</a>
+    <li><a href="#ref-for-enumdef-xrsessionmode⑨">13.9.1. Considerations for when to automatically grant "xr-session-supported"</a> <a href="#ref-for-enumdef-xrsessionmode①⓪">(2)</a> <a href="#ref-for-enumdef-xrsessionmode①①">(3)</a> <a href="#ref-for-enumdef-xrsessionmode①②">(4)</a> <a href="#ref-for-enumdef-xrsessionmode①③">(5)</a> <a href="#ref-for-enumdef-xrsessionmode①④">(6)</a> <a href="#ref-for-enumdef-xrsessionmode①⑤">(7)</a>
     <li><a href="#ref-for-enumdef-xrsessionmode①⑥">14.2. Permissions API Integration</a> <a href="#ref-for-enumdef-xrsessionmode①⑦">(2)</a>
    </ul>
   </aside>
@@ -7511,7 +7509,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <ul>
     <li><a href="#ref-for-dom-xrsessionmode-immersive-vr">3.2. XRSystem</a> <a href="#ref-for-dom-xrsessionmode-immersive-vr①">(2)</a>
     <li><a href="#ref-for-dom-xrsessionmode-immersive-vr②">3.3. XRSessionMode</a> <a href="#ref-for-dom-xrsessionmode-immersive-vr③">(2)</a>
-    <li><a href="#ref-for-dom-xrsessionmode-immersive-vr④">3.5.1. Considerations for when to automatically grant "xr-session-supported"</a>
+    <li><a href="#ref-for-dom-xrsessionmode-immersive-vr④">13.9.1. Considerations for when to automatically grant "xr-session-supported"</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsessionmode-immersive-ar">
@@ -7625,45 +7623,6 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <ul>
     <li><a href="#ref-for-capable-of-supporting">3.4. Feature Dependencies</a>
     <li><a href="#ref-for-capable-of-supporting①">14.2. Permissions API Integration</a> <a href="#ref-for-capable-of-supporting②">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-permissionname-xr-session-supported">
-   <b><a href="#dom-permissionname-xr-session-supported">#dom-permissionname-xr-session-supported</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-permissionname-xr-session-supported">3.2. XRSystem</a>
-    <li><a href="#ref-for-dom-permissionname-xr-session-supported①">3.5. Fingerprinting considerations of isSessionSupported()</a> <a href="#ref-for-dom-permissionname-xr-session-supported②">(2)</a>
-    <li><a href="#ref-for-dom-permissionname-xr-session-supported③">3.5.1. Considerations for when to automatically grant "xr-session-supported"</a> <a href="#ref-for-dom-permissionname-xr-session-supported④">(2)</a> <a href="#ref-for-dom-permissionname-xr-session-supported⑤">(3)</a> <a href="#ref-for-dom-permissionname-xr-session-supported⑥">(4)</a> <a href="#ref-for-dom-permissionname-xr-session-supported⑦">(5)</a> <a href="#ref-for-dom-permissionname-xr-session-supported⑧">(6)</a> <a href="#ref-for-dom-permissionname-xr-session-supported⑨">(7)</a> <a href="#ref-for-dom-permissionname-xr-session-supported①⓪">(8)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dictdef-xrsessionsupportedpermissiondescriptor">
-   <b><a href="#dictdef-xrsessionsupportedpermissiondescriptor">#dictdef-xrsessionsupportedpermissiondescriptor</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dictdef-xrsessionsupportedpermissiondescriptor">3.2. XRSystem</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrsessionsupportedpermissiondescriptor-mode">
-   <b><a href="#dom-xrsessionsupportedpermissiondescriptor-mode">#dom-xrsessionsupportedpermissiondescriptor-mode</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrsessionsupportedpermissiondescriptor-mode">3.2. XRSystem</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="indistinguishable-by-user-agent-string">
-   <b><a href="#indistinguishable-by-user-agent-string">#indistinguishable-by-user-agent-string</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-indistinguishable-by-user-agent-string">3.2. XRSystem</a>
-    <li><a href="#ref-for-indistinguishable-by-user-agent-string①">3.5.1. Considerations for when to automatically grant "xr-session-supported"</a> <a href="#ref-for-indistinguishable-by-user-agent-string②">(2)</a> <a href="#ref-for-indistinguishable-by-user-agent-string③">(3)</a> <a href="#ref-for-indistinguishable-by-user-agent-string④">(4)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="never-support">
-   <b><a href="#never-support">#never-support</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-never-support">3.2. XRSystem</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="usually-support">
-   <b><a href="#usually-support">#usually-support</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-usually-support">3.2. XRSystem</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="should-not-initialize-device-tracking">
@@ -9327,14 +9286,6 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li><a href="#ref-for-dom-xrreferencespaceevent-transform">12.4. XRReferenceSpaceEvent</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="eventdef-xrsystem-devicechange">
-   <b><a href="#eventdef-xrsystem-devicechange">#eventdef-xrsystem-devicechange</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-eventdef-xrsystem-devicechange">3.2. XRSystem</a> <a href="#ref-for-eventdef-xrsystem-devicechange①">(2)</a>
-    <li><a href="#ref-for-eventdef-xrsystem-devicechange②">13.7. Context Isolation</a>
-    <li><a href="#ref-for-eventdef-xrsystem-devicechange③">14.1. Permissions Policy</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="eventdef-xrsession-visibilitychange">
    <b><a href="#eventdef-xrsession-visibilitychange">#eventdef-xrsession-visibilitychange</a></b><b>Referenced in:</b>
    <ul>
@@ -9454,13 +9405,13 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <b><a href="#explicit-consent">#explicit-consent</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-explicit-consent">3.4. Feature Dependencies</a> <a href="#ref-for-explicit-consent①">(2)</a>
-    <li><a href="#ref-for-explicit-consent②">3.5.1. Considerations for when to automatically grant "xr-session-supported"</a> <a href="#ref-for-explicit-consent③">(2)</a> <a href="#ref-for-explicit-consent④">(3)</a> <a href="#ref-for-explicit-consent⑤">(4)</a>
-    <li><a href="#ref-for-explicit-consent⑥">13.2.3. Implicit and Explicit consent</a> <a href="#ref-for-explicit-consent⑦">(2)</a> <a href="#ref-for-explicit-consent⑧">(3)</a>
-    <li><a href="#ref-for-explicit-consent⑨">13.2.4. Duration of consent</a>
-    <li><a href="#ref-for-explicit-consent①⓪">13.3. Mid-session consent</a> <a href="#ref-for-explicit-consent①①">(2)</a>
-    <li><a href="#ref-for-explicit-consent①②">13.5.1. Immersiveness</a>
-    <li><a href="#ref-for-explicit-consent①③">13.5.2. Poses</a> <a href="#ref-for-explicit-consent①④">(2)</a>
-    <li><a href="#ref-for-explicit-consent①⑤">13.5.3. Reference spaces</a>
+    <li><a href="#ref-for-explicit-consent②">13.2.3. Implicit and Explicit consent</a> <a href="#ref-for-explicit-consent③">(2)</a> <a href="#ref-for-explicit-consent④">(3)</a>
+    <li><a href="#ref-for-explicit-consent⑤">13.2.4. Duration of consent</a>
+    <li><a href="#ref-for-explicit-consent⑥">13.3. Mid-session consent</a> <a href="#ref-for-explicit-consent⑦">(2)</a>
+    <li><a href="#ref-for-explicit-consent⑧">13.5.1. Immersiveness</a>
+    <li><a href="#ref-for-explicit-consent⑨">13.5.2. Poses</a> <a href="#ref-for-explicit-consent①⓪">(2)</a>
+    <li><a href="#ref-for-explicit-consent①①">13.5.3. Reference spaces</a>
+    <li><a href="#ref-for-explicit-consent①②">13.9.1. Considerations for when to automatically grant "xr-session-supported"</a> <a href="#ref-for-explicit-consent①③">(2)</a> <a href="#ref-for-explicit-consent①④">(3)</a> <a href="#ref-for-explicit-consent①⑤">(4)</a>
     <li><a href="#ref-for-explicit-consent①⑥">14.2. Permissions API Integration</a> <a href="#ref-for-explicit-consent①⑦">(2)</a>
    </ul>
   </aside>
@@ -9532,6 +9483,45 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li><a href="#ref-for-trusted-immersive-ui">13.6. Trusted Environment</a> <a href="#ref-for-trusted-immersive-ui①">(2)</a> <a href="#ref-for-trusted-immersive-ui②">(3)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="dom-permissionname-xr-session-supported">
+   <b><a href="#dom-permissionname-xr-session-supported">#dom-permissionname-xr-session-supported</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-permissionname-xr-session-supported">3.2. XRSystem</a>
+    <li><a href="#ref-for-dom-permissionname-xr-session-supported①">13.9. Fingerprinting considerations of isSessionSupported()</a> <a href="#ref-for-dom-permissionname-xr-session-supported②">(2)</a>
+    <li><a href="#ref-for-dom-permissionname-xr-session-supported③">13.9.1. Considerations for when to automatically grant "xr-session-supported"</a> <a href="#ref-for-dom-permissionname-xr-session-supported④">(2)</a> <a href="#ref-for-dom-permissionname-xr-session-supported⑤">(3)</a> <a href="#ref-for-dom-permissionname-xr-session-supported⑥">(4)</a> <a href="#ref-for-dom-permissionname-xr-session-supported⑦">(5)</a> <a href="#ref-for-dom-permissionname-xr-session-supported⑧">(6)</a> <a href="#ref-for-dom-permissionname-xr-session-supported⑨">(7)</a> <a href="#ref-for-dom-permissionname-xr-session-supported①⓪">(8)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dictdef-xrsessionsupportedpermissiondescriptor">
+   <b><a href="#dictdef-xrsessionsupportedpermissiondescriptor">#dictdef-xrsessionsupportedpermissiondescriptor</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dictdef-xrsessionsupportedpermissiondescriptor">3.2. XRSystem</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrsessionsupportedpermissiondescriptor-mode">
+   <b><a href="#dom-xrsessionsupportedpermissiondescriptor-mode">#dom-xrsessionsupportedpermissiondescriptor-mode</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrsessionsupportedpermissiondescriptor-mode">3.2. XRSystem</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="indistinguishable-by-user-agent-string">
+   <b><a href="#indistinguishable-by-user-agent-string">#indistinguishable-by-user-agent-string</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-indistinguishable-by-user-agent-string">3.2. XRSystem</a>
+    <li><a href="#ref-for-indistinguishable-by-user-agent-string①">13.9.1. Considerations for when to automatically grant "xr-session-supported"</a> <a href="#ref-for-indistinguishable-by-user-agent-string②">(2)</a> <a href="#ref-for-indistinguishable-by-user-agent-string③">(3)</a> <a href="#ref-for-indistinguishable-by-user-agent-string④">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="never-support">
+   <b><a href="#never-support">#never-support</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-never-support">3.2. XRSystem</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="usually-support">
+   <b><a href="#usually-support">#usually-support</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-usually-support">3.2. XRSystem</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="dom-permissionname-xr">
    <b><a href="#dom-permissionname-xr">#dom-permissionname-xr</a></b><b>Referenced in:</b>
    <ul>
@@ -9542,7 +9532,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <b><a href="#dictdef-xrpermissiondescriptor">#dictdef-xrpermissiondescriptor</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dictdef-xrpermissiondescriptor">3.2. XRSystem</a>
-    <li><a href="#ref-for-dictdef-xrpermissiondescriptor①">3.5. Fingerprinting considerations of isSessionSupported()</a>
+    <li><a href="#ref-for-dictdef-xrpermissiondescriptor①">13.9. Fingerprinting considerations of isSessionSupported()</a>
     <li><a href="#ref-for-dictdef-xrpermissiondescriptor②">14.2. Permissions API Integration</a> <a href="#ref-for-dictdef-xrpermissiondescriptor③">(2)</a> <a href="#ref-for-dictdef-xrpermissiondescriptor④">(3)</a>
    </ul>
   </aside>
