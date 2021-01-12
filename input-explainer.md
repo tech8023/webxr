@@ -102,9 +102,9 @@ When the selection mechanism for an `XRInputSource` is invoked, three `XRInputSo
 
 * `selectstart` indicates an action has been initiated. Example actions that fire this event are pressing a button or trigger.
 * `selectend` indicates an action has ended. Example actions that fire this event are releasing a button or trigger. A `selectend` event must also be fired if the input source is disconnected after an action has been initiated, or the action has otherwise been cancelled. In that case an associated `select` event will not be fired.
-* `select` indicates that a action has been completed. A `select` event is considered to be [triggered by user activation](https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation)
+* `select` indicates that an action has been completed. A `select` event is considered to be [triggered by user activation](https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation)
 
-The `selectstart` and `selectend` events are useful for handling dragging, painting, or other continuous motions. As the `select` event is trigger by user activation, it can be used to begin playing media or other trusted interactions.
+The `selectstart` and `selectend` events are useful for handling dragging, painting, or other continuous motions. As the `select` event is triggered by user activation, it can be used to begin playing media or other trusted interactions.
 
 ```js
 function onSessionStarted(session) {
