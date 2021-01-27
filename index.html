@@ -694,7 +694,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-01-26">26 January 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-01-27">27 January 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2243,7 +2243,7 @@ window<c- p>.</c->requestAnimationFrame<c- p>(</c->onWindowAnimationFrame<c- p>)
        <li data-md>
         <p>Initialize <var>xrview</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrview-eye" id="ref-for-dom-xrview-eye">eye</a></code> to <var>view</var>’s <a data-link-type="dfn" href="#view-eye" id="ref-for-view-eye">eye</a>.</p>
        <li data-md>
-        <p>Initialize <var>xrview</var>’s <a data-link-type="dfn" href="#xrview-frame-time" id="ref-for-xrview-frame-time">frame time</a> to <var>frame</var>’s <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time③">time</a>.</p>
+        <p>Initialize <var>xrview</var>’s <a data-link-type="dfn" href="#xrview-frame" id="ref-for-xrview-frame">frame</a> to <var>frame</var>.</p>
        <li data-md>
         <p>Initialize <var>xrview</var>’s <a data-link-type="dfn" href="#xrview-session" id="ref-for-xrview-session">session</a> to <var>session</var>.</p>
        <li data-md>
@@ -2350,7 +2350,7 @@ window<c- p>.</c->requestAnimationFrame<c- p>(</c->onWindowAnimationFrame<c- p>)
      <li data-md>
       <p>Let <var>transform</var> be <var>pose</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-transform" id="ref-for-dom-xrpose-transform①">transform</a></code>.</p>
      <li data-md>
-      <p>Query the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①②">XR device</a>'s tracking system for <var>space</var>’s pose relative to <var>baseSpace</var> at the <var>frame</var>’s <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time④">time</a>, then perform the following steps:</p>
+      <p>Query the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①②">XR device</a>'s tracking system for <var>space</var>’s pose relative to <var>baseSpace</var> at the <var>frame</var>’s <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time③">time</a>, then perform the following steps:</p>
       <dl class="switch">
        <dt data-md>If <var>limit</var> is <code>false</code> and the tracking system provides a <a data-link-type="dfn" href="#6dof" id="ref-for-6dof②">6DoF</a> pose whose position is actively tracked or statically known for <var>space</var>’s pose relative to <var>baseSpace</var>:
        <dd data-md>
@@ -2704,7 +2704,7 @@ window<c- p>.</c->requestAnimationFrame<c- p>(</c->onWindowAnimationFrame<c- p>)
    <p>The optional <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-recommendedviewportscale"><code>recommendedViewportScale</code></dfn> attribute contains a UA-recommended viewport scale value that the application can use for a <code class="idl"><a data-link-type="idl" href="#dom-xrview-requestviewportscale" id="ref-for-dom-xrview-requestviewportscale④">requestViewportScale()</a></code> call to configure dynamic viewport scaling. It is <code>null</code> if the system does not implement a heuristic or method for determining a recommended scale. If not null, the value MUST be a numeric value greater than 0.0 and less than or equal to 1.0, and MUST be <a data-link-type="dfn" href="#quantization" id="ref-for-quantization②">quantized</a> to avoid providing detailed performance or GPU utilization data.</p>
    <p class="note" role="note"><span>Note:</span> It is suggested to quantize the recommended viewport scale by rounding it to the nearest value from a short list of possible scale values, and using hysteresis to avoid instant changes when close to a boundary value. (This also helps avoid rapidly oscillating scale values which can be visually distracting or uncomfortable.)</p>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑤">XRView</a></code> has an associated <dfn class="dfn-paneled" data-dfn-for="XRView" data-dfn-type="dfn" data-noexport id="xrview-session">session</dfn> which is the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑧③">XRSession</a></code> that produced it.</p>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑥">XRView</a></code> has an associated <dfn class="dfn-paneled" data-dfn-for="XRView" data-dfn-type="dfn" data-noexport id="xrview-frame-time">frame time</dfn> which is the <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑤">time</a> of the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⑧">XRFrame</a></code> that produced it.</p>
+   <p>Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑥">XRView</a></code> has an associated <dfn class="dfn-paneled" data-dfn-for="XRView" data-dfn-type="dfn" data-noexport id="xrview-frame">frame</dfn> which is the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⑧">XRFrame</a></code> that produced it.</p>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑦">XRView</a></code> has an associated <dfn class="dfn-paneled" data-dfn-for="XRView" data-dfn-type="dfn" data-noexport id="xrview-underlying-view">underlying view</dfn> which is the underlying <a data-link-type="dfn" href="#view" id="ref-for-view②⑤">view</a> that it represents.</p>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑧">XRView</a></code> has an associated <dfn class="dfn-paneled" data-dfn-for="XRView" data-dfn-type="dfn" data-noexport id="xrview-internal-projection-matrix">internal projection matrix</dfn> which stores the <a data-link-type="dfn" href="#view-projection-matrix" id="ref-for-view-projection-matrix②">projection matrix</a> of its <a data-link-type="dfn" href="#xrview-underlying-view" id="ref-for-xrview-underlying-view①">underlying view</a>. It is initially <code>null</code>.</p>
    <p class="note" role="note"><span>Note:</span> The <code class="idl"><a data-link-type="idl" href="#dom-xrview-transform" id="ref-for-dom-xrview-transform②">transform</a></code> can be used to position camera objects in many rendering libraries. If a more traditional view matrix is needed by the application one can be retrieved by calling <code>view.transform.inverse.matrix</code>.</p>
@@ -3381,7 +3381,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     <p>When an <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source①⑥">XR input source</a> <var>source</var> for <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨①">XRSession</a></code> <var>session</var> begins its <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action④">primary action</a> the UA MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②①">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⑨">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②①">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session⑥">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑥">time</a> being the time the action occurred.</p>
+      <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②①">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⑨">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②①">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session⑥">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time④">time</a> being the time the action occurred.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑦">Queue a task</a> to <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event">fire an input source event</a> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-selectstart" id="ref-for-eventdef-xrsession-selectstart②">selectstart</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
     </ol>
@@ -3390,7 +3390,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     <p>When an <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source①⑦">XR input source</a> <var>source</var> for <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨②">XRSession</a></code> <var>session</var> ends its <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action⑤">primary action</a> the UA MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②②">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②⓪">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②②">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session⑦">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑦">time</a> being the time the action occurred.</p>
+      <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②②">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②⓪">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②②">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session⑦">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑤">time</a> being the time the action occurred.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑧">Queue a task</a> to perform the following steps:</p>
       <ol>
@@ -3406,7 +3406,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     <p>When an <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source①⑨">XR input source</a> <var>source</var> for <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨③">XRSession</a></code> <var>session</var> begins its <a data-link-type="dfn" href="#primary-squeeze-action" id="ref-for-primary-squeeze-action④">primary squeeze action</a> the UA MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②③">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②①">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②③">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session⑧">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑧">time</a> being the time the action occurred.</p>
+      <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②③">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②①">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②③">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session⑧">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑥">time</a> being the time the action occurred.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑨">Queue a task</a> to <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event③">fire an input source event</a> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-squeezestart" id="ref-for-eventdef-xrsession-squeezestart②">squeezestart</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
     </ol>
@@ -3415,7 +3415,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     <p>When an <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source②⓪">XR input source</a> <var>source</var> for <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨④">XRSession</a></code> <var>session</var> ends its <a data-link-type="dfn" href="#primary-squeeze-action" id="ref-for-primary-squeeze-action⑤">primary squeeze action</a> the UA MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②④">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②②">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②④">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session⑨">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑨">time</a> being the time the action occurred.</p>
+      <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②④">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②②">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②④">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session⑨">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑦">time</a> being the time the action occurred.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②⓪">Queue a task</a> to perform the following steps:</p>
       <ol>
@@ -3431,7 +3431,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     <p>When an <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source②②">XR input source</a> <var>source</var> for <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨⑤">XRSession</a></code> <var>session</var> has its <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action⑧">primary action</a> cancelled the UA MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②⑤">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②③">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②⑤">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session①⓪">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time①⓪">time</a> being the time the action occurred.</p>
+      <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②⑤">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②③">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②⑤">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session①⓪">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑧">time</a> being the time the action occurred.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②①">Queue a task</a> to <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event⑥">fire an input source event</a> an <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent">XRInputSourceEvent</a></code> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-selectend" id="ref-for-eventdef-xrsession-selectend③">selectend</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
     </ol>
@@ -3440,7 +3440,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     <p>When an <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source②③">XR input source</a> <var>source</var> for <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨⑥">XRSession</a></code> <var>session</var> has its <a data-link-type="dfn" href="#primary-squeeze-action" id="ref-for-primary-squeeze-action⑧">primary squeeze action</a> cancelled the UA MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②⑥">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②④">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②⑥">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session①①">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time①①">time</a> being the time the action occurred.</p>
+      <p>Let <var>frame</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new②⑥">new</a> <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe②④">XRFrame</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm②⑥">relevant realm</a> of <var>session</var> with <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session①①">session</a></code> <var>session</var> with <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time⑨">time</a> being the time the action occurred.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②②">Queue a task</a> to <a data-link-type="dfn" href="#fire-an-input-source-event" id="ref-for-fire-an-input-source-event⑦">fire an input source event</a> an <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent①">XRInputSourceEvent</a></code> with name <code class="idl"><a class="idl-code" data-link-type="event" href="#eventdef-xrsession-squeezeend" id="ref-for-eventdef-xrsession-squeezeend③">squeezeend</a></code>, frame <var>frame</var>, and source <var>source</var>.</p>
     </ol>
@@ -4003,7 +4003,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>If <var>frame</var>’s <a data-link-type="dfn" href="#xrframe-active" id="ref-for-xrframe-active④">active</a> boolean is <code>false</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①④">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If <var>view</var>’s <a data-link-type="dfn" href="#xrview-frame-time" id="ref-for-xrview-frame-time①">frame time</a> is not equal to <var>frame</var>’s <a data-link-type="dfn" href="#xrframe-time" id="ref-for-xrframe-time①②">time</a>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑤">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>view</var>’s <a data-link-type="dfn" href="#xrview-frame" id="ref-for-xrview-frame①">frame</a> is not equal to <var>frame</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑤">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>If the <a data-link-type="dfn" href="#view-viewport-modifiable" id="ref-for-view-viewport-modifiable①">viewport modifiable</a> flag is <code>true</code> and <var>view</var>’s <a data-link-type="dfn" href="#view-requested-viewport-scale" id="ref-for-view-requested-viewport-scale③">requested viewport scale</a> is not equal to <a data-link-type="dfn" href="#view-current-viewport-scale" id="ref-for-view-current-viewport-scale①">current viewport scale</a>:</p>
       <ol>
@@ -4032,7 +4032,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     </ol>
    </div>
    <p>Additionally, the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①⓪">XRSession</a></code> MUST identify a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="recommended-webgl-framebuffer-resolution">recommended WebGL framebuffer resolution</dfn>, which represents a best estimate of the WebGL framebuffer resolution large enough to contain all of the session’s <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①⑨">XRView</a></code>s that provides an average application a good balance between performance and quality. It MAY be smaller than, larger than, or equal to the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution③">native WebGL framebuffer resolution</a>. New <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer①⑨">opaque framebuffer</a> will be created with this resolution, with width and height each scaled by any <code class="idl"><a data-link-type="idl" href="#dictdef-xrwebgllayerinit" id="ref-for-dictdef-xrwebgllayerinit②">XRWebGLLayerInit</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-framebufferscalefactor" id="ref-for-dom-xrwebgllayerinit-framebufferscalefactor①">framebufferScaleFactor</a></code> provided.</p>
-   <p class="note" role="note"><span>Note:</span> The user agent is free to use any method of its choosing to estimate the <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution②">recommended WebGL framebuffer resolution</a>. If there are platform-specific methods for querying a recommended size it is recommended that they be used, but not required. The scale factors used by <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-framebufferscalefactor" id="ref-for-dom-xrwebgllayerinit-framebufferscalefactor②">framebufferScaleFactor</a></code> and <code class="idl"><a data-link-type="idl">getNativeFramebufferScaleFactor</a></code> apply to width and height separately, so a scale factor of two results in four times the overall pixel count. If the platform exposes an area-based render scale that’s based on pixel count, the user agent needs to take the square root of that to convert it to a WebXR scale factor.</p>
+   <p class="note" role="note"><span>Note:</span> The user agent is free to use any method of its choosing to estimate the <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution②">recommended WebGL framebuffer resolution</a>. If there are platform-specific methods for querying a recommended size it is recommended that they be used, but not required. The scale factors used by <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayerinit-framebufferscalefactor" id="ref-for-dom-xrwebgllayerinit-framebufferscalefactor②">framebufferScaleFactor</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-getnativeframebufferscalefactor" id="ref-for-dom-xrwebgllayer-getnativeframebufferscalefactor①">getNativeFramebufferScaleFactor()</a></code> apply to width and height separately, so a scale factor of two results in four times the overall pixel count. If the platform exposes an area-based render scale that’s based on pixel count, the user agent needs to take the square root of that to convert it to a WebXR scale factor.</p>
    <div class="algorithm" data-algorithm="get-native-framebuffer-scale-factor">
     <div class="mdn-anno wrapped">
      <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
@@ -5349,13 +5349,13 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     frame
     <ul>
      <li><a href="#dom-xrinputsourceevent-frame">attribute for XRInputSourceEvent</a><span>, in §12.2</span>
+     <li><a href="#xrview-frame">dfn for XRView</a><span>, in §7.1</span>
      <li><a href="#dom-xrinputsourceeventinit-frame">dict-member for XRInputSourceEventInit</a><span>, in §12.2</span>
     </ul>
    <li><a href="#dom-xrwebgllayer-framebuffer">framebuffer</a><span>, in §11.2</span>
    <li><a href="#dom-xrwebgllayer-framebufferheight">framebufferHeight</a><span>, in §11.2</span>
    <li><a href="#dom-xrwebgllayerinit-framebufferscalefactor">framebufferScaleFactor</a><span>, in §11.2</span>
    <li><a href="#dom-xrwebgllayer-framebufferwidth">framebufferWidth</a><span>, in §11.2</span>
-   <li><a href="#xrview-frame-time">frame time</a><span>, in §7.1</span>
    <li><a href="#frame-update">frame update</a><span>, in §5.1</span>
    <li><a href="#dom-xrtargetraymode-gaze">"gaze"</a><span>, in §10.1</span>
    <li><a href="#dom-xrtargetraymode-gaze">gaze</a><span>, in §10.1</span>
@@ -8174,11 +8174,9 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <b><a href="#xrframe-time">#xrframe-time</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-xrframe-time">4.3. Animation Frames</a>
-    <li><a href="#ref-for-xrframe-time①">5.1. XRFrame</a> <a href="#ref-for-xrframe-time②">(2)</a> <a href="#ref-for-xrframe-time③">(3)</a>
-    <li><a href="#ref-for-xrframe-time④">6.1. XRSpace</a>
-    <li><a href="#ref-for-xrframe-time⑤">7.1. XRView</a>
-    <li><a href="#ref-for-xrframe-time⑥">10.1. XRInputSource</a> <a href="#ref-for-xrframe-time⑦">(2)</a> <a href="#ref-for-xrframe-time⑧">(3)</a> <a href="#ref-for-xrframe-time⑨">(4)</a> <a href="#ref-for-xrframe-time①⓪">(5)</a> <a href="#ref-for-xrframe-time①①">(6)</a>
-    <li><a href="#ref-for-xrframe-time①②">11.2. XRWebGLLayer</a>
+    <li><a href="#ref-for-xrframe-time①">5.1. XRFrame</a> <a href="#ref-for-xrframe-time②">(2)</a>
+    <li><a href="#ref-for-xrframe-time③">6.1. XRSpace</a>
+    <li><a href="#ref-for-xrframe-time④">10.1. XRInputSource</a> <a href="#ref-for-xrframe-time⑤">(2)</a> <a href="#ref-for-xrframe-time⑥">(3)</a> <a href="#ref-for-xrframe-time⑦">(4)</a> <a href="#ref-for-xrframe-time⑧">(5)</a> <a href="#ref-for-xrframe-time⑨">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrframe-getviewerpose">
@@ -8539,11 +8537,11 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li><a href="#ref-for-xrview-session①">11.2. XRWebGLLayer</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="xrview-frame-time">
-   <b><a href="#xrview-frame-time">#xrview-frame-time</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="xrview-frame">
+   <b><a href="#xrview-frame">#xrview-frame</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrview-frame-time">5.1. XRFrame</a>
-    <li><a href="#ref-for-xrview-frame-time①">11.2. XRWebGLLayer</a>
+    <li><a href="#ref-for-xrview-frame">5.1. XRFrame</a>
+    <li><a href="#ref-for-xrview-frame①">11.2. XRWebGLLayer</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrview-underlying-view">
@@ -9144,7 +9142,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <aside class="dfn-panel" data-for="dom-xrwebgllayer-getnativeframebufferscalefactor">
    <b><a href="#dom-xrwebgllayer-getnativeframebufferscalefactor">#dom-xrwebgllayer-getnativeframebufferscalefactor</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrwebgllayer-getnativeframebufferscalefactor">11.2. XRWebGLLayer</a>
+    <li><a href="#ref-for-dom-xrwebgllayer-getnativeframebufferscalefactor">11.2. XRWebGLLayer</a> <a href="#ref-for-dom-xrwebgllayer-getnativeframebufferscalefactor①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="compatible-graphics-adapter">
