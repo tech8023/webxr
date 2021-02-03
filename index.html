@@ -694,7 +694,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-01-27">27 January 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-02-03">3 February 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2006,6 +2006,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p>Let <var>session</var> be the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this②">this</a>.</p>
      <li data-md>
+      <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended②">ended</a> value is <code>true</code>, return <a class="property" data-link-type="propdesc">0</a> and abort these steps.</p>
+     <li data-md>
       <p>Increment <var>session</var>’s <a data-link-type="dfn" href="#animation-frame-callback-identifier" id="ref-for-animation-frame-callback-identifier">animation frame callback identifier</a> by one.</p>
      <li data-md>
       <p>Append <var>callback</var> to <var>session</var>’s <a data-link-type="dfn" href="#list-of-animation-frame-callbacks" id="ref-for-list-of-animation-frame-callbacks">list of animation frame callbacks</a>, associated with <var>session</var>’s <a data-link-type="dfn" href="#animation-frame-callback-identifier" id="ref-for-animation-frame-callback-identifier①">animation frame callback identifier</a>’s current value.</p>
@@ -2433,7 +2435,7 @@ window<c- p>.</c->requestAnimationFrame<c- p>(</c->onWindowAnimationFrame<c- p>)
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpace/onreset" title="The XRReferenceSpace interface&apos;s onreset event handler property can be set to a function which is called when the XRReferenceSpace receives a reset event, signaling that the  XR device has experienced a discontinuity large enough to require that the position and/or orientation of the origin be significantly altered to compensate.">XRReferenceSpace/onreset</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpace/onreset" title="The XRReferenceSpace interface&apos;s onreset event handler property can be set to a function which is called when the XRReferenceSpace receives a reset event, signaling that the XR device has experienced a discontinuity large enough to require that the position and/or orientation of the origin be significantly altered to compensate.">XRReferenceSpace/onreset</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>79+</span></span>
@@ -3180,7 +3182,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XRPose/emulatedPosition" title="The emulatedPosition read-only attribute of the XRPose interface is a Boolean value indicating whether or not both the the position component of the pose&apos;s transform is directly taken from the XR device, or it&apos;s simulated or computed based on other sources.">XRPose/emulatedPosition</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XRPose/emulatedPosition" title="The emulatedPosition read-only attribute of the XRPose interface is a Boolean value indicating whether or not both the position component of the pose&apos;s transform is directly taken from the XR device, or it&apos;s simulated or computed based on other sources.">XRPose/emulatedPosition</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>79+</span></span>
@@ -3563,7 +3565,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      </div>
     </div>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XRInputSourceArray/values" title="The XRInputSourceArray method  values() returns a JavaScript iterator that can walk over the list of XRInputSource objects contained in the array, from first to last.">XRInputSourceArray/values</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XRInputSourceArray/values" title="The XRInputSourceArray method values() returns a JavaScript iterator that can walk over the list of XRInputSource objects contained in the array, from first to last.">XRInputSourceArray/values</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>79+</span></span>
@@ -3777,7 +3779,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>layer</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new③⓪">new</a> <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer①②">XRWebGLLayer</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm③⓪">relevant realm</a> of <var>session</var>.</p>
      <li data-md>
-      <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended②">ended</a> value is <code>true</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⓪">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended③">ended</a> value is <code>true</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⓪">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>If <var>context</var> is lost, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①①">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
@@ -4055,7 +4057,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>session</var> be <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this⑥">this</a>.</p>
      <li data-md>
-      <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended③">ended</a> value is <code>true</code>, return <code>0.0</code> and abort these steps.</p>
+      <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended④">ended</a> value is <code>true</code>, return <code>0.0</code> and abort these steps.</p>
      <li data-md>
       <p>Return the value that the <var>session</var>’s <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution③">recommended WebGL framebuffer resolution</a> width and height must each be multiplied by to yield the <var>session</var>’s <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution④">native WebGL framebuffer resolution</a>.</p>
     </ol>
@@ -4487,7 +4489,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      </div>
     </div>
     <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceEvent" title="The WebXR Device API interface XRReferenceSpaceEvent represents an event sent to an XRReferenceSpace. Currently, the only event  that uses this type is the reset event.">XRReferenceSpaceEvent</a></p>
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceEvent" title="The WebXR Device API interface XRReferenceSpaceEvent represents an event sent to an XRReferenceSpace. Currently, the only event that uses this type is the reset event.">XRReferenceSpaceEvent</a></p>
      <p class="less-than-two-engines-text">In only one current engine.</p>
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>79+</span></span>
@@ -4708,7 +4710,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="explicit-consent">Explicit consent</dfn> is when the user agent makes a judgement on the consent of a user based on having explicitly asked for it. When gathering <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent②">explicit consent</a>, user agents present an explanation of what is being requested and provide users the option to decline. Requests for user consent can be presented in many visual forms based on the features being protected and user agent choice. Install status of a web application MAY count as a signal of <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent③">explicit consent</a> provided some form of <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent④">explicit consent</a> is requested at install time.</p>
    <h4 class="heading settled" data-level="13.2.4" id="consent-duration"><span class="secno">13.2.4. </span><span class="content">Duration of consent</span><a class="self-link" href="#consent-duration"></a></h4>
     It is recommended that once <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑤">explicit consent</a> is granted for a specific <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a> that this consent persist until the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context③">browsing context</a> has ended. User agents may choose to lengthen or shorten this consent duration based upon implicit or explicit signals of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑨">user intent</a>, but implementations are advised to exercise caution when deviating from this recommendation, particularly when relying on implicit signals. For example, it may be appropriate for a web application installed with the express intent of running immersive content to persist the user’s consent, but not for an installed web application where immersive content is a secondary feature. 
-   <p>Regardless of how long the user agent chooses to persist the user’s consent, <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information②">sensitive information</a> MUST only be exposed by an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①③②">XRSession</a></code> which has not <a data-link-type="dfn" href="#ended" id="ref-for-ended④">ended</a>.</p>
+   <p>Regardless of how long the user agent chooses to persist the user’s consent, <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information②">sensitive information</a> MUST only be exposed by an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①③②">XRSession</a></code> which has not <a data-link-type="dfn" href="#ended" id="ref-for-ended⑤">ended</a>.</p>
    <h3 class="heading settled" data-level="13.3" id="mid-session-consent"><span class="secno">13.3. </span><span class="content">Mid-session consent</span><a class="self-link" href="#mid-session-consent"></a></h3>
    <p>There are multiple non-XR APIs which cause user agents to request <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑥">explicit consent</a> to use a feature. If the user agent will request the user’s consent while there is an <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session⑧">active immersive session</a>, the user agent MUST <a data-link-type="dfn" href="#shut-down-the-session" id="ref-for-shut-down-the-session③">shut down the session</a> prior to displaying the consent request to the user. If the user’s consent for the feature had been granted prior to the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session⑨">active immersive session</a> being created the session does not need to be terminated.</p>
    <p class="note" role="note"><span>Note:</span> This limitation is to ensure that there is behavioral parity between all user agents until consensus is reached about how user agents should manage mid-session <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑦">explicit consent</a>. It is not expected to be a long term requirement.</p>
@@ -7704,8 +7706,9 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <b><a href="#ended">#ended</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-ended">4.1. XRSession</a> <a href="#ref-for-ended①">(2)</a>
-    <li><a href="#ref-for-ended②">11.2. XRWebGLLayer</a> <a href="#ref-for-ended③">(2)</a>
-    <li><a href="#ref-for-ended④">13.2.4. Duration of consent</a>
+    <li><a href="#ref-for-ended②">4.3. Animation Frames</a>
+    <li><a href="#ref-for-ended③">11.2. XRWebGLLayer</a> <a href="#ref-for-ended④">(2)</a>
+    <li><a href="#ref-for-ended⑤">13.2.4. Duration of consent</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsession-end">
