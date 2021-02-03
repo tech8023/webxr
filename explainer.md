@@ -28,6 +28,7 @@ The [WebXR Device API](https://immersive-web.github.io/webxr/) provides access t
 - [Advanced functionality](#advanced-functionality)
   - [Feature dependencies](#feature-dependencies)
   - [Controlling rendering quality](#controlling-rendering-quality)
+  - [Dynamic viewport scaling](#dynamic-viewport-scaling)
   - [Controlling depth precision](#controlling-depth-precision)
   - [Preventing the compositor from using the depth buffer](#preventing-the-compositor-from-using-the-depth-buffer)
   - [Changing the Field of View for inline sessions](#changing-the-field-of-view-for-inline-sessions)
@@ -102,7 +103,7 @@ The basic steps most WebXR applications will go through are:
  1. If support is available, **advertise XR functionality** to the user.
  1. A [user-activation event](https://html.spec.whatwg.org/multipage/interaction.html#activation) indicates that the user wishes to use XR.
  1. **Request an immersive session** from the device
- 1. Use the session to **run a render loop** that produces graphical frames to be displayed on the XR device.
+ 1. Use the session to **run a render loop** that updates sensor data, and produces graphical frames to be displayed on the XR device.
  1. Continue **producing frames** until the user indicates that they wish to exit XR mode.
  1. **End the XR session**.
 
@@ -110,7 +111,7 @@ In the following sections, the code examples will demonstrate the core API conce
 
 ### XR hardware
 
-The UA will identify an available physical unit of XR hardware that can present imagery to the user, referred to here as an "XR device". On desktop clients this will usually be a headset peripheral; on mobile clients it may represent the mobile device itself in conjunction with a viewer harness (e.g., Google Cardboard/Daydream or Samsung Gear VR). It may also represent devices without stereo-presentation capabilities but with more advanced tracking, such as ARCore/ARKit-compatible devices. Any queries for XR capabilities or functionality are implicitly made against this device.
+The UA will identify an available physical unit of XR hardware that can present immersive content to the user. Content is considered to be "immersive" if it produces visual, audio, haptic, or other sensory output that simulates or augments various aspects of the users environment. Most frequently this involves tracking the user's motion in space and producing outputs that are synchronized to the user's movement. On desktop clients this will usually be a headset peripheral; on mobile clients it may represent the mobile device itself in conjunction with a viewer harness (e.g., Google Cardboard/Daydream or Samsung Gear VR). It may also represent devices without stereo-presentation capabilities but with more advanced tracking, such as ARCore/ARKit-compatible devices. Any queries for XR capabilities or functionality are implicitly made against this device.
 
 > **Non-normative Note:** If there are multiple XR devices available, the UA will need to pick which one to expose. The UA is allowed to use any criteria it wishes to select which device is used, including settings UI that allow users to manage device priority. Calling `navigator.xr.isSessionSupported` or `navigator.xr.requestSession` with `'inline'` should **not** trigger device-selection UI, however, as this would cause many sites to display XR-specific dialogs early in the document lifecycle without user activation.
 
@@ -138,7 +139,7 @@ It should be noted that an immersive VR session may still display the users envi
 
 This document will use the term "immersive session" to refer to immersive VR sessions throughout.
 
-In the following examples we will explain the core API concepts using immersive VR sessions first, and cover the differences introduced by [inline sessions](#inline-sessions) afterwards. With that in mind, this code checks for support of immersive VR sessions, since we want the ability to display imagery on a device like a headset.
+In the following examples we will explain the core API concepts using immersive VR sessions first, and cover the differences introduced by [inline sessions](#inline-sessions) afterwards. With that in mind, this code checks for support of immersive VR sessions, since we want the ability to display content on a device like a headset.
 
 ```js
 async function checkForXRSupport() {
@@ -283,7 +284,7 @@ The `XRWebGLLayer`s framebuffer is created by the UA and behaves similarly to a 
 
 Once drawn to, the XR device will continue displaying the contents of the `XRWebGLLayer` framebuffer, potentially reprojected to match head motion, regardless of whether or not the page continues processing new frames. Potentially future spec iterations could enable additional types of layers, such as video layers, that could automatically be synchronized to the device's refresh rate.
 
-### Viewer tracking
+### Viewer tracking With WebGL
 
 Each `XRFrame` the scene will be drawn from the perspective of a "viewer", which is the user or device viewing the scene, described by an `XRViewerPose`. Developers retrieve the current `XRViewerPose` by calling `getViewerPose()` on the `XRFrame` and providing an `XRReferenceSpace` for the pose to be returned in. Due to the nature of XR tracking systems, this function is not guaranteed to return a value and developers will need to respond appropriately. For more information about what situations will cause `getViewerPose()` to fail and recommended practices for handling the situation, refer to the [Spatial Tracking Explainer](spatial-tracking-explainer.md).
 
@@ -367,6 +368,50 @@ function drawScene(view) {
 In both cases the `XRView`'s `projectionMatrix` should be used as-is. Altering it may cause incorrect output to the XR device and significant user discomfort.
 
 Because the `XRViewerPose` inherits from `XRPose` it also contains a `transform` describing the position and orientation of the viewer as a whole relative to the `XRReferenceSpace` origin. This is primarily useful for rendering a visual representation of the viewer for spectator views or multi-user environments.
+
+### Audio Listener Tracking
+
+Each `XRFrame` the `viewerPos. transform.matrix` needs to be modified to fit with the orientation values for the [AudioContext.listener](<https://developer.mozilla.org/en-US/docs/Web/API/AudioListener>) front and up values.
+Note that in the `viewer` `xrReferenceSpace`, the position and orientation move along with the headset (and presumably the user's head). This means it has a `native origin` always at the `viewerPos. transform.matrix`, so only the orientation of the audio listener will change in this ` xrReferenceSpace`.
+It's also important to clarify that there's no such thing as the listener position. The scene can have multiple coexisting coordinate systems. In this example, you're getting the viewer pose in a specific xrReferenceSpace, and using the pose transform matrix to update the AudioListener with position and orientation in that reference space's coordinate system. The unstated assumption is that the audio sources will also use coordinates in that same reference space's coordinate system, and if that's the case you'll get a consistent experience.
+It would be perfectly valid (if a bit odd) to do everything in viewer space, keeping the AudioListener at the viewer space origin with fixed forward along -z and up along +y in that space, and then ensure that the coordinates for audio sources are in this same viewer space, relative to the current head position and orientation.
+
+Here is an example of how to connect the `viewerPos. transform.matrix` to the `AudioContext.listener`:
+
+```js
+// initialize the audio context
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioCtx = new AudioContext();
+
+function onDrawFrame(timestamp, xrFrame) {
+  // Do we have an active session?
+  if (xrSession) {
+    let listener = audioCtx.listener;
+
+    let pose = xrFrame.getViewerPose(xrReferenceSpace);
+    if (pose) {
+      // Run imaginary 3D engine's simulation to step forward physics, PannerNodes, etc.
+      scene.updateScene(timestamp, xrFrame);
+
+      // Set the audio listener to face where the XR view is facing
+      /// The pose.matrix top left 3x3 elements provide unit column vectors in base space for the posed coordinate system's x/y/z axis directions,
+      /// so we use the negative of the third column directly as a forward vector corresponding to the -z direction.
+      // The given pose.transform.orientation is a quaternion and not a forward vector, so is not used with web audio
+      const m = pose.transform.matrix;
+      // Set forward facing position
+      [ listener.forwardX.value, listener.forwardY.value, listener.forwardZ.value ] = [-m[8], -m[9], -m[10]];
+      // set the horizontal position of the top of the listener's head
+      [ listener.upX.value, listener.upY.value, listener.upZ.value ] = [ m[4], m[5], m[6] ];
+      // Set the audio listener to travel with the WebXR user position
+      // Note that pose.transform.position does equal [m[12], m[13], m[14]]
+      [ listener.positionX.value, listener.positionY.value, listener.positionZ.value ] = [m[12], m[13], m[14]];
+
+    }
+    // Request the next animation callback
+    xrSession.requestAnimationFrame(onDrawFrame);
+  }
+}
+```
 
 ### Handling session visibility
 
@@ -525,7 +570,7 @@ Some features recognized by the UA but not explicitly listed in these arrays wil
 | `viewer` | Requested `XRSessionMode` is `inline` or`immersive-vr`|
 | `local` | Requested `XRSessionMode` is `immersive-vr`|
 
-### Controlling rendering quality
+### Controlling rendering quality Through WebGL
 
 While in immersive sessions, the UA is responsible for providing a framebuffer that is correctly optimized for presentation to the `XRSession` in each `XRFrame`. Developers can optionally request the framebuffer size be scaled, though the UA may not respect the request. Even when the UA honors the scaling requests, the result is not guaranteed to be the exact percentage requested.
 
@@ -555,6 +600,46 @@ function setupNativeScaleWebGLLayer() {
 ```
 
 This technique should be used carefully, since the native resolution on some headsets may be higher than the system is capable of rendering at a stable framerate without use of additional techniques such as foveated rendering. Also note that the UA's scale clamping is allowed to prevent the allocation of native resolution framebuffers if it deems it necessary to maintain acceptable performance.
+
+Framebuffer scaling is typically configured once per session, but can be changed during a session by creating a new `XRWebGLLayer` and updating the render state to apply that on the next frame:
+
+```js
+function rescaleWebGLLayer(scale) {
+    let glLayer = new XRWebGLLayer(xrSession, gl, { framebufferScaleFactor: scale });
+    xrSession.updateRenderState({ baseLayer: glLayer });
+  });
+```
+
+Rescaling the framebuffer may involve reallocating render buffers and should only be done rarely, for example when transitioning from a game mode to a text-heavy menu mode or similar. See [Dynamic viewport scaling](#dynamic-viewport-scaling) for an alternative if your application needs more frequent adjustments.
+
+### Dynamic viewport scaling
+
+Dynamic viewport scaling allows applications to only use a subset of the available framebuffer. This is intended for fine-grained performance tuning where the desired render resolution changes frequently, and can be adjusted on a frame-by-frame basis. A typical use case would be rendering scenes with highly variable complexity, for example where the user may move their viewpoint to closely examine a model with a complex shader. (If an application wanted to keep this constant for a session, it should use `framebufferScaleFactor` instead, see [Controlling rendering quality](#controlling-rendering-quality).)
+
+This is an opt-in feature for applications, it is activated by calling `requestViewportScale(scale)` on an `XRView`, followed by a call to `getViewport()` which applies the change and returns the updated viewport:
+
+```js
+for (let view of pose.views) {
+  view.requestViewportScale(scale);
+  let viewport = glLayer.getViewport(view);
+  gl.viewport(viewport.x, viewport.y, viewport.width, viewport.height);
+  drawScene(view);
+}
+```
+
+NOTE: Dynamic viewport scaling is a recent addition to WebXR, and implementations may not provide the API yet. For compatibility, consider adding a `if (view.requestViewportScale)` check to ensure that the API exists.
+
+The feature may not be available on all systems since it depends on driver support. If it is unsupported, the system will ignore the requested scale and continue using the full-sized viewport. If necessary, the application can compare the sizes returned by `getViewport()` across animation frames to confirm if the feature is active, for example if it would want to use an alternate performance tuning method such as reducing scene complexity as a fallback.
+
+For consistency, the `getViewport()` result for any given view is always fixed for the duration of an animation frame. If `requestViewportScale()` is used before the first `getViewport()` call, the change applies immediately for the current animation frame. Otherwise, the change is deferred until `getViewport()` is called again in a future animation frame.
+
+User agents can optionally provide a `recommendedViewportScale` attribute on an `XRView` with a suggested value based on internal performance heuristics. This attribute is null if the user agent doesn't provide a recommendation. A `requestViewportScale(null)` call has no effect, so applications could use the following code to apply the heuristic only if it exists:
+
+```js
+  view.requestViewportScale(view.recommendedViewportScale);
+```
+
+Alternatively, applications could modify the recommended scale, i.e. clamping it to a minimum scale to avoid text becoming unreadable, or use their own heuristic based on data such as current visible scene complexity and recent framerate average.
 
 ### Controlling depth precision
 

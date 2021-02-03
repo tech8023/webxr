@@ -32,6 +32,21 @@ The [WebXR Device API Specification][1] is the repository of the [Immersive Web 
 * [WebXR AR Module][26]: For enabling AR capable Displays & Sessions
 * [Dom Overlays][27]: A mechanism for providing a simple DOM overlay on top of the graphics
 * [Hit Test][28]: Cast a ray onto real world geometry
+* [Layers][30]: Exposes WebGL and media layers for WebXR
+* [WebXR Hands Input][31]: Adds hand input support in WebXR
+
+### Immersive Web Community Group Specifications
+
+* [Anchors][32]
+* [Computer Vision][33]
+* [Geo Alignment][34]
+* [Lighting Estimation][35]
+* [Navigation][36]
+* [Performance Improvements][37]
+* [Real World Geometry][38]
+* [Spatial Favicons][39]
+* [Depth Sensing][40]
+* [WebXR WebGPU Binding][41]
 
 ### Related Specifications
 
@@ -86,7 +101,7 @@ Per the [`LICENSE.md`](LICENSE.md) file:
 [1]: https://immersive-web.github.io/webxr/
 [2]: https://immersive-web.github.io/webvr/
 [3]: https://www.w3.org/community/webvr/
-[4]: https://www.w3.org/2018/09/immersive-web-wg-charter.html
+[4]: https://www.w3.org/2020/05/immersive-web-wg-charter.html
 [5]: https://w3c.github.io/gamepad/
 [6]: https://w3c.github.io/gamepad/extensions.html
 [7]: https://lists.w3.org/Archives/Public/public-webvr/
@@ -101,7 +116,7 @@ Per the [`LICENSE.md`](LICENSE.md) file:
 [17]: https://w3.org/immersive-web
 [18]: https://immersive-web.github.io/homepage/code-of-conduct.html
 [19]: https://github.com/immersive-web/proposals
-[20]: https://lists.w3.org/Archives/Public/public-immersive-web/
+[20]: https://lists.w3.org/Archives/Public/public-immersive-web-wg/
 [21]:https://immersive-web.github.io/webxr/explainer.html
 [22]:https://immersive-web.github.io/webxr/input-explainer.html
 [23]:https://immersive-web.github.io/webxr/privacy-security-explainer.html
@@ -111,3 +126,15 @@ Per the [`LICENSE.md`](LICENSE.md) file:
 [27]:https://github.com/immersive-web/dom-overlays
 [28]:https://github.com/immersive-web/hit-test
 [29]:https://github.com/immersive-web/webxr-input-profiles
+[30]:https://github.com/immersive-web/layers
+[31]:https://github.com/immersive-web/webxr-hands-input
+[32]:https://github.com/immersive-web/anchors
+[33]:https://github.com/immersive-web/computer-vision
+[34]:https://github.com/immersive-web/geo-alignment
+[35]:https://github.com/immersive-web/lighting-estimation
+[36]:https://github.com/immersive-web/navigation
+[37]:https://github.com/immersive-web/performance-improvements
+[38]:https://github.com/immersive-web/real-world-geometry
+[39]:https://github.com/immersive-web/spatial-favicons
+[40]:https://github.com/immersive-web/depth-sensing
+[41]:https://github.com/immersive-web/WebXR-WebGPU-Binding
