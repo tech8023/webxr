@@ -1247,6 +1247,8 @@ An {{XRReferenceSpace}} is most frequently obtained by calling {{XRSession/reque
 
   - Passing a type of <dfn enum-value for="XRReferenceSpaceType">unbounded</dfn> creates an {{XRReferenceSpace}} instance. It represents a tracking space where the user is expected to move freely around their environment, potentially even long distances from their starting point. Tracking in an {{unbounded}} reference space is optimized for stability around the user's current position, and as such the [=native origin=] may drift over time.
 
+Note: it is assumed that the conventions of the underlying platform regarding Y axes of the reference spaces stay consistent across different types of {{XRReferenceSpace}}s. In other words, if an XR system supports multiple reference spaces, their Y axes will be parallel to each other and point in the same direction for the duration of the {{XRSession}} in which they were created. This does not apply to {{XRReferenceSpaceType/"viewer"}} reference space, which does not rely on the conventions of the underlying platform for its orientation.
+
 Devices that support {{XRReferenceSpaceType/"local"}} reference spaces MUST support {{XRReferenceSpaceType/"local-floor"}} reference spaces, through emulation if necessary, and vice versa.
 
 The <dfn attribute for="XRReferenceSpace">onreset</dfn> attribute is an [=Event handler IDL attribute=] for the {{reset}} event type.
