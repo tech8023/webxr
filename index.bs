@@ -1186,16 +1186,22 @@ To <dfn>populate the pose</dfn> of an {{XRSpace}} |space| in an {{XRSpace}} |bas
       : If |limit| is `false` and the tracking system provides a [=6DoF=] pose whose position is actively tracked or statically known for |space|'s pose relative to |baseSpace|:
       :: Set |transform|'s {{XRRigidTransform/orientation}} to the orientation of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
       :: Set |transform|'s {{XRRigidTransform/position}} to the position of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
+      :: Set |pose|'s {{XRPose/linearVelocity}} to the linear velocity of |space|'s [=effective origin=] compared to |baseSpace|'s [=coordinate system=].
+      :: Set |pose|'s {{XRPose/angularVelocity}} to the angular velocity of |space|'s [=effective origin=] compared to |baseSpace|'s [=coordinate system=].
       :: Set |pose|'s {{XRPose/emulatedPosition}} to `false`.
 
       : Else if |limit| is `false` and the tracking system provides a [=3DoF=] pose or a [=6DoF=] pose whose position is neither actively tracked nor statically known for |space|'s pose relative to |baseSpace|:
       :: Set |transform|'s {{XRRigidTransform/orientation}} to the orientation of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
       :: Set |transform|'s {{XRRigidTransform/position}} to the tracking system's best estimate of the position of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=]. This MAY include a computed offset such as a neck or arm model. If a position estimate is not available, the last known position MUST be used.
+      :: Set |pose|'s {{XRPose/linearVelocity}} to `null`.
+      :: Set |pose|'s {{XRPose/angularVelocity}} to `null`.
       :: Set |pose|'s {{XRPose/emulatedPosition}} to `true`.
 
       : Else if |space|'s pose relative to |baseSpace| has been determined in the past and |force emulation| is `true`:
       :: Set |transform|'s {{XRRigidTransform/position}} to the last known position of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
       :: Set |transform|'s {{XRRigidTransform/orientation}} to the last known orientation of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
+      :: Set |pose|'s {{XRPose/linearVelocity}} to `null`.
+      :: Set |pose|'s {{XRPose/angularVelocity}} to `null`.
       :: Set |pose|'s {{XRPose/emulatedPosition}} boolean to `true`.
 
       : Otherwise:
