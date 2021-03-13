@@ -1186,8 +1186,8 @@ To <dfn>populate the pose</dfn> of an {{XRSpace}} |space| in an {{XRSpace}} |bas
       : If |limit| is `false` and the tracking system provides a [=6DoF=] pose whose position is actively tracked or statically known for |space|'s pose relative to |baseSpace|:
       :: Set |transform|'s {{XRRigidTransform/orientation}} to the orientation of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
       :: Set |transform|'s {{XRRigidTransform/position}} to the position of |space|'s [=effective origin=] in |baseSpace|'s [=coordinate system=].
-      :: Set |pose|'s {{XRPose/linearVelocity}} to the linear velocity of |space|'s [=effective origin=] compared to |baseSpace|'s [=coordinate system=].
-      :: Set |pose|'s {{XRPose/angularVelocity}} to the angular velocity of |space|'s [=effective origin=] compared to |baseSpace|'s [=coordinate system=].
+      :: If supported, set |pose|'s {{XRPose/linearVelocity}} to the linear velocity of |space|'s [=effective origin=] compared to |baseSpace|'s [=coordinate system=].
+      :: If supported, set |pose|'s {{XRPose/angularVelocity}} to the angular velocity of |space|'s [=effective origin=] compared to |baseSpace|'s [=coordinate system=].
       :: Set |pose|'s {{XRPose/emulatedPosition}} to `false`.
 
       : Else if |limit| is `false` and the tracking system provides a [=3DoF=] pose or a [=6DoF=] pose whose position is neither actively tracked nor statically known for |space|'s pose relative to |baseSpace|:
@@ -1706,7 +1706,7 @@ The <dfn attribute for="XRPose">transform</dfn> attribute describes the position
 
 The <dfn attribute for="XRPose">linearVelocity</dfn> attribute describes the linear velocity in meters per second relative to the base {{XRSpace}}. If the user agent can't populate this, it's allowed to return <code>null</code>.
 
-The <dfn attribute for="XRPose">angularVelocity</dfn> attribute describes the angular velocity in meters per second relative to the base {{XRSpace}}. If the user agent can't populate this, it's allowed to return <code>null</code>.
+The <dfn attribute for="XRPose">angularVelocity</dfn> attribute describes the angular velocity in radians per second relative to the base {{XRSpace}}. If the user agent can't populate this, it's allowed to return <code>null</code>.
 
 The <dfn attribute for="XRPose">emulatedPosition</dfn> attribute is `false` when the {{XRPose/transform}} represents an actively tracked [=6DoF=] pose based on sensor readings, or `true` if its {{XRRigidTransform/position}} value includes a <dfn for="XRPose">computed offset</dfn>, such as that provided by a neck or arm model. [=Estimated floor level=]s MUST NOT be considered when determining if an {{XRPose}} includes a [=XRPose/computed offset=].
 
