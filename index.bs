@@ -2453,7 +2453,7 @@ In some environments a page may be presented as an application, installed with t
 
 ### Implicit and Explicit consent ### {#user-consent}
 
-<dfn>Implicit consent</dfn> is when the user agent makes a judgement on the consent of a user without explicitly asking for it, for example, based on the install status of a web application or frequency and recency of visits. Given the sensitivity of XR data, caution is strongly advised when relying on implicit signals.
+<dfn>Implicit consent</dfn> is when the user agent makes a judgement on the consent of a user without explicitly asking for it, for example, based on the install status of a web application, frequency and recency of visits or a user agent defined action where the user clearly signals intent that they want to enter an immersive experience. Given the sensitivity of XR data, caution is strongly advised when relying on implicit signals.
 
 <dfn>Explicit consent</dfn> is when the user agent makes a judgement on the consent of a user based on having explicitly asked for it. When gathering [=explicit consent=], user agents present an explanation of what is being requested and provide users the option to decline. Requests for user consent can be presented in many visual forms based on the features being protected and user agent choice. Install status of a web application MAY count as a signal of [=explicit consent=] provided some form of [=explicit consent=] is requested at install time.
 
