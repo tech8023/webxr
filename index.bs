@@ -1968,6 +1968,7 @@ interface XRWebGLLayer: XRLayer {
   // Attributes
   readonly attribute boolean antialias;
   readonly attribute boolean ignoreDepthValues;
+  attribute float? fixedFoveation;
 
   [SameObject] readonly attribute WebGLFramebuffer? framebuffer;
   readonly attribute unsigned long framebufferWidth;
@@ -2100,6 +2101,10 @@ The <dfn attribute for="XRWebGLLayer">ignoreDepthValues</dfn> attribute, if `tru
 Depth values stored in the buffer are expected to be between `0.0` and `1.0`, with `0.0` representing the distance of {{XRRenderState/depthNear}} and `1.0` representing the distance of {{XRRenderState/depthFar}}, with intermediate values interpolated linearly. This is the default behavior of WebGL. (See documentation for the <a href="https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glDepthRangef.xml">depthRange function</a> for additional details.))
 
 Note: Making the scene's depth buffer available to the compositor allows some platforms to provide quality and comfort improvements such as improved reprojection.
+
+The <dfn attribute for="XRWebGLLayer">fixedFoveation</dfn> attribute controls the amount of foveation used by the [=XR Compositor=]. If the user agent or device does not support this attribute, they should return <code>null</code> on getting, and setting should be a <code>no-op</code>. Setting {{XRWebGLLayer/fixedFoveation}} to a value less than <code>0</code> will set it to <code>0</code> and setting it to a value higher than <code>1</code> will set it to <code>1</code>. <code>0</code> sets the minimum amount of foveation while <code>1</code> set the maximum. It is up to the user agent how the [=XR Compositor=] interprets these values. If the {{XRWebGLLayer/fixedFoveation}} level was changed, it will take effect at the next {{XRFrame}}.
+
+NOTE: Fixed foveation is a technique that reduces the resolution content renders at near the edges of the users field of view. It can significantly improve experiences that are limited by GPU fill performance. It reduces power consumption and enables applications to increase the resolution of eye textures. It is most useful for low contrast textures, such as background images but less for high contrast ones such as text or detailed images. Authors can adjust the level on a per frame basis to achieve the best tradeoff between performance and visual quality.
 
 Each {{XRWebGLLayer}} MUST have a <dfn>list of full-sized viewports</dfn> which is a [=/list=] containing one [=WebGL viewport=] for each [=view=] the {{XRSession}} may expose, including [=secondary views=] that are not currently [=view/active=] but may become [=view/active=] for the current session. The viewports MUST have a {{XRViewport/width}} and {{XRViewport/height}} greater than `0` and MUST describe a rectangle that does not exceed the bounds of the [=target framebuffer=]. The viewports MUST NOT be overlapping. If [=XRWebGLLayer/composition enabled=] is `false`, the [=list of full-sized viewports=] MUST contain a single [=WebGL viewport=] that covers the [=XRWebGLLayer/context=]'s entire default framebuffer.
 
