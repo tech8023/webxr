@@ -62,9 +62,15 @@ Pose manipulation accessibility features could be implemented by the user agent 
 
 ## App assumptions around user measurements beyond mobility
 
-- IPD being near the average
-- Eye boxes having no Y or Z disparity
-- Stereoscopic views mean experiences may be designed for two eyes
+In order for WebXR experiences to be presented with a convincing 3D effect, multiple views of a scene must be rendered from the point of view of the user's eyes. This can lead to a negative experience if the page makes assumptions about metrics like:
+
+- User's IPD being near the average
+- User's eye boxes having no Y or Z disparity
+- User has two eyes
+
+Some basic measurements or approximations of the position of the user's eyes needs to be made available to the page in order for a convincing stereo effect to be displayed. The accuracy of these positions will depend on the hardware's capabilities and in many cases the corecctness of the user's manual configuration. In order to prevent assumptions about the above measurements WebXR does not provide IPD or similar measurements directly, but instead makes them part of an array of view transforms provided to the page. These transforms take into account not only the position of the user's eyes, but also the position and orientation of their head in space and are intended to be used for placement of virtual cameras within the scene. While the user's IPD could potentially be reverse engineered from these values and replaced with atrifical averages, doing so would be significantly more work than simply using the transforms as-is. As a result, the current system creates a 'pit of success' where the easiest way to use the values returned by the API is also the most widely accessible.
+
+In term of the number of eyes a user posesses, current hardware has no way of detecting and reporting that, and even if it did we would not want to surface that to the web for privacy reasons. It's expected that wih every few exceptions (a virtual eye test, for example) stereo content should not be unusable for users that lack one eye. Content rendered for stereo presentation will generally show a similar view to both eyes, since experiences that show conflicting information to each eye will be uncofortable to nearly all users. Also, while stereo depth does aid in our perception of a 3 dimensional world it is not the only depth hint our brains process, and other cues such as parallax movement can also be accurately reproduced by most XR systems as a natural consequence of their tracking systems.
 
 ## Audio
 
