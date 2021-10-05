@@ -1052,7 +1052,8 @@ When an {{XRSession}} |session| receives updated [=viewer=] state for timestamp 
     1. Let |now| be the [=current high resolution time=].
     1. Let |frame| be |session|'s [=XRSession/animation frame=].
     1. Set |frame|'s [=XRFrame/time=] to |frameTime|.
-    1. Set |frame|'s [predictedDisplayTime] to the timestamp when the [=XR Compositor=] is expected to display content drawn during this [=XR animation frame=].
+    1. Set |frame|'s {{XRFrame/predictedDisplayTime}} to |frameTime|.
+    1. If |session|'s [=XRSession/mode=] is not {{XRSessionMode/"inline"}}, set |frame|'s {{XRFrame/predictedDisplayTime}} to the average timestamp the [=XR Compositor=] is expected to display this [=XR animation frame=].
     1. For each |view| in [=XRSession/list of views=], set |view|'s [=view/viewport modifiable=] flag to true.
     1. If the [=view/active=] flag of any [=view=] in the [=XRSession/list of views=] has changed since the last [=XR animation frame=], [=update the viewports=].
     1. If the frame [=should be rendered=] for |session|:
@@ -1149,12 +1150,12 @@ Each {{XRFrame}} has an <dfn for="XRFrame">active</dfn> boolean which is initial
 
 The <dfn attribute for="XRFrame">session</dfn> attribute returns the {{XRSession}} that produced the {{XRFrame}}.
 
-The <dfn attribute for="XRFrame">predictedDisplayTime</dfn> attribute returns the {{DOMHighResTimeStamp}} that represents the point in time at which a rendered frame submitted for this {{XRFrame}} is expected to show up on the devices display.
+For an [=immersive session=] the <dfn attribute for="XRFrame">predictedDisplayTime</dfn> attribute MUST return the {{DOMHighResTimeStamp}} corresponding to the average point in time this {{XRFrame}} is expected to be displayed on the devices' display. For an {{XRSessionMode/"inline"}} {{XRSession}}, {{XRFrame/predictedDisplayTime}} MUST return the same value as the timestamp passed to the {{XRFrameRequestCallback}}.
 
 <div class=note>
-The [=XRFrame/predictedDisplayTime=] is intended to allow rendering an animated XR scene in the state that it should be in when the frame is displayed rather than when the {{XRSession/requestAnimationFrame()}} callback was scheduled or when it was executed.
+The {{XRFrame/predictedDisplayTime}} is intended to allow rendering an animated XR scene in the state that it should be in when the frame is displayed rather than when the {{XRSession/requestAnimationFrame()}} callback was scheduled or when it was executed.
 
-The [=XRFrame/predictedDisplayTime=] is not intended be used to infer how much time the application has for rendering, as the [=XR Compositor=] typically has to do extra processing after the frame is submitted. If the experience assumes that it can process up to [=XRFrame/predictedDisplayTime=], the [=XR Compositor=] will not be able to make use of the submitted frames, and the application would not make target framerate.
+The {{XRFrame/predictedDisplayTime}} is not intended be used to infer how much time the application has for rendering, as the [=XR Compositor=] typically has to do extra processing after the frame is submitted. If the experience assumes that it can process up to {{XRFrame/predictedDisplayTime}}, the [=XR Compositor=] will not be able to make use of the submitted frames, and the application would not make target framerate.
 </div>
 
 Each {{XRFrame}} represents the state of all tracked objects for a given <dfn for="XRFrame">time</dfn>, and either stores or is able to query concrete information about this state at the [=XRFrame/time=].
