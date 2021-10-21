@@ -956,7 +956,7 @@ Each {{XRRenderState}} has a <dfn for="XRRenderState">output canvas</dfn>, which
 
 Each {{XRRenderState}} also has a <dfn for="XRRenderState">composition enabled</dfn> boolean, which is initially `true`. The {{XRRenderState}} is considered to have [=XRRenderState/composition enabled=] if rendering commands are performed against a surface provided by the API and displayed by the [=XR Compositor=]. If rendering is performed for an {{XRSessionMode/"inline"}} {{XRSession}} in such a way that it is directly displayed into an [=XRRenderState/output canvas=], the {{XRRenderState}}'s [=XRRenderState/composition enabled=] flag MUST be `false`.
 
-Note: At this point the {{XRRenderState}} will only have an [=XRRenderState/output canvas=] if it has [=XRRenderState/composition enabled=] set to `false`, but future versions of the specification are likely to introduce methods for setting [=XRRenderState/output canvases=] that support more advanced uses like mirroring and layer compositing that will require composition.
+Note: At this point the {{XRRenderState}} will only have an [=XRRenderState/output canvas=] if it has [=XRRenderState/composition enabled=] set to `false`, but future versions of the specification are likely to introduce methods for setting [=XRRenderState/output canvas|output canvases=] that support more advanced uses like mirroring and layer compositing that will require composition.
 
 <div class="algorithm" data-algorithm="initialize-renderstate">
 
@@ -2648,7 +2648,7 @@ Any group of {{XRReferenceSpaceType/"local"}}, {{XRReferenceSpaceType/"local-flo
 To determine if <dfn>poses must be limited</dfn> between two spaces, |space| and |baseSpace|, the user agent MUST run the following steps:
 
   1. If either |space| or |baseSpace| are an {{XRBoundedReferenceSpace}} and the other space's [=native origin=] falls further outside the [=native bounds geometry=] than a reasonable distance determined by the user agent, return true.
-  1. If either |space| or |baseSpace| are an {{XRReferenceSpace}} with a [=XRReferenceSpace/type=] of {{XRReferenceSpaceType/"local"}} or {{XRReferenceSpaceType/"local-floor"}} and the distance between the spaces' [=native origin=]s is greater than a reasonable distance determined by the user agent, return `true`.
+  1. If either |space| or |baseSpace| are an {{XRReferenceSpace}} with a [=XRReferenceSpace/type=] of {{XRReferenceSpaceType/"local"}} or {{XRReferenceSpaceType/"local-floor"}} and the distance between the spaces' [=native origin|native origins=] is greater than a reasonable distance determined by the user agent, return `true`.
   1. Return `false`.
 
 </div>
