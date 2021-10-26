@@ -303,7 +303,7 @@ Each time the [=list of immersive XR devices=] changes the user agent should <df
   1. If this is the first time devices have been enumerated or |oldDevice| equals the [=immersive XR device=], abort these steps.
   1. [=Shut down the session|Shut down=] any active {{XRSession}}s.
   1. [=Queue a task=] to set the [=XR compatible=] boolean of all {{WebGLRenderingContextBase}} instances to `false`.
-  1. [=Queue a task=] to [=fire an event=] named <a for="XRSystem" data-link-type="event">devicechange</a> on the [=context object=]'s {{Window/navigator}}'s {{Navigator/xr}}.
+  1. [=Queue a task=] to [=fire an event=] named <a for="XRSystem" data-link-type="event">devicechange</a> on the [=relevant Global object=]'s {{Window/navigator}}'s {{Navigator/xr}}.
   1. [=Queue a task=] to fire appropriate `change` events on any {{XRPermissionStatus}} objects who are affected by the change in the [=immersive XR device=] or [=/inline XR device=].
 
 Note: These steps should always be run [=in parallel=].
