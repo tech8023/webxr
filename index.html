@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
   <meta content="Bikeshed version d7036035b, updated Fri Oct 8 17:07:11 2021 -0700" name="generator">
   <link href="https://www.w3.org/TR/webxr/" rel="canonical">
-  <meta content="84b290c9961ef5120eca787a2769e8718acc6c17" name="document-revision">
+  <meta content="e428a15cd8d256cac20335f37fe021866ae44580" name="document-revision">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
 <style>
@@ -705,7 +705,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-10-21">21 October 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-10-26">26 October 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1035,7 +1035,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task">Queue a task</a> to set the <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible">XR compatible</a> boolean of all <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase">WebGLRenderingContextBase</a></code> instances to <code>false</code>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">fire an event</a> named <a class="idl-code" data-link-type="event" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange">devicechange</a> on the <a data-link-type="dfn">context object</a>'s <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator" id="ref-for-dom-navigator">navigator</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr①">xr</a></code>.</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①">Queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">fire an event</a> named <a class="idl-code" data-link-type="event" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange">devicechange</a> on the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant Global object</a>'s <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator" id="ref-for-dom-navigator">navigator</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr①">xr</a></code>.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②">Queue a task</a> to fire appropriate <code>change</code> events on any <code class="idl"><a data-link-type="idl" href="#xrpermissionstatus" id="ref-for-xrpermissionstatus">XRPermissionStatus</a></code> objects who are affected by the change in the <a data-link-type="dfn" href="#immersive-xr-device" id="ref-for-immersive-xr-device①⓪">immersive XR device</a> or <a data-link-type="dfn" href="#inline-xr-device" id="ref-for-inline-xr-device⑥">inline XR device</a>.</p>
     </ol>
@@ -1167,7 +1167,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p>Let <var>immersive</var> be <code>true</code> if <var>mode</var> is an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session">immersive session</a> mode, and <code>false</code> otherwise.</p>
      <li data-md>
-      <p>Let <var>global object</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant Global object</a> for the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑦">XRSystem</a></code> on which this method was invoked.</p>
+      <p>Let <var>global object</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①">relevant Global object</a> for the <code class="idl"><a data-link-type="idl" href="#xrsystem" id="ref-for-xrsystem⑦">XRSystem</a></code> on which this method was invoked.</p>
      <li data-md>
       <p>Check whether the session request is allowed as follows:</p>
       <dl class="switch">
@@ -4910,7 +4910,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <p>To determine if <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="poses-may-be-reported">poses may be reported</dfn> to an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①④⑦">XRSession</a></code> <var>session</var>, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>If <var>session</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①">relevant global object</a> is not the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#current-global-object" id="ref-for-current-global-object">current global object</a>, return <code>false</code>.</p>
+      <p>If <var>session</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global②">relevant global object</a> is not the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#current-global-object" id="ref-for-current-global-object">current global object</a>, return <code>false</code>.</p>
      <li data-md>
       <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-visibilitystate" id="ref-for-dom-xrsession-visibilitystate①">visibilityState</a></code> is not <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-visible" id="ref-for-dom-xrvisibilitystate-visible②">"visible"</a></code>, return <code>false</code>.</p>
      <li data-md>
@@ -6099,8 +6099,8 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
   <aside class="dfn-panel" data-for="term-for-concept-relevant-global">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-relevant-global">3.2. XRSystem</a>
-    <li><a href="#ref-for-concept-relevant-global①">13.5.2. Poses</a>
+    <li><a href="#ref-for-concept-relevant-global">3.2. XRSystem</a> <a href="#ref-for-concept-relevant-global①">(2)</a>
+    <li><a href="#ref-for-concept-relevant-global②">13.5.2. Poses</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-relevant-realm">
@@ -7141,7 +7141,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <dt id="biblio-infra">[INFRA]
    <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/"><cite>Infra Standard</cite></a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
    <dt id="biblio-permissions">[PERMISSIONS]
-   <dd>Marcos Caceres; Mike Taylor; Jeffrey Yasskin. <a href="https://www.w3.org/TR/permissions/"><cite>Permissions</cite></a>. 17 October 2021. WD. URL: <a href="https://www.w3.org/TR/permissions/">https://www.w3.org/TR/permissions/</a>
+   <dd>Marcos Caceres; Mike Taylor; Jeffrey Yasskin. <a href="https://www.w3.org/TR/permissions/"><cite>Permissions</cite></a>. 26 October 2021. WD. URL: <a href="https://www.w3.org/TR/permissions/">https://www.w3.org/TR/permissions/</a>
    <dt id="biblio-permissions-policy-1">[PERMISSIONS-POLICY-1]
    <dd>Ian Clelland. <a href="https://www.w3.org/TR/permissions-policy-1/"><cite>Permissions Policy</cite></a>. 16 July 2020. WD. URL: <a href="https://www.w3.org/TR/permissions-policy-1/">https://www.w3.org/TR/permissions-policy-1/</a>
    <dt id="biblio-permissions-request">[PERMISSIONS-REQUEST]
