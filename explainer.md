@@ -21,7 +21,7 @@ The [WebXR Device API](https://immersive-web.github.io/webxr/) provides access t
   - [Requesting a Session](#requesting-a-session)
   - [Setting up an XRWebGLLayer](#setting-up-an-xrwebgllayer)
   - [Main render loop](#main-render-loop)
-  - [Viewer tracking](#viewer-tracking)
+  - [Viewer tracking With WebGL](#viewer-tracking-with-webgl)
   - [Handling session visibility](#handling-session-visibility)
   - [Ending the XR session](#ending-the-xr-session)
 - [Inline sessions](#inline-sessions)
