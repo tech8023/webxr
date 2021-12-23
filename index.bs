@@ -1725,13 +1725,13 @@ To <dfn for="XRRigidTransform">obtain the matrix</dfn> for a given {{XRRigidTran
     1. If the operation {{IsDetachedBuffer}} on [=XRRigidTransform/internal matrix=] is `false`, return |transform|'s [=XRRigidTransform/internal matrix=].
   1. Let |translation| be a new [=matrix=] which is a column-vector translation matrix corresponding to {{XRRigidTransform/position}}. Mathematically, if {{XRRigidTransform/position}} is `(x, y, z)`, this matrix is
 
-        <img src="images/translation_matrix.svg" alt="Mathematical expression for column-vector translation matrix" />
+        <img src="images/translation_matrix.svg" height="12.509ex" alt="Mathematical expression for column-vector translation matrix" />
   1. Let |rotation| be a new [=matrix=] which is a column-vector rotation matrix corresponding to {{XRRigidTransform/orientation}}. Mathematically, if {{XRRigidTransform/orientation}} is the unit quaternion (<code>q<sub>x</sub>, q<sub>y</sub>, q<sub>z</sub>, q<sub>w</sub></code>), this matrix is
 
-        <img src="images/rotation_matrix.svg" alt="Mathematical expression for column-vector rotation matrix" />
+        <img src="images/rotation_matrix.svg" height="13.509ex" alt="Mathematical expression for column-vector rotation matrix" />
   1. Set |transform|'s [=XRRigidTransform/internal matrix=] to a [=new=] {{Float32Array}} in the [=relevant realm=] of |transform| set to the result of multiplying |translation| and |rotation| with |translation| on the left (`translation * rotation`) in the [=relevant realm=] of |transform|. Mathematically, this matrix is
 
-       <img src="images/rigid_matrix.svg" alt="Mathematical expression for matrix of multiplying translation and rotation with translation on the left" />
+       <img src="images/rigid_matrix.svg" height="13.509ex" alt="Mathematical expression for matrix of multiplying translation and rotation with translation on the left" />
   1. Return |transform|'s [=XRRigidTransform/internal matrix=].
 
 </div>
