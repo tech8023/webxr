@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://www.w3.org/TR/webxr/" rel="canonical">
-  <meta content="692e0001a8719beef46207bce70fe1dc9d6d4b51" name="document-revision">
+  <meta content="fd8f27d5aa233cd7cfded52d7fe27eb73e499b06" name="document-revision">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
 <style>
@@ -706,7 +706,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-03-14">14 March 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-03-25">25 March 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -746,7 +746,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p> This document was published by the <a href="https://www.w3.org/groups/wg/immersive-web">Immersive Web Working Group</a> as an Editors' Draft. This document is intended to become a W3C Recommendation.
 
     Feedback and comments on this specification are welcome. Please use <a href="https://github.com/immersive-web/webxr/issues">Github issues</a>.
-    Discussions may also be found in the <a href="http://lists.w3.org/Archives/Public/public-immersive-web/">public-immersive-web@w3.org archives</a>. </p>
+    Discussions may also be found in the <a href="http://lists.w3.org/Archives/Public/public-immersive-web-wg/">public-immersive-web-wg@w3.org archives</a>. </p>
    <p> Publication as an Editors' Draft does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. This is a draft document and may
     be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite
     this document as other than work in progress. </p>
@@ -5297,7 +5297,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li data-md>
      <p>Add support for targetFrameRate and supportedFrameRates (<a href="https://github.com/immersive-web/webxr/pull/1201">GitHub #1201</a>)</p>
     <li data-md>
-     <p>Add support for foveation (<a data-link-type="dfn">fixedFoveation</a> (<a href="https://github.com/immersive-web/webxr/pull/1195">GitHub #1195</a>)</p>
+     <p>Add support for foveation (<code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-fixedfoveation" id="ref-for-dom-xrwebgllayer-fixedfoveation③">fixedFoveation</a></code> (<a href="https://github.com/immersive-web/webxr/pull/1195">GitHub #1195</a>)</p>
     <li data-md>
      <p>Only allow sessions to use features they explicity request or are implicitly granted based on mode (<a href="https://github.com/immersive-web/webxr/pull/1189">GitHub #1189</a>)</p>
     <li data-md>
@@ -5370,7 +5370,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li data-md>
      <p>Change document visibility check to be UA choice (<a href="https://github.com/immersive-web/webxr/pull/1067">GitHub #1067</a>)</p>
     <li data-md>
-     <p>added 'check the layers state' algorithm (<a href="https://github.com/immersive-web/webxr/pull/1064">GitHub #1064</a>)</p>
+     <p>added \'check the layers state\' algorithm (<a href="https://github.com/immersive-web/webxr/pull/1064">GitHub #1064</a>)</p>
     <li data-md>
      <p>Various changes around null and emulated poses (<a href="https://github.com/immersive-web/webxr/pull/1058">GitHub #1058</a>)</p>
     <li data-md>
@@ -5506,9 +5506,9 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li data-md>
      <p>Ensure an immersive device is selected in makeXRCompatible() (<a href="https://github.com/immersive-web/webxr/pull/809">GitHub #809</a>)</p>
     <li data-md>
-     <p>Change features to a sequence of <a class="property css" data-link-type="property">any</a> (<a href="https://github.com/immersive-web/webxr/pull/807">GitHub #807</a>)</p>
+     <p>Change features to a sequence of \'any\' (<a href="https://github.com/immersive-web/webxr/pull/807">GitHub #807</a>)</p>
     <li data-md>
-     <p>Link to 'fire an input source' algorithm, explicitly construct frame (<a href="https://github.com/immersive-web/webxr/pull/797">GitHub #797</a>)</p>
+     <p>Link to \'fire an input source\' algorithm, explicitly construct frame (<a href="https://github.com/immersive-web/webxr/pull/797">GitHub #797</a>)</p>
     <li data-md>
      <p>Remove Environment blend mode from spec and explainer (<a href="https://github.com/immersive-web/webxr/pull/804">GitHub #804</a>)</p>
     <li data-md>
@@ -5540,7 +5540,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li data-md>
      <p>Clarify that small overlay UIs are allowed in exclusive access (<a href="https://github.com/immersive-web/webxr/pull/709">GitHub #709</a>)</p>
     <li data-md>
-     <p>Merge 'end the session' with 'shut down the session', clarify, add onend event (<a href="https://github.com/immersive-web/webxr/pull/710">GitHub #710</a>)</p>
+     <p>Merge \'end the session\' with \'shut down the session\', clarify, add onend event (<a href="https://github.com/immersive-web/webxr/pull/710">GitHub #710</a>)</p>
     <li data-md>
      <p>Don’t check XR compat flag for inline sessions (<a href="https://github.com/immersive-web/webxr/pull/705">GitHub #705</a>)</p>
     <li data-md>
@@ -5578,7 +5578,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li data-md>
      <p>Some XRRenderState clarifications (<a href="https://github.com/immersive-web/webxr/pull/703">GitHub #703</a>)</p>
     <li data-md>
-     <p>Replace 'list of pending render states' with 'pending render state' (<a href="https://github.com/immersive-web/webxr/pull/701">GitHub #701</a>)</p>
+     <p>Replace \'list of pending render states\' with \'pending render state\' (<a href="https://github.com/immersive-web/webxr/pull/701">GitHub #701</a>)</p>
     <li data-md>
      <p>Better define gamepad placeholder buttons and axes (<a href="https://github.com/immersive-web/webxr/pull/661">GitHub #661</a>)</p>
     <li data-md>
@@ -5628,7 +5628,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
     <li data-md>
      <p>Remove viewMatrix and add XRTransform.inverse() (<a href="https://github.com/immersive-web/webxr/pull/531">GitHub #531</a>)</p>
     <li data-md>
-     <p>Changed XRHandedness enum to use <a class="property css" data-link-type="property">none</a> instead of '' (<a href="https://github.com/immersive-web/webxr/pull/526">GitHub #526</a>)</p>
+     <p>Changed XRHandedness enum to use \'none\' instead of \'\' (<a href="https://github.com/immersive-web/webxr/pull/526">GitHub #526</a>)</p>
     <li data-md>
      <p>Indicate the preferred ergonomics of a tracked-pointer ray (<a href="https://github.com/immersive-web/webxr/pull/524">GitHub #524</a>)</p>
     <li data-md>
@@ -7575,7 +7575,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <dt id="biblio-device-orientation">[DEVICE-ORIENTATION]
    <dd>Rich Tibbett; et al. <a href="https://www.w3.org/TR/orientation-event/"><cite>DeviceOrientation Event Specification</cite></a>. 16 April 2019. WD. URL: <a href="https://www.w3.org/TR/orientation-event/">https://www.w3.org/TR/orientation-event/</a>
    <dt id="biblio-webxr-ar-module-1">[WEBXR-AR-MODULE-1]
-   <dd>Brandon Jones; Manish Goregaokar; Rik Cabanier. <a href="https://www.w3.org/TR/webxr-ar-module-1/"><cite>WebXR Augmented Reality Module - Level 1</cite></a>. 3 February 2022. WD. URL: <a href="https://www.w3.org/TR/webxr-ar-module-1/">https://www.w3.org/TR/webxr-ar-module-1/</a>
+   <dd>Brandon Jones; Manish Goregaokar; Rik Cabanier. <a href="https://www.w3.org/TR/webxr-ar-module-1/"><cite>WebXR Augmented Reality Module - Level 1</cite></a>. 17 March 2022. WD. URL: <a href="https://www.w3.org/TR/webxr-ar-module-1/">https://www.w3.org/TR/webxr-ar-module-1/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator"><c- g>Navigator</c-></a> {
@@ -9780,6 +9780,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <b><a href="#dom-xrwebgllayer-fixedfoveation">#dom-xrwebgllayer-fixedfoveation</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrwebgllayer-fixedfoveation">11.2. XRWebGLLayer</a> <a href="#ref-for-dom-xrwebgllayer-fixedfoveation①">(2)</a> <a href="#ref-for-dom-xrwebgllayer-fixedfoveation②">(3)</a>
+    <li><a href="#ref-for-dom-xrwebgllayer-fixedfoveation③"> Changes from the Working Draft 24 July 2020</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="list-of-full-sized-viewports">
