@@ -2,12 +2,17 @@
 Shortname: webxr
 Title: WebXR Device API
 Group: immersivewebwg
-Status: ED
+Status: CR
 TR: https://www.w3.org/TR/webxr/
 ED: https://immersive-web.github.io/webxr/
 Repository: immersive-web/webxr
 Level: none
 Mailing List Archives: https://lists.w3.org/Archives/Public/public-immersive-web-wg/
+
+Date: 2022-03-29
+Deadline: 2022-04-26
+Implementation Report: https://wpt.fyi/results/webxr?label=master&label=experimental&aligned
+WPT Path Prefix: webxr
 
 !Participate: <a href="https://github.com/immersive-web/webxr/issues/new">File an issue</a> (<a href="https://github.com/immersive-web/webxr/issues">open issues</a>)
 !Participate: <a href="https://lists.w3.org/Archives/Public/public-immersive-web-wg/">Mailing list archive</a>
