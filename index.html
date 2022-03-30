@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://www.w3.org/TR/webxr/" rel="canonical">
-  <meta content="e731e1b99733a5ed4cbb42f0e57f0c52afe36365" name="document-revision">
+  <meta content="0befa12c70bfc993d5d85de7d67128518411e75a" name="document-revision">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
 <style>
@@ -706,7 +706,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-03-28">28 March 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-03-30">30 March 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -4915,7 +4915,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
      <li data-md>
       <p>If the session request contained any <a data-link-type="dfn" href="#required-features" id="ref-for-required-features②">required features</a> or <a data-link-type="dfn" href="#optional-features" id="ref-for-optional-features①">optional features</a> and the request was not made while the <var>global object</var> has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation④">transient activation</a> or when <a data-link-type="dfn" href="#launching-a-web-application" id="ref-for-launching-a-web-application①">launching a web application</a>, return <code>false</code>.</p>
      <li data-md>
-      <p>If the requesting document is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document" id="ref-for-responsible-document">responsible</a>, return <code>false</code>.</p>
+      <p>If the <var>global object</var> is not a <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window⑥">Window</a></code>, return <code>false</code>.</p>
      <li data-md>
       <p>Return <code>true</code>.</p>
     </ol>
@@ -6411,6 +6411,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <a href="https://html.spec.whatwg.org/multipage/window-object.html#window">https://html.spec.whatwg.org/multipage/window-object.html#window</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-window">4.3. Animation Frames</a> <a href="#ref-for-window①">(2)</a> <a href="#ref-for-window②">(3)</a> <a href="#ref-for-window③">(4)</a> <a href="#ref-for-window④">(5)</a> <a href="#ref-for-window⑤">(6)</a>
+    <li><a href="#ref-for-window⑥">13.5.1. Immersiveness</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-active-document">
@@ -6544,12 +6545,6 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-animationframeprovider-requestanimationframe">https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-animationframeprovider-requestanimationframe</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-animationframeprovider-requestanimationframe">4.3. Animation Frames</a> <a href="#ref-for-dom-animationframeprovider-requestanimationframe①">(2)</a> <a href="#ref-for-dom-animationframeprovider-requestanimationframe②">(3)</a> <a href="#ref-for-dom-animationframeprovider-requestanimationframe③">(4)</a> <a href="#ref-for-dom-animationframeprovider-requestanimationframe④">(5)</a> <a href="#ref-for-dom-animationframeprovider-requestanimationframe⑤">(6)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-responsible-document">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document">https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-responsible-document">13.5.1. Immersiveness</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-same-origin">
@@ -7372,7 +7367,6 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
      <li><span class="dfn-paneled" id="term-for-rendering-opportunity">rendering opportunity</span>
      <li><span class="dfn-paneled" id="term-for-report-the-exception">report the exception</span>
      <li><span class="dfn-paneled" id="term-for-dom-animationframeprovider-requestanimationframe">requestAnimationFrame(callback)</span>
-     <li><span class="dfn-paneled" id="term-for-responsible-document">responsible</span>
      <li><span class="dfn-paneled" id="term-for-same-origin">same origin</span>
      <li><span class="dfn-paneled" id="term-for-same-origin-domain">same origin-domain</span>
      <li><span class="dfn-paneled" id="term-for-task-source">task source</span>
