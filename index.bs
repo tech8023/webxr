@@ -2583,7 +2583,7 @@ Starting an {{XRSessionMode/"inline"}} session does not implicitly carry the sam
 To determine if an <dfn>inline session request is allowed</dfn> for a given |global object| the user agent MUST run the following steps:
 
   1. If the session request contained any [=required features=] or [=optional features=] and the request was not made while the |global object| has [=transient activation=] or when [=launching a web application=], return `false`.
-  1. If |global| is not a {{Window}}, return `false`.
+  1. If the |global object| is not a {{Window}}, return `false`.
   1. Return `true`.
 
 </div>
