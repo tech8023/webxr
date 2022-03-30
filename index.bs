@@ -86,7 +86,6 @@ spec:html; urlPrefix: https://html.spec.whatwg.org/multipage/
     type: method; for:HTMLCanvasElement; text:getContext(contextId); url: canvas.html#dom-canvas-getcontext
     type: method; for:Window; text:requestAnimationFrame(callback); url: imagebitmap-and-animations.html#dom-animationframeprovider-requestanimationframe
     type: dfn; text: currently focused area; url: interaction.html#currently-focused-area-of-a-top-level-browsing-context
-    type: dfn; text: responsible; url: webappapis.html#responsible-document
     type: dfn; text: rendering opportunity; url: webappapis.html#rendering-opportunity
     type: dfn; text: current realm; url: webappapis.html#current
     type: dfn; text: same origin-domain; url: origin.html#same-origin-domain
@@ -2584,7 +2583,7 @@ Starting an {{XRSessionMode/"inline"}} session does not implicitly carry the sam
 To determine if an <dfn>inline session request is allowed</dfn> for a given |global object| the user agent MUST run the following steps:
 
   1. If the session request contained any [=required features=] or [=optional features=] and the request was not made while the |global object| has [=transient activation=] or when [=launching a web application=], return `false`.
-  1. If the requesting document is not [=responsible=], return `false`.
+  1. If the |global object| is not a {{Window}}, return `false`.
   1. Return `true`.
 
 </div>
