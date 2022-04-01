@@ -3,12 +3,12 @@
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <title>WebXR Device API</title>
-  <meta content="ED" name="w3c-status">
-  <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
+  <meta content="CR" name="w3c-status">
+  <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-CR" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://www.w3.org/TR/webxr/" rel="canonical">
-  <meta content="66f894908ca57d8e5b6e9ec077ae8e404a267ca8" name="document-revision">
+  <meta content="b919cdb86ae4869e979938612c85b4ae738381a7" name="document-revision">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
 <style>
@@ -130,115 +130,6 @@ pre .property::before, pre .property::after {
 
 [data-link-type=biblio] {
     white-space: pre;
-}</style>
-<style>/* style-colors */
-
-/* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
-:root {
-    color-scheme: light dark;
-
-    --text: black;
-    --bg: white;
-
-    --unofficial-watermark: url(https://www.w3.org/StyleSheets/TR/2016/logos/UD-watermark);
-
-    --logo-bg: #1a5e9a;
-    --logo-active-bg: #c00;
-    --logo-text: white;
-
-    --tocnav-normal-text: #707070;
-    --tocnav-normal-bg: var(--bg);
-    --tocnav-hover-text: var(--tocnav-normal-text);
-    --tocnav-hover-bg: #f8f8f8;
-    --tocnav-active-text: #c00;
-    --tocnav-active-bg: var(--tocnav-normal-bg);
-
-    --tocsidebar-text: var(--text);
-    --tocsidebar-bg: #f7f8f9;
-    --tocsidebar-shadow: rgba(0,0,0,.1);
-    --tocsidebar-heading-text: hsla(203,20%,40%,.7);
-
-    --toclink-text: var(--text);
-    --toclink-underline: #3980b5;
-    --toclink-visited-text: var(--toclink-text);
-    --toclink-visited-underline: #054572;
-
-    --heading-text: #005a9c;
-
-    --hr-text: var(--text);
-
-    --algo-border: #def;
-
-    --del-text: red;
-    --del-bg: transparent;
-    --ins-text: #080;
-    --ins-bg: transparent;
-
-    --a-normal-text: #034575;
-    --a-normal-underline: #bbb;
-    --a-visited-text: var(--a-normal-text);
-    --a-visited-underline: #707070;
-    --a-hover-bg: rgba(75%, 75%, 75%, .25);
-    --a-active-text: #c00;
-    --a-active-underline: #c00;
-
-    --blockquote-border: silver;
-    --blockquote-bg: transparent;
-    --blockquote-text: currentcolor;
-
-    --issue-border: #e05252;
-    --issue-bg: #fbe9e9;
-    --issue-text: var(--text);
-    --issueheading-text: #831616;
-
-    --example-border: #e0cb52;
-    --example-bg: #fcfaee;
-    --example-text: var(--text);
-    --exampleheading-text: #574b0f;
-
-    --note-border: #52e052;
-    --note-bg: #e9fbe9;
-    --note-text: var(--text);
-    --noteheading-text: hsl(120, 70%, 30%);
-    --notesummary-underline: silver;
-
-    --assertion-border: #aaa;
-    --assertion-bg: #eee;
-    --assertion-text: black;
-
-    --advisement-border: orange;
-    --advisement-bg: #fec;
-    --advisement-text: var(--text);
-    --advisementheading-text: #b35f00;
-
-    --warning-border: red;
-    --warning-bg: hsla(40,100%,50%,0.95);
-    --warning-text: var(--text);
-
-    --amendment-border: #330099;
-    --amendment-bg: #F5F0FF;
-    --amendment-text: var(--text);
-    --amendmentheading-text: #220066;
-
-    --def-border: #8ccbf2;
-    --def-bg: #def;
-    --def-text: var(--text);
-    --defrow-border: #bbd7e9;
-
-    --datacell-border: silver;
-
-    --indexinfo-text: #707070;
-
-    --indextable-hover-text: black;
-    --indextable-hover-bg: #f7f8f9;
-
-    --outdatedspec-bg: rgba(0, 0, 0, .5);
-    --outdatedspec-text: black;
-    --outdated-bg: maroon;
-    --outdated-text: white;
-    --outdated-shadow: red;
-
-    --editedrec-bg: darkorange;
 }</style>
 <style>/* style-counters */
 
@@ -512,209 +403,23 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     var.selected5 { background-color: #82DDFF; box-shadow: 0 0 0 2px #82DDFF; }
     var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
     </style>
-<style>/* style-darkmode */
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text: #ddd;
-        --bg: black;
-
-        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
-
-        --logo-bg: #1a5e9a;
-        --logo-active-bg: #c00;
-        --logo-text: white;
-
-        --tocnav-normal-text: #999;
-        --tocnav-normal-bg: var(--bg);
-        --tocnav-hover-text: var(--tocnav-normal-text);
-        --tocnav-hover-bg: #080808;
-        --tocnav-active-text: #f44;
-        --tocnav-active-bg: var(--tocnav-normal-bg);
-
-        --tocsidebar-text: var(--text);
-        --tocsidebar-bg: #080808;
-        --tocsidebar-shadow: rgba(255,255,255,.1);
-        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
-
-        --toclink-text: var(--text);
-        --toclink-underline: #6af;
-        --toclink-visited-text: var(--toclink-text);
-        --toclink-visited-underline: #054572;
-
-        --heading-text: #8af;
-
-        --hr-text: var(--text);
-
-        --algo-border: #456;
-
-        --del-text: #f44;
-        --del-bg: transparent;
-        --ins-text: #4a4;
-        --ins-bg: transparent;
-
-        --a-normal-text: #6af;
-        --a-normal-underline: #555;
-        --a-visited-text: var(--a-normal-text);
-        --a-visited-underline: var(--a-normal-underline);
-        --a-hover-bg: rgba(25%, 25%, 25%, .2);
-        --a-active-text: #f44;
-        --a-active-underline: var(--a-active-text);
-
-        --borderedblock-bg: rgba(255, 255, 255, .05);
-
-        --blockquote-border: silver;
-        --blockquote-bg: var(--borderedblock-bg);
-        --blockquote-text: currentcolor;
-
-        --issue-border: #e05252;
-        --issue-bg: var(--borderedblock-bg);
-        --issue-text: var(--text);
-        --issueheading-text: hsl(0deg, 70%, 70%);
-
-        --example-border: hsl(50deg, 90%, 60%);
-        --example-bg: var(--borderedblock-bg);
-        --example-text: var(--text);
-        --exampleheading-text: hsl(50deg, 70%, 70%);
-
-        --note-border: hsl(120deg, 100%, 35%);
-        --note-bg: var(--borderedblock-bg);
-        --note-text: var(--text);
-        --noteheading-text: hsl(120, 70%, 70%);
-        --notesummary-underline: silver;
-
-        --assertion-border: #444;
-        --assertion-bg: var(--borderedblock-bg);
-        --assertion-text: var(--text);
-
-        --advisement-border: orange;
-        --advisement-bg: #222218;
-        --advisement-text: var(--text);
-        --advisementheading-text: #f84;
-
-        --warning-border: red;
-        --warning-bg: hsla(40,100%,20%,0.95);
-        --warning-text: var(--text);
-
-        --amendment-border: #330099;
-        --amendment-bg: #080010;
-        --amendment-text: var(--text);
-        --amendmentheading-text: #cc00ff;
-
-        --def-border: #8ccbf2;
-        --def-bg: #080818;
-        --def-text: var(--text);
-        --defrow-border: #136;
-
-        --datacell-border: silver;
-
-        --indexinfo-text: #aaa;
-
-        --indextable-hover-text: var(--text);
-        --indextable-hover-bg: #181818;
-
-        --outdatedspec-bg: rgba(255, 255, 255, .5);
-        --outdatedspec-text: black;
-        --outdated-bg: maroon;
-        --outdated-text: white;
-        --outdated-shadow: red;
-
-        --editedrec-bg: darkorange;
-    }
-    /* In case a transparent-bg image doesn't expect to be on a dark bg,
-       which is quite common in practice... */
-    img { background: white; }
-}
-@media (prefers-color-scheme: dark) {
-    :root {
-        --selflink-text: black;
-        --selflink-bg: silver;
-        --selflink-hover-text: white;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --dfnpanel-bg: #222;
-        --dfnpanel-text: var(--text);
-    }
-}
-@media (prefers-color-scheme: dark) {
-    .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
-
-    c-[a] { color: #d33682 } /* Keyword.Declaration */
-    c-[b] { color: #d33682 } /* Keyword.Type */
-    c-[c] { color: #2aa198 } /* Comment */
-    c-[d] { color: #2aa198 } /* Comment.Multiline */
-    c-[e] { color: #268bd2 } /* Name.Attribute */
-    c-[f] { color: #b58900 } /* Name.Tag */
-    c-[g] { color: #cb4b16 } /* Name.Variable */
-    c-[k] { color: #d33682 } /* Keyword */
-    c-[l] { color: #657b83 } /* Literal */
-    c-[m] { color: #657b83 } /* Literal.Number */
-    c-[n] { color: #268bd2 } /* Name */
-    c-[o] { color: #657b83 } /* Operator */
-    c-[p] { color: #657b83 } /* Punctuation */
-    c-[s] { color: #6c71c4 } /* Literal.String */
-    c-[t] { color: #6c71c4 } /* Literal.String.Single */
-    c-[u] { color: #6c71c4 } /* Literal.String.Double */
-    c-[ch] { color: #2aa198 } /* Comment.Hashbang */
-    c-[cp] { color: #2aa198 } /* Comment.Preproc */
-    c-[cpf] { color: #2aa198 } /* Comment.PreprocFile */
-    c-[c1] { color: #2aa198 } /* Comment.Single */
-    c-[cs] { color: #2aa198 } /* Comment.Special */
-    c-[kc] { color: #d33682 } /* Keyword.Constant */
-    c-[kn] { color: #d33682 } /* Keyword.Namespace */
-    c-[kp] { color: #d33682 } /* Keyword.Pseudo */
-    c-[kr] { color: #d33682 } /* Keyword.Reserved */
-    c-[ld] { color: #657b83 } /* Literal.Date */
-    c-[nc] { color: #268bd2 } /* Name.Class */
-    c-[no] { color: #268bd2 } /* Name.Constant */
-    c-[nd] { color: #268bd2 } /* Name.Decorator */
-    c-[ni] { color: #268bd2 } /* Name.Entity */
-    c-[ne] { color: #268bd2 } /* Name.Exception */
-    c-[nf] { color: #268bd2 } /* Name.Function */
-    c-[nl] { color: #268bd2 } /* Name.Label */
-    c-[nn] { color: #268bd2 } /* Name.Namespace */
-    c-[py] { color: #268bd2 } /* Name.Property */
-    c-[ow] { color: #657b83 } /* Operator.Word */
-    c-[mb] { color: #657b83 } /* Literal.Number.Bin */
-    c-[mf] { color: #657b83 } /* Literal.Number.Float */
-    c-[mh] { color: #657b83 } /* Literal.Number.Hex */
-    c-[mi] { color: #657b83 } /* Literal.Number.Integer */
-    c-[mo] { color: #657b83 } /* Literal.Number.Oct */
-    c-[sa] { color: #6c71c4 } /* Literal.String.Affix */
-    c-[sb] { color: #6c71c4 } /* Literal.String.Backtick */
-    c-[sc] { color: #6c71c4 } /* Literal.String.Char */
-    c-[dl] { color: #6c71c4 } /* Literal.String.Delimiter */
-    c-[sd] { color: #6c71c4 } /* Literal.String.Doc */
-    c-[se] { color: #6c71c4 } /* Literal.String.Escape */
-    c-[sh] { color: #6c71c4 } /* Literal.String.Heredoc */
-    c-[si] { color: #6c71c4 } /* Literal.String.Interpol */
-    c-[sx] { color: #6c71c4 } /* Literal.String.Other */
-    c-[sr] { color: #6c71c4 } /* Literal.String.Regex */
-    c-[ss] { color: #6c71c4 } /* Literal.String.Symbol */
-    c-[fm] { color: #268bd2 } /* Name.Function.Magic */
-    c-[vc] { color: #cb4b16 } /* Name.Variable.Class */
-    c-[vg] { color: #cb4b16 } /* Name.Variable.Global */
-    c-[vi] { color: #cb4b16 } /* Name.Variable.Instance */
-    c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
-    c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
-}
-</style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-04-01">1 April 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CR">W3C Candidate Recommendation Snapshot</a>, <time class="dt-updated" datetime="2022-03-31">31 March 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://immersive-web.github.io/webxr/">https://immersive-web.github.io/webxr/</a>
+      <dd><a class="u-url" href="https://www.w3.org/TR/2022/CR-webxr-20220331/">https://www.w3.org/TR/2022/CR-webxr-20220331/</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webxr/">https://www.w3.org/TR/webxr/</a>
+      <dt>Editor's Draft:
+      <dd><a href="https://immersive-web.github.io/webxr/">https://immersive-web.github.io/webxr/</a>
+      <dt>History:
+      <dd><a class="u-url" href="https://www.w3.org/standards/history/webxr">https://www.w3.org/standards/history/webxr</a>
       <dt>Implementation Report:
       <dd><a href="https://wpt.fyi/results/webxr?label=master&amp;label=experimental&amp;aligned">https://wpt.fyi/results/webxr?label=master&amp;label=experimental&amp;aligned</a>
       <dt>Feedback:
@@ -742,22 +447,23 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   </div>
   <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
-   <p> <em>This section describes the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this
-    technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical
-    reports index</a> at http://www.w3.org/TR/.</em> </p>
-   <p> This document was published by the <a href="https://www.w3.org/groups/wg/immersive-web">Immersive Web Working Group</a> as an Editors' Draft. This document is intended to become a W3C Recommendation.
-
-    Feedback and comments on this specification are welcome. Please use <a href="https://github.com/immersive-web/webxr/issues">Github issues</a>.
-    Discussions may also be found in the <a href="http://lists.w3.org/Archives/Public/public-immersive-web-wg/">public-immersive-web-wg@w3.org archives</a>. </p>
-   <p> Publication as an Editors' Draft does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. This is a draft document and may
-    be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite
-    this document as other than work in progress. </p>
-   <p> This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20170801/"> 1 August 2017 <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/groups/wg/immersive-web/ipr" rel="disclosure">public list of any
-    patent disclosures</a> made in connection with the deliverables of the group; that page also
-    includes instructions for disclosing a patent. An individual who has actual knowledge of a
-    patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20170801/#def-essential">Essential
-    Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20170801/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. </p>
+   <p> <em>This section describes the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em> </p>
+   <p> The Immersive Web Working Group maintains <a href="https://github.com/immersive-web/webxr/issues">a list of all bug
+        reports that the group has not yet addressed</a>. This draft highlights some of the pending issues that are still to be discussed in the working group. No decision has been taken on the outcome of these issues including whether they are valid.
+            Pull requests with proposed specification text for outstanding issues are strongly encouraged. </p>
+   <p> This document was published by the <a href="https://www.w3.org/groups/wg/immersive-web">Immersive Web Working Group</a> as a Candidate Recommendation Snapshot using the <a href="https://www.w3.org/2021/Process-20211102/#recs-and-notes">Recommendation
+      track</a>. This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
+      This document will remain a Candidate Recommendation at least until <time class="status-deadline" datetime="2022-04-28">28 April 2022</time> in order to ensure the opportunity for wide review. </p>
+   <p> Publication as a Candidate Recommendation does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. 
+               A Candidate Recommendation Snapshot has received <a href="https://www.w3.org/2021/Process-20211102/#dfn-wide-review">wide review</a>, is intended to
+          gather implementation experience, and has commitments from Working Group members to <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements">royalty-free licensing</a> for implementations. </p>
+   <p> This document was produced by a group operating under the <a class="css" data-link-type="property" href="https://www.w3.org/Consortium/Patent-Policy-20170801/" id="sotd_patent">1 August 2017 W3C Patent Policy</a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/groups/wg/immersive-web/ipr" rel="disclosure">public list of any patent
+              disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20170801/#def-essential">Essential
+            Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20170801/#sec-Disclosure">section
+            6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. </p>
    <p> This document is governed by the <a href="https://www.w3.org/2021/Process-20211102/" id="w3c_process_revision">2 November 2021 W3C Process Document</a>. </p>
+   <p> For changes since the last draft,
+        see the <a href="#changes">Changes</a> section. </p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -2269,7 +1975,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①⑧">Queue a task</a> to perform the following steps:</p>
       <ol>
        <li data-md>
-        <p>Let <var>now</var> be the <a data-link-type="dfn" href="https://www.w3.org/TR/hr-time-2/#dfn-current-high-resolution-time" id="ref-for-dfn-current-high-resolution-time">current high resolution time</a>.</p>
+        <p>Let <var>now</var> be the <a data-link-type="dfn" href="https://www.w3.org/TR/hr-time-3/#dfn-current-high-resolution-time" id="ref-for-dfn-current-high-resolution-time">current high resolution time</a>.</p>
        <li data-md>
         <p>Let <var>frame</var> be <var>session</var>’s <a data-link-type="dfn" href="#xrsession-animation-frame" id="ref-for-xrsession-animation-frame">animation frame</a>.</p>
        <li data-md>
@@ -2770,12 +2476,12 @@ window<c- p>.</c->requestAnimationFrame<c- p>(</c->onWindowAnimationFrame<c- p>)
    <p><code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace④">XRBoundedReferenceSpace</a></code> extends <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②④">XRReferenceSpace</a></code> to include <code class="idl"><a data-link-type="idl" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry④">boundsGeometry</a></code>, indicating the pre-configured boundaries of the user’s space.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext⑦"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed⑥"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrboundedreferencespace"><code><c- g>XRBoundedReferenceSpace</c-></code></dfn> : <a data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②⑤"><c- n>XRReferenceSpace</c-></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-frozen-array" id="ref-for-idl-frozen-array"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly"><c- n>DOMPointReadOnly</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<DOMPointReadOnly>" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry⑤"><c- g>boundsGeometry</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-frozen-array" id="ref-for-idl-frozen-array"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly"><c- n>DOMPointReadOnly</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<DOMPointReadOnly>" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry⑤"><c- g>boundsGeometry</c-></a>;
 };
 </pre>
    <p>The origin of an <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑤">XRBoundedReferenceSpace</a></code> MUST be positioned at the floor, such that the <code>Y</code> axis equals <code>0</code> at floor level. The <code>X</code> and <code>Z</code> position and orientation are initialized based on the conventions of the underlying platform, typically expected to be near the center of the room facing in a logical forward direction.</p>
    <p class="note" role="note"><span>Note:</span> Other XR platforms sometimes refer to the type of tracking offered by a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor⑧">bounded-floor</a></code> reference space as "room scale" tracking. An <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑥">XRBoundedReferenceSpace</a></code> is not intended to describe multi-room spaces, areas with uneven floor levels, or very large open areas. Content that needs to handle those scenarios should use an <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded⑤">unbounded</a></code> reference space.</p>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑦">XRBoundedReferenceSpace</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRBoundedReferenceSpace" data-dfn-type="dfn" data-noexport id="xrboundedreferencespace-native-bounds-geometry">native bounds geometry</dfn> describing the border around the <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑧">XRBoundedReferenceSpace</a></code>, which the user can expect to safely move within. The polygonal boundary is given as an array of <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly①">DOMPointReadOnly</a></code>s, which represents a loop of points at the edges of the safe space. The points describe offsets from the <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin①①">native origin</a> in meters. Points MUST be given in a clockwise order as viewed from above, looking towards the negative end of the Y axis. The <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-y" id="ref-for-dom-dompointreadonly-y">y</a></code> value of each point MUST be <code>0</code> and the <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w">w</a></code> value of each point MUST be <code>1</code>. The bounds can be considered to originate at the floor and extend infinitely high. The shape it describes MAY be convex or concave.</p>
+   <p>Each <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑦">XRBoundedReferenceSpace</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRBoundedReferenceSpace" data-dfn-type="dfn" data-noexport id="xrboundedreferencespace-native-bounds-geometry">native bounds geometry</dfn> describing the border around the <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑧">XRBoundedReferenceSpace</a></code>, which the user can expect to safely move within. The polygonal boundary is given as an array of <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly①">DOMPointReadOnly</a></code>s, which represents a loop of points at the edges of the safe space. The points describe offsets from the <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin①①">native origin</a> in meters. Points MUST be given in a clockwise order as viewed from above, looking towards the negative end of the Y axis. The <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-y" id="ref-for-dom-dompointreadonly-y">y</a></code> value of each point MUST be <code>0</code> and the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w">w</a></code> value of each point MUST be <code>1</code>. The bounds can be considered to originate at the floor and extend infinitely high. The shape it describes MAY be convex or concave.</p>
    <p>Each point in the <a data-link-type="dfn" href="#xrboundedreferencespace-native-bounds-geometry" id="ref-for-xrboundedreferencespace-native-bounds-geometry">native bounds geometry</a> MUST be <a data-link-type="dfn" href="#limiting" id="ref-for-limiting">limited</a> to a reasonable distance from the reference space’s <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin①②">native origin</a>.</p>
    <p class="note" role="note"><span>Note:</span> It is suggested that points of the <a data-link-type="dfn" href="#xrboundedreferencespace-native-bounds-geometry" id="ref-for-xrboundedreferencespace-native-bounds-geometry①">native bounds geometry</a> be <a data-link-type="dfn" href="#limiting" id="ref-for-limiting①">limited</a> to 15 meters from the <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin①③">native origin</a> in all directions.</p>
    <p>Each point in the <a data-link-type="dfn" href="#xrboundedreferencespace-native-bounds-geometry" id="ref-for-xrboundedreferencespace-native-bounds-geometry②">native bounds geometry</a> MUST also be <a data-link-type="dfn" href="#quantization" id="ref-for-quantization">quantized</a> sufficiently to prevent fingerprinting.  For user’s safety, quantized points values MUST NOT fall outside the bounds reported by the platform.</p>
@@ -2796,7 +2502,7 @@ window<c- p>.</c->requestAnimationFrame<c- p>(</c->onWindowAnimationFrame<c- p>)
      </div>
     </div>
    </div>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRBoundedReferenceSpace" data-dfn-type="attribute" data-export id="dom-xrboundedreferencespace-boundsgeometry"><code>boundsGeometry</code></dfn> attribute is an array of <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly②">DOMPointReadOnly</a></code>s such that each entry is equal to the entry in the <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑨">XRBoundedReferenceSpace</a></code>'s <a data-link-type="dfn" href="#xrboundedreferencespace-native-bounds-geometry" id="ref-for-xrboundedreferencespace-native-bounds-geometry④">native bounds geometry</a> premultiplied by the <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-inverse" id="ref-for-dom-xrrigidtransform-inverse①">inverse</a></code> of the <a data-link-type="dfn" href="#xrspace-origin-offset" id="ref-for-xrspace-origin-offset④">origin offset</a>. In other words, it provides the same border in <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace①⓪">XRBoundedReferenceSpace</a></code> coordinates relative to the <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin①⓪">effective origin</a>.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRBoundedReferenceSpace" data-dfn-type="attribute" data-export id="dom-xrboundedreferencespace-boundsgeometry"><code>boundsGeometry</code></dfn> attribute is an array of <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly②">DOMPointReadOnly</a></code>s such that each entry is equal to the entry in the <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑨">XRBoundedReferenceSpace</a></code>'s <a data-link-type="dfn" href="#xrboundedreferencespace-native-bounds-geometry" id="ref-for-xrboundedreferencespace-native-bounds-geometry④">native bounds geometry</a> premultiplied by the <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-inverse" id="ref-for-dom-xrrigidtransform-inverse①">inverse</a></code> of the <a data-link-type="dfn" href="#xrspace-origin-offset" id="ref-for-xrspace-origin-offset④">origin offset</a>. In other words, it provides the same border in <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace①⓪">XRBoundedReferenceSpace</a></code> coordinates relative to the <a data-link-type="dfn" href="#xrspace-effective-origin" id="ref-for-xrspace-effective-origin①⓪">effective origin</a>.</p>
    <p>If the <a data-link-type="dfn" href="#xrboundedreferencespace-native-bounds-geometry" id="ref-for-xrboundedreferencespace-native-bounds-geometry⑤">native bounds geometry</a> is temporarily unavailable, which may occur for several reasons such as during XR device initialization, extended periods of tracking loss, or movement between pre-configured spaces, the <code class="idl"><a data-link-type="idl" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry⑥">boundsGeometry</a></code> MUST report an empty array.</p>
    <div class="algorithm" data-algorithm="bounded-space-supported">
      To check if <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="bounded-reference-spaces-are-supported">bounded reference spaces are supported</dfn> run the following steps: 
@@ -3170,12 +2876,12 @@ window<c- p>.</c->requestAnimationFrame<c- p>(</c->onWindowAnimationFrame<c- p>)
    </div>
    <h2 class="heading settled" data-level="8" id="geometricprimitives"><span class="secno">8. </span><span class="content">Geometric Primitives</span><a class="self-link" href="#geometricprimitives"></a></h2>
    <h3 class="heading settled" data-level="8.1" id="matrices"><span class="secno">8.1. </span><span class="content">Matrices</span><a class="self-link" href="#matrices"></a></h3>
-   <p>WebXR provides various transforms in the form of <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="matrix" data-noexport id="matrix">matrices</dfn>. WebXR uses the WebGL conventions when communicating matrices, in which 4x4 matrices are given as 16 element <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-Float32Array" id="ref-for-idl-Float32Array②">Float32Array</a></code>s with column major storage, and are applied to column vectors by premultiplying the matrix from the left. They may be passed directly to WebGL’s <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.10" id="ref-for-5.14.10">uniformMatrix4fv</a></code> function, used to create an equivalent <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dommatrix" id="ref-for-dommatrix">DOMMatrix</a></code>, or used with a variety of third party math libraries.</p>
+   <p>WebXR provides various transforms in the form of <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="matrix" data-noexport id="matrix">matrices</dfn>. WebXR uses the WebGL conventions when communicating matrices, in which 4x4 matrices are given as 16 element <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-Float32Array" id="ref-for-idl-Float32Array②">Float32Array</a></code>s with column major storage, and are applied to column vectors by premultiplying the matrix from the left. They may be passed directly to WebGL’s <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.10" id="ref-for-5.14.10">uniformMatrix4fv</a></code> function, used to create an equivalent <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dommatrix" id="ref-for-dommatrix">DOMMatrix</a></code>, or used with a variety of third party math libraries.</p>
    <div class="example" id="example-2a96dddb">
     <a class="self-link" href="#example-2a96dddb"></a> Matrices returned from the WebXR Device API will be a 16 element <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-Float32Array" id="ref-for-idl-Float32Array③">Float32Array</a></code> laid out like so: 
 <pre>[a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15]
 </pre>
-    <p>Applying this matrix as a transform to a column vector specified as a <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly③">DOMPointReadOnly</a></code> like so:</p>
+    <p>Applying this matrix as a transform to a column vector specified as a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly③">DOMPointReadOnly</a></code> like so:</p>
 <pre>{x:X, y:Y, z:Z, w:1}</pre>
     <p>Produces the following result:</p>
 <pre>a0 a4 a8  a12  *  X  =  a0 * X + a4 * Y +  a8 * Z + a12
@@ -3218,9 +2924,9 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
    <p>An <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑧">XRRigidTransform</a></code> contains an <dfn class="dfn-paneled" data-dfn-for="XRRigidTransform" data-dfn-type="dfn" data-noexport id="xrrigidtransform-internal-matrix">internal matrix</dfn> which is a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②">matrix</a>.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext①⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed⑨"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrrigidtransform"><code><c- g>XRRigidTransform</c-></code></dfn> {
-  <a class="idl-code" data-link-type="constructor" href="#dom-xrrigidtransform-xrrigidtransform" id="ref-for-dom-xrrigidtransform-xrrigidtransform"><c- g>constructor</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit"><c- n>DOMPointInit</c-></a> <dfn class="idl-code" data-dfn-for="XRRigidTransform/XRRigidTransform(position, orientation), XRRigidTransform/constructor(position, orientation), XRRigidTransform/XRRigidTransform(position), XRRigidTransform/constructor(position), XRRigidTransform/XRRigidTransform(), XRRigidTransform/constructor()" data-dfn-type="argument" data-export id="dom-xrrigidtransform-xrrigidtransform-position-orientation-position"><code><c- g>position</c-></code><a class="self-link" href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-position"></a></dfn> = {}, <c- b>optional</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit①"><c- n>DOMPointInit</c-></a> <dfn class="idl-code" data-dfn-for="XRRigidTransform/XRRigidTransform(position, orientation), XRRigidTransform/constructor(position, orientation), XRRigidTransform/XRRigidTransform(position), XRRigidTransform/constructor(position), XRRigidTransform/XRRigidTransform(), XRRigidTransform/constructor()" data-dfn-type="argument" data-export id="dom-xrrigidtransform-xrrigidtransform-position-orientation-orientation"><code><c- g>orientation</c-></code><a class="self-link" href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-orientation"></a></dfn> = {});
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject⑤"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly④"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑤"><c- g>position</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject⑥"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑤"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑤"><c- g>orientation</c-></a>;
+  <a class="idl-code" data-link-type="constructor" href="#dom-xrrigidtransform-xrrigidtransform" id="ref-for-dom-xrrigidtransform-xrrigidtransform"><c- g>constructor</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit"><c- n>DOMPointInit</c-></a> <dfn class="idl-code" data-dfn-for="XRRigidTransform/XRRigidTransform(position, orientation), XRRigidTransform/constructor(position, orientation), XRRigidTransform/XRRigidTransform(position), XRRigidTransform/constructor(position), XRRigidTransform/XRRigidTransform(), XRRigidTransform/constructor()" data-dfn-type="argument" data-export id="dom-xrrigidtransform-xrrigidtransform-position-orientation-position"><code><c- g>position</c-></code><a class="self-link" href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-position"></a></dfn> = {}, <c- b>optional</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit①"><c- n>DOMPointInit</c-></a> <dfn class="idl-code" data-dfn-for="XRRigidTransform/XRRigidTransform(position, orientation), XRRigidTransform/constructor(position, orientation), XRRigidTransform/XRRigidTransform(position), XRRigidTransform/constructor(position), XRRigidTransform/XRRigidTransform(), XRRigidTransform/constructor()" data-dfn-type="argument" data-export id="dom-xrrigidtransform-xrrigidtransform-position-orientation-orientation"><code><c- g>orientation</c-></code><a class="self-link" href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-orientation"></a></dfn> = {});
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject⑤"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly④"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑤"><c- g>position</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject⑥"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑤"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑤"><c- g>orientation</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-Float32Array" id="ref-for-idl-Float32Array④"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix"><c- g>matrix</c-></a>;
   [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject⑦"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑨"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrrigidtransform-inverse" id="ref-for-dom-xrrigidtransform-inverse②"><c- g>inverse</c-></a>;
 };
@@ -3247,21 +2953,21 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>transform</var> be a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#new" id="ref-for-new①③">new</a> <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform①⓪">XRRigidTransform</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#current" id="ref-for-current">current realm</a>.</p>
      <li data-md>
-      <p>Let <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑥">position</a></code> be a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#new" id="ref-for-new①④">new</a> <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑥">DOMPointReadOnly</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#current" id="ref-for-current①">current realm</a>.</p>
+      <p>Let <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑥">position</a></code> be a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#new" id="ref-for-new①④">new</a> <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑥">DOMPointReadOnly</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#current" id="ref-for-current①">current realm</a>.</p>
      <li data-md>
-      <p>If <var>position</var>’s <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w①">w</a></code> value is not <code>1.0</code>, throw a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①">TypeError</a></code> and abort these steps.</p>
+      <p>If <var>position</var>’s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w①">w</a></code> value is not <code>1.0</code>, throw a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①">TypeError</a></code> and abort these steps.</p>
      <li data-md>
       <p>If one or more of <var>position</var>’s or <var>orientation</var>’s values is <code>NaN</code> or another non-finite number such as <code>infinity</code>, throw a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror②">TypeError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑦">position</a></code>’s <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-x" id="ref-for-dom-dompointreadonly-x">x</a></code> value to <var>position</var>’s x dictionary member, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-y" id="ref-for-dom-dompointreadonly-y①">y</a></code> value to <var>position</var>’s y dictionary member, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-z" id="ref-for-dom-dompointreadonly-z">z</a></code> value to <var>position</var>’s z dictionary member and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w②">w</a></code> value to <var>position</var>’s w dictionary member.</p>
+      <p>Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑦">position</a></code>’s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-x" id="ref-for-dom-dompointreadonly-x">x</a></code> value to <var>position</var>’s x dictionary member, <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-y" id="ref-for-dom-dompointreadonly-y①">y</a></code> value to <var>position</var>’s y dictionary member, <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-z" id="ref-for-dom-dompointreadonly-z">z</a></code> value to <var>position</var>’s z dictionary member and <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w②">w</a></code> value to <var>position</var>’s w dictionary member.</p>
      <li data-md>
-      <p>Let <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑥">orientation</a></code> be a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#new" id="ref-for-new①⑤">new</a> <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑦">DOMPointReadOnly</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#current" id="ref-for-current②">current realm</a>.</p>
+      <p>Let <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑥">orientation</a></code> be a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#new" id="ref-for-new①⑤">new</a> <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑦">DOMPointReadOnly</a></code> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#current" id="ref-for-current②">current realm</a>.</p>
      <li data-md>
-      <p>Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑦">orientation</a></code>’s <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-x" id="ref-for-dom-dompointreadonly-x①">x</a></code> value to <var>orientation</var>’s x dictionary member, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-y" id="ref-for-dom-dompointreadonly-y②">y</a></code> value to <var>orientation</var>’s y dictionary member, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-z" id="ref-for-dom-dompointreadonly-z①">z</a></code> value to <var>orientation</var>’s z dictionary member and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w③">w</a></code> value to <var>orientation</var>’s w dictionary member.</p>
+      <p>Set <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑦">orientation</a></code>’s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-x" id="ref-for-dom-dompointreadonly-x①">x</a></code> value to <var>orientation</var>’s x dictionary member, <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-y" id="ref-for-dom-dompointreadonly-y②">y</a></code> value to <var>orientation</var>’s y dictionary member, <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-z" id="ref-for-dom-dompointreadonly-z①">z</a></code> value to <var>orientation</var>’s z dictionary member and <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w③">w</a></code> value to <var>orientation</var>’s w dictionary member.</p>
      <li data-md>
       <p>Let <var>transform</var>’s <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix">internal matrix</a> be <code>null</code>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="#normalize" id="ref-for-normalize">Normalize</a> <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-x" id="ref-for-dom-dompointreadonly-x②">x</a></code>, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-y" id="ref-for-dom-dompointreadonly-y③">y</a></code>, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-z" id="ref-for-dom-dompointreadonly-z②">z</a></code>, and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w④">w</a></code> components of <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑧">orientation</a></code>.</p>
+      <p><a data-link-type="dfn" href="#normalize" id="ref-for-normalize">Normalize</a> <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-x" id="ref-for-dom-dompointreadonly-x②">x</a></code>, <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-y" id="ref-for-dom-dompointreadonly-y③">y</a></code>, <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-z" id="ref-for-dom-dompointreadonly-z②">z</a></code>, and <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w④">w</a></code> components of <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑧">orientation</a></code>.</p>
      <li data-md>
       <p>Return <var>transform</var>.</p>
     </ol>
@@ -3282,7 +2988,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      </div>
     </div>
    </div>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRRigidTransform" data-dfn-type="attribute" data-export id="dom-xrrigidtransform-position"><code>position</code></dfn> attribute is a 3-dimensional point, given in meters, describing the translation component of the transform. The <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑧">position</a></code>'s <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w⑤">w</a></code> attribute MUST be <code>1.0</code>.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRRigidTransform" data-dfn-type="attribute" data-export id="dom-xrrigidtransform-position"><code>position</code></dfn> attribute is a 3-dimensional point, given in meters, describing the translation component of the transform. The <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑧">position</a></code>'s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w⑤">w</a></code> attribute MUST be <code>1.0</code>.</p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
@@ -3366,9 +3072,9 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Set <var>result</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix①">matrix</a></code> to a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#new" id="ref-for-new①⑧">new</a> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-Float32Array" id="ref-for-idl-Float32Array⑥">Float32Array</a></code> in <var>realm</var>, the result of premultiplying <var>B</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix②">matrix</a></code> from the left onto <var>A</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix③">matrix</a></code>.</p>
      <li data-md>
-      <p>Set <var>result</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation①⑥">orientation</a></code> to a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#new" id="ref-for-new①⑨">new</a> <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑧">DOMPointReadOnly</a></code> in <var>realm</var>, the quaternion that describes the rotation indicated by the top left 3x3 sub-matrix of <var>result</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix④">matrix</a></code>.</p>
+      <p>Set <var>result</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation①⑥">orientation</a></code> to a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#new" id="ref-for-new①⑨">new</a> <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑧">DOMPointReadOnly</a></code> in <var>realm</var>, the quaternion that describes the rotation indicated by the top left 3x3 sub-matrix of <var>result</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix④">matrix</a></code>.</p>
      <li data-md>
-      <p>Set <var>result</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position①⑤">position</a></code> to  a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#new" id="ref-for-new②⓪">new</a> <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑨">DOMPointReadOnly</a></code> in <var>realm</var>, the vector given by the fourth column of <var>result</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix⑤">matrix</a></code>.</p>
+      <p>Set <var>result</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position①⑤">position</a></code> to  a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#new" id="ref-for-new②⓪">new</a> <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑨">DOMPointReadOnly</a></code> in <var>realm</var>, the vector given by the fourth column of <var>result</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix⑤">matrix</a></code>.</p>
      <li data-md>
       <p>Return <var>result</var>.</p>
     </ol>
@@ -3396,8 +3102,8 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
    <p>An <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose⑥">XRPose</a></code> describes a position and orientation in space relative to an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①⑧">XRSpace</a></code>.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext①①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed①⓪"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrpose"><code><c- g>XRPose</c-></code></dfn> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject⑧"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②⓪"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrpose-transform" id="ref-for-dom-xrpose-transform②"><c- g>transform</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject⑨"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly①⓪"><c- n>DOMPointReadOnly</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly?" href="#dom-xrpose-linearvelocity" id="ref-for-dom-xrpose-linearvelocity③"><c- g>linearVelocity</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject①⓪"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly①①"><c- n>DOMPointReadOnly</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly?" href="#dom-xrpose-angularvelocity" id="ref-for-dom-xrpose-angularvelocity③"><c- g>angularVelocity</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject⑨"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly①⓪"><c- n>DOMPointReadOnly</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly?" href="#dom-xrpose-linearvelocity" id="ref-for-dom-xrpose-linearvelocity③"><c- g>linearVelocity</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject①⓪"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly①①"><c- n>DOMPointReadOnly</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly?" href="#dom-xrpose-angularvelocity" id="ref-for-dom-xrpose-angularvelocity③"><c- g>angularVelocity</c-></a>;
 
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition⑥"><c- g>emulatedPosition</c-></a>;
 };
@@ -5070,9 +4776,9 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
      </div>
     </div>
    </div>
-   <p>This specification defines a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> that controls whether any <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑤②">XRSession</a></code> that requires the use of spatial tracking may be returned by <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession⑤">requestSession()</a></code>, and whether support for session modes that require spatial tracking may be indicated by either <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①⑤">isSessionSupported()</a></code> or <a class="idl-code" data-link-type="event" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange③">devicechange</a> events on the <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr②">navigator.xr</a></code> object.</p>
+   <p>This specification defines a <a data-link-type="dfn" href="https://www.w3.org/TR/permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> that controls whether any <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑤②">XRSession</a></code> that requires the use of spatial tracking may be returned by <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-requestsession" id="ref-for-dom-xrsystem-requestsession⑤">requestSession()</a></code>, and whether support for session modes that require spatial tracking may be indicated by either <code class="idl"><a data-link-type="idl" href="#dom-xrsystem-issessionsupported" id="ref-for-dom-xrsystem-issessionsupported①⑤">isSessionSupported()</a></code> or <a class="idl-code" data-link-type="event" href="#eventdef-xrsystem-devicechange" id="ref-for-eventdef-xrsystem-devicechange③">devicechange</a> events on the <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr②">navigator.xr</a></code> object.</p>
    <p>The feature identifier for this feature is <code>"xr-spatial-tracking"</code>.</p>
-   <p>The <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#default-allowlist" id="ref-for-default-allowlist">default allowlist</a> for this feature is <code>["self"]</code>.</p>
+   <p>The <a data-link-type="dfn" href="https://www.w3.org/TR/permissions-policy/#default-allowlist" id="ref-for-default-allowlist">default allowlist</a> for this feature is <code>["self"]</code>.</p>
    <p class="note" role="note"><span>Note:</span> If the document’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin⑤">origin</a> is not allowed to use the <code>"xr-spatial-tracking"</code> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-permissions-policy" id="ref-for-concept-document-permissions-policy①">permissions policy</a> any <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session③④">immersive sessions</a> will be blocked, because all <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session③⑤">immersive sessions</a> require some use of spatial tracking. <a data-link-type="dfn" href="#inline-session" id="ref-for-inline-session⑤">Inline sessions</a> will still be allowed, but restricted to only using the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-viewer" id="ref-for-dom-xrreferencespacetype-viewer⑥">"viewer"</a></code> <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③⑧">XRReferenceSpace</a></code>.</p>
    <h3 class="heading settled" data-level="14.2" id="permissions"><span class="secno">14.2. </span><span class="content">Permissions API Integration</span><a class="self-link" href="#permissions"></a></h3>
    <p>The <a data-link-type="biblio" href="#biblio-permissions">[permissions]</a> API provides a uniform way for websites to request permissions from users and query which permissions they have been granted.</p>
@@ -6329,19 +6035,19 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dommatrix">
-   <a href="https://drafts.fxtf.org/geometry-1/#dommatrix">https://drafts.fxtf.org/geometry-1/#dommatrix</a><b>Referenced in:</b>
+   <a href="https://www.w3.org/TR/geometry-1/#dommatrix">https://www.w3.org/TR/geometry-1/#dommatrix</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dommatrix">8.1. Matrices</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dictdef-dompointinit">
-   <a href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit">https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit</a><b>Referenced in:</b>
+   <a href="https://www.w3.org/TR/geometry-1/#dictdef-dompointinit">https://www.w3.org/TR/geometry-1/#dictdef-dompointinit</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dictdef-dompointinit">8.3. XRRigidTransform</a> <a href="#ref-for-dictdef-dompointinit①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dompointreadonly">
-   <a href="https://drafts.fxtf.org/geometry-1/#dompointreadonly">https://drafts.fxtf.org/geometry-1/#dompointreadonly</a><b>Referenced in:</b>
+   <a href="https://www.w3.org/TR/geometry-1/#dompointreadonly">https://www.w3.org/TR/geometry-1/#dompointreadonly</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dompointreadonly">6.3. XRBoundedReferenceSpace</a> <a href="#ref-for-dompointreadonly①">(2)</a> <a href="#ref-for-dompointreadonly②">(3)</a>
     <li><a href="#ref-for-dompointreadonly③">8.1. Matrices</a>
@@ -6350,27 +6056,27 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dom-dompointreadonly-w">
-   <a href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w">https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w</a><b>Referenced in:</b>
+   <a href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-w">https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-w</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-dompointreadonly-w">6.3. XRBoundedReferenceSpace</a>
     <li><a href="#ref-for-dom-dompointreadonly-w①">8.3. XRRigidTransform</a> <a href="#ref-for-dom-dompointreadonly-w②">(2)</a> <a href="#ref-for-dom-dompointreadonly-w③">(3)</a> <a href="#ref-for-dom-dompointreadonly-w④">(4)</a> <a href="#ref-for-dom-dompointreadonly-w⑤">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dom-dompointreadonly-x">
-   <a href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-x">https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-x</a><b>Referenced in:</b>
+   <a href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-x">https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-x</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-dompointreadonly-x">8.3. XRRigidTransform</a> <a href="#ref-for-dom-dompointreadonly-x①">(2)</a> <a href="#ref-for-dom-dompointreadonly-x②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dom-dompointreadonly-y">
-   <a href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-y">https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-y</a><b>Referenced in:</b>
+   <a href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-y">https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-y</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-dompointreadonly-y">6.3. XRBoundedReferenceSpace</a>
     <li><a href="#ref-for-dom-dompointreadonly-y①">8.3. XRRigidTransform</a> <a href="#ref-for-dom-dompointreadonly-y②">(2)</a> <a href="#ref-for-dom-dompointreadonly-y③">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dom-dompointreadonly-z">
-   <a href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-z">https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-z</a><b>Referenced in:</b>
+   <a href="https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-z">https://www.w3.org/TR/geometry-1/#dom-dompointreadonly-z</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-dompointreadonly-z">8.3. XRRigidTransform</a> <a href="#ref-for-dom-dompointreadonly-z①">(2)</a> <a href="#ref-for-dom-dompointreadonly-z②">(3)</a>
    </ul>
@@ -6383,7 +6089,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-current-high-resolution-time">
-   <a href="https://www.w3.org/TR/hr-time-2/#dfn-current-high-resolution-time">https://www.w3.org/TR/hr-time-2/#dfn-current-high-resolution-time</a><b>Referenced in:</b>
+   <a href="https://www.w3.org/TR/hr-time-3/#dfn-current-high-resolution-time">https://www.w3.org/TR/hr-time-3/#dfn-current-high-resolution-time</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dfn-current-high-resolution-time">4.3. Animation Frames</a>
    </ul>
@@ -6768,13 +6474,13 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-default-allowlist">
-   <a href="https://w3c.github.io/webappsec-permissions-policy/#default-allowlist">https://w3c.github.io/webappsec-permissions-policy/#default-allowlist</a><b>Referenced in:</b>
+   <a href="https://www.w3.org/TR/permissions-policy/#default-allowlist">https://www.w3.org/TR/permissions-policy/#default-allowlist</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-default-allowlist">14.1. Permissions Policy</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-policy-controlled-feature">
-   <a href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature">https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature</a><b>Referenced in:</b>
+   <a href="https://www.w3.org/TR/permissions-policy/#policy-controlled-feature">https://www.w3.org/TR/permissions-policy/#policy-controlled-feature</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-policy-controlled-feature">14.1. Permissions Policy</a>
    </ul>
@@ -7341,7 +7047,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
      <li><span class="dfn-paneled" id="term-for-dom-domhighrestimestamp">DOMHighResTimeStamp</span>
     </ul>
    <li>
-    <a data-link-type="biblio">[hr-time-2]</a> defines the following terms:
+    <a data-link-type="biblio">[hr-time-3]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-dfn-current-high-resolution-time">current high resolution time</span>
     </ul>
@@ -7528,8 +7234,8 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
    <dd><a href="https://tc39.es/ecma262/multipage/"><cite>ECMAScript Language Specification</cite></a>. URL: <a href="https://tc39.es/ecma262/multipage/">https://tc39.es/ecma262/multipage/</a>
    <dt id="biblio-geometry-1">[GEOMETRY-1]
    <dd>Simon Pieters; Chris Harrelson. <a href="https://www.w3.org/TR/geometry-1/"><cite>Geometry Interfaces Module Level 1</cite></a>. 4 December 2018. CR. URL: <a href="https://www.w3.org/TR/geometry-1/">https://www.w3.org/TR/geometry-1/</a>
-   <dt id="biblio-hr-time-2">[HR-TIME-2]
-   <dd>Ilya Grigorik. <a href="https://www.w3.org/TR/hr-time-2/"><cite>High Resolution Time Level 2</cite></a>. 21 November 2019. REC. URL: <a href="https://www.w3.org/TR/hr-time-2/">https://www.w3.org/TR/hr-time-2/</a>
+   <dt id="biblio-hr-time-3">[HR-TIME-3]
+   <dd>Yoav Weiss. <a href="https://www.w3.org/TR/hr-time-3/"><cite>High Resolution Time</cite></a>. 28 January 2022. WD. URL: <a href="https://www.w3.org/TR/hr-time-3/">https://www.w3.org/TR/hr-time-3/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-infra">[INFRA]
@@ -7668,7 +7374,7 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#xrboundedreferencespace"><code><c- g>XRBoundedReferenceSpace</c-></code></a> : <a data-link-type="idl-name" href="#xrreferencespace"><c- n>XRReferenceSpace</c-></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-frozen-array"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<DOMPointReadOnly>" href="#dom-xrboundedreferencespace-boundsgeometry"><c- g>boundsGeometry</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-frozen-array"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<DOMPointReadOnly>" href="#dom-xrboundedreferencespace-boundsgeometry"><c- g>boundsGeometry</c-></a>;
 };
 
 <c- b>enum</c-> <a href="#enumdef-xreye"><code><c- g>XREye</c-></code></a> {
@@ -7695,17 +7401,17 @@ have been the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipa
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#xrrigidtransform"><code><c- g>XRRigidTransform</c-></code></a> {
-  <a class="idl-code" data-link-type="constructor" href="#dom-xrrigidtransform-xrrigidtransform"><c- g>constructor</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit"><c- n>DOMPointInit</c-></a> <a href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-position"><code><c- g>position</c-></code></a> = {}, <c- b>optional</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit"><c- n>DOMPointInit</c-></a> <a href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-orientation"><code><c- g>orientation</c-></code></a> = {});
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrrigidtransform-position"><c- g>position</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrrigidtransform-orientation"><c- g>orientation</c-></a>;
+  <a class="idl-code" data-link-type="constructor" href="#dom-xrrigidtransform-xrrigidtransform"><c- g>constructor</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dictdef-dompointinit"><c- n>DOMPointInit</c-></a> <a href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-position"><code><c- g>position</c-></code></a> = {}, <c- b>optional</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dictdef-dompointinit"><c- n>DOMPointInit</c-></a> <a href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-orientation"><code><c- g>orientation</c-></code></a> = {});
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrrigidtransform-position"><c- g>position</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrrigidtransform-orientation"><c- g>orientation</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-Float32Array"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrrigidtransform-matrix"><c- g>matrix</c-></a>;
   [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#xrrigidtransform"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrrigidtransform-inverse"><c- g>inverse</c-></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrpose"><code><c- g>XRPose</c-></code></a> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#xrrigidtransform"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrpose-transform"><c- g>transform</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly?" href="#dom-xrpose-linearvelocity"><c- g>linearVelocity</c-></a>;
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly?" href="#dom-xrpose-angularvelocity"><c- g>angularVelocity</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly?" href="#dom-xrpose-linearvelocity"><c- g>linearVelocity</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/geometry-1/#dompointreadonly"><c- n>DOMPointReadOnly</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly?" href="#dom-xrpose-angularvelocity"><c- g>angularVelocity</c-></a>;
 
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrpose-emulatedposition"><c- g>emulatedPosition</c-></a>;
 };
