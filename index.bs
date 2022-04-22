@@ -3117,6 +3117,8 @@ Thank you to the following individuals for their contributions the WebXR Device 
   * <a href="mailto:kgilbert@mozilla.com">Kearwood Gilbert</a> (<a href="https://mozilla.org/">Mozilla</a>)
   * <a href="mailto:rafael.cintron@microsoft.com">Rafael Cintron</a> (<a href="https://microsoft.com/">Microsoft</a>)
   * <a href="mailto:sebastian.sylvan@gmail.com">Sebastian Sylvan</a> (Formerly <a href="https://microsoft.com/">Microsoft</a>)
+  * <a href="mailto:alexturn@microsoft.com">Alex Turner</a> (<a href="https://microsoft.com/">Microsoft</a>)
+  * <a href="mailto:laford@microsoft.com">Lachlan Ford</a> (<a href="https://microsoft.com/">Microsoft</a>)
   * <a href="mailto:blair@mozilla.com">Blair MacIntyre</a> (<a href="https://mozilla.org/">Mozilla</a>)
   * <a href="mailto:johnpallett@google.com">John Pallett</a> (<a href="https://www.google.com">Google</a>)
   * <a href="mailto:taoyagi@mozilla.com">Takahiro Aoyagi</a> (<a href="https://mozilla.org/">Mozilla</a>)
