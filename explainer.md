@@ -21,7 +21,7 @@ The [WebXR Device API](https://immersive-web.github.io/webxr/) provides access t
   - [Requesting a Session](#requesting-a-session)
   - [Setting up an XRWebGLLayer](#setting-up-an-xrwebgllayer)
   - [Main render loop](#main-render-loop)
-  - [Viewer tracking With WebGL](#viewer-tracking-with-webgl)
+  - [Viewer tracking](#viewer-tracking)
   - [Handling session visibility](#handling-session-visibility)
   - [Ending the XR session](#ending-the-xr-session)
 - [Inline sessions](#inline-sessions)
@@ -67,7 +67,7 @@ Examples of supported devices include (but are not limited to):
  - [HTC Vive](https://www.htcvive.com/)
  - [Magic Leap One](https://www.magicleap.com/magic-leap-one)
  - [Microsoft Hololens](https://www.microsoft.com/en-us/hololens/)
- - [Meta Quest 1, 2, and Pro](https://www.meta.com/quest/products/quest-2/)
+ - [Oculus Rift](https://www3.oculus.com/rift/)
  - [Samsung Gear VR](http://www.samsung.com/global/galaxy/gear-vr/)
  - [Windows Mixed Reality headsets](https://developer.microsoft.com/en-us/windows/mixed-reality)
 
@@ -513,7 +513,7 @@ Immersive and inline sessions may run their render loops at at different rates. 
 Beyond the core APIs described above, the WebXR Device API also exposes several options for taking greater advantage of the XR hardware's capabilities.
 
 ### Feature dependencies
-Once developers have mastered session creation and rendering, they will often be interested in using additional WebXR features that may not be universally available. While developers are generally encouraged to design for progressive enhancement, some experiences may have requirements on features that are not guaranteed to be universally available. For example, an experience which requires users to move around a large physical space, such as a guided tour, would not function on an Meta Quest because it is unable to provide an [`unbounded` reference space](spatial-tracking-explainer.md#unbounded-reference-space). If an experience is completely unusable without a specific feature, it would be a poor user experience to initialize the underlying XR platform and create a session only to immediately notify the user it won't work.
+Once developers have mastered session creation and rendering, they will often be interested in using additional WebXR features that may not be universally available. While developers are generally encouraged to design for progressive enhancement, some experiences may have requirements on features that are not guaranteed to be universally available. For example, an experience which requires users to move around a large physical space, such as a guided tour, would not function on an Oculus Go because it is unable to provide an [`unbounded` reference space](spatial-tracking-explainer.md#unbounded-reference-space). If an experience is completely unusable without a specific feature, it would be a poor user experience to initialize the underlying XR platform and create a session only to immediately notify the user it won't work.
 
 Features may be unavailable for a number of reasons, among which is the fact not all devices which support WebXR can support the full set of features. Another consideration is that some features expose [sensitive information](privacy-security-explainer.md#sensitive-information) which may require a clear signal of [user intent](privacy-security-explainer.md#user-intent) before functioning. Any feature which requires this signal to be provided via [explicit consent](privacy-security-explainer.md#explicit-consent) must request this consent prior to the session being created. This ensures a consistent experience across all hardware form-factors, regardless of whether the UA has a [trusted immersive UI](privacy-security-explainer.md#trusted-immersive-ui) available.
 
